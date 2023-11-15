@@ -1,0 +1,17 @@
+       +------------+        +----------------+         +--------------+
+       |   Usuario  |        |   Contenido    |         |  Sección CV  |
+       +------------+        +----------------+         +--------------+
+       | ID         |        | ID             |         | ID           |
+       | Nombre     |        | Título         |         | Nombre       |
+       | Apellido   |        | Descripción    |         | Grado_ID     |
+       | Email      |        | Archivo        |         +--------------+
+       | Contraseña |        | Grado_ID       |   
+       | Tipo       |        +----------------+   
+       | Grado_ID   |    
+       +------------+   
+              |               +--------------+
+              |               | Grado Enseñ. |
+              +---------------+--------------+
+                              | ID           |
+                              | Nombre       |
+                              +--------------+
