@@ -9,7 +9,7 @@ const Navbar = () => {
     setIsCollapsed(!isCollapsed);
   };
   return (
-    <nav className="bg-white  fixed w-full z-20 top-0 start-0  text-black  tracking-widest font-semibold">
+    <nav className="bg-white  fixed w-full h-20 z-50 top-0 start-0  text-black  tracking-widest font-semibold border">
       <div className="max-w-screen-3xl flex flex-wrap items-center justify-between mx-auto p-2 md:p-4 md:px-32">
         <Link
           href="/"
@@ -20,7 +20,7 @@ const Navbar = () => {
         <div className="flex md:justify-end md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse   md:w-1/3">
           <button
             type="button"
-            className="  focus:ring-4 focus:outline-none bg-custom-yellow text-white focus:ring-yellow-600 font-medium rounded-lg text-sm px-4 py-2 text-center hover:bg-yellow-500 "
+            className="  focus:ring-4 focus:outline-none bg-custom-yellow text-white focus:ring-yellow-600 font-medium rounded-full text-sm px-4 py-2 text-center hover:bg-yellow-500 "
           >
             Ingreso
           </button>
