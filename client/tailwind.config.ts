@@ -16,11 +16,18 @@ const config: Config = {
         'custom-orange': '#FA7921F7',
                       
       },
+      keyframes:{
+         marquee: {
+        '0%': { transform: 'translateX(0%)' },
+        '100%': { transform: 'translateX(-100%)' }
+      },
+    },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      animation: { carousel: 'marquee 240s linear infinite',}
     },
   },
   plugins: [require('flowbite/plugin')],
