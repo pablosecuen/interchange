@@ -1,8 +1,8 @@
-import { DataTypes, Sequelize } from 'sequelize';
-import { v4 as uuidv4 } from 'uuid';
+const { DataTypes } = require("sequelize");
+const { v4: uuidv4 } = require("uuid");
 
-export default function defineUsuarioModel(sequelize: Sequelize) {
-  const Usuario = sequelize.define('Usuario', {
+module.exports = (sequelize) => {
+  const Usuario = sequelize.define("Usuario", {
     ID: {
       type: DataTypes.UUID,
       defaultValue: () => uuidv4(),
@@ -30,7 +30,7 @@ export default function defineUsuarioModel(sequelize: Sequelize) {
         isEmail: true,
       },
     },
-    Contraseña: {
+    Password: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
@@ -45,13 +45,13 @@ export default function defineUsuarioModel(sequelize: Sequelize) {
       },
     },
     Grado_ID: {
-        type: DataTypes.UUID, 
-        allowNull: false,
-        validate: {
-          notEmpty: true,
-        },
-    }
+      type: DataTypes.UUID,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+      },
+    },
   });
 
-  return Usuario;
-}
+  return Usuario; // Retorna el modelo definido
+};

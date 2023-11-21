@@ -1,11 +1,11 @@
-import { DataTypes, Sequelize } from 'sequelize';
-import { v4 as uuidv4 } from 'uuid';
+const { DataTypes, Sequelize } = require("sequelize");
+const { v4: uuidv4 } = require("uuid");
 
-export default function defineContenidoModel(sequelize: Sequelize) {
-  const Contenido = sequelize.define('Contenido', {
+module.exports = function defineContenidoModel(sequelize) {
+  const Contenido = sequelize.define("Contenido", {
     ID: {
       type: DataTypes.UUID,
-      defaultValue: () => uuidv4(),
+      defaultValue: uuidv4,
       primaryKey: true,
     },
     Titulo: {
@@ -30,19 +30,19 @@ export default function defineContenidoModel(sequelize: Sequelize) {
       },
     },
     Grado_ID: {
-        type: DataTypes.UUID, 
-        allowNull: false,
-        validate: {
-          notEmpty: true,
-        },
-        references: {
-          model: 'Grados', 
-          key: 'ID', 
-        },
-        onDelete: 'CASCADE',
-        onUpdate: 'CASCADE',
+      type: DataTypes.UUID,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
       },
+      references: {
+        model: "Grados",
+        key: "ID",
+      },
+      onDelete: "CASCADE",
+      onUpdate: "CASCADE",
+    },
   });
 
   return Contenido;
-}
+};
