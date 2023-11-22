@@ -18,10 +18,7 @@ const Navbar = () => {
           <Logo size="xl" />
         </Link>
         <div className="flex md:justify-end md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse   md:w-1/3">
-          <button
-            type="button"
-            className="  focus:ring-4 focus:outline-none bg-custom-yellow text-white focus:ring-yellow-600 font-medium rounded-full text-sm px-4 py-2 text-center hover:bg-yellow-500 "
-          >
+          <button type="button" className="yellow-btn ">
             Ingreso
           </button>
           <button

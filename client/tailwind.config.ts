@@ -16,6 +16,16 @@ const config: Config = {
         'custom-orange': '#FA7921F7',
                       
       },
+      colors: {
+        'custom-yellow': '#FFC327',
+        'custom-purple': '#8021FA',
+        'custom-green': '#29AE56B8',
+        'custom-orange': '#FA7921F7',
+      },
+      buttonStyles: {
+        'yellow-btn': 'focus:ring-4 focus:outline-none bg-custom-yellow text-white focus:ring-yellow-600 font-medium rounded-full text-sm px-4 py-2 text-center hover:bg-yellow-500',
+
+      },
       keyframes:{
          marquee: {
         '0%': { transform: 'translateX(0%)' },

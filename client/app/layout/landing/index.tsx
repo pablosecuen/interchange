@@ -36,10 +36,7 @@ const Landing = () => {
             everyone achive their best
           </h2>
           <div className="flex gap-6 pb-4">
-            <button
-              type="button"
-              className="  focus:ring-4 focus:outline-none bg-custom-yellow text-white focus:ring-yellow-600 font-medium rounded-full text-sm px-4 py-1 text-center hover:bg-yellow-500 "
-            >
+            <button type="button" className="yellow-btn">
               Leer mas
             </button>
             <button
