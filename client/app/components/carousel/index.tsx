@@ -16,6 +16,16 @@ const Carousel = () => {
     ...librerias,
     ...librerias,
     ...librerias,
+    ...librerias,
+    ...librerias,
+    ...librerias,
+    ...librerias,
+    ...librerias,
+    ...librerias,
+    ...librerias,
+    ...librerias,
+    ...librerias,
+    ...librerias,
   ];
 
   return (
