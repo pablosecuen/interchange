@@ -1,6 +1,9 @@
 import React from "react";
 import Logo from "../logo";
 import Link from "next/link";
+import Image from "next/image";
+import telefono from "@/public/assets/svg/telefono.svg";
+import mail from "@/public/assets/svg/mail.svg";
 
 function Footer() {
   return (
@@ -27,19 +30,20 @@ function Footer() {
                     Nosotros
                   </Link>
                 </li>
-                <li>
-                  <Link href="/contacto" className="hover:underline">
-                    Contacto
-                  </Link>
-                </li>
-                <li>
+
+                <li className="mb-4">
                   <Link href="/inscripcion" className="hover:underline">
                     Inscription
                   </Link>
                 </li>
-                <li>
+                <li className="mb-4">
                   <Link href="/tours" className="hover:underline">
                     Tours
+                  </Link>
+                </li>
+                <li className="mb-4">
+                  <Link href="/grados" className="hover:underline">
+                    Grades
                   </Link>
                 </li>
               </ul>
@@ -60,16 +64,19 @@ function Footer() {
               </ul>
             </div>
             <div>
-              <h2 className="mb-6 text-sm font-semibold text-white uppercase ">Legales</h2>
+              <h2 className="mb-6 text-sm font-semibold text-white uppercase ">Contacto</h2>
               <ul className="text-gray-500 dark:text-gray-400 font-medium">
-                <li className="mb-4">
-                  <Link href="#" className="hover:underline">
-                    Politicas privacidad
-                  </Link>
+                <li className="mb-4 hover:underline flex gap-2 items-center">
+                  <Image src={telefono} alt="" width={20} height={0} />
+                  +54 3417206026
                 </li>
                 <li>
-                  <Link href="#" className="hover:underline">
-                    Terminos &amp; Condiciones
+                  <Link
+                    href="mailto:interchange@gmail.com"
+                    className="hover:underline flex gap-2 items-center"
+                  >
+                    <Image src={mail} alt="" width={20} height={0} />
+                    interchange@gmail.com
                   </Link>
                 </li>
               </ul>
