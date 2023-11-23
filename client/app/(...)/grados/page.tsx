@@ -18,10 +18,10 @@ const Grados = () => {
           {gradesContent.map((content, index) => (
             <div key={index} className="border rounded-2xl w-56 h-72">
               <div className="w-full h-3/5 p-2 rounded-2xl border bg-pink-500"></div>
-              <div className="flex flex-col  h-2/5 p-2">
+              <div className="flex flex-col justify-center h-2/5 p-2">
                 {" "}
-                <h3 className="text-red-700">{content.title}</h3>
-                <p className="text-gray-400 text-sm">{content.description}</p>
+                <h3 className="text-red-700 h-1/2">{content.title}</h3>
+                <p className="text-gray-400 text-sm h-1/2">{content.description}</p>
                 {/* Otros elementos a renderizar */}
               </div>
             </div>
@@ -35,10 +35,10 @@ const Grados = () => {
         {filteredContent.map((content, index) => (
           <div key={index} className="border rounded-2xl w-56 h-72">
             <div className="w-full h-3/5 p-2 rounded-2xl border bg-pink-500"></div>
-            <div className="flex flex-col  h-2/5 p-2">
+            <div className="flex flex-col justify-center h-2/5 p-2">
               {" "}
-              <h3 className="text-red-700">{content.title}</h3>
-              <p className="text-gray-400 text-sm">{content.description}</p>
+              <h3 className="text-red-700 h-1/2">{content.title}</h3>
+              <p className="text-gray-400 text-sm h-1/2">{content.description}</p>
               {/* Otros elementos a renderizar */}
             </div>
           </div>

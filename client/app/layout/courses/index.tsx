@@ -28,7 +28,7 @@ const Courses = () => {
         ))}
       </div>
       <div>
-        <button className="yellow-btn brightness-125">View all courses</button>
+        <button className="yellow-btn ">View all courses</button>
       </div>
     </section>
   );

@@ -5,7 +5,7 @@ import arrow from "@/public/assets/svg/arrow.svg";
 import scramble from "@/public/assets/svg/scramble.svg";
 import child from "@/public/assets/svg/child.svg";
 import ilustracion from "@/public/assets/svg/ilustracion.svg";
-import ilustracion2 from "@/public/assets/svg/ilustracion2.svg";
+import ilustracion2 from "@/public/assets/svg/Ilustracion2.svg";
 
 const Landing = () => {
   return (
