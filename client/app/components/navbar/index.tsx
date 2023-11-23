@@ -9,7 +9,7 @@ const Navbar = () => {
     setIsCollapsed(!isCollapsed);
   };
   return (
-    <nav className="bg-white  fixed w-full h-20 z-50 top-0 start-0  text-black  tracking-widest font-semibold border">
+    <nav className="bg-white  fixed w-full h-20 z-50 top-0 start-0  text-black  tracking-widest font-semibold ">
       <div className="max-w-screen-3xl flex flex-wrap items-center justify-between mx-auto p-2 md:p-4 md:px-32">
         <Link
           href="/"
