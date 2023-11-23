@@ -1,0 +1,10 @@
+/* Establece la perspectiva en el contenedor */
+.perspective-container {
+  perspective: 200px !important;
+}
+
+.perspective-element {
+  transform: rotatey(-45deg) !important;
+  border: 10px white;
+  box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.4);
+}
