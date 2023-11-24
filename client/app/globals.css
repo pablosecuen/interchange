@@ -6,3 +6,24 @@
   /* Estilos del botón */
   @apply focus:ring-4 focus:outline-none bg-custom-yellow text-white focus:ring-yellow-600 font-medium rounded-full text-sm px-4 py-2 text-center hover:bg-yellow-500 transition duration-300 hover:-translate-y-[2px];
 }
+
+@font-face {
+  font-family: "Laila-Regular";
+  src: url("/fonts/Laila-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Nunito-Regular";
+  src: url("/fonts/NunitoSans-Regular.ttf") format("truetype");
+}
+
+p,
+li,
+button {
+  font-family: "Nunito-Regular", sans-serif;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Laila-Regular", sans-serif;
+}

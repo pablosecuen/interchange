@@ -9,7 +9,7 @@ const Navbar = () => {
     setIsCollapsed(!isCollapsed);
   };
   return (
-    <nav className="bg-white  fixed w-full h-20 z-50 top-0 start-0  text-black  tracking-widest font-semibold ">
+    <nav className="bg-white  fixed w-full h-20 z-50 top-0 start-0  text-black  tracking-wider  font-laila !font-bold">
       <div className="max-w-screen-3xl flex flex-wrap items-center justify-between mx-auto p-2 md:p-4 md:px-32">
         <Link
           href="/"
@@ -18,7 +18,7 @@ const Navbar = () => {
           <Logo size="xl" />
         </Link>
         <div className="flex md:justify-end md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse   md:w-1/3">
-          <button type="button" className="yellow-btn ">
+          <button type="button" className="yellow-btn  font-bold">
             Ingreso
           </button>
           <button
@@ -55,7 +55,7 @@ const Navbar = () => {
             <li>
               <Link
                 href="/"
-                className="block py-2 px-3  rounded md:bg-transparent md:text-yellow-500 md:p-0 "
+                className="block py-2 px-3  rounded md:bg-transparent md:text-yellow-500 md:p-0 font-bold"
                 aria-current="page"
               >
                 Home
@@ -64,7 +64,7 @@ const Navbar = () => {
             <li>
               <Link
                 href="/inscripcion"
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-yellow-500 md:p-0 "
+                className="block py-2 px-3 font-bold text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-yellow-500 md:p-0 "
               >
                 Inscripcion
               </Link>
@@ -72,7 +72,7 @@ const Navbar = () => {
             <li>
               <Link
                 href="#"
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-yellow-500 md:p-0 "
+                className="block py-2 px-3 text-gray-900 font-bold rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-yellow-500 md:p-0 "
               >
                 Tours
               </Link>
@@ -80,7 +80,7 @@ const Navbar = () => {
             <li>
               <Link
                 href="/grados"
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-yellow-500 md:p-0 "
+                className="block py-2 px-3 text-gray-900 font-bold rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-yellow-500 md:p-0 "
               >
                 Grades
               </Link>
@@ -88,7 +88,7 @@ const Navbar = () => {
             <li>
               <Link
                 href="/nosotros"
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-yellow-500 md:p-0 "
+                className="block py-2 px-3 text-gray-900 font-bold rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-yellow-500 md:p-0 "
               >
                 Nosotros
               </Link>
@@ -96,7 +96,7 @@ const Navbar = () => {
             <li>
               <Link
                 href="/contacto"
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-yellow-500 md:p-0 "
+                className="block py-2 px-3 text-gray-900 font-bold rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-yellow-500 md:p-0 "
               >
                 Contacto
               </Link>

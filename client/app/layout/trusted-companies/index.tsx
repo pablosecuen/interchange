@@ -7,7 +7,9 @@ import girlpic from "@/public/assets/svg/girlpic.svg";
 const Trusted = () => {
   return (
     <section className="flex flex-col min-h-screen py-20">
-      <h2 className="uppercase text-4xl tracking-widest text-center">trusted companies</h2>
+      <h2 className="uppercase text-4xl tracking-widest text-center font-laila font-bold">
+        trusted companies
+      </h2>
       <div className="max-w-4xl  overflow-x-hidden mx-auto h-auto my-10">
         {" "}
         <Carousel />
@@ -29,7 +31,7 @@ const Trusted = () => {
         </div>
         <div className="w-full md:w-1/2 order-2  flex flex-col justify-end p-10 gap-4">
           <span className="text-lg text-custom-orange">Learging methods</span>
-          <h3 className="text-3xl tracking-wider relative flex">
+          <h3 className="text-3xl tracking-wider relative flex font-laila font-bold">
             Access to learning anytime and everywhere
             <Image
               src={sparks}

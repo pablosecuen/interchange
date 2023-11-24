@@ -18,18 +18,18 @@ const Nosotros = () => {
           <div className="w-full h-[80vh] flex ">
             <div className="w-1/2 h-full flex flex-col items-end justify-center  order-1 ">
               {" "}
-              <span className="font-bold text-3xl w-[650px] pb-10 relative">
+              <span className="font-bold text-3xl w-[650px] pb-10 relative font-laila">
                 {" "}
                 <Image
                   src={highlight}
                   alt="highlight"
                   width={40}
                   height={0}
-                  className="absolute -top-5 -left-8"
+                  className="absolute -top-5 -left-8 font-laila"
                 />
                 NOSOTROS
               </span>
-              <h3 className="text-3xl perspective-container max-w-[650px] font-bold leading-loose pb-2">
+              <h3 className="text-3xl perspective-container max-w-[650px] font-bold leading-loose pb-2 font-laila">
                 “ Transformando Sueños en Palabras, Palabras en Poder: <br />{" "}
                 <div className="flex ">
                   creating{" "}
@@ -102,26 +102,26 @@ const Nosotros = () => {
             <div className="w-3 h-3 rounded-full bg-custom-purple  absolute bottom-20 left-32"></div>
           </div>
           <div className="w-1/2 h-full order-2 relative  p-20 flex flex-col gap-4">
-            <h4 className="text-4xl text-center">Nuestro Instituto</h4>
+            <h4 className="text-4xl text-center font-laila font-bold">Nuestro Instituto</h4>
             <p className="text-lg pb-8">
               Bienvenido a Interchange, tu destino para el aprendizaje del inglés de calidad. Nos
               enorgullece ofrecer una experiencia educativa única y personalizada que va más allá de
               las aulas tradicionales. Nuestra misión es inspirar y capacitar a nuestros estudiantes
               para que alcancen la fluidez en inglés de manera efectiva y confiada.
             </p>
-            <h5 className="text-3xl">Nuestra metodología</h5>
+            <h5 className="text-3xl  font-laila font-bold">Nuestra metodología</h5>
             <p className="text-lg pb-8">
               Adoptamos una metodología dinámica centrada en el aprendizaje activo y la aplicación
               práctica del inglés en situaciones reales. Nuestro enfoque innovador, respaldado por
               tecnología de vanguardia y profesionales cualificados, garantiza una experiencia de
               aprendizaje efectiva y motivadora.
             </p>
-            <h5 className="text-3xl">Nuestra Misión</h5>
+            <h5 className="text-3xl  font-laila font-bold">Nuestra Misión</h5>
             <p className="text-lg pb-8">
               Capacitar a nuestros estudiantes para lograr la fluidez en inglés de manera efectiva,
               ofreciendo una experiencia educativa única y personalizada.
             </p>
-            <h5 className="text-3xl">Nuestra Visión</h5>
+            <h5 className="text-3xl  font-laila font-bold">Nuestra Visión</h5>
             <p className="text-lg pb-8">
               Destacar como líderes en educación, proporcionando a nuestros estudiantes las
               herramientas y la inspiración necesarias para sobresalir en un mundo globalizado
@@ -129,7 +129,7 @@ const Nosotros = () => {
             </p>
           </div>
         </section>
-        <h3 className="text-5xl text-center max-w-[1000px] my-20">
+        <h3 className="text-5xl text-center max-w-[1000px] my-20 font-laila font-bold">
           Únete a nosotros y haz del aprendizaje una experiencia compartida
         </h3>
       </div>

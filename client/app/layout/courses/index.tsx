@@ -10,7 +10,7 @@ const Courses = () => {
       <div className="w-6 h-6 bg-custom-yellow absolute right-96 top-32 rounded-full"></div>
       <div className="w-4 h-4 bg-custom-purple absolute left-96 top-10 rounded-full"></div>
       <div className="w-6 h-6 bg-custom-green absolute left-52 top-32 rounded-full"></div>
-      <h2 className="text-5xl font-bold w-[600px]  text-center relative">
+      <h2 className="text-5xl font-bold w-[600px]  text-center relative font-laila">
         <Image
           src={sparkles}
           alt="sparkles"

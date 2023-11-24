@@ -9,6 +9,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        laila: ['Laila-Regular', 'sans-serif'],
+        nunito: ['Nunito-Regular', 'sans-serif'],
+      },
       backgroundColor: {
         'custom-yellow': '#FFC327',
         'custom-purple': '#8021FA',

@@ -13,7 +13,7 @@ const Landing = () => {
       <div className="w-full md:w-1/2 order-1  flex justify-end items-center p-10 ">
         <div className="flex-col  justify-end flex max-w-[650px] relatve">
           {" "}
-          <h1 className="text-5xl perspective-container font-bold leading-relaxed pb-2">
+          <h1 className="text-5xl perspective-container font-bold leading-relaxed pb-2 font-laila">
             <Image
               src={scramble}
               alt="scramble"

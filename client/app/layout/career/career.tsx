@@ -10,7 +10,9 @@ const Career = () => {
   return (
     <section className="max-w-7xl w-screen min-h-[70vh] flex ">
       <div className="w-full md:w-1/2 order-1  flex flex-col  items-start p-10 gap-8 relative">
-        <h3 className="text-4xl">We are to create possibility & success in your career!</h3>
+        <h3 className="text-4xl font-laila font-bold">
+          We are to create possibility & success in your career!
+        </h3>
         <p className="text-md text-gray-400">
           Many schools use the term “excellence” to highligth the school´s ambitions to help
           everyone achive their best
