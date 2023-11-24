@@ -80,7 +80,7 @@ const Grados = () => {
   return (
     <section className="w-full max-w-7xl min-h-screen flex mx-auto justify-center py-36 mb-32 ">
       <div className="h-full w-full flex flex-col  gap-10 max-w-7xl">
-        <div className="flex px-20 ">{tabsComponents}</div>
+        <nav className="flex max-w-4xl mx-auto ">{tabsComponents}</nav>
         <div className=" mx-8 ">
           <h4 className="text-custom-purple ">courses</h4>
           <span className="text-4xl relative pb-8">
