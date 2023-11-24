@@ -5,7 +5,7 @@ import rectangle1 from "@/public/assets/svg/Rectangle-1.png";
 import rectangle2 from "@/public/assets/svg/Rectangle-2.png";
 import rectangle3 from "@/public/assets/svg/Rectangle-3.png";
 import highlight from "@/public/assets/svg/highlight.svg";
-import label from "@/public/assets/svg/Label.png";
+import label from "@/public/assets/svg/label.png";
 
 import group from "@/public/assets/svg/group.png";
 import "./perspective.css";

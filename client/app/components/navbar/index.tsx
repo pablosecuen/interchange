@@ -63,7 +63,7 @@ const Navbar = () => {
             </li>
             <li>
               <Link
-                href="#"
+                href="/inscripcion"
                 className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-yellow-500 md:p-0 "
               >
                 Inscripcion
