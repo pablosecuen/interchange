@@ -67,7 +67,7 @@ const Nosotros = () => {
               height={0}
               className="absolute -top-0 left-0"
             />
-            <div className="grid grid-cols-1 border justify-items-center">
+            <div className="grid grid-cols-1  justify-items-center">
               <Image
                 src={reactangle}
                 alt="photo 1"
@@ -101,8 +101,8 @@ const Nosotros = () => {
             <div className="w-4 h-4 rounded-full bg-custom-orange  absolute bottom-10 left-20"></div>
             <div className="w-3 h-3 rounded-full bg-custom-purple  absolute bottom-20 left-32"></div>
           </div>
-          <div className="w-1/2 h-full order-2 relative border p-20 flex flex-col gap-4">
-            <h4 className="text-3xl text-center">Nuestro Instituto</h4>
+          <div className="w-1/2 h-full order-2 relative  p-20 flex flex-col gap-4">
+            <h4 className="text-4xl text-center">Nuestro Instituto</h4>
             <p className="text-lg pb-8">
               Bienvenido a Interchange, tu destino para el aprendizaje del inglés de calidad. Nos
               enorgullece ofrecer una experiencia educativa única y personalizada que va más allá de
