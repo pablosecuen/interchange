@@ -5,7 +5,12 @@ import rectangle1 from "@/public/assets/svg/Rectangle-1.png";
 import rectangle2 from "@/public/assets/svg/Rectangle-2.png";
 import rectangle3 from "@/public/assets/svg/Rectangle-3.png";
 import highlight from "@/public/assets/svg/highlight.svg";
+import highlight3 from "@/public/assets/svg/highlight3.png";
+import vector from "@/public/assets/svg/Vector.png";
 import label from "@/public/assets/svg/label.png";
+import design1 from "@/public/assets/svg/design1.png";
+import design2 from "@/public/assets/svg/design2.png";
+import design3 from "@/public/assets/svg/design3.png";
 
 import group from "@/public/assets/svg/group.png";
 import "./perspective.css";
@@ -58,7 +63,7 @@ const Nosotros = () => {
             </div>
           </div>
         </section>
-        <section className="w-full min-h-screen pt-20   relative  flex">
+        <section className="w-full min-h-screen pt-20 pr-20   relative  flex">
           <div className="w-1/2 h-full order-1 relative">
             <Image
               src={label}
@@ -101,8 +106,45 @@ const Nosotros = () => {
             <div className="w-4 h-4 rounded-full bg-custom-orange  absolute bottom-10 left-20"></div>
             <div className="w-3 h-3 rounded-full bg-custom-purple  absolute bottom-20 left-32"></div>
           </div>
-          <div className="w-1/2 h-full order-2 relative  p-20 flex flex-col gap-4">
-            <h4 className="text-4xl text-center font-laila font-bold">Nuestro Instituto</h4>
+          <div className="w-1/2 h-full order-2 relative  p-20 flex flex-col gap-4 ">
+            <Image
+              src={design1}
+              alt="desig1"
+              width={40}
+              height={0}
+              className="absolute top-1/2 -right-8 font-laila"
+            />
+            <Image
+              src={design2}
+              alt="highlight3"
+              width={40}
+              height={0}
+              className="absolute top-1/2 -right-8 pt-20 font-laila"
+            />
+            <Image
+              src={design3}
+              alt="highlight3"
+              width={40}
+              height={0}
+              className="absolute top-1/2 -right-8 pt-10 mr-14  font-laila"
+            />
+            <h4 className="text-4xl  font-laila font-bold relative self-center">
+              Nuestro Instituto
+              <Image
+                src={highlight3}
+                alt="highlight3"
+                width={40}
+                height={0}
+                className="absolute -top-5 -left-8 font-laila"
+              />
+              <Image
+                src={vector}
+                alt="vector"
+                width={20}
+                height={0}
+                className="absolute -top-0 -right-8 font-laila"
+              />
+            </h4>
             <p className="text-lg pb-8">
               Bienvenido a Interchange, tu destino para el aprendizaje del inglés de calidad. Nos
               enorgullece ofrecer una experiencia educativa única y personalizada que va más allá de

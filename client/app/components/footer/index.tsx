@@ -18,7 +18,7 @@ function Footer() {
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras leo leo, blandit a
               sagittis quis, lobortis eget quam.{" "}
             </p>
-            <span className="text-sm text-gray-400">arijon</span>
+            <span className="text-sm text-gray-400">Arijon 1254</span>
             <span className="text-sm text-gray-400">Rosario, Santa Fe, Argentina</span>
           </div>
           <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
@@ -49,7 +49,7 @@ function Footer() {
               </ul>
             </div>
             <div>
-              <h2 className="mb-6 text-sm font-semibold text-white uppercase ">Seguinos</h2>
+              <h2 className="mb-6 text-sm font-semibold text-white uppercase ">Paginas</h2>
               <ul className="text-gray-500 dark:text-gray-400 font-medium">
                 <li className="mb-4">
                   <Link href="https://github.com/themesberg/flowbite" className="hover:underline ">
@@ -68,7 +68,7 @@ function Footer() {
               <ul className="text-gray-500 dark:text-gray-400 font-medium">
                 <li className="mb-4 hover:underline flex gap-2 items-center">
                   <Image src={telefono} alt="" width={20} height={0} />
-                  +54 3417206026
+                  0341 15-311-9792
                 </li>
                 <li>
                   <Link

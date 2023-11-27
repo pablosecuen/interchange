@@ -1,40 +1,9 @@
-"use client";
 import Image from "next/image";
 import React from "react";
-import teenphoto from "@/public/assets/svg/teenphoto.svg";
 import arrow2 from "@/public/assets/svg/arrow2.svg";
-import bannergroup from "@/public/assets/svg/bannergroup.png";
-import poliform from "@/public/assets/svg/poliform.png";
+import banner1 from "@/public/assets/svg/banner1.png";
 
 export const Banner = () => {
-  const currentPath = typeof window !== "undefined" ? window.location.pathname : "/nosotros";
-  const imageHtml =
-    currentPath === "/nosotros" ? (
-      <div className="relative w-64">
-        <Image
-          src={bannergroup}
-          alt="bannergroup"
-          width={0}
-          height={0}
-          className="absolute bottom-0 -right-20 z-10 "
-        />
-        <Image
-          src={poliform}
-          alt="poliform"
-          width={0}
-          height={0}
-          className="absolute bottom-0 -right-20 scale-125 -translate-y-[12.5%]"
-        />
-      </div>
-    ) : (
-      <Image
-        src={teenphoto}
-        alt="teenphoto"
-        width={0}
-        height={0}
-        className="absolute bottom-0 -right-20"
-      />
-    );
   return (
     <article className=" w-screen h-48 overflow-x- bg-gray-700 flex justify-center ">
       <div className="max-w-7xl w-full flex items-center ">
@@ -54,7 +23,16 @@ export const Banner = () => {
             />
             <button className="yellow-btn">Register now</button>
           </div>
-          <div className="md:w-1/2 relative flex justify-center h-full">{imageHtml}</div>
+          <div className="md:w-1/2 relative flex justify-center h-full">
+            {" "}
+            <Image
+              src={banner1}
+              alt="banner1 "
+              width={0}
+              height={0}
+              className="absolute bottom-0 -right-32"
+            />
+          </div>
         </div>
       </div>
     </article>

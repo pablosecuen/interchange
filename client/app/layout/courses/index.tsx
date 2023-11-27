@@ -20,7 +20,7 @@ const Courses = () => {
         />
         The best place to learn, explore our <span className="text-custom-purple">courses</span>
       </h2>
-      <div className="max-w-7xl w-full  flex gap-10 justify-center">
+      <div className="max-w-7xl w-full  flex gap-10 justify-center ">
         {courses.map((course) => (
           <div className="w-full sm:w-1/2 lg:w-1/3 xl:w-1/4" key={course.title}>
             <Card course={course} />

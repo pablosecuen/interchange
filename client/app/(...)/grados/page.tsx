@@ -1,12 +1,47 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { MagicTabSelect } from "react-magic-motion";
 import { gradesContent } from "@/app/utils";
 import arrow2 from "@/public/assets/svg/arrow2.svg";
 import Image from "next/image";
+import highlight2 from "@/public/assets/svg/highlight2.svg";
+import sparkle3 from "@/public/assets/svg/sparkle3.png";
+import star1 from "@/public/assets/svg/star1.png";
+import ModalCourses from "@/app/components/modal/courses-detail";
+import Link from "next/link";
 
 const Grados = () => {
   const [activeTab, setActiveTab] = useState("All");
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedGrade, setSelectedGrade] = useState(null);
+  const modalRef = useRef<HTMLDivElement>(null);
+
+  console.log(modalOpen);
+  const openModal = (grade: any) => {
+    setSelectedGrade(grade);
+    setModalOpen(true);
+  };
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
+  useEffect(() => {
+    const handleCloseModal = (event: MouseEvent) => {
+      if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+        closeModal();
+      }
+    };
+
+    if (modalOpen) {
+      document.addEventListener("mousedown", handleCloseModal);
+    } else {
+      document.removeEventListener("mousedown", handleCloseModal);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleCloseModal);
+    };
+  }, [modalOpen]);
 
   const tabs = ["All", "Starter", "Beginner", "Prekid", "Kids", "Teens", "F.C.E", "Adults"];
 
@@ -16,14 +51,58 @@ const Grados = () => {
   const renderTabContent = () => {
     if (activeTab === "All") {
       return (
-        <div className=" w-full max-w-7xl flex flex-wrap gap-4 justify-center ">
+        <div className=" w-full max-w-7xl flex flex-wrap gap-4 justify-center relative">
+          <Image
+            src={highlight2}
+            alt="highlight2"
+            width={200}
+            height={0}
+            className="absolute -top-32 -right-24"
+          />
+          <Image
+            src={sparkle3}
+            alt="sparkle3"
+            width={50}
+            height={0}
+            className="absolute -top-32 right-48"
+          />
+          <Image
+            src={star1}
+            alt="start"
+            width={50}
+            height={0}
+            className="absolute -bottom-32 left-20"
+          />
+          <div className="w-6 h-6 bg-custom-yellow absolute -right-8 -bottom-20 rounded-full"></div>
+          <div className="w-4 h-4 bg-custom-green absolute right-20 -bottom-24 rounded-full"></div>
+          <div className="w-6 h-6 bg-custom-purple absolute right-0 -bottom-40 rounded-full"></div>
+          {modalOpen && selectedGrade && (
+            <ModalCourses grade={selectedGrade} onClose={closeModal} modalOpen={modalOpen} />
+          )}
           {gradesContent.map((content, index) => (
-            <div key={index} className="border rounded-2xl w-56 h-72">
-              <div className="w-full h-3/5 p-2 rounded-2xl border bg-pink-500"> </div>
+            <div
+              key={index}
+              className="border rounded-2xl w-56 h-80 transition duration-300 hover:-translate-y-[3px] hover:shadow-xl shadow-md hover:shadow-black/30 cursor-pointer"
+              onClick={() => openModal(content)}
+            >
+              <div className="w-full h-3/5 p-2 rounded-2xl border bg-pink-500/20 relative">
+                {" "}
+                <Image
+                  src={content?.img}
+                  alt={content.title}
+                  layout="fill"
+                  objectFit="cover"
+                  className="rounded-2xl"
+                />
+              </div>
               <div className="flex flex-col justify-center h-2/5 p-2">
                 {" "}
                 <h3 className="text-red-700 h-1/2">{content.title}</h3>
-                <p className="text-gray-400 text-sm h-1/2">{content.description}</p>
+                <p className="text-gray-400 text-sm h-1/2">
+                  {content.description.length > 50
+                    ? `${content.description.slice(0, 50)}...`
+                    : content.description}
+                </p>
                 {/* Otros elementos a renderizar */}
               </div>
             </div>
@@ -33,14 +112,54 @@ const Grados = () => {
     }
 
     return (
-      <div className=" w-full max-w-7xl flex flex-wrap gap-4 justify-center ">
+      <div className=" w-full max-w-7xl flex flex-wrap gap-4 justify-center relative">
+        <Image
+          src={highlight2}
+          alt="highlight2"
+          width={200}
+          height={0}
+          className="absolute -top-32 -right-24"
+        />
+        <Image
+          src={sparkle3}
+          alt="sparkle3"
+          width={50}
+          height={0}
+          className="absolute -top-32 right-48"
+        />
+        <Image
+          src={star1}
+          alt="start"
+          width={50}
+          height={0}
+          className="absolute -bottom-32 left-20"
+        />{" "}
+        <div className="w-6 h-6 bg-custom-yellow absolute -right-8 -bottom-20 rounded-full"></div>
+        <div className="w-4 h-4 bg-custom-green absolute right-20 -bottom-24 rounded-full"></div>
+        <div className="w-6 h-6 bg-custom-purple absolute right-0 -bottom-40 rounded-full"></div>
         {filteredContent.map((content, index) => (
-          <div key={index} className="border rounded-2xl w-56 h-72">
-            <div className="w-full h-3/5 p-2 rounded-2xl border bg-pink-500"></div>
+          <div
+            key={index}
+            className="border rounded-2xl w-56 h-80 transition duration-300 hover:-translate-y-[3px] hover:shadow-xl shadow-md hover:shadow-black/30 cursor-pointer"
+          >
+            <div className="w-full h-3/5 p-2 rounded-2xl border bg-pink-500/20 relative">
+              {" "}
+              <Image
+                src={content?.img}
+                alt={content.title}
+                layout="fill"
+                objectFit="cover"
+                className="rounded-2xl"
+              />
+            </div>
             <div className="flex flex-col justify-center h-2/5 p-2">
               {" "}
               <h3 className="text-red-700 h-1/2">{content.title}</h3>
-              <p className="text-gray-400 text-sm h-1/2">{content.description}</p>
+              <p className="text-gray-400 text-sm h-1/2">
+                {content.description.length > 50
+                  ? `${content.description.slice(0, 50)}...`
+                  : content.description}
+              </p>
               {/* Otros elementos a renderizar */}
             </div>
           </div>

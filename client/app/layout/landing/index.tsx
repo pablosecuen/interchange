@@ -10,16 +10,16 @@ import ilustracion2 from "@/public/assets/svg/Ilustracion2.svg";
 const Landing = () => {
   return (
     <section className="overflow-x-hidden w-screen  min-h-[100vh] flex flex-col md:flex-row ">
-      <div className="w-full md:w-1/2 order-1  flex justify-end items-center p-10 ">
-        <div className="flex-col  justify-end flex max-w-[650px] relatve">
+      <div className="w-full md:w-1/2 order-1  flex justify-end items-center pl-10  ">
+        <div className="flex-col  justify-end flex max-w-[550px] relatve">
           {" "}
-          <h1 className="text-5xl perspective-container font-bold leading-relaxed pb-2 font-laila">
+          <h1 className="text-5xl perspective-container font-bold leading-relaxed pb-2 font-laila  ">
             <Image
               src={scramble}
               alt="scramble"
               width={150}
               height={0}
-              className="absolute -top-8 right-20"
+              className="absolute -top-8 right-10"
             />
             Education is about <br />{" "}
             <div className="flex ">
