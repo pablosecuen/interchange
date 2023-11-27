@@ -15,8 +15,7 @@ function Footer() {
               <Logo size="xl" />
             </Link>
             <p className="text-xs w-96 text-gray-400 pb-2">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras leo leo, blandit a
-              sagittis quis, lobortis eget quam.{" "}
+              Education is about creating leaders for tomorrow
             </p>
             <span className="text-sm text-gray-400">Arijon 1254</span>
             <span className="text-sm text-gray-400">Rosario, Santa Fe, Argentina</span>
@@ -52,12 +51,18 @@ function Footer() {
               <h2 className="mb-6 text-sm font-semibold text-white uppercase ">Paginas</h2>
               <ul className="text-gray-500 dark:text-gray-400 font-medium">
                 <li className="mb-4">
-                  <Link href="https://github.com/themesberg/flowbite" className="hover:underline ">
+                  <Link
+                    href="https://www.facebook.com/p/Interchange-Instituto-de-Ingl%C3%A9s-100063674795643/?paipv=0&eav=AfacH2NoPL_t-xa_ANfsGts34nt1bnIyXVbTcCEnlWRNMn9hj-BxIezhAzOjUFVR41E&_rdr"
+                    className="hover:underline "
+                  >
                     Facebook
                   </Link>
                 </li>
                 <li>
-                  <a href="https://discord.gg/4eeurUVvTy" className="hover:underline">
+                  <a
+                    href="https://www.instagram.com/interchangeingles/"
+                    className="hover:underline"
+                  >
                     Instagram
                   </a>
                 </li>
@@ -66,9 +71,9 @@ function Footer() {
             <div>
               <h2 className="mb-6 text-sm font-semibold text-white uppercase ">Contacto</h2>
               <ul className="text-gray-500 dark:text-gray-400 font-medium">
-                <li className="mb-4 hover:underline flex gap-2 items-center">
+                <li className="mb-4 hover:underline flex gap-2 items-center cursor-pointer">
                   <Image src={telefono} alt="" width={20} height={0} />
-                  0341 15-311-9792
+                  <Link href="tel:0341153119792">0341 15-311-9792</Link>
                 </li>
                 <li>
                   <Link
