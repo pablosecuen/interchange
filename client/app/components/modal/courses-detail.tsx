@@ -25,8 +25,16 @@ const ModalCourses: React.FC<ModalProps> = ({ grade, onClose, modalOpen }) => {
         &times;
       </span>
       <div className="w-full h-full flex  relative">
-        <div className="md:w-1/2 h-full order-1 flex  p-20 ">
-          <Image src={grade?.img} alt={grade.title} width={0} height={0} />
+        <div className="md:w-1/2 h-full order-1 flex items-center justify-center ">
+          <div className="w-full h-full relative ">
+            <Image
+              src={grade?.img}
+              alt={grade.title}
+              layout="fill"
+              objectFit="contain"
+              className="rounded-lg"
+            />
+          </div>
         </div>
         <div className="md:w-1/3 h-full  order-2 flex flex-col items-start   pl-4 justify-center ">
           <h4 className="text-xl  tracking-tighter font-nunito text-custom-orange">
