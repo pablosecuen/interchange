@@ -11,7 +11,7 @@ interface ModalProps {
 const ModalCourses: React.FC<ModalProps> = ({ grade, onClose, modalOpen }) => {
   if (!grade) return null;
 
-  const modalClasses = `max-w-7xl max-h-[80vh] z-50 shadow-2xl shadow-black/80 w-full h-full fixed top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 bg-white transition-opacity ${
+  const modalClasses = `max-w-7xl rounded-3xl max-h-[80vh] z-50 shadow-2xl shadow-black/80 w-full h-full fixed top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 bg-white transition-opacity ${
     modalOpen
       ? "opacity-100 duration-500 animate-fade"
       : "opacity-0 duration-500 pointer-events-none"
@@ -19,7 +19,7 @@ const ModalCourses: React.FC<ModalProps> = ({ grade, onClose, modalOpen }) => {
   return (
     <div className={modalClasses}>
       <span
-        className="px-2 border rounded-full bg-white shadow-sm cursor-pointer absolute top-1 right-1 z-50"
+        className="px-2 border border-black/20 transition duration-200 hover:bg-slate-200 bg-slate-100 rounded-full text-black  shadow-sm cursor-pointer absolute top-2 right-2 font-black z-50"
         onClick={onClose}
       >
         &times;
