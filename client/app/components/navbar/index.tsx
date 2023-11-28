@@ -66,7 +66,7 @@ const Navbar = () => {
                 href="/inscripcion"
                 className="block py-2 px-3 font-bold text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-yellow-500 md:p-0 "
               >
-                Inscripcion
+                Inscripción
               </Link>
             </li>
             <li>
@@ -82,7 +82,7 @@ const Navbar = () => {
                 href="/grados"
                 className="block py-2 px-3 text-gray-900 font-bold rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-yellow-500 md:p-0 "
               >
-                Grades
+                Grados
               </Link>
             </li>
             <li>

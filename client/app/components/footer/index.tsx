@@ -11,18 +11,16 @@ function Footer() {
       <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0  flex flex-col justify-center">
-            <Link href="https://flowbite.com/" className="flex items-center pb-2">
+            <Link href="/" className="flex items-center pb-2">
               <Logo size="xl" />
             </Link>
-            <p className="text-xs w-96 text-gray-400 pb-2">
-              Education is about creating leaders for tomorrow
-            </p>
+
             <span className="text-sm text-gray-400">Arijon 1254</span>
             <span className="text-sm text-gray-400">Rosario, Santa Fe, Argentina</span>
           </div>
           <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
             <div>
-              <h2 className="mb-6 text-sm font-semibold text-white uppercase ">PAges</h2>
+              <h2 className="mb-6 text-sm font-semibold text-white uppercase ">Paginas</h2>
               <ul className="text-gray-500 dark:text-gray-400 font-medium">
                 <li className="mb-4">
                   <Link href="/nosotros" className="hover:underline">
@@ -32,7 +30,7 @@ function Footer() {
 
                 <li className="mb-4">
                   <Link href="/inscripcion" className="hover:underline">
-                    Inscription
+                    Inscripción
                   </Link>
                 </li>
                 <li className="mb-4">
@@ -42,13 +40,13 @@ function Footer() {
                 </li>
                 <li className="mb-4">
                   <Link href="/grados" className="hover:underline">
-                    Grades
+                    Grados
                   </Link>
                 </li>
               </ul>
             </div>
             <div>
-              <h2 className="mb-6 text-sm font-semibold text-white uppercase ">Paginas</h2>
+              <h2 className="mb-6 text-sm font-semibold text-white uppercase ">RR.SS.</h2>
               <ul className="text-gray-500 dark:text-gray-400 font-medium">
                 <li className="mb-4">
                   <Link

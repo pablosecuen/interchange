@@ -2,6 +2,7 @@ import { Grade } from "@/app/utils";
 import Image from "next/image";
 import React from "react";
 import "./courses-detail.css";
+import Link from "next/link";
 
 interface ModalProps {
   grade: Grade | null;
@@ -41,23 +42,25 @@ const ModalCourses: React.FC<ModalProps> = ({ grade, onClose, modalOpen }) => {
           <h4 className="text-xl  tracking-tighter font-nunito text-custom-orange">
             Acerca de {grade.title}
           </h4>
-          <h2 className="text-4xl mb-6">Learning does not have to be boring! </h2>
+          <h2 className="text-4xl mb-6">Aprender no tiene por qué ser aburrido! </h2>
           <p className="text-sm text-black/70 mb-6">{grade.description}</p>
           <ul className="flex text-custom-purple w-full justify-between ">
             <li className="flex flex-col gap-2">
               <span>titular 1 </span>
-              <p className="text-gray-500">descripcion</p>
+              <p className="text-gray-500">descripción</p>
             </li>
             <li className="flex flex-col gap-2">
               <span>titular 1 </span>
-              <p className="text-gray-500">descripcion</p>
+              <p className="text-gray-500">descripción</p>
             </li>
             <li className="flex flex-col gap-2">
               <span>titular 1 </span>
-              <p className="text-gray-500">descripcion</p>
+              <p className="text-gray-500">descripción</p>
             </li>
           </ul>
-          <button className="yellow-btn mt-20">get started</button>
+          <Link href="/inscripcion">
+            <button className="yellow-btn mt-20">Comenzar</button>
+          </Link>
         </div>
         <div className="hero_area  w-full h-full  top-0 left-0">
           <svg
@@ -66,7 +69,7 @@ const ModalCourses: React.FC<ModalProps> = ({ grade, onClose, modalOpen }) => {
             xmlnsXlink="http://www.w3.org/1999/xlink"
             viewBox="0 24 150 28"
             preserveAspectRatio="none"
-            shape-rendering="auto"
+            shapeRendering="auto"
           >
             <defs>
               <path

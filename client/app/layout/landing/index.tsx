@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import React from "react";
 import "./perspective.css";
 import Image from "next/image";
@@ -21,19 +22,20 @@ const Landing = () => {
               height={0}
               className="absolute -top-8 right-10"
             />
-            Education is about <br />{" "}
+            Educación es <br />{" "}
             <div className="flex ">
-              creating{" "}
+              crear los{" "}
               <div className="text-3xl perspective-container h-auto w-32  flex justify-center items-center relative ">
                 <div className="bg-violet-700 rounded-md perspective-element py-1 px-6 text-white  h-10 w-48 absolute"></div>
-                <span className="w-auto absolute text-white ml-12">leaders</span>
+                <span className="w-auto absolute text-white ml-12">lideres</span>
               </div>
             </div>
-            for tomorrow
+            del mañana
           </h1>
           <h2 className=" text-gray-400 pb-5 text-md w-2/3">
-            Many schools use the term “excellence” to highligth the school´s ambitions to help
-            everyone achive their best
+            Muchas escuelas utilizan el término "excelencia" para resaltar las ambiciones de la
+            escuela de ayudar a todos a lograr lo mejor de sí mismos. a todos a dar lo mejor de sí
+            mismos.
           </h2>
           <div className="flex gap-6 pb-4">
             <button type="button" className="yellow-btn">

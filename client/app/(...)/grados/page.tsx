@@ -11,7 +11,7 @@ import ModalCourses from "@/app/components/modal/courses-detail";
 import Link from "next/link";
 
 const Grados = () => {
-  const [activeTab, setActiveTab] = useState("All");
+  const [activeTab, setActiveTab] = useState("Todos");
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedGrade, setSelectedGrade] = useState(null);
   const modalRef = useRef<HTMLDivElement>(null);
@@ -43,13 +43,13 @@ const Grados = () => {
     };
   }, [modalOpen]);
 
-  const tabs = ["All", "Starter", "Beginner", "Prekid", "Kids", "Teens", "F.C.E", "Adults"];
+  const tabs = ["Todos", "Starter", "Beginner", "Prekid", "Kids", "Teens", "F.C.E", "Adults"];
 
   const filteredContent = gradesContent.filter(
     (content) => content.category.toLowerCase() === activeTab.toLowerCase()
   );
   const renderTabContent = () => {
-    if (activeTab === "All") {
+    if (activeTab === "Todos") {
       return (
         <div className=" w-full max-w-7xl flex flex-wrap gap-4 justify-center relative">
           <Image
@@ -137,10 +137,14 @@ const Grados = () => {
         <div className="w-6 h-6 bg-custom-yellow absolute -right-8 -bottom-20 rounded-full"></div>
         <div className="w-4 h-4 bg-custom-green absolute right-20 -bottom-24 rounded-full"></div>
         <div className="w-6 h-6 bg-custom-purple absolute right-0 -bottom-40 rounded-full"></div>
+        {modalOpen && selectedGrade && (
+          <ModalCourses grade={selectedGrade} onClose={closeModal} modalOpen={modalOpen} />
+        )}
         {filteredContent.map((content, index) => (
           <div
             key={index}
             className="border rounded-2xl w-56 h-80 transition duration-300 hover:-translate-y-[3px] hover:shadow-xl shadow-md hover:shadow-black/30 cursor-pointer"
+            onClick={() => openModal(content)}
           >
             <div className="w-full h-3/5 p-2 rounded-2xl border bg-pink-500/20 relative">
               {" "}
@@ -201,7 +205,7 @@ const Grados = () => {
       <div className="h-full w-full flex flex-col  gap-10 max-w-7xl">
         <nav className="flex max-w-4xl mx-auto font-laila">{tabsComponents}</nav>
         <div className=" mx-8 ">
-          <h4 className="text-custom-purple font-laila">courses</h4>
+          <h4 className="text-custom-purple font-laila">grados</h4>
           <span className="text-4xl relative pb-8 font-laila">
             {" "}
             {activeTab}

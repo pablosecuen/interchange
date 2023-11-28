@@ -21,12 +21,12 @@ const Card = ({ course }: any) => {
         />
       </div>
 
-      <div className="p-1 flex flex-col gap-1  h-1/3">
+      <div className="p-2 flex flex-col gap-1  h-1/3">
         <h4 className="font-bold">{title}</h4>
         <p className="text-xs text-gray-400">{description}</p>
         <Link href={url} className="pt-3">
           <button className="text-custom-yellow hover:text-yellow-600 text-sm tracking-widest">
-            learn more
+            leer mas
           </button>
         </Link>
       </div>

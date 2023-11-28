@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import React from "react";
 import career1 from "@/public/assets/svg/career1.png";
 import career2 from "@/public/assets/svg/career2.png";
@@ -11,24 +12,24 @@ const Career = () => {
     <section className="max-w-7xl w-screen min-h-[70vh] flex ">
       <div className="w-full md:w-1/2 order-1  flex flex-col  items-start p-10 gap-8 relative">
         <h3 className="text-4xl font-laila font-bold">
-          We are to create possibility & success in your career!
+          ¡Estamos para crear posibilidades y éxito en tu carrera!
         </h3>
         <p className="text-md text-gray-400">
-          Many schools use the term “excellence” to highligth the school´s ambitions to help
-          everyone achive their best
+          Muchas escuelas utilizan el término "excelencia" para destacar la ambición de la escuela
+          de ayudar a todos a dar lo mejor de sí mismos.
         </p>
         <ul className="list-disc">
-          <li className="pb-2">We are to create possibility & success in your career</li>
-          <li className="pb-2">Education is about creating leaders for tomorrow</li>
-          <li className="pb-2">Educaction in continuing a proud tradition</li>
+          <li className="pb-2">Estamos para crear posibilidades y éxito en tu carrera</li>
+          <li className="pb-2">La educación consiste en crear líderes para el mañana</li>
+          <li className="pb-2">La educación es la continuación de una orgullosa tradición</li>
         </ul>
-        <button className="yellow-btn">Read More</button>
+        <button className="yellow-btn">Más información</button>
         <Image
           src={greensparkle}
           alt="greensparkle"
           width={0}
           height={0}
-          className="absolute z-10  bottom-1/4"
+          className="absolute z-10  bottom-4"
         />
         <Image
           src={greensparkle}
