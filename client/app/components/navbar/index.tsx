@@ -71,7 +71,7 @@ const Navbar = () => {
             </li>
             <li>
               <Link
-                href="#"
+                href="/tours"
                 className="block py-2 px-3 text-gray-900 font-bold rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-yellow-500 md:p-0 "
               >
                 Tours
@@ -79,10 +79,10 @@ const Navbar = () => {
             </li>
             <li>
               <Link
-                href="/grados"
+                href="/cursos"
                 className="block py-2 px-3 text-gray-900 font-bold rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-yellow-500 md:p-0 "
               >
-                Grados
+                Cursos
               </Link>
             </li>
             <li>

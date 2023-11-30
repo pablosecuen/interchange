@@ -10,7 +10,7 @@ import star1 from "@/public/assets/svg/star1.png";
 import ModalCourses from "@/app/components/modal/courses-detail";
 import Link from "next/link";
 
-const Grados = () => {
+const Cursos = () => {
   const [activeTab, setActiveTab] = useState("Todos");
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedGrade, setSelectedGrade] = useState(null);
@@ -205,7 +205,7 @@ const Grados = () => {
       <div className="h-full w-full flex flex-col  gap-10 max-w-7xl">
         <nav className="flex max-w-4xl mx-auto font-laila">{tabsComponents}</nav>
         <div className=" mx-8 ">
-          <h4 className="text-custom-purple font-laila">grados</h4>
+          <h4 className="text-custom-purple font-laila">cursos</h4>
           <span className="text-4xl relative pb-8 font-laila">
             {" "}
             {activeTab}
@@ -224,4 +224,4 @@ const Grados = () => {
   );
 };
 
-export default Grados;
+export default Cursos;

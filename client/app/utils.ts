@@ -10,6 +10,10 @@ import kids1 from "@/public/assets/svg/kids1.png"
 import teens from "@/public/assets/svg/Teens2.png"
 import fce from "@/public/assets/svg/FCE.png"
 import adults from "@/public/assets/svg/Adults1.png"
+import oxford from "@/public/assets/svg/oxford.png"
+import warwick from "@/public/assets/svg/warwick.png"
+import  londoneye from "@/public/assets/svg/londoneye.png"
+import stonehenge from "@/public/assets/svg/stonehenge.png"
 
 export const librerias = [
     {title: "Sbs libreria", img: sbs, url:"https://www.sbs.com.ar/"},
@@ -46,6 +50,19 @@ export const gradesContent = [
     {category:"Adults", title:"Adults 5", description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras leo leo, blandit a sagittis quis, lobortis eget quam. Nullam nec accumsan sapien. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras leo leo, blandit a sagittis quis, lobortis eget quam. Nullam nec accumsan sapien. ", duration:"10 meses", img:adults},
     {category:"Adults", title:"Adults 6", description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras leo leo, blandit a sagittis quis, lobortis eget quam. Nullam nec accumsan sapien. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras leo leo, blandit a sagittis quis, lobortis eget quam. Nullam nec accumsan sapien. ", duration:"10 meses", img:adults},
 ]
+
+
+
+export const carouselObject= [
+    {title: "oxford", bgImage: oxford},
+    {title: "warwick", bgImage: warwick},
+    {title: "londoneye", bgImage: londoneye},
+    {title: "stonehenge", bgImage: stonehenge},
+    {title: "stonehenge", bgImage: stonehenge},
+ 
+  
+  ]
+
 
 export interface Grade {
     title: string;
