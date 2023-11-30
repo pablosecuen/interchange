@@ -1,3 +1,4 @@
+import type { StaticImageData } from 'next/image';
 import sbs from "@/public/assets/svg/sbs.svg"
 import kel from "@/public/assets/svg/kel.svg"
 import kids from "@/public/assets/svg/Kids.png"
@@ -10,10 +11,11 @@ import kids1 from "@/public/assets/svg/kids1.png"
 import teens from "@/public/assets/svg/Teens2.png"
 import fce from "@/public/assets/svg/FCE.png"
 import adults from "@/public/assets/svg/Adults1.png"
-import oxford from "@/public/assets/svg/oxford.png"
-import warwick from "@/public/assets/svg/warwick.png"
-import  londoneye from "@/public/assets/svg/londoneye.png"
-import stonehenge from "@/public/assets/svg/stonehenge.png"
+
+
+
+
+
 
 export const librerias = [
     {title: "Sbs libreria", img: sbs, url:"https://www.sbs.com.ar/"},
@@ -53,16 +55,57 @@ export const gradesContent = [
 
 
 
-export const carouselObject= [
-    {title: "oxford", bgImage: oxford},
-    {title: "warwick", bgImage: warwick},
-    {title: "londoneye", bgImage: londoneye},
-    {title: "stonehenge", bgImage: stonehenge},
-    {title: "stonehenge", bgImage: stonehenge},
- 
-  
+import bridge1 from "@/public/assets/svg/london-bridge/1.webp"
+import bridge2 from "@/public/assets/svg/london-bridge/2.jpg"
+import bridge3 from "@/public/assets/svg/london-bridge/3.jpg"
+import bridge4 from "@/public/assets/svg/london-bridge/4.jpeg"
+import bridge5 from "@/public/assets/svg/london-bridge/5.jpg"
+import stonehenge from '@/public/assets/svg/stonehenge/1.jpg';
+import stonehenge1 from '@/public/assets/svg/stonehenge/2.jpg';
+import stonehenge2 from '@/public/assets/svg/stonehenge/3.jpg';
+import stonehenge3 from '@/public/assets/svg/stonehenge/stonehenge.jpg';
+import warwick from '@/public/assets/svg/warwick/1.jpg';
+import warwick2 from '@/public/assets/svg/warwick/2.jpg';
+import warwick3 from '@/public/assets/svg/warwick/3.jpg';
+import warwick4 from '@/public/assets/svg/warwick/4.jpg';
+import warwick5 from '@/public/assets/svg/warwick/5.jpg';
+import salesbury from '@/public/assets/svg/salesbury/1.jpg';
+import salesbury1 from '@/public/assets/svg/salesbury/2.jpg';
+import salesbury2 from '@/public/assets/svg/salesbury/3.jpg';
+import salesbury3 from '@/public/assets/svg/salesbury/4.jpg';
+import salesbury4 from '@/public/assets/svg/salesbury/5.jpg';
+import salesbury5 from '@/public/assets/svg/salesbury/6.webp';
+import warner from '@/public/assets/svg/warner/1.jpg'
+import warner1 from '@/public/assets/svg/warner/2.jpg'
+import warner2 from '@/public/assets/svg/warner/3.jpg'
+import warner3 from '@/public/assets/svg/warner/4.jpg'
+
+
+export const toursData: Tour[] = [
+    {title: "London bridge", images: [{title:"bridge2" ,bgImage:bridge1},
+      {title:"bridge2" ,bgImage:bridge2},
+      {title:"bridge3" ,bgImage:bridge3},
+      {title:"bridge4" ,bgImage:bridge4},
+      {title:"bridge5" ,bgImage:bridge5}]},
+    {title: "Stonehendge", images: [
+      {title:"stonehenge" ,bgImage:stonehenge},{title:"stonehenge1" ,bgImage:stonehenge1},{title:"stonehenge2" ,bgImage:stonehenge2},{title:"stonehenge3" ,bgImage:stonehenge3}]},
+    {title: "Warwick Castle", images: [{title:"warwick" ,bgImage:warwick}, {title:"warwick2" ,bgImage:warwick2}, {title:"warwick3" ,bgImage:warwick3}, {title:"warwick4" ,bgImage:warwick4}, {title:"warwick5" ,bgImage:warwick5}]},
+    {title: "Salesbury Cathedral", images: [{title:"salesbury" ,bgImage:salesbury}, {title:"salesbury1" ,bgImage:salesbury1}, {title:"salesbury2" ,bgImage:salesbury2}, {title:"salesbury3" ,bgImage:salesbury3}, {title:"salesbury4" ,bgImage:salesbury4}   , {title:"salesbury5" ,bgImage:salesbury5}]},
+    {title: "Warner Brothers Studios", images: [{title:"warner" ,bgImage:warner}, {title:"warner1" ,bgImage:warner1}, {title:"warner2" ,bgImage:warner2}, {title:"warner3" ,bgImage:warner3}]} 
   ]
 
+
+  export interface ImageData {
+    title: string;
+    bgImage: StaticImageData;
+  }
+  
+  export interface Tour {
+    title: string;
+    width?: number;
+    height?: number;
+    images: ImageData[];
+  }
 
 export interface Grade {
     title: string;
@@ -72,3 +115,14 @@ export interface Grade {
     img: string;
 
   }
+
+
+  export const carouselObject= [
+    {title: "oxford", bgImage: warwick},
+    {title: "warwick", bgImage: warwick},
+    {title: "londoneye", bgImage: warwick},
+    {title: "stonehenge", bgImage: stonehenge},
+    {title: "stonehenge", bgImage: stonehenge},
+ 
+  
+  ]

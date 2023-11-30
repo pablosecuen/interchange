@@ -7,11 +7,14 @@ import CardContainer from "./components/card-container";
 const tours = () => {
   return (
     <section className="min-h-[90vh] h-full w-full mt-20">
-      <div className="max-w-7xl w-full flex justify-center h-[90vh]  mx-auto">
+      <div className="max-w-7xl w-full flex justify-center h-[60vh]  mx-auto">
         {" "}
         <div className=" w-1/3  flex flex-col justify-center tracking-tight gap-2">
           {" "}
-          <h3 className="text-4xl">Descrubre el mundo a traves del ingles</h3>
+          <h3 className="text-4xl">
+            Descrubre el mundo a{" "}
+            <span className="text-custom-purple font-laila font-bold">traves del ingles</span>
+          </h3>
           <p className="text-base">
             ¡Bienvenidos a la emocionante aventura de aprender inglés en el corazón de Inglaterra!
             En Interchange, creemos en no solo enseñar el idioma, sino también sumergir a nuestros

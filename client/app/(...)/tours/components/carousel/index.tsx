@@ -2,9 +2,13 @@
 import React, { useRef } from "react";
 import "./image-carousel.css";
 import Image from "next/image";
-import { carouselObject } from "@/app/utils";
+import { Tour } from "@/app/utils";
 
-const ImageCarousel: React.FC = () => {
+interface ImageCarouselProps {
+  tour: Tour;
+  onClose: () => void;
+}
+const ImageCarousel: React.FC<ImageCarouselProps> = ({ tour, onClose }) => {
   const sliderRef = useRef<any>(null);
 
   const activate = (e: React.MouseEvent<HTMLElement>) => {
@@ -21,18 +25,24 @@ const ImageCarousel: React.FC = () => {
   };
 
   return (
-    <article className="">
-      <main className=" min-h-[80vh] h-[80vh] w-full rounded-3xl overflow-hidden">
+    <article className="mt-20">
+      <main className=" min-h-[80vh] h-full w-full rounded-3xl overflow-hidden relative">
+        <button
+          onClick={onClose}
+          className="rounded-full yellow-btn my-4 absolute z-30 top-2 right-2"
+        >
+          Cerrar Carousel
+        </button>
         <div className="separador "> </div>
         <div className="slider " ref={sliderRef}>
-          {carouselObject.map((item) => (
+          {tour.images.map((item: any) => (
             <div key={item.title} className={`item `}>
               <Image
                 src={item.bgImage}
                 alt={item.title}
                 width={0}
                 height={0}
-                className="h-full w-full object-cover"
+                className="h-full w-full object-cover rounded-3xl"
                 style={{ objectFit: "cover" }}
               />
             </div>
