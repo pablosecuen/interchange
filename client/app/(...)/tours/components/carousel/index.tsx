@@ -1,5 +1,6 @@
 "use client";
 import React, { useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import "./image-carousel.css";
 import Image from "next/image";
 import { Tour } from "@/app/utils";
@@ -25,39 +26,47 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({ tour, onClose }) => {
   };
 
   return (
-    <article className="mt-20">
-      <main className=" min-h-[80vh] h-full w-full rounded-3xl overflow-hidden relative">
-        <button
-          onClick={onClose}
-          className="rounded-full yellow-btn my-4 absolute z-30 top-2 right-2"
-        >
-          Cerrar Carousel
-        </button>
-        <div className="separador "> </div>
-        <div className="slider " ref={sliderRef}>
-          {tour.images.map((item: any) => (
-            <div key={item.title} className={`item `}>
-              <Image
-                src={item.bgImage}
-                alt={item.title}
-                width={0}
-                height={0}
-                className="h-full w-full object-cover rounded-3xl"
-                style={{ objectFit: "cover" }}
-              />
-            </div>
-          ))}
-        </div>
-        <nav className="nav">
-          <span className="btn prev text-2xl font-bold" onClick={activate}>
-            {"<"}
-          </span>
-          <span className="btn next text-2xl font-bold" onClick={activate}>
-            {">"}
-          </span>
-        </nav>
-      </main>
-    </article>
+    <AnimatePresence>
+      <motion.article
+        className="mt-20"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 1 }}
+      >
+        <main className=" min-h-[80vh] h-full w-full rounded-3xl overflow-hidden relative">
+          <button
+            onClick={onClose}
+            className="rounded-full yellow-btn my-4 absolute z-30 top-2 right-2"
+          >
+            Cerrar Carousel
+          </button>
+          <div className="separador "> </div>
+          <div className="slider " ref={sliderRef}>
+            {tour.images.map((item: any) => (
+              <div key={item.title} className={`item `}>
+                <Image
+                  src={item.bgImage}
+                  alt={item.title}
+                  width={0}
+                  height={0}
+                  className="h-full w-full object-cover rounded-3xl"
+                  style={{ objectFit: "cover" }}
+                />
+              </div>
+            ))}
+          </div>
+          <nav className="nav">
+            <span className="btn prev text-2xl font-bold" onClick={activate}>
+              {"<"}
+            </span>
+            <span className="btn next text-2xl font-bold" onClick={activate}>
+              {">"}
+            </span>
+          </nav>
+        </main>
+      </motion.article>
+    </AnimatePresence>
   );
 };
 

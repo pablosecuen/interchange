@@ -26,7 +26,7 @@ const CardContainer = () => {
         {toursData.map((tour: any, index: number) => (
           <div
             key={index}
-            className="w-64 h-96 rounded-2xl border relative cursor-pointer shadow-lg hover:translate-y-1 transition duration-300"
+            className="w-72 h-72 rounded-2xl border relative cursor-pointer shadow-lg hover:translate-y-1 transition duration-300"
             onClick={() => handleShowCarousel(tour)}
           >
             <div className="absolute top-0 left-0 right-0 bottom-0 z-10 flex justify-center items-center rounded-2xl bg-black bg-opacity-50 opacity-0 transition-opacity duration-300 hover:opacity-100">
