@@ -29,12 +29,12 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({ tour, onClose }) => {
     <AnimatePresence>
       <motion.article
         className="mt-20"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
+        initial={{ opacity: 0, height: 1 }}
+        animate={{ opacity: 1, height: "100%" }}
+        exit={{ opacity: 0, height: 0 }}
         transition={{ duration: 1 }}
       >
-        <main className=" min-h-[80vh] h-full w-full rounded-3xl overflow-hidden relative">
+        <main className=" min-h-[70vh] h-[80vh] w-full rounded-3xl overflow-hidden relative">
           <button
             onClick={onClose}
             className="rounded-full yellow-btn my-4 absolute z-30 top-2 right-2"
