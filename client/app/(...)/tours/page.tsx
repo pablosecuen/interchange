@@ -3,11 +3,12 @@
 import React from "react";
 import PolaroidContainer from "./components/polaroid-container";
 import CardContainer from "./components/card-container";
+import Beneficios from "./components/beneficios";
 
 const tours = () => {
   return (
-    <section className="min-h-[90vh] h-full w-full mt-20">
-      <div className="max-w-7xl w-full flex justify-center h-[60vh]  mx-auto">
+    <section className="min-h-[90vh] h-full w-full mt-20 overflow-x-hidden">
+      <div className="max-w-7xl w-full flex justify-center h-[60vh]  mx-auto relative">
         {" "}
         <div className=" w-1/3  flex flex-col justify-center tracking-tight gap-2">
           {" "}
@@ -23,6 +24,9 @@ const tours = () => {
           </p>
         </div>
         <PolaroidContainer />
+        <div className="w-6 h-6 bg-custom-yellow absolute -left-12 bottom-32 rounded-full"></div>
+        <div className="w-4 h-4 bg-custom-purple absolute -left-24 bottom-10 rounded-full"></div>
+        <div className="w-6 h-6 bg-custom-green absolute -left-52 bottom-32 rounded-full"></div>
       </div>
       <div>
         {" "}
@@ -66,6 +70,7 @@ const tours = () => {
           adoquinadas y bulliciosas avenidas.
         </p>
       </div>
+      <Beneficios />
     </section>
   );
 };

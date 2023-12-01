@@ -3,7 +3,7 @@ import svg from "@/public/assets/logo/interchange.png";
 import Image from "next/legacy/image";
 
 type LogoProps = {
-  size: "sm" | "md" | "lg" | "xl" | "2xl"; // Tamaños disponibles para el logo
+  size: "sm" | "md" | "lg" | "xl" | "2xl" | "3xl"; // Tamaños disponibles para el logo
 };
 
 const Logo: React.FC<LogoProps> = ({ size }) => {
@@ -30,7 +30,11 @@ const Logo: React.FC<LogoProps> = ({ size }) => {
       break;
     case "2xl":
       width = 280;
-      height = 155;
+      height = 100;
+      break;
+    case "3xl":
+      width = 560;
+      height = 160;
       break;
     default:
       break;
