@@ -5,7 +5,7 @@ import Logo from "@/app/components/logo";
 
 const Beneficios = () => {
   return (
-    <article className="w-screen min-h-[100vh] h-full mb-36 flex flex-col gap-16 mt-20">
+    <article className="w-screen min-h-[100vh] h-full mb-36 flex flex-col gap-16 mt-20" id="porque">
       <h4 className="text-4xl font-laila font-bold pb-4">
         Unete y descubre una experiencia de{" "}
         <span className="text-custom-purple relative">
@@ -21,8 +21,8 @@ const Beneficios = () => {
       </h4>
       <Logo size="3xl" />
       <div className="w-full flex flex-col gap-10  pt-20">
-        <span className="text-center text-xl tracking-widest font-bold">
-          BENFICIOS DE NUESTROS TOURS
+        <span className="text-center text-xl tracking-widest font-bold uppercase">
+          Nuestro Programa
         </span>
         <div className="flex justify-evenly">
           {" "}
@@ -37,22 +37,22 @@ const Beneficios = () => {
           <div className="h-48 w-96 border border-black rounded-3xl text-lg items-center flex p-4">
             <div className="w-6 h-6 bg-custom-yellow m-2 rounded-full"></div>
             <p className="w-4/5">
-              Clases Intensivas de Inglés: Participa en clases intensivas diseñadas para mejorar tus
-              habilidades lingüísticas de manera rápida y efectiva.
+              <strong>Clases Intensivas de Inglés:</strong> Participa en clases intensivas diseñadas
+              para mejorar tus habilidades lingüísticas de manera rápida y efectiva.
             </p>
           </div>
           <div className="h-48 w-96 border border-black rounded-3xl text-lg items-center flex p-4">
             <div className="w-6 h-6 bg-custom-yellow m-2 rounded-full"></div>
             <p className="w-4/5">
-              Exploración Cultural: Visita lugares emblemáticos, museos y eventos culturales para
-              enriquecer tu comprensión de la historia y sociedad británicas.
+              <strong>Exploración Cultural:</strong> Visita lugares emblemáticos, museos y eventos
+              culturales para enriquecer tu comprensión de la historia y sociedad británicas.
             </p>
           </div>
           <div className="h-48 w-96 border border-black rounded-3xl text-lg items-center flex p-4">
             <div className="w-6 h-6 bg-custom-yellow m-2 rounded-full"></div>
             <p className="w-4/5">
-              Actividades Sociales: Disfruta de actividades en grupo, excursiones y eventos sociales
-              que te permitan interactuar con otros estudiantes y lugareños.
+              <strong>Actividades Sociales:</strong> Disfruta de actividades en grupo, excursiones y
+              eventos sociales que te permitan interactuar con otros estudiantes y lugareños.
             </p>
           </div>
         </div>

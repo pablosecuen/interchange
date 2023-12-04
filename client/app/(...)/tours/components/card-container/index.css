@@ -1,0 +1,18 @@
+/* Agrega estos estilos a tu hoja de estilos CSS */
+.card-container {
+  display: flex;
+  gap: 32px;
+  /*   overflow-x: hidden; */
+  transition: transform 0.3s ease-in-out;
+  margin: auto;
+}
+
+.card-wrapper {
+  width: 300px;
+  height: 300px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Ajusta otros estilos según sea necesario */

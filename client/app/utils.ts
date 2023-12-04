@@ -64,6 +64,7 @@ import stonehenge from '@/public/assets/svg/stonehenge/1.jpg';
 import stonehenge1 from '@/public/assets/svg/stonehenge/2.jpg';
 import stonehenge2 from '@/public/assets/svg/stonehenge/3.jpg';
 import stonehenge3 from '@/public/assets/svg/stonehenge/stonehenge.jpg';
+import stonehenge4 from '@/public/assets/svg/stonehenge/alumnosstonehendge.png';
 import warwick from '@/public/assets/svg/warwick/1.jpg';
 import warwick2 from '@/public/assets/svg/warwick/2.jpg';
 import warwick3 from '@/public/assets/svg/warwick/3.jpg';
@@ -79,6 +80,10 @@ import warner from '@/public/assets/svg/warner/1.jpg'
 import warner1 from '@/public/assets/svg/warner/2.jpg'
 import warner2 from '@/public/assets/svg/warner/3.jpg'
 import warner3 from '@/public/assets/svg/warner/4.jpg'
+import godolphin from '@/public/assets/svg/godolphin/godolphin.jpg'
+import godolphin1 from '@/public/assets/svg/godolphin/godolphin1.jpg'
+import godolphin2 from '@/public/assets/svg/godolphin/godolphin2.jpg'
+import godolphin3 from '@/public/assets/svg/godolphin/godolphin3.jpg'
 
 
 export const toursData: Tour[] = [
@@ -88,9 +93,10 @@ export const toursData: Tour[] = [
       {title:"bridge4" ,bgImage:bridge4},
       {title:"bridge5" ,bgImage:bridge5}]},
     {title: "Stonehendge", images: [
-      {title:"stonehenge" ,bgImage:stonehenge},{title:"stonehenge1" ,bgImage:stonehenge1},{title:"stonehenge2" ,bgImage:stonehenge2},{title:"stonehenge3" ,bgImage:stonehenge3}]},
+      {title:"stonehenge" ,bgImage:stonehenge},{title:"stonehenge1" ,bgImage:stonehenge1},{title:"stonehenge2" ,bgImage:stonehenge2},{title:"stonehenge3" ,bgImage:stonehenge3},{title:"stonehenge students" ,bgImage:stonehenge4}]},
     {title: "Warwick Castle", images: [{title:"warwick" ,bgImage:warwick}, {title:"warwick2" ,bgImage:warwick2}, {title:"warwick3" ,bgImage:warwick3}, {title:"warwick4" ,bgImage:warwick4}, {title:"warwick5" ,bgImage:warwick5}]},
     {title: "Salesbury Cathedral", images: [{title:"salesbury" ,bgImage:salesbury}, {title:"salesbury1" ,bgImage:salesbury1}, {title:"salesbury2" ,bgImage:salesbury2}, {title:"salesbury3" ,bgImage:salesbury3}, {title:"salesbury4" ,bgImage:salesbury4}   , {title:"salesbury5" ,bgImage:salesbury5}]},
+    {title: "Godolphin School", images: [{title:"godolphin" ,bgImage:godolphin}, {title:"godolphin1" ,bgImage:godolphin1}, {title:"godolphin2" ,bgImage:godolphin2}, {title:"godolphin3" ,bgImage:godolphin3}, ]},
     {title: "Warner Brothers Studios", images: [{title:"warner" ,bgImage:warner}, {title:"warner1" ,bgImage:warner1}, {title:"warner2" ,bgImage:warner2}, {title:"warner3" ,bgImage:warner3}]} 
   ]
 

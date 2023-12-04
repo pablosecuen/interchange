@@ -1,0 +1,13 @@
+<svg width="209" height="108" viewBox="0 0 209 108" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="tape">
+<path id="tape_2" d="M185.218 9.62943L1.14 52.0354L17.3162 96.384L201.206 57.3455L192.327 37.9625L191.386 13.1467L185.218 9.62943Z" fill="#FFC700"/>
+<path id="overlay" style="mix-blend-mode:multiply" d="M185.218 9.62943L1.14 52.0354L17.3162 96.384L201.206 57.3455L192.327 37.9625L191.386 13.1467L185.218 9.62943Z" fill="url(#paint0_linear_397_1120)" fill-opacity="0.1"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_397_1120" x1="93.5941" y1="27.4042" x2="108.174" y2="82.1308" gradientUnits="userSpaceOnUse">
+<stop offset="0.0625" stop-color="#FFC700"/>
+<stop offset="0.526042" stop-color="#FFC700"/>
+<stop offset="1" stop-color="#FFC700" stop-opacity="0.1"/>
+</linearGradient>
+</defs>
+</svg>

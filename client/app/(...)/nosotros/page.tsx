@@ -128,7 +128,7 @@ const Nosotros = () => {
               height={0}
               className="absolute top-1/2 -right-8 pt-10 mr-14  font-laila"
             />
-            <h4 className="text-4xl  font-laila font-bold relative self-center">
+            <h4 className="text-4xl  font-laila font-bold relative self-center" id="instituto">
               Nuestro Instituto
               <Image
                 src={highlight3}
@@ -151,14 +151,18 @@ const Nosotros = () => {
               las aulas tradicionales. Nuestra misión es inspirar y capacitar a nuestros estudiantes
               para que alcancen la fluidez en inglés de manera efectiva y confiada.
             </p>
-            <h5 className="text-3xl  font-laila font-bold">Nuestra metodología</h5>
+            <h5 className="text-3xl  font-laila font-bold" id="metodologia">
+              Nuestra metodología
+            </h5>
             <p className="text-lg pb-8">
               Adoptamos una metodología dinámica centrada en el aprendizaje activo y la aplicación
               práctica del inglés en situaciones reales. Nuestro enfoque innovador, respaldado por
               tecnología de vanguardia y profesionales cualificados, garantiza una experiencia de
               aprendizaje efectiva y motivadora.
             </p>
-            <h5 className="text-3xl  font-laila font-bold">Nuestra Misión</h5>
+            <h5 className="text-3xl  font-laila font-bold" id="mision">
+              Nuestra Misión
+            </h5>
             <p className="text-lg pb-8">
               Capacitar a nuestros estudiantes para lograr la fluidez en inglés de manera efectiva,
               ofreciendo una experiencia educativa única y personalizada.

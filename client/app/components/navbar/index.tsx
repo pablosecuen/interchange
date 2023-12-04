@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import Logo from "../logo";
 import Link from "next/link";
+import "./navbar.css";
 const Navbar = () => {
   const [isCollapsed, setIsCollapsed] = useState(true);
 
@@ -69,13 +70,30 @@ const Navbar = () => {
                 Inscripción
               </Link>
             </li>
-            <li>
+            <li className="relative " id="tourheader">
               <Link
                 href="/tours"
-                className="block py-2 px-3 text-gray-900 font-bold rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-yellow-500 md:p-0 "
+                className="block py-2 px-3 text-gray-900 font-bold rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-yellow-500 md:p-0"
               >
                 Tours
               </Link>
+              <ul className="!font-laila">
+                <li>
+                  <Link href="/tours#destinos" className="font-bold ">
+                    Destinos
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/tours#informacion" className="font-bold">
+                    Informacion turistica
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/tours#porque" className="font-bold">
+                    Por que nosotros?
+                  </Link>
+                </li>
+              </ul>
             </li>
             <li>
               <Link
@@ -92,6 +110,23 @@ const Navbar = () => {
               >
                 Nosotros
               </Link>
+              <ul className="!font-laila">
+                <li>
+                  <Link href="/nosotros#instituto" className="font-bold ">
+                    Nuestro Instituto
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/nosotros#metodologia" className="font-bold">
+                    Nuestra Metodologia
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/nosotros#mision" className="font-bold">
+                    Nuestra Mision
+                  </Link>
+                </li>
+              </ul>
             </li>
             <li>
               <Link
