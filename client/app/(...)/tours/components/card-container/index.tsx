@@ -42,14 +42,17 @@ const CardContainer = () => {
   const cardWidth = 300; // Ancho de la tarjeta en píxeles
   const gapBetweenCards = 32; // Espacio entre las tarjetas en píxeles
 
-  const cardWrapperStyles = {
-    transform: `translateX(-${
-      currentIndex *
-      ((window.innerWidth >= 768 ? cardWidth : cardWidth / 2) +
-        (window.innerWidth >= 768 ? gapBetweenCards : gapBetweenCards / 2))
-    }px)`,
-    transition: "transform 0.3s ease-in-out",
-  };
+  const cardWrapperStyles =
+    typeof window !== "undefined"
+      ? {
+          transform: `translateX(-${
+            currentIndex *
+            ((window.innerWidth >= 768 ? cardWidth : cardWidth / 2) +
+              (window.innerWidth >= 768 ? gapBetweenCards : gapBetweenCards / 2))
+          }px)`,
+          transition: "transform 0.3s ease-in-out",
+        }
+      : {};
 
   return (
     <div className="h-full w-full flex flex-col md:p-20 pt-28 gap-4 px-4 ">
