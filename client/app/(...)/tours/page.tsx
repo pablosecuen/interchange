@@ -3,16 +3,16 @@
 import React from "react";
 import PolaroidContainer from "./components/polaroid-container";
 import CardContainer from "./components/card-container";
-import Beneficios from "./components/beneficios";
 import envelope from "@/public/assets/svg/envelope.svg";
 import pencil from "@/public/assets/svg/pencil.svg";
 import program from "@/public/assets/svg/programming.svg";
 import Image from "next/image";
+import Beneficios from "./components/beneficios";
 
 const tours = () => {
   return (
-    <section className="min-h-[90vh] h-full w-full mt-20 overflow-x-hidden">
-      <div className="max-w-7xl w-full flex justify-center h-[60vh]  mx-auto relative">
+    <section className="min-h-[90vh] h-full w-full mt-28 md:mt-20 overflow-x-hidden ">
+      <div className="max-w-7xl w-full flex flex-col justify-center h-[60vh]  mx-auto relative px-4">
         <Image src={envelope} alt="envelope" width={0} height={0} className="-right-32 absolute" />
         <Image
           src={pencil}
@@ -28,7 +28,7 @@ const tours = () => {
           height={0}
           className="-right-20 top-20 absolute"
         />
-        <div className=" w-1/3  flex flex-col justify-center tracking-tight gap-2">
+        <div className=" md:w-1/3  flex flex-col justify-center tracking-tight gap-2">
           {" "}
           <h3 className="text-4xl">
             Descrubre el mundo a{" "}
@@ -51,11 +51,11 @@ const tours = () => {
         <CardContainer />
       </div>
 
-      <div className="h-full w-full flex flex-col p-20 gap-4">
+      <div className="h-full w-full flex flex-col md:p-20 px-4 gap-4">
         <span className="text-2xl" id="informacion">
           Informacion turistica de nuestro destino
         </span>
-        <p className="w-1/2">
+        <p className="md:w-1/2">
           Londres, la capital vibrante del Reino Unido, emerge como un mosaico dinámico de historia,
           cultura y modernidad. A lo largo del majestuoso río Támesis, esta ciudad cosmopolita se
           extiende, deslumbrando a sus visitantes con su rica herencia y su energía contemporánea.

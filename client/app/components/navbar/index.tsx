@@ -46,13 +46,13 @@ const Navbar = () => {
           </button>
         </div>
         <div
-          className={`items-center justify-center w-full md:flex md:order-1 md:w-1/3 transition-opacity ${
-            isCollapsed ? "opacity-0 max-h-0 md:opacity-100" : "opacity-100 max-h-96"
+          className={`items-center justify-center w-full md:flex md:order-1 md:w-1/3 transition duration-700 ${
+            isCollapsed ? "opacity-0 max-h-0 md:opacity-100  hidden" : "opacity-100 max-h-96  block"
           }`}
           id="navbar-sticky"
           style={{ transitionDuration: "1s" }}
         >
-          <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white">
+          <ul className="flex flex-col  p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white">
             <li>
               <Link
                 href="/"
@@ -77,7 +77,7 @@ const Navbar = () => {
               >
                 Tours
               </Link>
-              <ul className="!font-laila">
+              <ul className="!font-laila hidden sm:block">
                 <li>
                   <Link href="/tours#destinos" className="font-bold ">
                     Destinos
@@ -110,7 +110,7 @@ const Navbar = () => {
               >
                 Nosotros
               </Link>
-              <ul className="!font-laila">
+              <ul className="!font-laila hidden sm:block">
                 <li>
                   <Link href="/nosotros#instituto" className="font-bold ">
                     Nuestro Instituto

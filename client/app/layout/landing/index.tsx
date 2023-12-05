@@ -10,34 +10,34 @@ import ilustracion2 from "@/public/assets/svg/Ilustracion2.svg";
 
 const Landing = () => {
   return (
-    <section className="overflow-x-hidden w-screen  min-h-[100vh] flex flex-col md:flex-row ">
-      <div className="w-full md:w-1/2 order-1  flex justify-end items-center pl-10  ">
+    <section className="overflow-x-hidden w-screen  min-h-[100vh] h-full flex flex-col md:flex-row  mt-20 md:mt-0 z-40">
+      <div className="w-full md:w-1/2 md:order-1  md:flex md:justify-end md:items-center md:pl-10  ">
         <div className="flex-col  justify-end flex max-w-[550px] relatve">
           {" "}
-          <h1 className="text-5xl perspective-container font-bold leading-relaxed pb-2 font-laila  ">
+          <h1 className="md:text-5xl text-4xl perspective-container font-bold leading-relaxed pb-2 font-laila mx-auto md:mx-0 ">
             <Image
               src={scramble}
               alt="scramble"
               width={150}
               height={0}
-              className="absolute -top-8 right-10"
+              className="absolute md:-top-8 -top-12 right-2 md:right-10 hidden md:block"
             />
             Educación es <br />{" "}
             <div className="flex ">
               crear los{" "}
-              <div className="text-3xl perspective-container h-auto w-32  flex justify-center items-center relative ">
-                <div className="bg-violet-700 rounded-md perspective-element py-1 px-6 text-white  h-10 w-48 absolute"></div>
-                <span className="w-auto absolute text-white ml-12">lideres</span>
+              <div className="md:text-3xl perspective-container h-auto w-32 -ml-4 md:-ml-0  flex justify-center items-center relative ">
+                <div className="bg-violet-700 rounded-md perspective-element py-1 md:px-6 text-white  h-10 md:w-48 w-36 absolute"></div>
+                <span className="w-auto absolute text-white md:ml-12 ml-6">lideres</span>
               </div>
             </div>
             del mañana
           </h1>
-          <h2 className=" text-gray-400 pb-5 text-md w-2/3">
+          <h2 className=" text-gray-400 pb-5 text-md  md:w-2/3 mx-4 md:mx-0">
             Muchas escuelas utilizan el término "excelencia" para resaltar las ambiciones de la
             escuela de ayudar a todos a lograr lo mejor de sí mismos. a todos a dar lo mejor de sí
             mismos.
           </h2>
-          <div className="flex gap-6 pb-4">
+          <div className="flex gap-6 pb-4 mx-auto md:mx-0">
             <button type="button" className="yellow-btn">
               Leer mas
             </button>
@@ -57,13 +57,13 @@ const Landing = () => {
           className="absolute bottom-10 left-48"
         />
       </div>
-      <div className="w-full md:w-1/2 order-2   relative">
+      <div className="w-full md:w-1/2 md:order-2 h-full md:h-auto relative ">
         <Image
           src={child}
           alt="child image"
           width={550}
           height={0}
-          className="absolute bottom-0 left-20 "
+          className="md:absolute bottom-0 md:left-20 "
         />
         <Image
           src={ilustracion}

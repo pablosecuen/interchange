@@ -56,7 +56,7 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({ tour, onClose }) => {
               </div>
             ))}
           </div>
-          <nav className="nav">
+          <nav className="nav ">
             <span className="btn prev text-2xl font-bold" onClick={activate}>
               {"<"}
             </span>

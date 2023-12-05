@@ -6,14 +6,14 @@ const Inscripcion = () => {
   const nextYear = currentYear + 1;
   return (
     <section className="w-full min-h-screen my-20">
-      <h3 className="text-4xl font-bold tracking-widest text-center mt-40">
-        SOLICITU DE INSCRIPCION {nextYear}
+      <h3 className="md:text-4xl text-2xl font-bold tracking-widest text-center mt-40">
+        SOLICITUD DE INSCRIPCION {nextYear}
       </h3>
-      <p className="text-lg font-bold mx-auto text-center py-4 max-w-4xl">
+      <p className="md:text-lg px-4 md:px-0 font-bold mx-auto text-center py-4 max-w-4xl">
         Introducir los datos requeridos del interesado - La confirmación efectiva de la vacante será
         vía WhatApp y/o e-mail luego de recibido y confirmado el pago de la matrícula.
       </p>
-      <form className="max-w-3xl mx-auto  md:w-full pt-10">
+      <form className="max-w-3xl mx-auto  md:w-full pt-10 px-8 md:px-0">
         <span className="pb-10 text-center font-bold">ADULTO RESPONSABLE</span>
 
         <div className="grid md:grid-cols-2 md:gap-6 my-8">

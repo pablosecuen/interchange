@@ -9,7 +9,7 @@ export const Banner = () => {
     <article className=" w-screen h-48 overflow-x- bg-gray-700 flex justify-center ">
       <div className="max-w-7xl w-full flex items-center ">
         <div className="flex justify-center items-center w-full h-full ">
-          <h5 className="text-4xl w-2/3 text-white brightness-200  font-laila font-bold">
+          <h5 className="md:text-4xl text-2xl w-2/3 text-white brightness-200  font-laila font-bold">
             Cree una cuenta gratuita y regístrese ahora
           </h5>
         </div>

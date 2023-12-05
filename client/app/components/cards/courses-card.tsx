@@ -6,7 +6,7 @@ const Card = ({ course }: any) => {
   const { img, title, description, url } = course;
 
   return (
-    <article className="w-72 h-96 border rounded-lg overflow-hidden flex flex-col justify-between shadow-lg shadow-black/10 hover:shadow-xl transition duration-300 hover:translate-y-[2px]">
+    <article className="w-72 h-96 mx-auto md:mx-0 border rounded-lg overflow-hidden flex flex-col justify-between shadow-lg shadow-black/10 hover:shadow-xl transition duration-300 hover:translate-y-[2px]">
       <div className="w-full h-2/3 relative">
         {" "}
         <Image

@@ -103,6 +103,14 @@ main .nav .btn:hover {
   }
 }
 @media (width < 650px) {
+  main .nav {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+    user-select: none;
+  }
   .item {
     width: 130px;
     height: 220px;
@@ -110,15 +118,19 @@ main .nav .btn:hover {
   .item:nth-child(3) {
     left: 50%;
     top: 50%;
+    display: none;
   }
   .item:nth-child(4) {
     left: calc(50% + 140px);
+    display: none;
   }
   .item:nth-child(5) {
     left: calc(50% + 280px);
+    display: none;
   }
   .item:nth-child(6) {
     left: calc(50% + 420px);
     opacity: 0;
+    display: none;
   }
 }

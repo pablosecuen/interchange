@@ -9,9 +9,9 @@ import Image from "next/image";
 
 const Career = () => {
   return (
-    <section className="max-w-7xl w-screen min-h-[70vh] flex ">
+    <section className="max-w-7xl w-screen overflow-x-hidden min-h-[70vh] flex ">
       <div className="w-full md:w-1/2 order-1  flex flex-col  items-start p-10 gap-8 relative">
-        <h3 className="text-4xl font-laila font-bold">
+        <h3 className="text-4xl font-laila font-bold z-40">
           ¡Estamos para crear posibilidades y éxito en tu carrera!
         </h3>
         <p className="text-md text-gray-400">
@@ -29,14 +29,14 @@ const Career = () => {
           alt="greensparkle"
           width={0}
           height={0}
-          className="absolute z-10  bottom-4"
+          className="absolute z-10  bottom-4 -right-20"
         />
         <Image
           src={greensparkle}
           alt="greensparkle"
           width={0}
           height={0}
-          className="absolute z-10  bottom-24 left-0 scale-90"
+          className="absolute z-10  bottom-24 md:left-0 -right-10 scale-90"
         />
       </div>
       <div className="w-full md:w-1/2 order-2 relative ">
@@ -48,28 +48,28 @@ const Career = () => {
           alt="pinkarrow"
           width={0}
           height={0}
-          className="absolute z-10  bottom-1/4"
+          className="absolute z-10  bottom-24 hidden  md:block "
         />
         <Image
           src={career1}
           alt="career1"
           width={0}
           height={0}
-          className="absolute z-10  top-1/3 -translate-y-1/2 left-1/2 -translate-x-1/2 scale-75 brightness-110"
+          className="absolute z-10  md:top-1/3 md:-translate-y-1/2 md:left-1/2 md:-translate-x-1/2 scale-75 brightness-110 "
         />
         <Image
           src={career2}
           alt="career1"
           width={0}
           height={0}
-          className="absolute z-20 top-1/3 -translate-y-1/2 left-1/2 -translate-x-32 scale-75 brightness-110"
+          className="absolute z-10  top-1/3 -translate-y-1/2 md:left-1/2 md:-translate-x-1/2 scale-75 brightness-110"
         />
         <Image
           src={career3}
           alt="career1"
           width={0}
           height={0}
-          className="absolute top-1/3 -translate-y-1/2 left-1/2 -translate-x-32 scale-75 brightness-110"
+          className="absolute z-10  top-1/2 md:-translate-y-1/2 md:left-1/2 md:-translate-x-1/2 scale-75 brightness-110 "
         />
       </div>
     </section>
