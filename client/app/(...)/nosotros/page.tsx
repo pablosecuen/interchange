@@ -15,10 +15,12 @@ import design3 from "@/public/assets/svg/design3.png";
 import group from "@/public/assets/svg/group.png";
 import "./perspective.css";
 import { Banner } from "@/app/components/footer/banner";
+import Logo from "@/app/components/logo";
+
 const Nosotros = () => {
   return (
     <div className=" overflow-x-hidden mt-16">
-      <div className="flex flex-col   items-center ">
+      <div className="flex flex-col  items-center ">
         <section className="w-full min-h-[80vh] max-w-7xl  relative mb-80 md:mb-0">
           <div className="w-full h-[80vh] flex flex-col md:flex-row">
             <div className="md:w-1/2 w-full flex flex-col items-start justify-center  order-1">
@@ -36,8 +38,11 @@ const Nosotros = () => {
               </span>
               <h3 className="text-3xl  perspective-container max-w-[600px] font-bold  pb-2 font-laila">
                 “ Transformando Sueños en Palabras, palabras en Poder:
-                <br />{" "}
-                <div className="flex  font-laila mt-2">
+                <br />
+                <p className="uppercase tracking-widest py-4 md:hidden text-custom-red">
+                  INTERCHANGE
+                </p>
+                <div className=" font-laila  hidden md:flex">
                   <div className="md:text-3xl perspective-container h-auto md:w-32 w-24  flex justify-center items-center relative ml-4  my-6">
                     <div className="bg-violet-700 rounded-md perspective-element py-1 px-6 text-white  h-10 w-60  absolute"></div>
                     <span className="w-auto absolute text-white ml-20  my-1">Interchange</span>
@@ -177,7 +182,7 @@ const Nosotros = () => {
           Únete a nosotros y haz del aprendizaje una experiencia compartida
         </h3>
       </div>
-      {/* <Banner /> */}
+      <Banner />
     </div>
   );
 };
