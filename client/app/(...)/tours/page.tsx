@@ -12,7 +12,7 @@ import Beneficios from "./components/beneficios";
 const tours = () => {
   return (
     <section className="min-h-[90vh] h-full w-full mt-28 md:mt-20 overflow-x-hidden ">
-      <div className="max-w-7xl w-full flex flex-col justify-center h-[60vh]  mx-auto relative px-4">
+      <div className="max-w-7xl w-full flex flex-col md:flex-row justify-center h-[60vh]  mx-auto relative px-4">
         <Image src={envelope} alt="envelope" width={0} height={0} className="-right-32 absolute" />
         <Image
           src={pencil}
@@ -28,7 +28,7 @@ const tours = () => {
           height={0}
           className="-right-20 top-20 absolute"
         />
-        <div className=" md:w-1/3  flex flex-col justify-center tracking-tight gap-2">
+        <div className=" md:w-1/3 md:mr-10 flex flex-col justify-center tracking-tight gap-2">
           {" "}
           <h3 className="text-4xl">
             Descrubre el mundo a{" "}

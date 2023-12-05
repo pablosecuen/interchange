@@ -3,6 +3,9 @@ import React, { useState } from "react";
 import Logo from "../logo";
 import Link from "next/link";
 import "./navbar.css";
+import Image from "next/image";
+import telefono from "@/public/assets/svg/telefono.svg";
+import mail from "@/public/assets/svg/mail.svg";
 const Navbar = () => {
   const [isCollapsed, setIsCollapsed] = useState(true);
 
@@ -10,7 +13,7 @@ const Navbar = () => {
     setIsCollapsed(!isCollapsed);
   };
   return (
-    <nav className="bg-white  fixed w-full h-20 z-50 top-0 start-0  text-black  tracking-wider  font-laila !font-bold">
+    <nav className="bg-white  fixed w-full h-16 md:h-20 z-50 top-0 start-0  text-black  tracking-wider  font-laila !font-bold">
       <div className="max-w-screen-3xl flex flex-wrap items-center justify-between mx-auto p-2 md:p-4 md:px-32">
         <Link
           href="/"
@@ -46,18 +49,25 @@ const Navbar = () => {
           </button>
         </div>
         <div
-          className={`items-center justify-center w-full md:flex md:order-1 md:w-1/3 transition duration-700 ${
-            isCollapsed ? "opacity-0 max-h-0 md:opacity-100  hidden" : "opacity-100 max-h-96  block"
+          className={`w-screen h-screen bg-black/20 fixed top-0 left-0 z-40 transition duration-700 md:hidden${
+            isCollapsed ? " transform translate-x-[100%] !h-0" : " translate-x-0"
+          }`}
+          onClick={toggleNavbar}
+        ></div>
+        <div
+          className={`items-start  w-full flex md:order-1 bg-gray-50 rounded-lg h-[92vh] pb-8  flex-col justify-between  md:w-1/3 transition duration-500 z-50 ${
+            isCollapsed ? "opacity-0 translate-x-[100%] !h-0" : "translate-x-[50%] opacity-100"
           }`}
           id="navbar-sticky"
           style={{ transitionDuration: "1s" }}
         >
-          <ul className="flex flex-col  p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white">
+          <ul className="flex flex-col  p-4 md:p-0 mt-4 font-medium border border-gray-100  md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white">
             <li>
               <Link
                 href="/"
                 className="block py-2 px-3  rounded md:bg-transparent md:text-yellow-500 md:p-0 font-bold"
                 aria-current="page"
+                onClick={toggleNavbar}
               >
                 Home
               </Link>
@@ -66,6 +76,7 @@ const Navbar = () => {
               <Link
                 href="/inscripcion"
                 className="block py-2 px-3 font-bold text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-yellow-500 md:p-0 "
+                onClick={toggleNavbar}
               >
                 Inscripción
               </Link>
@@ -74,6 +85,7 @@ const Navbar = () => {
               <Link
                 href="/tours"
                 className="block py-2 px-3 text-gray-900 font-bold rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-yellow-500 md:p-0"
+                onClick={toggleNavbar}
               >
                 Tours
               </Link>
@@ -99,6 +111,7 @@ const Navbar = () => {
               <Link
                 href="/cursos"
                 className="block py-2 px-3 text-gray-900 font-bold rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-yellow-500 md:p-0 "
+                onClick={toggleNavbar}
               >
                 Cursos
               </Link>
@@ -107,6 +120,7 @@ const Navbar = () => {
               <Link
                 href="/nosotros"
                 className="block py-2 px-3 text-gray-900 font-bold rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-yellow-500 md:p-0 "
+                onClick={toggleNavbar}
               >
                 Nosotros
               </Link>
@@ -137,6 +151,25 @@ const Navbar = () => {
               </Link>
             </li>
           </ul>
+          <div className="w-1/2 flex flex-col items-center md:!hidden justify-center z-50">
+            {" "}
+            <Logo size="xl" />
+            <div className="border-b w-10/12"></div>
+            <span className="text-[9px]">
+              <ul className="text-gray-500 dark:text-gray-400 font-medium pt-4">
+                <li className=" flex gap-2 items-center  cursor-pointer">
+                  <Image src={telefono} alt="" width={9} height={0} />
+                  <Link href="tel:0341153119792">0341 15-311-9792</Link>
+                </li>
+                <li>
+                  <Link href="mailto:interchange@gmail.com" className="flex gap-2 items-center ">
+                    <Image src={mail} alt="" width={10} height={0} />
+                    interchange@gmail.com
+                  </Link>
+                </li>
+              </ul>
+            </span>
+          </div>
         </div>
       </div>
     </nav>

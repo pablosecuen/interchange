@@ -26,8 +26,8 @@ const Landing = () => {
             <div className="flex ">
               crear los{" "}
               <div className="md:text-3xl perspective-container h-auto w-32 -ml-4 md:-ml-0  flex justify-center items-center relative ">
-                <div className="bg-violet-700 rounded-md perspective-element py-1 md:px-6 text-white  h-10 md:w-48 w-36 absolute"></div>
-                <span className="w-auto absolute text-white md:ml-12 ml-6">lideres</span>
+                <div className="bg-violet-700 rounded-md perspective-element py-1 md:px-6 text-white  h-10 md:w-48 w-44 absolute"></div>
+                <span className="w-auto absolute text-white md:ml-12 ml-10">lideres</span>
               </div>
             </div>
             del mañana

@@ -7,7 +7,7 @@ import Image from "next/image";
 
 const PolaroidContainer = () => {
   return (
-    <div className="md:w-2/3 w-full md:h-full border-4 flex justify-center items-center scale-50  md:scale-100 h-96 bg-red-500 mt-24 md:mt-0">
+    <div className="md:w-2/3 w-full md:h-full flex justify-center items-center scale-50  md:scale-100 h-96  mt-24 md:mt-0">
       {/* card container*/}
       <div className="relative max-w-full w-full h-full   ">
         {/* card */}
