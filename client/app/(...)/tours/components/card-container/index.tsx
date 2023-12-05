@@ -69,7 +69,7 @@ const CardContainer = () => {
   }, [currentIndex, cardWidth, gapBetweenCards]);
 
   return (
-    <div className="h-full w-full flex flex-col md:p-20 py-28 gap-4 px-4 ">
+    <div className="h-full w-full flex flex-col md:p-20 py-32 gap-4 px-4 ">
       <span className="text-2xl pb-10" id="destinos">
         Los destinos visitados en Inglaterra
       </span>
