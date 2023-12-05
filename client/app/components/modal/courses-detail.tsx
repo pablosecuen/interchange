@@ -13,7 +13,7 @@ interface ModalProps {
 const ModalCourses: React.FC<ModalProps> = ({ grade, onClose, modalOpen }) => {
   if (!grade) return null;
 
-  const modalClasses = `max-w-7xl overflow-hidden rounded-3xl max-h-[80vh] z-50 shadow-2xl shadow-black/80 w-full h-full fixed top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 bg-white transition-opacity ${
+  const modalClasses = `md:max-w-7xl  overflow-hidden rounded-3xl max-h-[80vh] z-50 shadow-2xl shadow-black/80 w-[95vw] h-[95vh] md:w-full md:h-full  fixed top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 bg-white transition ${
     modalOpen
       ? "opacity-100 duration-500 animate-fade"
       : "opacity-0 duration-500 pointer-events-none"
@@ -38,11 +38,11 @@ const ModalCourses: React.FC<ModalProps> = ({ grade, onClose, modalOpen }) => {
             />
           </div>
         </div>
-        <div className="md:w-1/3 h-full  order-2 flex flex-col items-start   pl-4 justify-center z-40">
+        <div className="md:w-1/3 h-full  order-2 flex flex-col items-start   md:pl-4 px-4 justify-center z-40">
           <h4 className="text-xl  tracking-tighter font-nunito text-custom-orange">
             Acerca de {grade.title}
           </h4>
-          <h2 className="text-4xl mb-6">Aprender no tiene por qué ser aburrido! </h2>
+          <h2 className="md:text-4xl text-2xl mb-6">Aprender no tiene por qué ser aburrido! </h2>
           <p className="text-sm text-black/70 mb-6">{grade.description}</p>
           <ul className="flex text-custom-purple w-full justify-between ">
             <li className="flex flex-col gap-2">
@@ -62,7 +62,7 @@ const ModalCourses: React.FC<ModalProps> = ({ grade, onClose, modalOpen }) => {
             <button className="yellow-btn mt-20">Comenzar</button>
           </Link>
         </div>
-        <div className="hero_area  w-full h-full  top-0 left-0">
+        <div className="hero_area  w-full   h-full  top-0 left-0">
           <svg
             className="waves"
             xmlns="http://www.w3.org/2000/svg"

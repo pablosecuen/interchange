@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ImageCarousel from "../carousel";
 import Image from "next/image";
 import { Tour, toursData } from "@/app/utils";
@@ -10,6 +10,7 @@ const CardContainer = () => {
   const [showCarousel, setShowCarousel] = useState<boolean>(false);
   const [selectedTour, setSelectedTour] = useState<Tour | null>(null);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [cardWrapperStyles, setCardWrapperStyles] = useState({});
   const cardsPerPage = 4;
 
   const handleShowCarousel = (tour: Tour) => {
@@ -42,20 +43,33 @@ const CardContainer = () => {
   const cardWidth = 300; // Ancho de la tarjeta en píxeles
   const gapBetweenCards = 32; // Espacio entre las tarjetas en píxeles
 
-  const cardWrapperStyles =
-    typeof window !== "undefined"
-      ? {
-          transform: `translateX(-${
-            currentIndex *
-            ((window.innerWidth >= 768 ? cardWidth : cardWidth / 2) +
-              (window.innerWidth >= 768 ? gapBetweenCards : gapBetweenCards / 2))
-          }px)`,
-          transition: "transform 0.3s ease-in-out",
-        }
-      : {};
+  useEffect(() => {
+    const updateCardWrapperStyles = () => {
+      const calculatedStyles = {
+        transform: `translateX(-${
+          currentIndex *
+          ((window.innerWidth >= 768 ? cardWidth : cardWidth / 2) +
+            (window.innerWidth >= 768 ? gapBetweenCards : gapBetweenCards / 2))
+        }px)`,
+        transition: "transform 0.3s ease-in-out",
+      };
+      setCardWrapperStyles(calculatedStyles);
+    };
+
+    // Call the function once when the component mounts
+    updateCardWrapperStyles();
+
+    // Update styles when the window is resized
+    window.addEventListener("resize", updateCardWrapperStyles);
+
+    // Cleanup: remove event listener when component unmounts
+    return () => {
+      window.removeEventListener("resize", updateCardWrapperStyles);
+    };
+  }, [currentIndex, cardWidth, gapBetweenCards]);
 
   return (
-    <div className="h-full w-full flex flex-col md:p-20 pt-28 gap-4 px-4 ">
+    <div className="h-full w-full flex flex-col md:p-20 py-28 gap-4 px-4 ">
       <span className="text-2xl pb-10" id="destinos">
         Los destinos visitados en Inglaterra
       </span>
@@ -90,7 +104,7 @@ const CardContainer = () => {
           ))}
         </div>
       </div>
-      <div className="flex justify-center mt-12 bg-transparent z-10 gap-2">
+      <div className="flex justify-center mt-24 md:mt-12 bg-transparent z-10 gap-2 -mb-10">
         <button
           onClick={prevCard}
           disabled={currentIndex === 0}
@@ -112,7 +126,7 @@ const CardContainer = () => {
       </div>
       {/* Renderizado condicional del carousel */}
       {showCarousel && selectedTour && (
-        <div className="mt-8 w-full ">
+        <div className="md:mt-8  w-full ">
           <ImageCarousel tour={selectedTour} onClose={handleHideCarousel} />
         </div>
       )}

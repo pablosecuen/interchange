@@ -19,11 +19,11 @@ const Nosotros = () => {
   return (
     <div className=" overflow-x-hidden mt-16">
       <div className="flex flex-col   items-center ">
-        <section className="w-full min-[80vh] max-w-7xl pt-20 relative ">
-          <div className="w-full h-[80vh] flex ">
-            <div className="w-1/2 h-full flex flex-col items-end justify-center  order-1 ">
+        <section className="w-full min-h-[80vh] max-w-7xl  relative mb-80 md:mb-0">
+          <div className="w-full h-[80vh] flex flex-col md:flex-row">
+            <div className="md:w-1/2 w-full flex flex-col items-start justify-center  order-1">
               {" "}
-              <span className="font-bold text-3xl w-[650px] pb-10 relative font-laila">
+              <span className="font-bold text-3xl pt-16 md:pt-0 text-start  w-auto md:w-[650px] pb-4 md:pb-10 relative font-laila">
                 {" "}
                 <Image
                   src={highlight}
@@ -34,37 +34,35 @@ const Nosotros = () => {
                 />
                 NOSOTROS
               </span>
-              <h3 className="text-3xl perspective-container max-w-[650px] font-bold leading-loose pb-2 font-laila">
-                “ Transformando Sueños en Palabras, Palabras en Poder: <br />{" "}
-                <div className="flex ">
-                  creating{" "}
-                  <div className="text-3xl perspective-container h-auto w-32  flex justify-center items-center relative ml-4">
-                    <div className="bg-violet-700 rounded-md perspective-element py-1 px-6 text-white  h-10 w-60 absolute"></div>
-                    <span className="w-auto absolute text-white ml-20">Interchange</span>
+              <h3 className="text-3xl  perspective-container max-w-[600px] font-bold  pb-2 font-laila">
+                “ Transformando Sueños en Palabras, palabras en Poder:
+                <br />{" "}
+                <div className="flex  font-laila mt-2">
+                  <div className="md:text-3xl perspective-container h-auto md:w-32 w-24  flex justify-center items-center relative ml-4  my-6">
+                    <div className="bg-violet-700 rounded-md perspective-element py-1 px-6 text-white  h-10 w-60  absolute"></div>
+                    <span className="w-auto absolute text-white ml-20  my-1">Interchange</span>
                   </div>
                 </div>
-                Donde el Ingles Abre Puertas”
+                <p className="font-laila mt-4">Donde el Ingles Abre Puertas”</p>
               </h3>
               <div className="w-4 h-4 rounded-full bg-custom-yellow  absolute bottom-32 left-28"></div>
               <div className="w-3 h-3 rounded-full bg-custom-green  absolute bottom-48 left-12"></div>
             </div>
-            <div className="w-1/2 h-[80vh] order-2 relative">
-              {" "}
+            <div className="md:w-1/2 w-full md:h-[80vh]  order-2  relative mt-20 md:mt-0">
               <Image
                 src={group}
                 alt="group"
                 width={0}
                 height={0}
-                className="absolute bottom-0 right-1/2 translate-x-[45%] z-10"
+                className="md:absolute bottom-0 md:right-1/2 md:translate-x-[45%] z-40"
               />
-              <div className=" h-[650px] w-[550px] absolute rounded-t-full bottom-0 right-1/2 translate-x-1/2 gradiente-opacidad">
-                {" "}
-              </div>
+
+              <div className="w-full md:w-10/12 bg-gradient-to-t h-full md:h-[650px] from-custom-yellow to-transparent rounded-t-full absolute bottom-0 -z-10 "></div>
             </div>
           </div>
         </section>
-        <section className="w-full min-h-screen pt-20 pr-20   relative  flex">
-          <div className="w-1/2 h-full order-1 relative">
+        <section className="w-full min-h-screen pt-20 md:pt-0 md:pr-20   relative  flex">
+          <div className="w-1/2 h-full order-1 relative hidden md:block">
             <Image
               src={label}
               alt="label"
@@ -106,7 +104,7 @@ const Nosotros = () => {
             <div className="w-4 h-4 rounded-full bg-custom-orange  absolute bottom-10 left-20"></div>
             <div className="w-3 h-3 rounded-full bg-custom-purple  absolute bottom-20 left-32"></div>
           </div>
-          <div className="w-1/2 h-full order-2 relative  p-20 flex flex-col gap-4 ">
+          <div className=" w-full md:w-1/2 h-full order-2 relative  px-4 md:px-0 md:p-20 flex flex-col gap-4  ">
             <Image
               src={design1}
               alt="desig1"
@@ -145,7 +143,7 @@ const Nosotros = () => {
                 className="absolute -top-0 -right-8 font-laila"
               />
             </h4>
-            <p className="text-lg pb-8">
+            <p className="text-lg pb-8 ">
               Bienvenido a Interchange, tu destino para el aprendizaje del inglés de calidad. Nos
               enorgullece ofrecer una experiencia educativa única y personalizada que va más allá de
               las aulas tradicionales. Nuestra misión es inspirar y capacitar a nuestros estudiantes
@@ -175,11 +173,11 @@ const Nosotros = () => {
             </p>
           </div>
         </section>
-        <h3 className="text-5xl text-center max-w-[1000px] my-20 font-laila font-bold">
+        <h3 className="md:text-5xl  text-2xl px-4 text-center max-w-[1000px] my-20 font-laila font-bold">
           Únete a nosotros y haz del aprendizaje una experiencia compartida
         </h3>
       </div>
-      <Banner />
+      {/* <Banner /> */}
     </div>
   );
 };

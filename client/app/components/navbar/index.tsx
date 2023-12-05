@@ -12,6 +12,7 @@ const Navbar = () => {
   const toggleNavbar = () => {
     setIsCollapsed(!isCollapsed);
   };
+
   return (
     <nav className="bg-white  fixed w-full h-16 md:h-20 z-50 top-0 start-0  text-black  tracking-wider  font-laila !font-bold">
       <div className="max-w-screen-3xl flex flex-wrap items-center justify-between mx-auto p-2 md:p-4 md:px-32">
@@ -49,25 +50,31 @@ const Navbar = () => {
           </button>
         </div>
         <div
-          className={`w-screen h-screen bg-black/20 fixed top-0 left-0 z-40 transition duration-700 md:hidden${
-            isCollapsed ? " transform translate-x-[100%] !h-0" : " translate-x-0"
+          className={`w-screen h-screen bg-black/20 fixed top-0 left-0 z-40 transition duration-500 md:hidden${
+            isCollapsed
+              ? " transform translate-x-[100%] opacity-0 !h-0"
+              : " translate-x-0 opacity-100"
           }`}
           onClick={toggleNavbar}
         ></div>
         <div
-          className={`items-start  w-full flex md:order-1 bg-gray-50 rounded-lg h-[92vh] pb-8  flex-col justify-between  md:w-1/3 transition duration-500 z-50 ${
-            isCollapsed ? "opacity-0 translate-x-[100%] !h-0" : "translate-x-[50%] opacity-100"
+          className={`items-start  w-full flex md:order-1 bg-gray-100 md:bg-transparent rounded-lg h-[92vh] pb-8  flex-col justify-between  md:w-1/3 transition duration-500 z-50 ${
+            isCollapsed
+              ? "opacity-100 transform translate-x-[103%] md:translate-x-0 !h-0"
+              : "translate-x-[50%] opacity-100"
           }`}
           id="navbar-sticky"
           style={{ transitionDuration: "1s" }}
         >
-          <ul className="flex flex-col  p-4 md:p-0 mt-4 font-medium border border-gray-100  md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white">
+          <ul className="flex flex-col  p-4 md:p-0 mt-4 font-medium    md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0  md:bg-white">
             <li>
               <Link
                 href="/"
-                className="block py-2 px-3  rounded md:bg-transparent md:text-yellow-500 md:p-0 font-bold"
+                className={`block py-2 px-3  rounded md:bg-transparent  md:p-0 font-bold transition duration-[600ms]  ${
+                  isCollapsed ? "opacity-0 md:opacity-100 " : " opacity-100"
+                }`}
                 aria-current="page"
-                onClick={toggleNavbar}
+                onClick={() => setIsCollapsed(true)}
               >
                 Home
               </Link>
@@ -75,8 +82,10 @@ const Navbar = () => {
             <li>
               <Link
                 href="/inscripcion"
-                className="block py-2 px-3 font-bold text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-yellow-500 md:p-0 "
-                onClick={toggleNavbar}
+                className={`block py-2 px-3  rounded md:bg-transparent  md:p-0 font-bold transition duration-[600ms]  ${
+                  isCollapsed ? "opacity-0 md:opacity-100 " : " opacity-100"
+                }`}
+                onClick={() => setIsCollapsed(true)}
               >
                 Inscripción
               </Link>
@@ -84,8 +93,10 @@ const Navbar = () => {
             <li className="relative " id="tourheader">
               <Link
                 href="/tours"
-                className="block py-2 px-3 text-gray-900 font-bold rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-yellow-500 md:p-0"
-                onClick={toggleNavbar}
+                className={`block py-2 px-3  rounded md:bg-transparent  md:p-0 font-bold transition duration-[600ms]  ${
+                  isCollapsed ? "opacity-0 md:opacity-100 " : " opacity-100"
+                }`}
+                onClick={() => setIsCollapsed(true)}
               >
                 Tours
               </Link>
@@ -110,8 +121,10 @@ const Navbar = () => {
             <li>
               <Link
                 href="/cursos"
-                className="block py-2 px-3 text-gray-900 font-bold rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-yellow-500 md:p-0 "
-                onClick={toggleNavbar}
+                className={`block py-2 px-3  rounded md:bg-transparent  md:p-0 font-bold transition duration-[700ms]  ${
+                  isCollapsed ? "opacity-0 md:opacity-100 " : " opacity-100"
+                }`}
+                onClick={() => setIsCollapsed(true)}
               >
                 Cursos
               </Link>
@@ -119,8 +132,10 @@ const Navbar = () => {
             <li>
               <Link
                 href="/nosotros"
-                className="block py-2 px-3 text-gray-900 font-bold rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-yellow-500 md:p-0 "
-                onClick={toggleNavbar}
+                className={`block py-2 px-3  rounded md:bg-transparent  md:p-0 font-bold transition duration-[800ms]  ${
+                  isCollapsed ? "opacity-0 md:opacity-100 " : " opacity-100"
+                }`}
+                onClick={() => setIsCollapsed(true)}
               >
                 Nosotros
               </Link>
@@ -145,13 +160,15 @@ const Navbar = () => {
             <li>
               <Link
                 href="/contacto"
-                className="block py-2 px-3 text-gray-900 font-bold rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-yellow-500 md:p-0 "
+                className={`block py-2 px-3  rounded md:bg-transparent  md:p-0 font-bold transition duration-[900ms]  ${
+                  isCollapsed ? "opacity-0 md:opacity-100 " : " opacity-100"
+                }`}
               >
                 Contacto
               </Link>
             </li>
           </ul>
-          <div className="w-1/2 flex flex-col items-center md:!hidden justify-center z-50">
+          {/*   <div className="w-1/2 flex flex-col items-center md:!hidden justify-center z-50">
             {" "}
             <Logo size="xl" />
             <div className="border-b w-10/12"></div>
@@ -169,7 +186,7 @@ const Navbar = () => {
                 </li>
               </ul>
             </span>
-          </div>
+          </div> */}
         </div>
       </div>
     </nav>

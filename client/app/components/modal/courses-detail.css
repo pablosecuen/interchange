@@ -10,8 +10,8 @@
   position: absolute;
   width: 100%;
   height: 15vh;
-  min-height: 100px;
-  max-height: 150px;
+  min-height: 120px;
+  max-height: 220px;
   bottom: 0;
   left: 0;
 }
@@ -52,11 +52,11 @@
 
 /*Shrinking for mobile*/
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .waves {
     height: 40px;
     min-height: 40px;
   }
-}
+} */
 
 /* Waves Animation end*/

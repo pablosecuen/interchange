@@ -16,7 +16,6 @@ const Cursos = () => {
   const [selectedGrade, setSelectedGrade] = useState(null);
   const modalRef = useRef<HTMLDivElement>(null);
 
-  console.log(modalOpen);
   const openModal = (grade: any) => {
     setSelectedGrade(grade);
     setModalOpen(true);
@@ -173,11 +172,11 @@ const Cursos = () => {
   };
 
   const tabsComponents = tabs.map((text) => (
-    <nav key={`tab-${text}`} className="w-full ">
+    <div key={`tab-${text}`} className="w-full ">
       <button
         type="button"
         onClick={() => setActiveTab(text)}
-        className={`py-1 px-2 rounded-full focus:bg-gray-100 ${
+        className={`py-1 px-2 rounded-full focus:bg-gray-100 text-sm md:text-base ${
           activeTab === text ? "font-bold" : ""
         }`}
       >
@@ -197,13 +196,15 @@ const Cursos = () => {
           </div>
         )}
       </button>
-    </nav>
+    </div>
   ));
 
   return (
-    <section className="w-full max-w-7xl min-h-screen flex mx-auto justify-center py-36 mb-32 ">
+    <section className="w-full md:max-w-7xl min-h-screen flex overflow-hidden md:mx-auto justify-center py-36 mb-32 ">
       <div className="h-full w-full flex flex-col  gap-10 max-w-7xl">
-        <nav className="flex max-w-4xl mx-auto font-laila">{tabsComponents}</nav>
+        <nav className="grid grid-cols-2 text-center md:flex md:max-w-4xl md:mx-auto  w-full  font-laila">
+          {tabsComponents}
+        </nav>
         <div className=" mx-8 ">
           <h4 className="text-custom-purple font-laila">cursos</h4>
           <span className="text-4xl relative pb-8 font-laila">
