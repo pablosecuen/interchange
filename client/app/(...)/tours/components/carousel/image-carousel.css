@@ -71,6 +71,7 @@ main .nav {
 }
 main .nav .btn {
   color: rgb(255, 255, 255);
+  background-color: rgba(255, 255, 255, 0.3);
   margin: 0 0.55rem;
   padding: 0.75rem;
   border-radius: 50%;
@@ -103,6 +104,7 @@ main .nav .btn:hover {
 @media (width < 650px) {
   main .nav {
     position: absolute;
+
     bottom: 2rem;
     left: 50%;
     transform: translateX(-50%);

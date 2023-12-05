@@ -4,39 +4,37 @@
     position: absolute;
     min-width: 140px;
     opacity: 0;
-    max-height: 0; /* Usar max-height en lugar de height */
+    max-height: 0;
     overflow: hidden;
-    transition: opacity 1s ease, max-height 0.5s ease; /* Animar max-height en lugar de height */
-    visibility: hidden; /* Oculta el elemento */
+    transition: opacity 1s ease, max-height 0.5s ease;
+    visibility: hidden;
     background-color: white;
     padding: 10px 10px 10px 10px;
     display: flex;
     flex-direction: column;
-    gap: 8px;
     border-radius: 10px;
     border-bottom: 2px solid #c0c0c0;
   }
 
   nav li:hover > ul {
     opacity: 1;
-    max-height: 200px; /* Establecer una altura máxima */
-    visibility: visible; /* Hace el elemento visible */
+    max-height: 200px;
+    visibility: visible;
   }
 
-  /* Animación para aumentar la altura gradualmente */
   @keyframes growHeight {
     from {
-      max-height: 0; /* Iniciar con la altura máxima en 0 */
+      max-height: 0;
       visibility: hidden;
     }
     to {
-      max-height: 200px; /* Altura máxima deseada */
+      max-height: 200px;
       visibility: visible;
     }
   }
 
   nav li ul li a {
-    font-family: "Laila-Regular", sans-serif; /* Aplica la fuente Laila-Regular a los elementos li */
+    font-family: "Laila-Regular", sans-serif;
   }
 
   nav li ul li:hover {
@@ -45,5 +43,9 @@
 
   nav li ul li {
     width: 200px;
+  }
+
+  nav li ul > *:not(:last-child) {
+    margin-bottom: 15px;
   }
 }
