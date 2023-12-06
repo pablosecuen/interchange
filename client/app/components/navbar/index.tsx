@@ -20,7 +20,14 @@ const Navbar = () => {
           href="/"
           className="flex items-center md:justify-start justify-center  h-auto space-x-3 rtl:space-x-reverse mr-auto md:w-1/3"
         >
-          <Logo size="xl" />
+          <div className="hidden md:block">
+            {" "}
+            <Logo size="xl" />
+          </div>
+          <div className=" md:hidden">
+            {" "}
+            <Logo size="lg" />
+          </div>
         </Link>
         <div className="flex md:justify-end md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse   md:w-1/3">
           <button type="button" className="yellow-btn  font-bold">

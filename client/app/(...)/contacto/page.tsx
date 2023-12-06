@@ -4,8 +4,8 @@ import sparks from "@/public/assets/svg/spark.svg";
 import Image from "next/image";
 const Contacto = () => {
   return (
-    <section className="min-h-screen w-full flex justify-center items-center ">
-      <div className="md:flex w-full max-w-7xl border shadow-xl shadow-black/10 relative bg-white rounded-xl">
+    <section className="min-h-screen  w-screen md:w-full overflow-x-hidden flex justify-center items-center p-2">
+      <div className="md:flex md:w-full max-w-7xl h-full shadow-xl shadow-black/10 relative bg-white rounded-xl mt-20 md:mt-0 ">
         <Image
           src={sparks}
           alt="sparks"
@@ -23,8 +23,8 @@ const Contacto = () => {
         <div className="w-5 h-5 rounded-full bg-custom-yellow absolute bottom-20 -right-10"></div>
         <div className="w-4 h-4 rounded-full bg-custom-orange  absolute -bottom-0 -right-20"></div>
         <div className="w-3 h-3 rounded-full bg-custom-purple  absolute -bottom-10 -right-10"></div>
-        <div className="w-96 h-96 rounded-full bg-custom-purple  absolute -bottom-48 -left-48 blur-3xl opacity-20 -z-10"></div>
-        <div className="md:w-1/2 order-1 border flex justify-center items-center p-8">
+        <div className="w-96 h-96 rounded-full bg-custom-purple hidden md:block absolute -bottom-48 -left-48 blur-3xl opacity-20 -z-10"></div>
+        <div className="md:w-1/2 order-1  flex justify-center items-center p-8">
           <span className="text-3xl bg-custom-green rounded-3xl text-white p-4">
             Queremos a saber de vos, podes contactarnos libremente para hacernos saber tus dudas,
             consultas o recomendaciones...

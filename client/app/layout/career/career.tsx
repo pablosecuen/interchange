@@ -55,21 +55,21 @@ const Career = () => {
           alt="career1"
           width={0}
           height={0}
-          className="absolute z-10  md:top-1/3 md:-translate-y-1/2 md:left-1/2 md:-translate-x-1/2 scale-75 brightness-110 "
+          className="absolute z-10  md:top-1/2 md:-translate-y-1/2 md:left-1/3 md:-translate-x-1/2 scale-75 brightness-110 "
         />
         <Image
           src={career2}
           alt="career1"
           width={0}
           height={0}
-          className="absolute z-10  top-1/3 -translate-y-1/2 md:left-1/2 md:-translate-x-1/2 scale-75 brightness-110"
+          className="absolute z-10 md:z-20 top-1/3 md:top-1/2 -translate-y-1/2 md:left-1/2 md:-translate-x-1/2 scale-75 brightness-110"
         />
         <Image
           src={career3}
           alt="career1"
           width={0}
           height={0}
-          className="absolute z-10  top-1/2 md:-translate-y-1/2 md:left-1/2 md:-translate-x-1/2 scale-75 brightness-110 "
+          className="absolute z-10  top-1/2 md:top-1/2 md:-translate-y-1/2 md:left-2/3 md:-translate-x-1/2 scale-75 brightness-110 "
         />
       </div>
     </section>
