@@ -23,7 +23,7 @@ const Landing = () => {
               className="absolute md:-top-8 -top-12 right-2 md:right-10 hidden md:block"
             />
             Educación es <br />{" "}
-            <div className="flex ">
+            <div className="flex font-laila">
               crear los{" "}
               <div className="md:text-3xl perspective-container h-auto w-32 -ml-4 md:-ml-0  flex justify-center items-center relative ">
                 <div className="bg-violet-700 rounded-md perspective-element py-1 md:px-6 text-white  h-10 md:w-48 w-44 absolute"></div>
@@ -32,7 +32,7 @@ const Landing = () => {
             </div>
             del mañana
           </h1>
-          <h2 className=" text-gray-400 pb-5 text-md  md:w-2/3 mx-4 md:mx-0">
+          <h2 className=" text-gray-400 pb-5 text-md  md:w-2/3 p-6 md:mx-0">
             Muchas escuelas utilizan el término "excelencia" para resaltar las ambiciones de la
             escuela de ayudar a todos a lograr lo mejor de sí mismos. a todos a dar lo mejor de sí
             mismos.

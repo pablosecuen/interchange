@@ -30,7 +30,7 @@ const Trusted = () => {
           <div className="bg-custom-green w-4 h-4 rounded-full absolute bottom-20 -left-32"></div>
           <div className="bg-custom-purple w-4 h-4 rounded-full absolute top-0"></div>
         </div>
-        <div className="w-screen mx-auto  md:mx-0 md:w-1/2 md:order-2 order-1 flex flex-col justify-end p-10 gap-4">
+        <div className="w-screen mx-auto  md:mx-0 md:w-1/2 md:order-2 order-1 flex flex-col justify-end p-6 gap-4">
           <span className="text-lg text-custom-orange">Métodos de aprendizaje</span>
           <h3 className="text-3xl  tracking-wider relative flex font-laila font-bold">
             Acceso al aprendizaje en cualquier momento y en cualquier lugar
@@ -54,7 +54,7 @@ const Trusted = () => {
             <div className="bg-custom-orange w-4 h-4 rounded-full absolute md:top-0 bottom-0 right-0"></div>
           </ul>
           <Link href="/inscripcion">
-            <button className="yellow-btn w-32">Empezar</button>
+            <button className="yellow-btn w-32 mt-4">Empezar</button>
           </Link>
         </div>
       </div>
