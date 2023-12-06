@@ -34,7 +34,7 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({ tour, onClose }) => {
         exit={{ opacity: 0, height: 0 }}
         transition={{ duration: 1 }}
       >
-        <main className=" min-h-[70vh] h-[80vh] w-full rounded-3xl overflow-hidden relative">
+        <main className=" min-h-[70vh]  w-full rounded-3xl overflow-hidden relative">
           <button
             onClick={onClose}
             className="rounded-full yellow-btn my-4 absolute z-30 top-2 right-2"
@@ -65,6 +65,15 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({ tour, onClose }) => {
             </span>
           </nav>
         </main>
+        <article className="flex flex-col gap-8 pt-8 h-auto">
+          <h4 className="text-2xl md:text-4xl  uppercase tracking-widest font-bold">
+            {tour.title}
+          </h4>
+          <span className="text-xl md:text-2xl uppercase tracking-wider font-bold">
+            Descripción Turística:
+          </span>
+          <p className="md:text-lg text-md "> {tour.description}</p>
+        </article>
       </motion.article>
     </AnimatePresence>
   );

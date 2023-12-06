@@ -44,7 +44,7 @@ const CardContainer = () => {
   };
 
   return (
-    <div className="h-full w-full flex flex-col md:p-20 py-32 gap-4 px-4 ">
+    <div className="h-auto w-full flex flex-col md:p-20 py-32 gap-4 px-4 ">
       <span className="text-2xl pb-10" id="destinos">
         Los destinos visitados en Inglaterra
       </span>
@@ -55,7 +55,7 @@ const CardContainer = () => {
       >
         {duplicatedToursData.map((tour: any, index: number) => (
           <div
-            key={index}
+            key={tour.title}
             className="md:w-72 md:h-72 w-36 h-36 b rounded-2xl shadow-lg hover:shadow-black/40 relative cursor-pointer transition duration-300 hover:translate-y-1   scroll-item"
             onClick={() => handleShowCarousel(tour)}
           >
@@ -98,7 +98,7 @@ const CardContainer = () => {
       </div>
       {/* Renderizado condicional del carousel */}
       {showCarousel && selectedTour && (
-        <div className="md:mt-8  w-full ">
+        <div className="md:mt-8  w-full   ">
           <ImageCarousel tour={selectedTour} onClose={handleHideCarousel} />
         </div>
       )}
