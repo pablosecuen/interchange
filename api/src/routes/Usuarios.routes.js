@@ -17,6 +17,6 @@ const router = express.Router();
 router.post("/", createUserHandler);
 router.get("/", handleUsuariosFilters, getAllUsuariosHandler);
 router.patch("/:id", validatePatchUserData, patchUsuarioHandler);
-router.delete("/usuarios/:id", deleteUsuarioHandler);
+router.delete("/:id", deleteUsuarioHandler);
 
 module.exports = router;
