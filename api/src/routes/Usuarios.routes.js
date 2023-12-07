@@ -14,7 +14,7 @@ const {
 
 const router = express.Router();
 
-// Definir la ruta para crear un usuario
+// rutas para  usuarios
 router.post("/", validateUserData, createUserHandler);
 router.get("/", handleUsuariosFilters, getAllUsuariosHandler);
 router.patch("/:id", validatePatchUserData, patchUsuarioHandler);
