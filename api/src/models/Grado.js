@@ -22,7 +22,8 @@ module.exports = (sequelize) => {
         notEmpty: true,
       },
     },
+
   });
 
-  return Grado; // Retorna el modelo definido
+  return Grado;
 };

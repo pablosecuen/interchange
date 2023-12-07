@@ -45,11 +45,25 @@ module.exports = (sequelize) => {
       },
     },
     Activo: {
-      type: DataTypes.BOOLEAN, 
+      type: DataTypes.BOOLEAN,
       allowNull: false,
     },
     Grado_ID: {
       type: DataTypes.UUID,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+      },
+    },
+    Grado_Nombre: {
+      type: DataTypes.STRING, // Campo para almacenar el nombre del Grado
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+      },
+    },
+    Grado_Categoria: {
+      type: DataTypes.STRING, // Campo para almacenar la categoría del Grado
       allowNull: false,
       validate: {
         notEmpty: true,

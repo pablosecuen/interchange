@@ -1,11 +1,18 @@
 const express = require("express");
 const morgan = require("morgan");
-const { conn } = require("./db");
 const userRoutes = require("./src/routes/Usuarios.routes");
 const gradosRoutes = require("./src/routes/Grados.routes");
 const { sequelize } = require("./db");
 
 const app = express();
+
+// Middleware para habilitar CORS
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  next();
+});
 
 // Configuración de Morgan
 // Modo "dev" muestra mensajes de registro concisos
@@ -25,8 +32,8 @@ const PORT = process.env.PORT || 3001;
   });
 }); */
 
- sequelize.sync().then(() => {
+sequelize.sync().then(() => {
   app.listen(PORT, () => {
     console.log(`Servidor corriendo en el puerto ${PORT}`);
   });
-}); 
+});
