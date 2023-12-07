@@ -9,12 +9,13 @@ const {
 const {
   handleUsuariosFilters,
   validatePatchUserData,
+  validateUserData,
 } = require("../middleware/Usuarios.middleware");
 
 const router = express.Router();
 
 // Definir la ruta para crear un usuario
-router.post("/", createUserHandler);
+router.post("/", validateUserData, createUserHandler);
 router.get("/", handleUsuariosFilters, getAllUsuariosHandler);
 router.patch("/:id", validatePatchUserData, patchUsuarioHandler);
 router.delete("/:id", deleteUsuarioHandler);
