@@ -16,6 +16,10 @@ const userSchema = Joi.object({
   Grado_ID: Joi.string().uuid().required(),
 });
 
+const patchUserSchema = Joi.object({
+  Activo: Joi.boolean().required(),
+});
+
 const validateUserData = (req, res, next) => {
   const { error } = userSchema.validate(req.body);
   if (error) {
@@ -23,6 +27,8 @@ const validateUserData = (req, res, next) => {
   }
   next();
 };
+
+
 
 const handleUsuariosFilters = (req, res, next) => {
   const {
@@ -72,6 +78,14 @@ const handleUsuariosFilters = (req, res, next) => {
 
 
 
+const validatePatchUserData = (req, res, next) => {
+  const { error } = patchUserSchema.validate(req.body);
+  if (error) {
+    return res.status(400).json({ error: error.details[0].message });
+  }
+  next();
+};
 
 
-module.exports = { validateUserData, handleUsuariosFilters };
+
+module.exports = { validateUserData, handleUsuariosFilters, validatePatchUserData  };
