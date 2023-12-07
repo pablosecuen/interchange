@@ -44,6 +44,10 @@ module.exports = (sequelize) => {
         notEmpty: true,
       },
     },
+    Activo: {
+      type: DataTypes.BOOLEAN, 
+      allowNull: false,
+    },
     Grado_ID: {
       type: DataTypes.UUID,
       allowNull: false,

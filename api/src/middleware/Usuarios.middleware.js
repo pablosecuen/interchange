@@ -1,34 +1,77 @@
-// middleware.js
+const Joi = require("joi");
+
+const userSchema = Joi.object({
+  Nombre: Joi.string()
+    .max(20)
+    .pattern(/^[a-zA-Z\s]+$/)
+    .required(),
+  Apellido: Joi.string()
+    .max(20)
+    .pattern(/^[a-zA-Z\s]+$/)
+    .required(),
+  Email: Joi.string().email().required(),
+  Password: Joi.string().min(8).required(),
+  Tipo: Joi.string().required(),
+  Activo: Joi.boolean().required(),
+  Grado_ID: Joi.string().uuid().required(),
+});
 
 const validateUserData = (req, res, next) => {
-  const { Nombre, Apellido, Email, Password, Tipo, Grado_ID } = req.body;
-
-  // Verificar que los campos requeridos estén presentes
-  if (!Nombre || !Apellido || !Email || !Password || !Tipo || !Grado_ID) {
-    return res.status(400).json({ message: "Todos los campos son requeridos." });
+  const { error } = userSchema.validate(req.body);
+  if (error) {
+    return res.status(400).json({ error: error.details[0].message });
   }
-
-  // Validar el formato del Email con una expresión regular
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(Email)) {
-    return res.status(400).json({ message: "El Email no tiene un formato válido." });
-  }
-
-  // Verificar que el nombre no tenga más de 20 caracteres y no contenga caracteres especiales
-  const nombreRegex = /^[a-zA-Z\s]{1,20}$/;
-  if (!nombreRegex.test(Nombre)) {
-    return res.status(400).json({
-      message:
-        "El Nombre no puede tener más de 20 letras y no debe contener caracteres especiales.",
-    });
-  }
-
-  if (Password.length < 8) {
-    return res.status(400).json({ message: "La contraseña debe tener al menos 8 caracteres." });
-  }
-
-  // Si pasa la validación, llamar a next() para continuar con el siguiente middleware o el controlador
   next();
 };
 
-module.exports = { validateUserData };
+const handleUsuariosFilters = (req, res, next) => {
+  const {
+    nombre,
+    apellido,
+    email,
+    tipo,
+    activo,
+    grado_id, // Cambié el nombre para coincidir con la nomenclatura de Sequelize
+    id,
+  } = req.query;
+
+  let filtros = {};
+
+  if (nombre) {
+    filtros.Nombre = nombre;
+  }
+
+  if (apellido) {
+    filtros.Apellido = apellido;
+  }
+
+  if (email) {
+    filtros.Email = email;
+  }
+
+  if (tipo) {
+    filtros.Tipo = tipo;
+  }
+
+  if (activo) {
+    filtros.Activo = activo;
+  }
+
+  if (grado_id) {
+    filtros.Grado_ID = grado_id;
+  }
+
+  if (id) {
+    filtros.ID = id;
+  }
+
+  req.usuariosFiltros = filtros; // Guardar los filtros en el objeto de solicitud
+
+  next();
+};
+
+
+
+
+
+module.exports = { validateUserData, handleUsuariosFilters };

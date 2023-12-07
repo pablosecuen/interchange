@@ -15,57 +15,24 @@ if (DATABASE_NAME && DATABASE_USERNAME && DATABASE_PASSWORD) {
   });
 
   const Usuario = require("./src/models/Usuario")(sequelize);
-  const SeccionCV = require("./src/models/SeccionCampus")(sequelize);
   const Grado = require("./src/models/Grado")(sequelize);
   const Contenido = require("./src/models/Contenido")(sequelize);
 
-  Usuario.belongsToMany(Grado, {
-    through: "usuarios_grado",
-    foreignKey: "usuario_id",
-    as: "grados",
-  });
-  Grado.belongsToMany(Usuario, {
-    through: "usuarios_grado",
-    foreignKey: "grado_id",
-    as: "usuarios",
-  });
+  // Aquí puedes establecer las relaciones entre los modelos
+  Usuario.belongsTo(Grado, { foreignKey: "Grado_ID", as: "CursoActual" });
+  Grado.hasMany(Usuario, { foreignKey: "Grado_ID" });
 
-  Usuario.belongsToMany(SeccionCV, {
-    through: "Usuarios_SeccionCV",
-    foreignKey: "usuario_id",
-    as: "seccionesCV",
-  });
-  SeccionCV.belongsToMany(Usuario, {
-    through: "Usuarios_SeccionCV",
-    foreignKey: "seccion_cv_id",
-    as: "usuarios",
-  });
+  Contenido.belongsTo(Grado, { foreignKey: "Grado_ID" });
+  Grado.hasMany(Contenido, { foreignKey: "Grado_ID" });
 
-  Grado.hasMany(SeccionCV, { foreignKey: "grado_id", as: "secciones" });
-  SeccionCV.belongsTo(Grado, { foreignKey: "grado_id", as: "gradoAsociado" });
 
-  Grado.hasMany(Contenido, { foreignKey: "grado_id", as: "contenidos" });
-  Contenido.belongsTo(Grado, { foreignKey: "grado_id" });
 
-  Usuario.belongsTo(Grado, { foreignKey: "grado_actual_id", as: "gradoActual" });
-  Usuario.belongsToMany(SeccionCV, {
-    through: "Usuarios_SeccionCV",
-    foreignKey: "usuario_id",
-    scope: {
-      grado_id: sequelize.col("grado_actual_id"),
-    },
-    as: "seccionesDisponibles",
-  });
-  Grado.hasMany(Usuario, { foreignKey: "grado_actual_id", as: "usuarios_grados" });
-
+  // Exporta los modelos y la conexión
   module.exports = {
-    conn: sequelize,
-    models: {
-      Usuario,
-      Grado,
-      SeccionCV,
-      Contenido,
-    },
+    Usuario,
+    Grado,
+    Contenido,
+    sequelize,
   };
 } else {
   console.error("Las variables de entorno de la base de datos no están completamente definidas.");

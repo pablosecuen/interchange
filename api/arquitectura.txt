@@ -1,0 +1,14 @@
+
+
+### Modularización y Estructura de Carpetas:
+- **Estructura de carpetas:** `controllers`, `middleware`, `handlers`, `routes`, y `models`. Esto facilita la organización y mantenimiento a medida que la aplicación crece.
+
+- **Nomenclatura de archivos y carpetas:** La nomenclatura de los archivos y carpetas es descriptiva y sigue una lógica comprensible, lo que facilita la búsqueda de archivos específicos.
+
+### Implementación de Controladores, Middlewares y Rutas:
+- **Controladores:** Tenemos controladores que manejan las operaciones específicas relacionadas con los usuarios, grados y contenido, ej: como crear un nuevo usuario en el controlador `createUserController`.
+
+- **Middlewares:** Ej: El middleware `validateUserData` realiza la validación de los datos del usuario antes de crearlo, separando la lógica de validación del controlador.
+
+- **Handlers y Rutas:** Los handlers y las rutas están separados, lo que permite una modularidad adecuada y facilita la escalabilidad al agregar más rutas y handlers.
+
