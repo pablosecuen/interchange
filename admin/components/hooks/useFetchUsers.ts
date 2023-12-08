@@ -27,22 +27,32 @@ const useFetchUsers = () => {
         }
         const data = await response.json();
 
-        console.log(data);
-        
-    // Para cada usuario, obtén el grado asociado
-    const usersWithGrades = await Promise.all(
-      data.map(async (user: User) => {
-        const gradoResponse = await fetch(`http://localhost:3001/api/grados?ID=${user.Grado_ID}`);
-        if (!gradoResponse.ok) {
-          throw new Error('Error al cargar el grado del usuario');
-        }
-        const gradoData = await gradoResponse.json();
-        // Agrega la información del grado al usuario
-        return { ...user, Grado: gradoData };
-      })
-    );
+        const usersWithGradesAndPayments = await Promise.all(
+          data.map(async (user: User) => {
+            // Obtener el grado asociado al usuario
+            const gradoResponse = await fetch(`http://localhost:3001/api/grados?ID=${user.Grado_ID}`);
+            if (!gradoResponse.ok) {
+              throw new Error('Error al cargar el grado del usuario');
+            }
+            const gradoData = await gradoResponse.json();
 
-        setUsers(usersWithGrades);
+            // Obtener los pagos asociados al grado del usuario
+            const pagosResponse = await fetch(`http://localhost:3001/api/pagos?Grado_ID=${user.Grado_ID}`);
+            if (!pagosResponse.ok) {
+              throw new Error('Error al cargar los pagos del usuario');
+            }
+            const pagosData = await pagosResponse.json();
+
+            // Agregar la información del grado y los pagos al usuario
+            return {
+              ...user,
+              Grado: gradoData,
+              Pagos: pagosData,
+            };
+          })
+        );
+
+        setUsers(usersWithGradesAndPayments);
       } catch (error: any) {
         setError(error);
       } finally {
