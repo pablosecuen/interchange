@@ -5,7 +5,6 @@ const {
   deleteUsuarioController,
 } = require("../controllers/Usuarios.controller");
 
-
 const createUserHandler = (req, res) => {
   createUserController(req, res);
 };

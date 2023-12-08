@@ -8,7 +8,13 @@ const app = express();
 
 // Middleware para habilitar CORS
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+  const allowedOrigins = ["http://localhost:3000", "https://interchange-admin.vercel.app"];
+  const origin = req.headers.origin;
+
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+  }
+
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
   res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
   next();
@@ -21,6 +27,7 @@ app.use(express.json());
 // Usar las rutas de usuario
 app.use("/api/users", userRoutes);
 app.use("/api/grados", gradosRoutes);
+
 
 // Puerto en el que el servidor escuchará
 const PORT = process.env.PORT || 3001;

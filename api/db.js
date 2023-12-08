@@ -30,15 +30,17 @@ if (DATABASE_NAME && DATABASE_USERNAME && DATABASE_PASSWORD) {
   Pago.belongsTo(Usuario, { foreignKey: "Usuario_ID" });
   Pago.belongsTo(Grado, { foreignKey: "Grado_ID" });
 
+  Grado.hasOne(Pago, { foreignKey: "Grado_ID" });
+
   // Exporta los modelos y la conexión
   module.exports = {
     Usuario,
     Grado,
     Contenido,
-    Pagos,
+    Pago,
     sequelize,
   };
 } else {
   console.error("Las variables de entorno de la base de datos no están completamente definidas.");
-  process.exit(1); // Salir con un código de error
+  process.exit(1);
 }

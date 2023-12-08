@@ -14,7 +14,7 @@ export const AddUser = () => {
   return (
     <div>
       <Button auto onClick={handler}>
-        Add User
+        Agregar Alumno
       </Button>
       <Modal
         closeButton
@@ -25,7 +25,7 @@ export const AddUser = () => {
       >
         <Modal.Header css={{ justifyContent: "start" }}>
           <Text id="modal-title" h4>
-            Add new user
+            Agregar nuevo alumno
           </Text>
         </Modal.Header>
         <Divider css={{ my: "$5" }} />

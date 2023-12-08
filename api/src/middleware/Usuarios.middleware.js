@@ -31,15 +31,8 @@ const validateUserData = (req, res, next) => {
 };
 
 const handleUsuariosFilters = (req, res, next) => {
-  const {
-    nombre,
-    apellido,
-    email,
-    tipo,
-    activo,
-    grado_id, // Cambié el nombre para coincidir con la nomenclatura de Sequelize
-    id,
-  } = req.query;
+  const { nombre, apellido, email, tipo, activo, grado_id, grado_nombre, categoria, id } =
+    req.query;
 
   let filtros = {};
 
@@ -65,6 +58,14 @@ const handleUsuariosFilters = (req, res, next) => {
 
   if (grado_id) {
     filtros.Grado_ID = grado_id;
+  }
+
+  if (grado_nombre) {
+    filtros.Grado_Nombre = grado_id;
+  }
+
+  if (categoria) {
+    filtros.Categoria = grado_id;
   }
 
   if (id) {

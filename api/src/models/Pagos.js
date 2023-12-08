@@ -13,16 +13,34 @@ module.exports = (sequelize) => {
       allowNull: false,
       defaultValue: DataTypes.NOW,
     },
-    Estado: {
+    EstadoCuota: {
       type: DataTypes.ENUM("Pendiente", "Pagado"),
       allowNull: false,
       defaultValue: "Pendiente",
     },
-    Vencimiento: {
+    EstadoInscripcionGrado: {
+      type: DataTypes.ENUM("Pendiente", "Pagado"),
+      allowNull: false,
+      defaultValue: "Pendiente",
+    },
+    EstadoInscripcionExamenes: {
+      type: DataTypes.ENUM("Pendiente", "Pagado"),
+      allowNull: false,
+      defaultValue: "Pendiente",
+    },
+    VencimientoCuota: {
       type: DataTypes.DATE,
       allowNull: false,
     },
-    MontoMensual: {
+    VencimientoExamen: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
+    VencimientoInscripcionGrado: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
+    MontoCuota: {
       type: DataTypes.FLOAT,
       allowNull: false,
       validate: {
@@ -43,6 +61,7 @@ module.exports = (sequelize) => {
         min: 0,
       },
     },
+    
   });
 
   return Pago;

@@ -42,8 +42,6 @@ const patchUsuarioController = async (req, res) => {
   }
 };
 
-
-
 const deleteUsuarioController = async (req, res) => {
   try {
     const { id } = req.params;
@@ -63,7 +61,9 @@ const deleteUsuarioController = async (req, res) => {
   }
 };
 
-
-
-
-module.exports = { createUserController, getAllUsuariosController, patchUsuarioController, deleteUsuarioController  };
+module.exports = {
+  createUserController,
+  getAllUsuariosController,
+  patchUsuarioController,
+  deleteUsuarioController,
+};

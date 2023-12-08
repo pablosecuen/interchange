@@ -1,0 +1,55 @@
+  Usuario
++---------------------+
+| ID (PK)             |
+| Nombre              |
+| Apellido            |
+| Email               |
+| Password            |
+| Tipo                |
+| Activo              |
+| Grado_ID (FK) ------|--\
++---------------------+   |
+                          |
+  Grado                   |
++---------------------+   |
+| ID (PK)             |   |
+| Grado_Nombre        |   |
+| Grado_Categoria     |   |
+| PrecioInscripcion   |   |
+| PrecioInscExamenes  |   |
+| PrecioCuotaMensual  |   |
+| FechaVencCuota      |   |
+| CuotaPagada         |   |
+| InscripcionPagada   |   |
++---------------------+   |
+                          |
+  Contenido               |
++---------------------+   |
+| ID (PK)             |   |
+| ...                 |   |
+| Grado_ID (FK) -----|---/
++---------------------+
+
+  Pago
++---------------------+
+| ID (PK)             |
+| Fecha               |
+| EstadoCuota         |
+| EstadoInscripGrado  |
+| EstadoInscExamenes  |
+| VencimientoCuota    |
+| VencimientoExamen   |
+| VencimientoInscripG |
+| MontoCuota          |
+| MontoInscripGrado   |
+| MontoInscExamenes   |
+| Usuario_ID (FK) ----|--\
+| Grado_ID (FK) ------|--|--\
++---------------------+  |  |
+                          |  |
+  Grado                   |  |
++---------------------+  |  |
+| ID (PK)             |  |  |
+| ...                 |  |  |
+| Usuario_ID (FK) ---|--|--/
++---------------------+
