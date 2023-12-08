@@ -10,4 +10,16 @@ const createPagoController = async (req, res) => {
   }
 };
 
-module.exports = { createPagoController };
+const getAllPagosController = async (req, res) => {
+  try {
+    const pagos = await Pago.findAll({
+      where: req.pagosFiltros,
+    });
+
+    res.status(200).json(pagos);
+  } catch (error) {
+    res.status(500).json({ message: "Error al obtener los pagos", error: error.message });
+  }
+};
+
+module.exports = { createPagoController, getAllPagosController };

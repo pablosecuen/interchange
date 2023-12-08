@@ -21,4 +21,26 @@ const validatePagoData = (req, res, next) => {
   next();
 };
 
-module.exports = { validatePagoData };
+const handlePagosFilters = (req, res, next) => {
+  const { estadoCuota, estadoInscripcionGrado, estadoInscripcionExamenes } = req.query;
+
+  let filtros = {};
+
+  if (estadoCuota) {
+    filtros.EstadoCuota = estadoCuota;
+  }
+
+  if (estadoInscripcionGrado) {
+    filtros.EstadoInscripcionGrado = estadoInscripcionGrado;
+  }
+
+  if (estadoInscripcionExamenes) {
+    filtros.EstadoInscripcionExamenes = estadoInscripcionExamenes;
+  }
+
+  req.pagosFiltros = filtros;
+
+  next();
+};
+
+module.exports = { validatePagoData, handlePagosFilters };
