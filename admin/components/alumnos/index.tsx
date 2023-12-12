@@ -11,7 +11,7 @@ import { SettingsIcon } from "../icons/sidebar/settings-icon";
 import { TableWrapper } from "../table/table";
 import { AddUser } from "./add-user";
 
-export const Accounts = () => {
+export const Alumnos = () => {
   return (
     <div className="my-14 max-w-[95rem] mx-auto w-full flex flex-col gap-4">
       <ul className="flex">
