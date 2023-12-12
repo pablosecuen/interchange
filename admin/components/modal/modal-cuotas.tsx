@@ -33,7 +33,7 @@ export default function ModalCuotas({ onOpenChange, isOpen, user }: Props) {
         backdrop="opaque"
         isOpen={isOpen}
         onOpenChange={onOpenChange}
-        radius="2xl"
+        radius="lg"
         classNames={{
           body: "py-6",
           backdrop: "bg-[#292f46]/50 backdrop-opacity-40",
@@ -74,7 +74,7 @@ export default function ModalCuotas({ onOpenChange, isOpen, user }: Props) {
                 </Table>
               </ModalBody>
               <ModalFooter>
-                <Button color="foreground" variant="light" onPress={onClose}>
+                <Button color="danger" variant="light" onPress={onClose}>
                   Close
                 </Button>
                 <Button className="bg-[#6f4ef2] shadow-lg shadow-indigo-500/20" onPress={onClose}>
