@@ -30,9 +30,9 @@ export const RenderCell = ({ user, columnKey, onOpen, handleUserClick }: Props) 
     case "cuota":
       return (
         <div className="z-50 cursor-pointer">
-          <Button onPress={() => handleUserClick(user)}>
+          <button onClick={() => handleUserClick(user)}>
             <EyeIcon size={20} fill="#979797" />
-          </Button>
+          </button>
         </div>
       );
     case "Activo":
@@ -54,9 +54,9 @@ export const RenderCell = ({ user, columnKey, onOpen, handleUserClick }: Props) 
         <div className="flex items-center gap-4 ">
           <div onClick={() => handleUserClick(user)}>
             <Tooltip content="Details">
-              <Button onPress={() => handleUserClick(user)}>
+              <button onClick={() => handleUserClick(user)}>
                 <EyeIcon size={20} fill="#979797" />
-              </Button>
+              </button>
             </Tooltip>
           </div>
           <div>

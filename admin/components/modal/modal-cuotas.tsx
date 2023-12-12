@@ -24,6 +24,8 @@ interface Props {
 
 export default function ModalCuotas({ onOpenChange, isOpen, user }: Props) {
   const vencimientoCuotas = user?.Pagos[0]?.VencimientoCuota || [];
+  console.log(user);
+
   return (
     <>
       {/*     <Button onPress={onOpen} color="secondary">
@@ -46,7 +48,9 @@ export default function ModalCuotas({ onOpenChange, isOpen, user }: Props) {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1">Modal Title</ModalHeader>
+              <ModalHeader className="flex flex-col gap-1">
+                Cuotas de {user.Nombre} {user.Apellido}
+              </ModalHeader>
               <ModalBody>
                 <Table aria-label="Tabla de cuotas">
                   <TableHeader>
