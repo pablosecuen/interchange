@@ -29,8 +29,15 @@ module.exports = (sequelize) => {
       defaultValue: "Pendiente",
     },
     VencimientoCuota: {
-      type: DataTypes.DATE,
+      type: DataTypes.JSONB, // Manteniendo el tipo JSONB
       allowNull: false,
+      get() {
+        const value = this.getDataValue("VencimientoCuota");
+        return value ? JSON.parse(value) : [];
+      },
+      set(value) {
+        this.setDataValue("VencimientoCuota", JSON.stringify(value));
+      },
     },
     VencimientoExamen: {
       type: DataTypes.DATE,
@@ -61,7 +68,6 @@ module.exports = (sequelize) => {
         min: 0,
       },
     },
-    
   });
 
   return Pago;

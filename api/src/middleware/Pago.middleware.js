@@ -5,7 +5,16 @@ const pagoSchema = Joi.object({
   EstadoCuota: Joi.string().valid("Pendiente", "Pagado").required(),
   EstadoInscripcionGrado: Joi.string().valid("Pendiente", "Pagado").required(),
   EstadoInscripcionExamenes: Joi.string().valid("Pendiente", "Pagado").required(),
-  VencimientoCuota: Joi.date().iso().required(),
+  VencimientoCuota: Joi.array()
+    .items(
+      Joi.object({
+        mes: Joi.string().required(),
+        vencimiento: Joi.date().iso().required(),
+        pagado: Joi.boolean().required(),
+        monto: Joi.number().precision(2).positive().required(),
+      })
+    )
+    .required(),
   VencimientoExamen: Joi.date().iso().required(),
   VencimientoInscripcionGrado: Joi.date().iso().required(),
   MontoCuota: Joi.number().positive().required(),
