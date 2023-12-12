@@ -1,97 +1,51 @@
-import { Button, Divider, Input, Modal, Text } from "@nextui-org/react";
+import {
+  Button,
+  Input,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  useDisclosure,
+} from "@nextui-org/react";
 import React from "react";
-import { Flex } from "../styles/flex";
 
 export const AddUser = () => {
-  const [visible, setVisible] = React.useState(false);
-  const handler = () => setVisible(true);
-
-  const closeHandler = () => {
-    setVisible(false);
-    console.log("closed");
-  };
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (
     <div>
-      <Button auto onClick={handler}>
-        Agregar Alumno
-      </Button>
-      <Modal
-        closeButton
-        aria-labelledby="modal-title"
-        width="600px"
-        open={visible}
-        onClose={closeHandler}
-      >
-        <Modal.Header css={{ justifyContent: "start" }}>
-          <Text id="modal-title" h4>
-            Agregar nuevo alumno
-          </Text>
-        </Modal.Header>
-        <Divider css={{ my: "$5" }} />
-        <Modal.Body css={{ py: "$10" }}>
-          <Flex
-            direction={"column"}
-            css={{
-              flexWrap: "wrap",
-              gap: "$8",
-              "@lg": { flexWrap: "nowrap", gap: "$12" },
-            }}
-          >
-            <Flex
-              css={{
-                gap: "$10",
-                flexWrap: "wrap",
-                "@lg": { flexWrap: "nowrap" },
-              }}
-            >
-              <Input label="Nombre" bordered clearable fullWidth size="lg" placeholder="Nombre" />
-              <Input
-                label="Apellido"
-                clearable
-                bordered
-                fullWidth
-                size="lg"
-                placeholder="Apellido"
-              />
-            </Flex>
+      <>
+        <Button onPress={onOpen} color="primary">
+          Agregar Alumno
+        </Button>
+        <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="top-center">
+          <ModalContent>
+            {(onClose) => (
+              <>
+                <ModalHeader className="flex flex-col gap-1">Agregar nuevo alumno</ModalHeader>
+                <ModalBody>
+                  <Input label="Email" variant="bordered" />
+                  <Input label="First Name" variant="bordered" />
+                  <Input label="Last Name" variant="bordered" />
+                  <Input label="Phone Number" variant="bordered" />
 
-            <Flex
-              css={{
-                gap: "$10",
-                flexWrap: "wrap",
-                "@lg": { flexWrap: "nowrap" },
-              }}
-            >
-              <Input label="Email" clearable bordered fullWidth size="lg" placeholder="Email" />
-              <Input
-                label="Telefono"
-                clearable
-                bordered
-                fullWidth
-                size="lg"
-                placeholder="Telefono"
-              />
-            </Flex>
-            <Flex
-              css={{
-                gap: "$10",
-                flexWrap: "wrap",
-                "@lg": { flexWrap: "nowrap" },
-              }}
-            >
-              <Input label="Curso" clearable bordered fullWidth size="lg" placeholder="Curso" />
-              <Input label="Año" clearable bordered fullWidth size="lg" placeholder="Año" />
-            </Flex>
-          </Flex>
-        </Modal.Body>
-        <Divider css={{ my: "$5" }} />
-        <Modal.Footer>
-          <Button auto onClick={closeHandler}>
-            Agregar Usuario
-          </Button>
-        </Modal.Footer>
-      </Modal>
+                  <Input label="Password" type="password" variant="bordered" />
+                  <Input label="Confirm Password" type="password" variant="bordered" />
+                </ModalBody>
+                <ModalFooter>
+                  <Button color="danger" variant="flat" onClick={onClose}>
+                    Close
+                  </Button>
+                  <Button color="primary" onPress={onClose}>
+                    Agregar Usuario
+                  </Button>
+                </ModalFooter>
+              </>
+            )}
+          </ModalContent>
+        </Modal>
+      </>
     </div>
   );
 };

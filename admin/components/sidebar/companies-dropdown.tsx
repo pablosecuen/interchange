@@ -1,11 +1,13 @@
-import { Dropdown, Text } from "@nextui-org/react";
+import {
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownSection,
+  DropdownTrigger,
+} from "@nextui-org/react";
 import React, { useState } from "react";
 import { AcmeIcon } from "../icons/acme-icon";
-import { AcmeLogo } from "../icons/acmelogo";
 import { BottomIcon } from "../icons/sidebar/bottom-icon";
-import { Box } from "../styles/box";
-import { Flex } from "../styles/flex";
-import Link from "next/link";
 
 interface Company {
   name: string;
@@ -20,33 +22,24 @@ export const CompaniesDropdown = () => {
     logo: <AcmeIcon />,
   });
   return (
-    <Dropdown placement="bottom-right" borderWeight={"extrabold"}>
-      <Dropdown.Trigger css={{ cursor: "pointer" }}>
-        <Box>
-          <Flex align={"center"} css={{ gap: "$7" }}>
-            <Box>
-              <Text
-                h3
-                size={"$xl"}
-                weight={"medium"}
-                css={{
-                  m: 0,
-                  color: "$accents9",
-                  lineHeight: "$lg",
-                  mb: "-$5",
-                }}
-              >
-                {company.name}
-              </Text>
-              <Text span weight={"medium"} size={"$xs"} css={{ color: "$accents8" }}>
-                {company.location}
-              </Text>
-            </Box>
-            <BottomIcon />
-          </Flex>
-        </Box>
-      </Dropdown.Trigger>
-      <Dropdown.Menu
+    <Dropdown
+      classNames={{
+        base: "w-full min-w-[260px]",
+      }}
+    >
+      <DropdownTrigger className="cursor-pointer">
+        <div className="flex flex-col items-center gap-2">
+          {company.logo}
+          <div className="flex flex-col gap-4">
+            <h3 className="text-xl font-medium m-0 text-default-900 -mb-4 whitespace-nowrap">
+              {company.name}
+            </h3>
+            <span className="text-xs font-medium text-default-500">{company.location}</span>
+          </div>
+          <BottomIcon />
+        </div>
+      </DropdownTrigger>
+      <DropdownMenu
         onAction={(e) => {
           if (e === "1") {
             setCompany({
@@ -59,31 +52,21 @@ export const CompaniesDropdown = () => {
             setCompany({
               name: "Instagram",
               location: "Austin, Tx",
-              logo: <AcmeLogo />,
+              logo: <AcmeIcon />,
             });
           }
         }}
         aria-label="Avatar Actions"
-        css={{
-          $$dropdownMenuWidth: "340px",
-          $$dropdownItemHeight: "60px",
-          "& .nextui-dropdown-item": {
-            py: "$2",
-            // dropdown item left icon
-            svg: {
-              color: "$secondary",
-              mr: "$4",
-            },
-            // dropdown item title
-            "& .nextui-dropdown-item-content": {
-              w: "100%",
-              fontWeight: "$semibold",
-            },
-          },
-        }}
       >
-        <Dropdown.Section title="Companies">
-          <Dropdown.Item key="1" icon={<AcmeIcon />} description="link">
+        <DropdownSection title="Companies">
+          <DropdownItem
+            key="1"
+            startContent={<AcmeIcon />}
+            classNames={{
+              base: "py-4",
+              title: "text-base font-semibold",
+            }}
+          >
             <a
               target="_blank"
               href="https://www.facebook.com/p/Interchange-Instituto-de-Ingl%C3%A9s-100063674795643/?paipv=0&eav=AfZtDN2EUPupl3qoaOBGlZwaS_7PuIwHo-pV8ER4s2UT0iR49TaFJ20igQrdDGaV6yM&_rdr"
@@ -91,14 +74,21 @@ export const CompaniesDropdown = () => {
             >
               Facebook
             </a>
-          </Dropdown.Item>
-          <Dropdown.Item key="2" icon={<AcmeIcon />} description="link">
+          </DropdownItem>
+          <DropdownItem
+            key="2"
+            startContent={<AcmeIcon />}
+            classNames={{
+              base: "py-4",
+              title: "text-base font-semibold",
+            }}
+          >
             <a target="_blank" href="https://www.instagram.com/interchangeingles/" rel="noreferrer">
               Instagram
             </a>
-          </Dropdown.Item>
-        </Dropdown.Section>
-      </Dropdown.Menu>
+          </DropdownItem>
+        </DropdownSection>
+      </DropdownMenu>
     </Dropdown>
   );
 };

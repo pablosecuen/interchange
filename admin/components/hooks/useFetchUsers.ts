@@ -16,7 +16,7 @@ const useFetchUsers = () => {
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  console.log(users);
+
   
   useEffect(() => {
     const fetchUsers = async () => {

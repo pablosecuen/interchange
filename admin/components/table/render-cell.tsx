@@ -1,77 +1,79 @@
-import { Col, Row, User, Text, Tooltip } from "@nextui-org/react";
+import { User, Tooltip, Chip, Button } from "@nextui-org/react";
 import React from "react";
 import { DeleteIcon } from "../icons/table/delete-icon";
 import { EditIcon } from "../icons/table/edit-icon";
 import { EyeIcon } from "../icons/table/eye-icon";
-import { IconButton, StyledBadge } from "./table.styled";
 
 interface Props {
   user: any;
   columnKey: string | React.Key;
+  handleUserClick: (user: any) => void;
+  onOpen: () => void;
 }
 
-export const RenderCell = ({ user, columnKey }: Props) => {
+export const RenderCell = ({ user, columnKey, onOpen, handleUserClick }: Props) => {
   // @ts-ignore
+
   const cellValue = user[columnKey];
   switch (columnKey) {
     case "Nombre":
       return (
-        <User squared src={user.avatar} name={cellValue} css={{ p: 0 }}>
+        <User
+          avatarProps={{
+            src: "https://i.pravatar.cc/150?u=a04258114e29026702d",
+          }}
+          name={cellValue}
+        >
           {user.Email}
         </User>
       );
-    case "role":
+    case "cuota":
       return (
-        <Col>
-          <Row>
-            <Text b size={14} css={{ tt: "capitalize" }}>
-              {cellValue}
-            </Text>
-          </Row>
-          <Row>
-            <Text b size={13} css={{ tt: "capitalize", color: "$accents7" }}>
-              {user.Email}
-            </Text>
-          </Row>
-        </Col>
+        <div className="z-50 cursor-pointer">
+          <Button onPress={() => handleUserClick(user)}>
+            <EyeIcon size={20} fill="#979797" />
+          </Button>
+        </div>
       );
     case "Activo":
       return (
-        // @ts-ignore
-        <StyledBadge type={user.activo ? "paused" : "active"}>
-          {user.activo ? "Inactivo" : "Activo"}
-        </StyledBadge>
+        <Chip
+          size="sm"
+          variant="flat"
+          color={cellValue === true ? "success" : cellValue === false ? "danger" : "warning"}
+        >
+          <span className="capitalize text-xs">
+            {" "}
+            {cellValue === true ? "Activo" : cellValue === false ? "Borrado" : "Sin estado"}
+          </span>
+        </Chip>
       );
 
     case "actions":
       return (
-        <Row justify="center" align="center" css={{ gap: "$8", "@md": { gap: 0 } }}>
-          <Col css={{ d: "flex" }}>
+        <div className="flex items-center gap-4 ">
+          <div onClick={() => handleUserClick(user)}>
             <Tooltip content="Details">
-              <IconButton onClick={() => console.log("View user", user.id)}>
+              <Button onPress={() => handleUserClick(user)}>
                 <EyeIcon size={20} fill="#979797" />
-              </IconButton>
+              </Button>
             </Tooltip>
-          </Col>
-          <Col css={{ d: "flex" }}>
-            <Tooltip content="Edit user">
-              <IconButton onClick={() => console.log("Edit user", user.id)}>
+          </div>
+          <div>
+            <Tooltip content="Edit user" color="secondary">
+              <button onClick={() => console.log("Edit user", user.ID)}>
                 <EditIcon size={20} fill="#979797" />
-              </IconButton>
+              </button>
             </Tooltip>
-          </Col>
-          <Col css={{ d: "flex" }}>
-            <Tooltip
-              content="Delete user"
-              color="error"
-              onClick={() => console.log("Delete user", user.id)}
-            >
-              <IconButton>
+          </div>
+          <div>
+            <Tooltip content="Delete user" color="danger">
+              <button onClick={() => console.log("Delete user", user.ID)}>
                 <DeleteIcon size={20} fill="#FF0080" />
-              </IconButton>
+              </button>
             </Tooltip>
-          </Col>
-        </Row>
+          </div>
+        </div>
       );
     default:
       return cellValue;

@@ -1,12 +1,28 @@
-import { Table } from "@nextui-org/react";
-import React from "react";
-import { Box } from "../styles/box";
+import {
+  Link,
+  Table,
+  TableBody,
+  TableCell,
+  TableColumn,
+  TableHeader,
+  TableRow,
+  useDisclosure,
+} from "@nextui-org/react";
+import React, { useState } from "react";
 import { columns } from "./data";
 import { RenderCell } from "./render-cell";
 import useFetchUsers from "../hooks/useFetchUsers";
+import ModalCuotas from "../modal/modal-cuotas";
 
 export const TableWrapper = () => {
-  const { users, isLoading, error } = useFetchUsers(); // Obtenemos los usuarios del hook
+  const { users, isLoading, error } = useFetchUsers();
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const [selectedUser, setSelectedUser] = useState(null);
+
+  const handleUserClick = (user: any) => {
+    setSelectedUser(user);
+    onOpenChange();
+  };
 
   if (isLoading) {
     return <p>Cargando usuarios...</p>;
@@ -16,59 +32,40 @@ export const TableWrapper = () => {
     const errorMessage = typeof error === "string" ? error : "Error desconocido";
     return <p>Error al cargar usuarios: {errorMessage}</p>;
   }
-
   return (
-    <Box
-      css={{
-        "& .nextui-table-container": {
-          boxShadow: "none",
-        },
-      }}
-    >
-      <Table
-        aria-label="Example table with custom cells"
-        css={{
-          height: "auto",
-          minWidth: "100%",
-          boxShadow: "none",
-          width: "100%",
-          px: 0,
-        }}
-        selectionMode="multiple"
-      >
-        <Table.Header columns={columns}>
+    <div className=" w-full flex flex-col gap-4">
+      <Table aria-label="Tabla de usuarios">
+        <TableHeader columns={columns}>
           {(column) => (
-            <Table.Column
+            <TableColumn
               key={column.uid}
               hideHeader={column.uid === "actions"}
               align={column.uid === "actions" ? "center" : "start"}
             >
               {column.name}
-            </Table.Column>
+            </TableColumn>
           )}
-        </Table.Header>
-        <Table.Body items={users}>
+        </TableHeader>
+        <TableBody items={users}>
           {(item) => (
-            <Table.Row key={item.ID}>
-              {/* Asignando una clave única a cada fila */}
-              {columns.map((column) => (
-                <Table.Cell key={`${item.ID}-${column.uid}`}>
-                  {/* Asignando una clave única a cada celda */}
-                  {RenderCell({ user: item, columnKey: column.uid })}
-                </Table.Cell>
-              ))}
-            </Table.Row>
+            <TableRow key={item.ID}>
+              {(columnKey) => (
+                <TableCell>
+                  {RenderCell({
+                    user: item,
+                    columnKey: columnKey,
+                    onOpen: onOpen,
+                    handleUserClick: handleUserClick,
+                  })}
+                </TableCell>
+              )}
+            </TableRow>
           )}
-        </Table.Body>
-
-        <Table.Pagination
-          shadow
-          noMargin
-          align="center"
-          rowsPerPage={8}
-          onPageChange={(page) => console.log({ page })}
-        />
+        </TableBody>
       </Table>
-    </Box>
+      {selectedUser && (
+        <ModalCuotas user={selectedUser} onOpenChange={onOpenChange} isOpen={isOpen} />
+      )}
+    </div>
   );
 };

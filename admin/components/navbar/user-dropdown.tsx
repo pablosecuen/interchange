@@ -1,52 +1,49 @@
-import { Avatar, Dropdown, Navbar, Text } from "@nextui-org/react";
+import {
+  Avatar,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
+  Navbar,
+  NavbarItem,
+} from "@nextui-org/react";
 import React from "react";
 import { DarkModeSwitch } from "./darkmodeswitch";
 
 export const UserDropdown = () => {
   return (
-    <Dropdown placement="bottom-right">
-      <Navbar.Item>
-        <Dropdown.Trigger>
+    <Dropdown>
+      <NavbarItem>
+        <DropdownTrigger>
           <Avatar
-            bordered
             as="button"
             color="secondary"
             size="md"
             src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
           />
-        </Dropdown.Trigger>
-      </Navbar.Item>
-      <Dropdown.Menu
+        </DropdownTrigger>
+      </NavbarItem>
+      <DropdownMenu
         aria-label="User menu actions"
         onAction={(actionKey) => console.log({ actionKey })}
       >
-        <Dropdown.Item key="profile" css={{ height: "$18" }}>
-          <Text b color="inherit" css={{ d: "flex" }}>
-            Logeado como
-          </Text>
-          <Text b color="inherit" css={{ d: "flex" }}>
-            Administrador
-          </Text>
-        </Dropdown.Item>
-        {/*      <Dropdown.Item key="settings" withDivider>
-          My Settings
-        </Dropdown.Item>
-        <Dropdown.Item key="team_settings">Team Settings</Dropdown.Item>
-        <Dropdown.Item key="analytics" withDivider>
-          Analytics
-        </Dropdown.Item>
-        <Dropdown.Item key="system">System</Dropdown.Item>
-        <Dropdown.Item key="configurations">Configurations</Dropdown.Item>
-        <Dropdown.Item key="help_and_feedback" withDivider>
-          Help & Feedback
-        </Dropdown.Item>
-        <Dropdown.Item key="logout" withDivider color="error">
+        <DropdownItem key="profile" className="flex flex-col justify-start w-full items-start">
+          <p> Logeado como</p>
+          <p>Administrador</p>
+        </DropdownItem>
+        {/*      <DropdownItem key="settings">My Settings</DropdownItem>
+        <DropdownItem key="team_settings">Team Settings</DropdownItem>
+        <DropdownItem key="analytics">Analytics</DropdownItem>
+        <DropdownItem key="system">System</DropdownItem>
+        <DropdownItem key="configurations">Configurations</DropdownItem>
+        <DropdownItem key="help_and_feedback">Help & Feedback</DropdownItem>
+        <DropdownItem key="logout" color="danger" className="text-danger ">
           Log Out
-        </Dropdown.Item> */}
-        <Dropdown.Item key="switch" withDivider>
-          <DarkModeSwitch /> Modo oscuro
-        </Dropdown.Item>
-      </Dropdown.Menu>
+        </DropdownItem> */}
+        <DropdownItem key="switch">
+          <DarkModeSwitch />
+        </DropdownItem>
+      </DropdownMenu>
     </Dropdown>
   );
 };

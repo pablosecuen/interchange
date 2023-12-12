@@ -1,7 +1,6 @@
-import { Button, Input, Text } from "@nextui-org/react";
+import { Button, Input } from "@nextui-org/react";
 import Link from "next/link";
 import React from "react";
-import { Breadcrumbs, Crumb, CrumbLink } from "../breadcrumb/breadcrumb.styled";
 import { DotsIcon } from "../icons/accounts/dots-icon";
 import { ExportIcon } from "../icons/accounts/export-icon";
 import { InfoIcon } from "../icons/accounts/info-icon";
@@ -9,68 +8,56 @@ import { TrashIcon } from "../icons/accounts/trash-icon";
 import { HouseIcon } from "../icons/breadcrumb/house-icon";
 import { UsersIcon } from "../icons/breadcrumb/users-icon";
 import { SettingsIcon } from "../icons/sidebar/settings-icon";
-import { Flex } from "../styles/flex";
 import { TableWrapper } from "../table/table";
 import { AddUser } from "./add-user";
 
 export const Accounts = () => {
   return (
-    <Flex
-      css={{
-        mt: "$5",
-        px: "$6",
-        "@sm": {
-          mt: "$10",
-          px: "$16",
-        },
-      }}
-      justify={"center"}
-      direction={"column"}
-    >
-      <Breadcrumbs>
-        <Crumb>
+    <div className="my-14 max-w-[95rem] mx-auto w-full flex flex-col gap-4">
+      <ul className="flex">
+        <li className="flex gap-2">
           <HouseIcon />
           <Link href={"/"}>
-            <CrumbLink href="#">Home</CrumbLink>
+            <span>Home</span>
           </Link>
-          <Text>/</Text>
-        </Crumb>
+          <span> / </span>{" "}
+        </li>
 
-        <Crumb>
+        <li className="flex gap-2">
           <UsersIcon />
-          <CrumbLink href="#">Alumnos</CrumbLink>
-          <Text>/</Text>
-        </Crumb>
-        <Crumb>
-          <CrumbLink href="#">Lista</CrumbLink>
-        </Crumb>
-      </Breadcrumbs>
+          <span>Alumnos</span>
+          <span> / </span>{" "}
+        </li>
+        <li className="flex gap-2">
+          <span>Lista</span>
+        </li>
+      </ul>
 
-      <Text h3>Todos los Alumnos</Text>
-      <Flex css={{ gap: "$8" }} align={"center"} justify={"between"} wrap={"wrap"}>
-        <Flex
-          css={{
-            gap: "$6",
-            flexWrap: "wrap",
-            "@sm": { flexWrap: "nowrap" },
-          }}
-          align={"center"}
-        >
-          <Input css={{ width: "100%", maxW: "410px" }} placeholder="Buscar alumnos" />
+      <h3 className="text-xl font-semibold">Todos los Alumnos</h3>
+      <div className="flex justify-between flex-wrap gap-4 items-center">
+        <div className="flex items-center gap-3 flex-wrap md:flex-nowrap">
+          <Input
+            classNames={{
+              input: "w-full",
+              mainWrapper: "w-full",
+            }}
+            placeholder="Search users"
+          />
           <SettingsIcon />
           <TrashIcon />
           <InfoIcon />
           <DotsIcon />
-        </Flex>
-        <Flex direction={"row"} css={{ gap: "$6" }} wrap={"wrap"}>
+        </div>
+        <div className="flex flex-row gap-3.5 flex-wrap">
           <AddUser />
-          <Button auto iconRight={<ExportIcon />}>
+          <Button color="primary" startContent={<ExportIcon />}>
             Exportar a Excel
           </Button>
-        </Flex>
-      </Flex>
-
-      <TableWrapper />
-    </Flex>
+        </div>
+      </div>
+      <div className="max-w-[95rem] mx-auto w-full">
+        <TableWrapper />
+      </div>
+    </div>
   );
 };

@@ -4,6 +4,7 @@ export const columns = [
    {name: 'CURSO', uid: 'Grado_Categoria'},
    {name: 'AÑO', uid: 'Grado_Nombre'},
    {name: 'ACTIVO', uid: 'Activo'},
+   {name: 'CUOTA', uid: 'cuota'}, 
    {name: 'ACTIONS', uid: 'actions'},
 ];
 
