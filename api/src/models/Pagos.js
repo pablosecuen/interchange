@@ -38,6 +38,12 @@ module.exports = (sequelize) => {
       set(value) {
         this.setDataValue("VencimientoCuota", JSON.stringify(value));
       },
+      autoIncrementID: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        primaryKey: true,
+        autoIncrement: true,
+      },
     },
     VencimientoExamen: {
       type: DataTypes.DATE,
