@@ -99,30 +99,54 @@ export default function ModalCuotas({ onOpenChange, isOpen, user }: Props) {
                   ))}
                 </TableHeader>
                 <TableBody>
-                  {vencimientoCuotas.map((cuota: any, index: number) => (
-                    <TableRow key={index}>
-                      <TableCell>{cuota.mes}</TableCell>
-                      <TableCell>{cuota.vencimiento}</TableCell>
-                      <TableCell>
-                        <Chip size="sm" color={cuota.pagado ? "success" : "danger"}>
-                          {cuota.pagado ? "Pago" : "No Pago"}
-                        </Chip>
-                      </TableCell>
-                      {/* Agregar un botón para cambiar el estado de pago */}
-                      <TableCell>
-                        <Button
-                          color={cuota.pagado ? "danger" : "success"}
-                          size="sm"
-                          onPress={() => {
-                            setIndexToUpdate(index);
-                            setShowConfirmation(true);
-                          }}
-                        >
-                          {!cuota.pagado ? "Marcar como pagado" : "Marcar como no pagado"}
-                        </Button>
-                      </TableCell>
-                    </TableRow>
-                  ))}
+                  {vencimientoCuotas.map((cuota: any, index: number) => {
+                    const currentDate = new Date();
+
+                    const vencimientoDate = new Date(cuota.vencimiento);
+
+                    let buttonColor = undefined; // Por defecto, no se establece color
+
+                    if (!cuota.pagado) {
+                      if (currentDate > vencimientoDate) {
+                        buttonColor = "danger"; // Cuota no pagada y fecha vencida
+                      } else if (currentDate < vencimientoDate) {
+                        buttonColor = "warning"; // Cuota no pagada, pero fecha no vencida
+                      }
+                    }
+
+                    return (
+                      <TableRow key={index}>
+                        <TableCell>{cuota.mes}</TableCell>
+                        <TableCell>{cuota.vencimiento}</TableCell>
+                        <TableCell>
+                          <Chip
+                            size="sm"
+                            color={
+                              cuota.pagado
+                                ? "success"
+                                : currentDate > vencimientoDate
+                                ? "danger"
+                                : "warning"
+                            }
+                          >
+                            {cuota.pagado ? "Pago" : "No Pago"}
+                          </Chip>
+                        </TableCell>
+                        <TableCell>
+                          <Button
+                            color={cuota.pagado ? "danger" : "success"}
+                            size="sm"
+                            onPress={() => {
+                              setIndexToUpdate(index);
+                              setShowConfirmation(true);
+                            }}
+                          >
+                            {!cuota.pagado ? "Marcar como pagado" : "Marcar como no pagado"}
+                          </Button>
+                        </TableCell>
+                      </TableRow>
+                    );
+                  })}
                 </TableBody>
               </Table>
             </ModalBody>
@@ -151,7 +175,10 @@ export default function ModalCuotas({ onOpenChange, isOpen, user }: Props) {
                 <ModalHeader>Confirmación</ModalHeader>
                 <ModalBody>¿Estás seguro de realizar este cambio?</ModalBody>
                 <ModalFooter>
-                  <Button color="warning" onPress={handleConfirmation}>
+                  <Button
+                    className="bg-[#6f4ef2] shadow-lg shadow-indigo-500/20"
+                    onPress={handleConfirmation}
+                  >
                     Confirmar
                   </Button>
                   <Button variant="light" onPress={() => setShowConfirmation(false)}>
