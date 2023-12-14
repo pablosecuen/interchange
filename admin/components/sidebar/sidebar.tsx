@@ -47,8 +47,8 @@ export const SidebarWrapper = () => {
                 href="alumnos"
               />
               <SidebarItem
-                isActive={router.pathname === "/payments"}
-                title="Payments"
+                isActive={router.pathname === "/pagos"}
+                title="pagos"
                 icon={<PaymentsIcon />}
               />
               <CollapseItems
@@ -58,20 +58,20 @@ export const SidebarWrapper = () => {
               />
             </SidebarMenu>
 
-            <SidebarMenu title="General">
+            <SidebarMenu title="Campus">
               <SidebarItem
-                isActive={router.pathname === "/developers"}
-                title="Developers"
+                isActive={router.pathname === "/contenido"}
+                title="Contenido"
                 icon={<DevIcon />}
               />
               <SidebarItem
                 isActive={router.pathname === "/view"}
-                title="View Test Data"
+                title="Vista Previa"
                 icon={<ViewIcon />}
               />
               <SidebarItem
-                isActive={router.pathname === "/settings"}
-                title="Settings"
+                isActive={router.pathname === "/Configuracion"}
+                title="Configuracion"
                 icon={<SettingsIcon />}
               />
             </SidebarMenu>

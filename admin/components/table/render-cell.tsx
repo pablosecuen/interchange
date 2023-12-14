@@ -9,9 +9,16 @@ interface Props {
   columnKey: string | React.Key;
   handleUserClick: (user: any) => void;
   onOpen: () => void;
+  handleAlumnoClick: (user: any) => void;
 }
 
-export const RenderCell = ({ user, columnKey, onOpen, handleUserClick }: Props) => {
+export const RenderCell = ({
+  user,
+  columnKey,
+  onOpen,
+  handleUserClick,
+  handleAlumnoClick,
+}: Props) => {
   // @ts-ignore
 
   const cellValue = user[columnKey];
@@ -52,16 +59,16 @@ export const RenderCell = ({ user, columnKey, onOpen, handleUserClick }: Props) 
     case "actions":
       return (
         <div className="flex items-center gap-4 ">
-          <div onClick={() => handleUserClick(user)}>
+          <div onClick={() => handleAlumnoClick(user)}>
             <Tooltip content="Details">
-              <button onClick={() => handleUserClick(user)}>
+              <button onClick={() => handleAlumnoClick(user)}>
                 <EyeIcon size={20} fill="#979797" />
               </button>
             </Tooltip>
           </div>
           <div>
             <Tooltip content="Edit user" color="secondary">
-              <button onClick={() => console.log("Edit user", user.ID)}>
+              <button onClick={() => console.log(user)}>
                 <EditIcon size={20} fill="#979797" />
               </button>
             </Tooltip>

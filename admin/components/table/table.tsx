@@ -13,15 +13,26 @@ import { columns } from "./data";
 import { RenderCell } from "./render-cell";
 import useFetchUsers from "../hooks/useFetchUsers";
 import ModalCuotas from "../modal/modal-cuotas";
+import ModalAlumnos from "../modal/modal-alumnos";
 
 export const TableWrapper = () => {
   const { users, isLoading, error } = useFetchUsers();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [selectedUser, setSelectedUser] = useState(null);
+  const {
+    isOpen: isOpenAlumnos,
+    onOpen: onOpenAlumnos,
+    onOpenChange: onOpenChangeAlumnos,
+  } = useDisclosure();
 
   const handleUserClick = (user: any) => {
     setSelectedUser(user);
     onOpenChange();
+  };
+
+  const handleAlumnoClick = (user: any) => {
+    setSelectedUser(user);
+    onOpenAlumnos();
   };
 
   if (isLoading) {
@@ -55,6 +66,7 @@ export const TableWrapper = () => {
                     user: item,
                     columnKey: columnKey,
                     onOpen: onOpen,
+                    handleAlumnoClick: handleAlumnoClick,
                     handleUserClick: handleUserClick,
                   })}
                 </TableCell>
@@ -64,7 +76,14 @@ export const TableWrapper = () => {
         </TableBody>
       </Table>
       {selectedUser && (
-        <ModalCuotas user={selectedUser} onOpenChange={onOpenChange} isOpen={isOpen} />
+        <>
+          <ModalCuotas user={selectedUser} onOpenChange={onOpenChange} isOpen={isOpen} />
+          <ModalAlumnos
+            alumno={selectedUser}
+            onOpenChange={onOpenChangeAlumnos}
+            isOpen={isOpenAlumnos}
+          />
+        </>
       )}
     </div>
   );

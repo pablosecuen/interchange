@@ -24,7 +24,7 @@ interface Props {
 
 export default function ModalCuotas({ onOpenChange, isOpen, user }: Props) {
   const vencimientoCuotas = user?.Pagos[0]?.VencimientoCuota || [];
-  console.log(user);
+
 
   return (
     <>
@@ -79,7 +79,7 @@ export default function ModalCuotas({ onOpenChange, isOpen, user }: Props) {
               </ModalBody>
               <ModalFooter>
                 <Button color="danger" variant="light" onPress={onClose}>
-                  Close
+                  Cerrar
                 </Button>
                 <Button className="bg-[#6f4ef2] shadow-lg shadow-indigo-500/20" onPress={onClose}>
                   Action
