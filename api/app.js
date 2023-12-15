@@ -3,6 +3,7 @@ const morgan = require("morgan");
 const userRoutes = require("./src/routes/Usuarios.routes");
 const gradosRoutes = require("./src/routes/Grados.routes");
 const pagosRoutes = require("./src/routes/Pagos.routes");
+const examenRoutes = require("./src/routes/Examen.routes");
 const { sequelize } = require("./db");
 
 const app = express();
@@ -29,6 +30,7 @@ app.use(express.json());
 app.use("/api/users", userRoutes);
 app.use("/api/grados", gradosRoutes);
 app.use("/api/pagos", pagosRoutes);
+app.use("/api/examen", examenRoutes);
 
 // Puerto en el que el servidor escuchará
 const PORT = process.env.PORT || 3001;

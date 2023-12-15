@@ -6,7 +6,6 @@ import {
   ModalBody,
   ModalFooter,
   Button,
-  useDisclosure,
   Table,
   TableHeader,
   TableBody,
@@ -94,18 +93,16 @@ export default function ModalCuotas({ onOpenChange, isOpen, user }: Props) {
             <ModalBody>
               <Table aria-label="Tabla de cuotas">
                 <TableHeader>
-                  {Object.keys(vencimientoCuotas[0] || {}).map((key) => (
-                    <TableColumn key={key}>{key}</TableColumn>
-                  ))}
+                  <TableColumn>mes</TableColumn>
+                  <TableColumn>vencimiento</TableColumn>
+                  <TableColumn>pagado</TableColumn>
+                  <TableColumn>Acción</TableColumn>
                 </TableHeader>
                 <TableBody>
                   {vencimientoCuotas.map((cuota: any, index: number) => {
                     const currentDate = new Date();
-
                     const vencimientoDate = new Date(cuota.vencimiento);
-
                     let buttonColor = undefined; // Por defecto, no se establece color
-
                     if (!cuota.pagado) {
                       if (currentDate > vencimientoDate) {
                         buttonColor = "danger"; // Cuota no pagada y fecha vencida

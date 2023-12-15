@@ -8,11 +8,6 @@ module.exports = (sequelize) => {
       defaultValue: () => uuidv4(),
       primaryKey: true,
     },
-    Fecha: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: DataTypes.NOW,
-    },
     EstadoCuota: {
       type: DataTypes.ENUM("Pendiente", "Pagado"),
       allowNull: false,

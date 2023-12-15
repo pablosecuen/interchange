@@ -47,9 +47,16 @@ export const SidebarWrapper = () => {
                 href="alumnos"
               />
               <SidebarItem
-                isActive={router.pathname === "/pagos"}
-                title="pagos"
+                isActive={router.pathname === "/cursos"}
+                title="Cursos"
                 icon={<PaymentsIcon />}
+                href="cursos"
+              />
+              <SidebarItem
+                isActive={router.pathname === "/nivelador"}
+                title="Nivelador"
+                icon={<AccountsIcon />}
+                href="nivelador"
               />
               <CollapseItems
                 icon={<BalanceIcon />}

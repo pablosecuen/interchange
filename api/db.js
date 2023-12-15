@@ -19,6 +19,8 @@ if (DATABASE_NAME && DATABASE_USERNAME && DATABASE_PASSWORD) {
   const Contenido = require("./src/models/Contenido")(sequelize);
   const Pago = require("./src/models/Pagos")(sequelize);
 
+  const Examen = require("./src/models/Examen")(sequelize);
+
   // Aquí puedes establecer las relaciones entre los modelos
   Usuario.belongsTo(Grado, { foreignKey: "Grado_ID", as: "CursoActual" });
   Grado.hasMany(Usuario, { foreignKey: "Grado_ID" });
@@ -38,6 +40,7 @@ if (DATABASE_NAME && DATABASE_USERNAME && DATABASE_PASSWORD) {
     Grado,
     Contenido,
     Pago,
+    Examen,
     sequelize,
   };
 } else {
