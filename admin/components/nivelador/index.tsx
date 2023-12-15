@@ -1,144 +1,52 @@
-"use client";
 import React, { useState } from "react";
-import useExamCreation from "../hooks/useExamCreation";
-
-export interface Exam {
-  ID?: string;
-  titulo: string;
-  NotaFinal?: number | null;
-  UsuarioID?: string | null;
-  createdAt?: string;
-  updatedAt?: string;
-  preguntas: Question[];
-}
-
-// Question.ts
-export interface Question {
-  enunciado: string;
-  respuestas: string[];
-  respuestaCorrecta: string;
-}
+import useGetExams from "../hooks/useGetExams";
+import { Button, ButtonGroup, useDisclosure } from "@nextui-org/react";
+import ExamenModal from "./modal-examen";
+import { Exam } from "./crear-examen";
 
 const Nivelador = () => {
-  const { createExam, loading, error } = useExamCreation();
-  const [exam, setExam] = useState<Exam>({
-    titulo: "",
-    preguntas: [],
-  });
+  const { examenes, loading, error } = useGetExams();
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const [examenSeleccionado, setExamenSeleccionado] = useState<Exam | null>(null);
 
-  const [currentQuestion, setCurrentQuestion] = useState<Question>({
-    enunciado: "",
-    respuestas: [""], // Un array con 4 strings vacíos para las respuestas
-    respuestaCorrecta: "",
-  });
-
-  const handleAddResponse = () => {
-    setCurrentQuestion({
-      ...currentQuestion,
-      respuestas: [...currentQuestion.respuestas, ""],
-    });
+  const mostrarDetalleExamen = (examen: Exam) => {
+    setExamenSeleccionado(examen);
+    onOpenChange();
   };
 
-  const handleResponseChange = (index: number, value: string) => {
-    const updatedResponses = [...currentQuestion.respuestas];
-    updatedResponses[index] = value;
-    setCurrentQuestion({
-      ...currentQuestion,
-      respuestas: updatedResponses,
-    });
-  };
+  if (loading) {
+    return <div>Cargando...</div>;
+  }
 
-  const handleAddQuestion = () => {
-    setExam({
-      ...exam,
-      preguntas: [...exam.preguntas, currentQuestion],
-    });
-    setCurrentQuestion({
-      enunciado: "",
-      respuestas: [""],
-      respuestaCorrecta: "",
-    });
-  };
-
-  const handleAddNewQuestion = () => {
-    setExam({
-      ...exam,
-      preguntas: [...exam.preguntas, currentQuestion],
-    });
-    setCurrentQuestion({
-      enunciado: "",
-      respuestas: ["", "", "", ""],
-      respuestaCorrecta: "",
-    });
-  };
-
-  const handleCreateExam = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    handleAddQuestion();
-  };
-
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
   return (
-    <form onSubmit={handleCreateExam}>
-      <h2>Crear Examen</h2>
-      <label>
-        Título:
-        <input
-          type="text"
-          name="titulo"
-          value={exam.titulo}
-          onChange={(e) => setExam({ ...exam, titulo: e.target.value })}
-        />
-      </label>
+    <div className="w-full h-full max-h-[70vh]  p-10 flex flex-col gap-8 relative ">
+      <h2 className="  text-center">Lista de Exámenes</h2>
+      <ul className="flex flex-wrap gap-8">
+        {examenes.map((examen) => (
+          <li
+            key={examen.ID}
+            className="w-64 h-64 flex flex-col items-center justify-evenly border rounded-3xl"
+          >
+            <h3 className="flex flex-col text-center">
+              Titulo: <span> {examen.titulo}</span>
+            </h3>
 
-      <h3>Agregar Pregunta</h3>
-      <label>
-        Enunciado:
-        <input
-          type="text"
-          value={currentQuestion.enunciado}
-          onChange={(e) => setCurrentQuestion({ ...currentQuestion, enunciado: e.target.value })}
-        />
-      </label>
+            <Button onPress={() => mostrarDetalleExamen(examen)}>ver examen</Button>
+          </li>
+        ))}
+      </ul>
 
-      <h4>Respuestas</h4>
-      {currentQuestion.respuestas.map((respuesta, index) => (
-        <div key={index}>
-          <label>
-            Respuesta {index + 1}:
-            <input
-              type="text"
-              value={respuesta}
-              onChange={(e) => handleResponseChange(index, e.target.value)}
-            />
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="respuestaCorrecta"
-              checked={currentQuestion.respuestaCorrecta === respuesta}
-              onChange={() =>
-                setCurrentQuestion({ ...currentQuestion, respuestaCorrecta: respuesta })
-              }
-            />
-            Correcta
-          </label>
-          <button type="button" onClick={handleAddResponse}>
-            +
-          </button>
-        </div>
-      ))}
-
-      <button type="button" onClick={handleAddQuestion}>
-        Agregar Pregunta
-      </button>
-      <button type="button" onClick={handleAddNewQuestion}>
-        Agregar Nueva Pregunta
-      </button>
-
-      <button type="submit" className="mt-20">
-        Enviar examen
-      </button>
-    </form>
+      <ExamenModal examen={examenSeleccionado} openchange={onOpenChange} isopen={isOpen} />
+      <div className="w-auto fixed bottom-10 left-1/2  translate-x-1/2 ">
+        {" "}
+        <Button className="bg-[#6f4ef2] hover:bg-[#382e5f] shadow-lg shadow-indigo-500/20">
+          Crear examen
+        </Button>
+      </div>
+    </div>
   );
 };
 

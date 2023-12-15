@@ -34,6 +34,10 @@ if (DATABASE_NAME && DATABASE_USERNAME && DATABASE_PASSWORD) {
 
   Grado.hasOne(Pago, { foreignKey: "Grado_ID" });
 
+  // relación Usuario y Examen
+  Usuario.belongsToMany(Examen, { through: "UsuarioExamen", foreignKey: "Usuario_ID" });
+  Examen.belongsToMany(Usuario, { through: "UsuarioExamen", foreignKey: "Examen_ID" });
+
   // Exporta los modelos y la conexión
   module.exports = {
     Usuario,
