@@ -3,10 +3,15 @@ import React, { useEffect, useState } from "react";
 import Logo from "../logo";
 import Link from "next/link";
 import "./navbar.css";
+import Login from "../login/Login";
 
 const Navbar = () => {
   const [isCollapsed, setIsCollapsed] = useState(true);
-  console.log(isCollapsed);
+  const [showLoginModal, setShowLoginModal] = useState(false);
+
+  const toggleLoginModal = () => {
+    setShowLoginModal(!showLoginModal);
+  };
 
   const toggleNavbar = () => {
     setIsCollapsed(!isCollapsed);
@@ -48,7 +53,7 @@ const Navbar = () => {
           </div>
         </Link>
         <div className="flex md:justify-end md:order-2  space-x-3 md:space-x-0 rtl:space-x-reverse  md:w-48  ">
-          <button type="button" className="yellow-btn  font-bold">
+          <button type="button" className="yellow-btn  font-bold" onClick={toggleLoginModal}>
             Ingreso
           </button>
           <button
@@ -306,6 +311,7 @@ const Navbar = () => {
           </ul>
         </div>
       </div>
+      {showLoginModal && <Login onClose={toggleLoginModal} />}
     </nav>
   );
 };
