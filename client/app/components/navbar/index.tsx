@@ -5,9 +5,31 @@ import Link from "next/link";
 import "./navbar.css";
 import Login from "../login/Login";
 
+export interface User {
+  ID: string;
+  Apellido: string;
+  Nombre: string;
+  Email: string;
+  Grado_Categoria?: string;
+  Grado_ID?: string;
+  Grado_Nombre?: string;
+  password: string;
+  // Otras propiedades del usuario
+}
+
 const Navbar = () => {
   const [isCollapsed, setIsCollapsed] = useState(true);
   const [showLoginModal, setShowLoginModal] = useState(false);
+  const [user, setUser] = useState<User[] | null>(null);
+  const [showMenu, setShowMenu] = useState(false);
+
+  const handleMouseEnter = () => {
+    setShowMenu(true);
+  };
+
+  const handleMouseLeave = () => {
+    setShowMenu(false);
+  };
 
   const toggleLoginModal = () => {
     setShowLoginModal(!showLoginModal);
@@ -36,6 +58,35 @@ const Navbar = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const getUserFromStorage = async () => {
+      const userData =
+        sessionStorage.getItem("loginFormData") || localStorage.getItem("loginFormData");
+      console.log(userData);
+
+      if (userData) {
+        const parsedUserData = JSON.parse(userData);
+        try {
+          const response = await fetch(
+            `http://localhost:3001/api/users?email=${parsedUserData.email}`
+          );
+          if (response.ok) {
+            const userFromDatabase = await response.json();
+            setUser(userFromDatabase);
+          } else {
+            // Manejo de errores si la solicitud no es exitosa
+            console.error("Error al obtener el usuario");
+          }
+        } catch (error) {
+          // Manejo de errores de red u otros errores
+          console.error("Error al procesar la solicitud:", error);
+        }
+      }
+    };
+
+    getUserFromStorage();
+  }, []);
+
   return (
     <nav className="bg-white  fixed w-full h-16 md:h-20 z-50 top-0 start-0  text-black  tracking-wider  font-laila !font-bold">
       <div className="max-w-screen  w-screen flex items-center justify-between  md:justify-around p-2 md:p-4  ">
@@ -52,10 +103,60 @@ const Navbar = () => {
             <Logo size="lg" />
           </div>
         </Link>
-        <div className="flex md:justify-end md:order-2  space-x-3 md:space-x-0 rtl:space-x-reverse  md:w-48  ">
-          <button type="button" className="yellow-btn  font-bold" onClick={toggleLoginModal}>
-            Ingreso
-          </button>
+        <div
+          className="flex md:justify-end md:order-2  space-x-3 md:space-x-0 rtl:space-x-reverse  md:w-48      "
+          onMouseEnter={handleMouseEnter}
+        >
+          {user ? (
+            <div className="text-sm font-medium flex flex-col cursor-pointer relative ">
+              <span className="font-medium">Bienvenido</span>
+              <span className="font-bold">
+                {user[0].Nombre} {user[0].Apellido}
+              </span>
+              <span className="font-bold">
+                {user[0].Grado_Nombre} {user[0].Grado_Categoria}
+              </span>
+
+              {/* Dropdown */}
+              {showMenu && (
+                <div
+                  className="absolute right-1/2 translate-x-1/2 top-12 z-50 hidden md:block mt-1 bg-white border-b border-l border-r border-gray-200 py-2 rounded-md shadow-lg "
+                  onMouseLeave={handleMouseLeave}
+                >
+                  <ul className="flex flex-col gap-4 p-2">
+                    <li className="hover:bg-slate-100 w-full   ">
+                      <span className="text-xl text-gray-700 font-bold  font-2xl">
+                        {user[0].Email}
+                      </span>
+                    </li>
+                    {/* 
+                    {user && user[0]?.Grado_Nombre && user[0]?.Grado_Categoria && (
+                      <li>
+                        <span className="font-bold">
+                          {user[0].Grado_Nombre} {user[0].Grado_Categoria}
+                        </span>
+                      </li>
+                    )} */}
+                    <li className="   flex justify-center items-center ">
+                      <button className="yellow-btn ">Campus Virtual</button>
+                    </li>
+                    <li className="   flex justify-center items-center ">
+                      <button className="yellow-btn">Logout</button>
+                    </li>
+                  </ul>
+                </div>
+              )}
+            </div>
+          ) : (
+            // Si no hay usuario, mostrar el botón de inicio de sesión
+            <button
+              type="button"
+              className="yellow-btn font-bold"
+              onClick={() => setShowLoginModal(true)}
+            >
+              Ingreso
+            </button>
+          )}
           <button
             type="button"
             className="inline-flex items-center  p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"

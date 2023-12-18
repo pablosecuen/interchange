@@ -5,7 +5,7 @@ const {
   getAllUsuariosHandler,
   patchUsuarioHandler,
   deleteUsuarioHandler,
-
+  loginHanlder,
 } = require("../handlers/Usuarios.handler");
 const {
   handleUsuariosFilters,
@@ -20,5 +20,6 @@ router.post("/", validateUserData, createUserHandler);
 router.get("/", handleUsuariosFilters, getAllUsuariosHandler);
 router.patch("/:id", validatePatchUserData, patchUsuarioHandler);
 router.delete("/:id", deleteUsuarioHandler);
+router.post("/login", loginHanlder);
 
 module.exports = router;

@@ -1,16 +1,19 @@
-import React, { useEffect, useRef, useState } from "react";
-import eyeicon from "@/public/assets/svg/eyepassword.svg";
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Register from "./register";
 import Logo from "../logo";
+import eyeicon from "@/public/assets/svg/eyepassword.svg";
 
 interface LoginProps {
   onClose: () => void;
 }
 const Login = ({ onClose }: LoginProps) => {
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [isRegistering, setIsRegistering] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
+  
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -25,7 +28,23 @@ const Login = ({ onClose }: LoginProps) => {
   };
 
   const handleRememberMe = () => {
-    setRememberMe(!rememberMe);
+    console.log("Checkbox state before update:", rememberMe);
+    console.log("Form data:", formData);
+    setRememberMe((prevRememberMe) => {
+      console.log(prevRememberMe);
+
+      const newRememberMe = !prevRememberMe;
+      if (!newRememberMe) {
+        console.log("Removing from sessionStorage");
+        sessionStorage.removeItem("loginFormData");
+      } else {
+        console.log("Storing in sessionStorage:", JSON.stringify(formData));
+        sessionStorage.setItem("loginFormData", JSON.stringify(formData));
+        console.log("Session storage after update:", sessionStorage.getItem("loginFormData")); // Nuevo console.log para mostrar el resultado de sessionStorage
+      }
+      console.log("Checkbox state after update:", newRememberMe);
+      return newRememberMe;
+    });
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -36,32 +55,50 @@ const Login = ({ onClose }: LoginProps) => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Form data:", formData);
-    onClose();
+
+    try {
+      const response = await fetch("http://localhost:3001/api/users/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: formData.email,
+          password: formData.password,
+        }),
+      });
+
+      if (response.ok) {
+        // Si la solicitud es exitosa, podrías redirigir a la página principal o realizar acciones necesarias
+        alert("Inicio de sesión exitoso");
+        router.push("/campus"); // Redirigir a la página principal después del inicio de sesión
+      } else {
+        // Si la solicitud falla o las credenciales son incorrectas, muestra un mensaje de error
+        console.error("Credenciales incorrectas");
+      }
+    } catch (error) {
+      // Manejo de errores en caso de problemas de red u otros errores
+      console.error("Error al intentar iniciar sesión:", error);
+    }
   };
 
   useEffect(() => {
-    const rememberedData = localStorage.getItem("loginFormData");
-    if (rememberedData && rememberMe) {
-      setFormData(JSON.parse(rememberedData));
-    }
-
     if (!rememberMe) {
-      localStorage.removeItem("loginFormData");
-    }
-  }, [rememberMe]);
-
-  useEffect(() => {
-    if (rememberMe) {
-      localStorage.setItem("loginFormData", JSON.stringify(formData));
+      sessionStorage.removeItem("loginFormData");
+    } else {
+      sessionStorage.setItem("loginFormData", JSON.stringify(formData));
     }
   }, [rememberMe, formData]);
 
-  const stopPropagation = (e: React.MouseEvent<HTMLInputElement>) => {
-    e.stopPropagation();
-  };
+  useEffect(() => {
+    const rememberedData = sessionStorage.getItem("loginFormData");
+    if (rememberedData) {
+      setFormData(JSON.parse(rememberedData));
+    }
+    console.log("Retrieved from sessionStorage:", rememberedData); // Log para verificar si se está obteniendo algo del sessionStorage
+  }, [rememberMe]);
 
   return (
     <div className=" h-[100vh] flex justify-center items-center ">
@@ -127,7 +164,6 @@ const Login = ({ onClose }: LoginProps) => {
                 checked={rememberMe}
                 onChange={handleRememberMe}
                 className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
-                required
               />
             </div>
             <label

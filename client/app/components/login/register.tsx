@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import eyeicon from "@/public/assets/svg/eyepassword.svg";
 import Logo from "../logo";
+import { useRouter } from "next/navigation";
 
 interface RegisterProps {
   onClose: () => void;
@@ -9,6 +10,7 @@ interface RegisterProps {
 }
 
 const Register = ({ onClose, toggleRegister }: RegisterProps) => {
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
@@ -41,26 +43,38 @@ const Register = ({ onClose, toggleRegister }: RegisterProps) => {
     setRememberMe(e.target.checked);
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Aquí puedes realizar la lógica de validación antes de enviar los datos
     if (formData.password !== formData.confirmPassword) {
-      // Lógica para manejar la no coincidencia de contraseñas
       alert("Las contraseñas no coinciden");
       return;
     }
-    // Envío de datos o lógica adicional
-    console.log("Datos del formulario:", formData);
 
-    // Guardar en localStorage si se marcó "Recuérdame"
-    if (rememberMe) {
-      localStorage.setItem("formData", JSON.stringify(formData));
-    } else {
-      localStorage.removeItem("formData"); // Limpiar si no se marcó "Recuérdame"
+    try {
+      const response = await fetch("http://localhost:3001/api/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          Nombre: formData.firstName,
+          Apellido: formData.lastName,
+          Email: formData.email,
+          Password: formData.password,
+          Tipo: "Alumno",
+          Activo: true,
+        }),
+      });
+
+      if (response.ok) {
+        router.push("/campus");
+        alert("Registro exitoso");
+        onClose();
+      }
+    } catch (error) {
+      alert(`Error al enviar la solicitud: ${error}`);
+      console.log(error);
     }
-
-    // Cerrar el formulario o hacer algo con los datos
-    onClose();
   };
 
   useEffect(() => {
@@ -203,7 +217,6 @@ const Register = ({ onClose, toggleRegister }: RegisterProps) => {
             onChange={handleRememberMe}
             value=""
             className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
-            required
           />
         </div>
         <label

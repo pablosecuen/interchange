@@ -13,9 +13,9 @@ const userSchema = Joi.object({
   Password: Joi.string().min(8).required(),
   Tipo: Joi.string().required(),
   Activo: Joi.boolean().required(),
-  Grado_ID: Joi.string().uuid().required(),
-  Grado_Nombre: Joi.string().max(20).required(),
-  Grado_Categoria: Joi.string().max(20).required(),
+  Grado_ID: Joi.string().uuid(),
+  Grado_Nombre: Joi.string().max(20),
+  Grado_Categoria: Joi.string().max(20),
 });
 
 const patchUserSchema = Joi.object({

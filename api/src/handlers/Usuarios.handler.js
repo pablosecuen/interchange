@@ -3,6 +3,7 @@ const {
   getAllUsuariosController,
   patchUsuarioController,
   deleteUsuarioController,
+  loginController,
 } = require("../controllers/Usuarios.controller");
 
 const createUserHandler = (req, res) => {
@@ -21,9 +22,14 @@ const deleteUsuarioHandler = (req, res) => {
   deleteUsuarioController(req, res);
 };
 
+const loginHanlder = (req, res) => {
+  loginController(req, res);
+};
+
 module.exports = {
   createUserHandler,
   getAllUsuariosHandler,
   patchUsuarioHandler,
   deleteUsuarioHandler,
+  loginHanlder
 };
