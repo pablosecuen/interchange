@@ -34,26 +34,6 @@ const useLogin = (initialFormData: FormData): UseLoginProps => {
     }));
   };
 
-  /*   useEffect(() => {
-    const storedData = rememberMe
-      ? localStorage.getItem("loginFormData")
-      : sessionStorage.getItem("loginFormData");
-
-    if (storedData) {
-      setFormData(JSON.parse(storedData));
-    }
-  }, [rememberMe]);
-
-  useEffect(() => {
-    if (!rememberMe) {
-      sessionStorage.setItem("loginFormData", JSON.stringify(formData));
-      localStorage.removeItem("loginFormData");
-    } else {
-      localStorage.setItem("loginFormData", JSON.stringify(formData));
-      sessionStorage.removeItem("loginFormData");
-    }
-  }, [rememberMe, formData]);
- */
   return {
     formData,
     rememberMe,

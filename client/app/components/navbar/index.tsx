@@ -1,10 +1,12 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Logo from "../logo";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import "./navbar.css";
 import Login from "../login/Login";
-import { useRouter } from "next/navigation";
+import Image from "next/image";
+import Logo from "../logo";
+import usericon from "@/public/assets/svg/usericon.png";
 
 export interface User {
   ID: string;
@@ -41,6 +43,14 @@ const Navbar = () => {
     setIsCollapsed(!isCollapsed);
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("loginFormData");
+    sessionStorage.removeItem("loginFormData");
+    setUser(null); // Limpiar el estado del usuario
+    // Puedes redirigir al usuario a la página de inicio o a donde desees
+    router.refresh();
+  };
+
   useEffect(() => {
     const handleResize = () => {
       const screenWidth = window.innerWidth;
@@ -64,7 +74,6 @@ const Navbar = () => {
     const getUserFromStorage = async () => {
       const userData =
         sessionStorage.getItem("loginFormData") || localStorage.getItem("loginFormData");
-      console.log(userData);
 
       if (userData) {
         const parsedUserData = JSON.parse(userData);
@@ -87,7 +96,7 @@ const Navbar = () => {
     };
 
     getUserFromStorage();
-  }, []);
+  }, [user]);
 
   return (
     <nav className="bg-white  fixed w-full h-16 md:h-20 z-50 top-0 start-0  text-black  tracking-wider  font-laila !font-bold">
@@ -109,49 +118,65 @@ const Navbar = () => {
           className="flex md:justify-end md:order-2  space-x-3 md:space-x-0 rtl:space-x-reverse  md:w-48      "
           onMouseEnter={handleMouseEnter}
         >
-          {user ? (
-            <div className="text-sm font-medium flex flex-col cursor-pointer relative ">
-              <span className="font-medium">Bienvenido</span>
-              <span className="font-bold">
-                {user[0].Nombre} {user[0].Apellido}
-              </span>
-              <span className="font-bold">
-                {user[0].Grado_Nombre} {user[0].Grado_Categoria}
-              </span>
+          {user && user.length > 0 ? (
+            <div className="flex gap-4 items-center ">
+              <Image
+                src={usericon}
+                alt="user icon"
+                width={50}
+                height={50}
+                className="border-4 rounded-full"
+              />
+              <div className="text-sm font-medium flex flex-col cursor-pointer relative ">
+                <span className="font-medium">Bienvenido</span>
+                <span className="font-bold">
+                  {user[0].Nombre} {user[0].Apellido}
+                </span>
+                <span className="font-bold">
+                  {user[0].Grado_Nombre} {user[0].Grado_Categoria}
+                </span>
 
-              {/* Dropdown */}
-              {showMenu && (
-                <div
-                  className="absolute right-1/2 translate-x-1/2 top-12 z-50 hidden md:block mt-1 bg-white border-b border-l border-r border-gray-200 py-2 rounded-md shadow-lg "
-                  onMouseLeave={handleMouseLeave}
-                >
-                  <ul className="flex flex-col gap-4 p-2">
-                    <li className="hover:bg-slate-100 w-full   ">
-                      <span className="text-xl text-gray-700 font-bold  font-2xl">
-                        {user[0].Email}
-                      </span>
-                    </li>
-
-                    {user && user[0]?.Grado_Nombre && user[0]?.Grado_Categoria && (
-                      <li>
-                        <span className="font-bold">
-                          {user[0].Grado_Nombre} {user[0].Grado_Categoria}
+                {/* Dropdown */}
+                {showMenu && (
+                  <div
+                    className="absolute right-1/2 w-96 translate-x-1/2 top-12 z-50 hidden md:block mt-1 bg-white border-b border-l border-r border-gray-200 py-2 rounded-md shadow-lg "
+                    onMouseLeave={handleMouseLeave}
+                  >
+                    <ul className="flex flex-col gap-4 p-2 items-center">
+                      <li className="hover:bg-slate-100 w-full   ">
+                        <span className="text-xl text-gray-700 font-bold  font-2xl flex items-center justify-center gap-4">
+                          <Image
+                            src={usericon}
+                            alt="user icon"
+                            width={50}
+                            height={50}
+                            className="border-4 rounded-full"
+                          />{" "}
+                          {user[0].Email}
                         </span>
                       </li>
-                    )}
-                    <li className="   flex justify-center items-center ">
-                      <Link href="/campus">
-                        <button className="yellow-btn " type="button">
-                          Campus Virtual
+
+                      {user && user[0]?.Grado_Nombre && user[0]?.Grado_Categoria && (
+                        <li>
+                          <span className="font-bold">
+                            {user[0].Grado_Nombre} {user[0].Grado_Categoria}
+                          </span>
+                        </li>
+                      )}
+                      <li className="   flex justify-evenly w-full items-center ">
+                        <Link href="/campus">
+                          <button className="yellow-btn " type="button">
+                            Campus Virtual
+                          </button>
+                        </Link>
+                        <button className="yellow-btn !w-36" onClick={handleLogout}>
+                          Logout
                         </button>
-                      </Link>
-                    </li>
-                    <li className="   flex justify-center items-center ">
-                      <button className="yellow-btn">Logout</button>
-                    </li>
-                  </ul>
-                </div>
-              )}
+                      </li>
+                    </ul>
+                  </div>
+                )}
+              </div>
             </div>
           ) : (
             // Si no hay usuario, mostrar el botón de inicio de sesión
