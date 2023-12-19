@@ -29,7 +29,7 @@ const Carousel = () => {
   ];
 
   return (
-    <article className=" w-screen overflow-x-hidden flex items-center pb-6 pt-1 z-40">
+    <div className=" w-screen overflow-x-hidden flex items-center pb-6 pt-1 z-40">
       <ul className="flex animate-carousel md:gap-20 gap-8 ">
         {libreriasArr.map((libreria, i) => (
           <li
@@ -44,7 +44,7 @@ const Carousel = () => {
           </li>
         ))}
       </ul>
-    </article>
+    </div>
   );
 };
 
