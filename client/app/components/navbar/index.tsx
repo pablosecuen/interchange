@@ -4,6 +4,7 @@ import Logo from "../logo";
 import Link from "next/link";
 import "./navbar.css";
 import Login from "../login/Login";
+import { useRouter } from "next/navigation";
 
 export interface User {
   ID: string;
@@ -22,6 +23,7 @@ const Navbar = () => {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [user, setUser] = useState<User[] | null>(null);
   const [showMenu, setShowMenu] = useState(false);
+  const router = useRouter();
 
   const handleMouseEnter = () => {
     setShowMenu(true);
@@ -129,16 +131,20 @@ const Navbar = () => {
                         {user[0].Email}
                       </span>
                     </li>
-                    {/* 
+
                     {user && user[0]?.Grado_Nombre && user[0]?.Grado_Categoria && (
                       <li>
                         <span className="font-bold">
                           {user[0].Grado_Nombre} {user[0].Grado_Categoria}
                         </span>
                       </li>
-                    )} */}
+                    )}
                     <li className="   flex justify-center items-center ">
-                      <button className="yellow-btn ">Campus Virtual</button>
+                      <Link href="/campus">
+                        <button className="yellow-btn " type="button">
+                          Campus Virtual
+                        </button>
+                      </Link>
                     </li>
                     <li className="   flex justify-center items-center ">
                       <button className="yellow-btn">Logout</button>

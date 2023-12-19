@@ -4,6 +4,7 @@ import Image from "next/image";
 import Register from "./register";
 import Logo from "../logo";
 import eyeicon from "@/public/assets/svg/eyepassword.svg";
+import useLogin from "@/app/hooks/useLogin";
 
 interface LoginProps {
   onClose: () => void;
@@ -12,12 +13,11 @@ const Login = ({ onClose }: LoginProps) => {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [isRegistering, setIsRegistering] = useState(false);
-  const [rememberMe, setRememberMe] = useState(false);
-  
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
+  const initialFormData = { email: "", password: "" };
+
+  // Utiliza el custom hook useLogin
+  const { formData, rememberMe, handleRememberMe, handleFormDataChange } =
+    useLogin(initialFormData);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -25,34 +25,6 @@ const Login = ({ onClose }: LoginProps) => {
 
   const toggleRegister = () => {
     setIsRegistering(!isRegistering);
-  };
-
-  const handleRememberMe = () => {
-    console.log("Checkbox state before update:", rememberMe);
-    console.log("Form data:", formData);
-    setRememberMe((prevRememberMe) => {
-      console.log(prevRememberMe);
-
-      const newRememberMe = !prevRememberMe;
-      if (!newRememberMe) {
-        console.log("Removing from sessionStorage");
-        sessionStorage.removeItem("loginFormData");
-      } else {
-        console.log("Storing in sessionStorage:", JSON.stringify(formData));
-        sessionStorage.setItem("loginFormData", JSON.stringify(formData));
-        console.log("Session storage after update:", sessionStorage.getItem("loginFormData")); // Nuevo console.log para mostrar el resultado de sessionStorage
-      }
-      console.log("Checkbox state after update:", newRememberMe);
-      return newRememberMe;
-    });
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -71,34 +43,30 @@ const Login = ({ onClose }: LoginProps) => {
       });
 
       if (response.ok) {
-        // Si la solicitud es exitosa, podrías redirigir a la página principal o realizar acciones necesarias
-        alert("Inicio de sesión exitoso");
-        router.push("/campus"); // Redirigir a la página principal después del inicio de sesión
+        if (rememberMe) {
+          localStorage.setItem("loginFormData", JSON.stringify(formData));
+          sessionStorage.removeItem("loginFormData");
+          alert("Inicio de sesión exitoso. Datos guardados");
+        } else {
+          sessionStorage.setItem("loginFormData", JSON.stringify(formData));
+          localStorage.removeItem("loginFormData");
+        }
+        router.push("/campus");
       } else {
-        // Si la solicitud falla o las credenciales son incorrectas, muestra un mensaje de error
-        console.error("Credenciales incorrectas");
+        alert("Error al validar credenciales");
       }
     } catch (error) {
-      // Manejo de errores en caso de problemas de red u otros errores
-      console.error("Error al intentar iniciar sesión:", error);
+      console.error("Error al validar credenciales:", error);
     }
   };
 
-  useEffect(() => {
+  /*   useEffect(() => {
     if (!rememberMe) {
       sessionStorage.removeItem("loginFormData");
     } else {
       sessionStorage.setItem("loginFormData", JSON.stringify(formData));
     }
-  }, [rememberMe, formData]);
-
-  useEffect(() => {
-    const rememberedData = sessionStorage.getItem("loginFormData");
-    if (rememberedData) {
-      setFormData(JSON.parse(rememberedData));
-    }
-    console.log("Retrieved from sessionStorage:", rememberedData); // Log para verificar si se está obteniendo algo del sessionStorage
-  }, [rememberMe]);
+  }, [rememberMe, formData]); */
 
   return (
     <div className=" h-[100vh] flex justify-center items-center ">
@@ -121,7 +89,7 @@ const Login = ({ onClose }: LoginProps) => {
               id="email"
               name="email"
               value={formData.email}
-              onChange={handleChange}
+              onChange={handleFormDataChange}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               required
             />
@@ -138,7 +106,7 @@ const Login = ({ onClose }: LoginProps) => {
               id="password"
               name="password"
               value={formData.password}
-              onChange={handleChange}
+              onChange={handleFormDataChange}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               required
             />
