@@ -27,8 +27,6 @@ const Nivelador = () => {
   const [examenSeleccionadoResult, setExamenSeleccionadoResult] = useState<ExamResults | null>(
     null
   );
-  console.log(completedExams);
-
   const [examenResultadosSeleccionado, setExamenResultadosSeleccionado] =
     useState<ExamResults | null>(null);
 
@@ -70,7 +68,7 @@ const Nivelador = () => {
 
         <li className="flex gap-2">
           <UsersIcon />
-          <span>Examenes</span>
+          <span>Examenes Niveladores</span>
           <span> / </span>{" "}
         </li>
         <li className="flex gap-2">
@@ -78,7 +76,7 @@ const Nivelador = () => {
         </li>
       </ul>
 
-      <h3 className="text-xl font-semibold">Todos los Alumnos</h3>
+      <h3 className="text-xl font-semibold">Todos los Examanes Niveladores</h3>
       <div className="flex justify-between flex-wrap gap-4 items-center">
         <div className="flex items-center gap-3 flex-wrap md:flex-nowrap">
           <Input
