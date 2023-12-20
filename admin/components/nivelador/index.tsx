@@ -40,12 +40,6 @@ const Nivelador = () => {
       </ul>
 
       <ExamenModal examen={examenSeleccionado} openchange={onOpenChange} isopen={isOpen} />
-      <div className="w-auto fixed bottom-10 left-1/2  translate-x-1/2 ">
-        {" "}
-        <Button className="bg-[#6f4ef2] hover:bg-[#382e5f] shadow-lg shadow-indigo-500/20">
-          Crear examen
-        </Button>
-      </div>
     </div>
   );
 };

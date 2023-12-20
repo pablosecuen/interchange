@@ -1,4 +1,4 @@
-const { Usuario } = require("../../db");
+const { Usuario, Examen } = require("../../db");
 
 const createUserController = async (req, res) => {
   try {
@@ -87,10 +87,27 @@ const loginController = async (req, res) => {
   }
 };
 
+const getExamenesAsociadosController = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const usuario = await Usuario.findByPk(userId, { include: Examen }); // Incluimos Examen en la búsqueda
+
+    if (!usuario) {
+      return res.status(404).json({ message: "Usuario no encontrado" });
+    }
+    const examenesAsociados = usuario.Examens.map((examen) => examen.toJSON());
+    res.status(200).json({ examenesAsociados });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Error al obtener los exámenes asociados", error: error.message });
+  }
+};
 module.exports = {
   createUserController,
   getAllUsuariosController,
   patchUsuarioController,
   deleteUsuarioController,
   loginController,
+  getExamenesAsociadosController,
 };

@@ -6,6 +6,7 @@ const {
   patchUsuarioHandler,
   deleteUsuarioHandler,
   loginHanlder,
+  getExamenesAsociadosHandler,
 } = require("../handlers/Usuarios.handler");
 const {
   handleUsuariosFilters,
@@ -16,10 +17,11 @@ const {
 const router = express.Router();
 
 // rutas para  usuarios
-router.post("/", validateUserData, createUserHandler);
 router.get("/", handleUsuariosFilters, getAllUsuariosHandler);
+router.get("/:userId/examenes-asociados", getExamenesAsociadosHandler);
+router.post("/", validateUserData, createUserHandler);
+router.post("/login", loginHanlder);
 router.patch("/:id", validatePatchUserData, patchUsuarioHandler);
 router.delete("/:id", deleteUsuarioHandler);
-router.post("/login", loginHanlder);
 
 module.exports = router;

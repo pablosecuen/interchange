@@ -36,7 +36,7 @@ const Sidebar: React.FC = () => {
             onClick={() => setSelectedMenuItem(item.id as MenuItem)}
             className={`cursor-pointer text-lg transition duration-300 opacity-80 tracking-wide ${
               selectedMenuItem === item.id
-                ? "text-red-500 opacity-100 brightness-110 font-bold tracking-widest"
+                ? " opacity-100 brightness-110 font-bold tracking-widest"
                 : ""
             }`}
           >
