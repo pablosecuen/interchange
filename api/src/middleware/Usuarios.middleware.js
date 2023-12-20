@@ -9,6 +9,7 @@ const userSchema = Joi.object({
     .max(20)
     .pattern(/^[a-zA-Z\s]+$/)
     .required(),
+  Telefono: Joi.string().required(),
   Email: Joi.string().email().required(),
   Password: Joi.string().min(8).required(),
   Tipo: Joi.string().required(),
@@ -31,13 +32,17 @@ const validateUserData = (req, res, next) => {
 };
 
 const handleUsuariosFilters = (req, res, next) => {
-  const { nombre, apellido, email, tipo, activo, grado_id, grado_nombre, categoria, id } =
+  const { nombre, apellido, telefono, email, tipo, activo, grado_id, grado_nombre, categoria, id } =
     req.query;
 
   let filtros = {};
 
   if (nombre) {
     filtros.Nombre = nombre;
+  }
+
+  if (telefono) {
+    filtros.Telefono = telefono;
   }
 
   if (apellido) {

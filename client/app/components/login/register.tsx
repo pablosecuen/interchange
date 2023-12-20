@@ -1,8 +1,10 @@
+"use client";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import eyeicon from "@/public/assets/svg/eyepassword.svg";
 import Logo from "../logo";
 import { useRouter } from "next/navigation";
+import useRegister from "@/app/hooks/useRegister";
 
 interface RegisterProps {
   onClose: () => void;
@@ -15,12 +17,13 @@ const Register = ({ onClose, toggleRegister }: RegisterProps) => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
 
-  const [formData, setFormData] = useState({
+  const { formData, handleChange, setFormData } = useRegister({
     email: "",
     password: "",
     confirmPassword: "",
     firstName: "",
     lastName: "",
+    phone: "", // Agregamos el campo de teléfono aquí
   });
 
   const togglePasswordVisibility = () => {
@@ -29,14 +32,6 @@ const Register = ({ onClose, toggleRegister }: RegisterProps) => {
 
   const toggleConfirmPasswordVisibility = () => {
     setShowConfirmPassword(!showConfirmPassword);
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
   };
 
   const handleRememberMe = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -60,6 +55,7 @@ const Register = ({ onClose, toggleRegister }: RegisterProps) => {
           Nombre: formData.firstName,
           Apellido: formData.lastName,
           Email: formData.email,
+          Telefono: formData.phone,
           Password: formData.password,
           Tipo: "Alumno",
           Activo: true,
@@ -67,9 +63,17 @@ const Register = ({ onClose, toggleRegister }: RegisterProps) => {
       });
 
       if (response.ok) {
+        if (rememberMe) {
+          localStorage.setItem("loginFormData", JSON.stringify(formData));
+          sessionStorage.removeItem("loginFormData");
+          alert("Inicio de sesión exitoso. Datos guardados");
+        } else {
+          sessionStorage.setItem("loginFormData", JSON.stringify(formData));
+          localStorage.removeItem("loginFormData");
+        }
         router.push("/campus");
-        alert("Registro exitoso");
-        onClose();
+      } else {
+        alert("Error al validar credenciales");
       }
     } catch (error) {
       alert(`Error al enviar la solicitud: ${error}`);
@@ -88,6 +92,7 @@ const Register = ({ onClose, toggleRegister }: RegisterProps) => {
     if (!rememberMe) {
       localStorage.removeItem("formData");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rememberMe]);
 
   return (
@@ -141,6 +146,21 @@ const Register = ({ onClose, toggleRegister }: RegisterProps) => {
           id="email"
           name="email"
           value={formData.email}
+          onChange={handleChange}
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          required
+        />
+      </div>
+
+      <div className="mb-5">
+        <label htmlFor="phone" className="block text-sm  font-medium text-gray-900 dark:text-white">
+          Telefono
+        </label>
+        <input
+          type="phone"
+          id="phone"
+          name="phone"
+          value={formData.phone}
           onChange={handleChange}
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           required

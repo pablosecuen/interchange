@@ -53,7 +53,24 @@ export const gradesContent = [
     {category:"Adults", title:"Adults 6", description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras leo leo, blandit a sagittis quis, lobortis eget quam. Nullam nec accumsan sapien. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras leo leo, blandit a sagittis quis, lobortis eget quam. Nullam nec accumsan sapien. ", duration:"10 meses", img:adults},
 ]
 
-
+export const menuItems = [
+  {
+    id: "examen",
+    label: "Examen Nivelador",
+  },
+  {
+    id: "notas",
+    label: "Notas",
+  },
+  {
+    id: "contenido",
+    label: "Contenido",
+  },
+  {
+    id: "consultas",
+    label: "Consultas",
+  },
+];
 
 import bridge1 from "@/public/assets/svg/london-bridge/1.webp"
 import bridge2 from "@/public/assets/svg/london-bridge/2.jpg"

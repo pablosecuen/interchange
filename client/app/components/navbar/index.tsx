@@ -96,7 +96,7 @@ const Navbar = () => {
     };
 
     getUserFromStorage();
-  }, [user]);
+  }, []);
 
   return (
     <nav className="bg-white  fixed w-full h-16 md:h-20 z-50 top-0 start-0  text-black  tracking-wider  font-laila !font-bold">
@@ -127,7 +127,7 @@ const Navbar = () => {
                 height={50}
                 className="border-4 rounded-full"
               />
-              <div className="text-sm font-medium flex flex-col cursor-pointer relative ">
+              <div className="text-sm font-medium flex flex-col cursor-pointer  ">
                 <span className="font-medium">Bienvenido</span>
                 <span className="font-bold">
                   {user[0].Nombre} {user[0].Apellido}
@@ -139,7 +139,7 @@ const Navbar = () => {
                 {/* Dropdown */}
                 {showMenu && (
                   <div
-                    className="absolute right-1/2 w-96 translate-x-1/2 top-12 z-50 hidden md:block mt-1 bg-white border-b border-l border-r border-gray-200 py-2 rounded-md shadow-lg "
+                    className="absolute right-2 top-20 w-96  z-50 hidden md:block mt-1 bg-white border-b border-l border-r border-gray-200 py-2 rounded-md shadow-lg "
                     onMouseLeave={handleMouseLeave}
                   >
                     <ul className="flex flex-col gap-4 p-2 items-center">
