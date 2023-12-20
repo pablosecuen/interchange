@@ -21,4 +21,22 @@ const validarExamen = (req, res, next) => {
   next(); // Si pasa la validación, continúa con el siguiente middleware o controlador
 };
 
-module.exports = validarExamen;
+const examenesFilters = (req, res, next) => {
+  const { id, titulo } = req.query;
+
+  let filtros = {};
+
+  if (titulo) {
+    filtros.titulo = titulo;
+  }
+
+  if (id) {
+    filtros.id = id;
+  }
+
+  req.usuariosFiltros = filtros; // Guardar los filtros en el objeto de solicitud
+
+  next();
+};
+
+module.exports = { validarExamen, examenesFilters };

@@ -7,18 +7,18 @@ import {
   ModalFooter,
   useDisclosure,
 } from "@nextui-org/react";
-import { Exam } from "./crear-examen";
-import ModalEnvioExamen from "./modal-envio-examen";
+
+import { ExamResults } from "../hooks/useGetCompletedExams";
 
 interface ExamenModalProps {
   isopen: boolean;
   openchange: (value: boolean) => void;
-  examen: Exam | null;
+  examen: ExamResults | null;
 }
 
-const ExamenModal: React.FC<ExamenModalProps> = ({ isopen, examen, openchange }) => {
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+const ExamenModalResultados: React.FC<ExamenModalProps> = ({ isopen, examen, openchange }) => {
   if (!examen) return null;
+  console.log(examen);
 
   return (
     <>
@@ -41,12 +41,13 @@ const ExamenModal: React.FC<ExamenModalProps> = ({ isopen, examen, openchange })
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1 ">
-                Cuerpo del examen: {examen.titulo}
+                <span>Titulo del examen: {examen?.examenTitle}</span>
+                <span>Puntuacion del alumno: {`${examen?.nota}%`}</span>
               </ModalHeader>
               <ModalBody>
                 <div className="flex justify-center flex-wrap gap-8">
                   {" "}
-                  {examen.preguntas?.map((pregunta, index) => (
+                  {examen?.respuestas?.map((pregunta, index) => (
                     <div key={`pregunta-${index}`} className="border w-96 rounded-3xl p-8 relative">
                       <span className="absolute top-2 right-4 border rounded-full w-6 text-center ">
                         {index}
@@ -54,22 +55,25 @@ const ExamenModal: React.FC<ExamenModalProps> = ({ isopen, examen, openchange })
                       <p className="uppercase border-b border-white/30 pb-2 mb-2">
                         {pregunta.enunciado}
                       </p>
+                      <p className="uppercase border-b border-white/30 pb-2 mb-2">
+                        Respuesta Alumno: {pregunta.respuestaUsuario}
+                      </p>
+                      <p className="uppercase border-b border-white/30 pb-2 mb-2 text-green-400">
+                        Respuesta Correcta: {pregunta.respuestaCorrecta}
+                      </p>
                       <div className="flex">
-                        <ul>
-                          {pregunta.respuestas.map((r, index) => (
+                        {/*     <ul>
+                          {pregunta.respuestaUsuario.map((r: string, index: any) => (
                             <li key={index}>{r}</li>
                           ))}
                           <p className="pt-4 text-green-600">{pregunta.respuestaCorrecta}</p>
-                        </ul>
+                        </ul> */}
                       </div>
                     </div>
                   ))}
                 </div>
               </ModalBody>
               <ModalFooter>
-                <Button color="warning" variant="light" onPress={onOpenChange}>
-                  enviar examen a usuario
-                </Button>
                 <Button color="success" variant="light" onPress={onClose}>
                   exportar a excel
                 </Button>
@@ -81,9 +85,8 @@ const ExamenModal: React.FC<ExamenModalProps> = ({ isopen, examen, openchange })
           )}
         </ModalContent>
       </Modal>
-      <ModalEnvioExamen examen={examen} onOpenChange={onOpenChange} isOpen={isOpen} />
     </>
   );
 };
 
-export default ExamenModal;
+export default ExamenModalResultados;

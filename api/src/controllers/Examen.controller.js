@@ -20,7 +20,9 @@ const crearExamenConPreguntasYRespuestas = async (req, res) => {
 
 const obtenerTodosLosExamenes = async (req, res) => {
   try {
-    const examenes = await Examen.findAll();
+    const examenes = await Examen.findAll({
+      where: req.examenesFilters,
+    });
     res.status(200).json({ examenes });
   } catch (error) {
     res

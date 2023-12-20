@@ -18,7 +18,7 @@ if (DATABASE_NAME && DATABASE_USERNAME && DATABASE_PASSWORD) {
   const Grado = require("./src/models/Grado")(sequelize);
   const Contenido = require("./src/models/Contenido")(sequelize);
   const Pago = require("./src/models/Pagos")(sequelize);
-
+  const ExamenCompletado = require("./src/models/ExamenCompletado")(sequelize);
   const Examen = require("./src/models/Examen")(sequelize);
 
   // Aquí puedes establecer las relaciones entre los modelos
@@ -38,6 +38,9 @@ if (DATABASE_NAME && DATABASE_USERNAME && DATABASE_PASSWORD) {
   Usuario.belongsToMany(Examen, { through: "UsuarioExamen", foreignKey: "Usuario_ID" });
   Examen.belongsToMany(Usuario, { through: "UsuarioExamen", foreignKey: "Examen_ID" });
 
+  Usuario.hasMany(ExamenCompletado, { foreignKey: "userID" });
+  ExamenCompletado.belongsTo(Usuario, { foreignKey: "userID" });
+
   // Exporta los modelos y la conexión
   module.exports = {
     Usuario,
@@ -45,6 +48,7 @@ if (DATABASE_NAME && DATABASE_USERNAME && DATABASE_PASSWORD) {
     Contenido,
     Pago,
     Examen,
+    ExamenCompletado,
     sequelize,
   };
 } else {
