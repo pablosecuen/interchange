@@ -103,6 +103,9 @@ const getExamenesAsociadosController = async (req, res) => {
       .json({ message: "Error al obtener los exámenes asociados", error: error.message });
   }
 };
+
+
+
 module.exports = {
   createUserController,
   getAllUsuariosController,
