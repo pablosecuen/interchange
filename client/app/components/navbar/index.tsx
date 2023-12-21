@@ -7,6 +7,7 @@ import Login from "../login/Login";
 import Image from "next/image";
 import Logo from "../logo";
 import usericon from "@/public/assets/svg/usericon.png";
+import { Toaster } from "sonner";
 
 export interface User {
   ID: string;
@@ -16,14 +17,13 @@ export interface User {
   Grado_Categoria?: string;
   Grado_ID?: string;
   Grado_Nombre?: string;
-  password: string;
-  // Otras propiedades del usuario
+  Password?: string;
 }
 
 const Navbar = () => {
   const [isCollapsed, setIsCollapsed] = useState(true);
   const [showLoginModal, setShowLoginModal] = useState(false);
-  const [user, setUser] = useState<User[] | null>(null);
+  const [user, setUser] = useState<User | null>(null);
   const [showMenu, setShowMenu] = useState(false);
   const router = useRouter();
 
@@ -43,63 +43,42 @@ const Navbar = () => {
     setIsCollapsed(!isCollapsed);
   };
 
+  const updateUser = (user: User) => {
+    setUser(user);
+  };
+
   const handleLogout = () => {
-    localStorage.removeItem("loginFormData");
-    sessionStorage.removeItem("loginFormData");
-    setUser(null); // Limpiar el estado del usuario
-    // Puedes redirigir al usuario a la página de inicio o a donde desees
+    localStorage.removeItem("user");
+    sessionStorage.removeItem("user");
+    setUser(null);
+    router.push("/");
     router.refresh();
   };
 
   useEffect(() => {
     const handleResize = () => {
       const screenWidth = window.innerWidth;
-      // Establecer isCollapsed como true si el ancho de la pantalla es menor que 768px (tamaño móvil típico)
       if (screenWidth < 768) {
         setIsCollapsed(false);
       }
     };
-
-    // Ejecutar handleResize cuando se carga la página y al cambiar el tamaño de la ventana
     handleResize();
     window.addEventListener("resize", handleResize);
-
-    // Limpiar el event listener cuando el componente se desmonta
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
 
   useEffect(() => {
-    const getUserFromStorage = async () => {
-      const userData =
-        sessionStorage.getItem("loginFormData") || localStorage.getItem("loginFormData");
-
-      if (userData) {
-        const parsedUserData = JSON.parse(userData);
-        try {
-          const response = await fetch(
-            `http://localhost:3001/api/users?email=${parsedUserData.email}`
-          );
-          if (response.ok) {
-            const userFromDatabase = await response.json();
-            setUser(userFromDatabase);
-          } else {
-            // Manejo de errores si la solicitud no es exitosa
-            console.error("Error al obtener el usuario");
-          }
-        } catch (error) {
-          // Manejo de errores de red u otros errores
-          console.error("Error al procesar la solicitud:", error);
-        }
-      }
-    };
-
-    getUserFromStorage();
+    const userData = localStorage.getItem("user") || sessionStorage.getItem("user");
+    if (userData) {
+      const parsedUserData: User = JSON.parse(userData);
+      setUser(parsedUserData);
+    }
   }, []);
-
   return (
     <nav className="bg-white  fixed w-full h-16 md:h-20 z-50 top-0 start-0  text-black  tracking-wider  font-laila !font-bold">
+      <Toaster richColors position="top-center" />
       <div className="max-w-screen  w-screen flex items-center justify-between  md:justify-around p-2 md:p-4  ">
         <Link
           href="/"
@@ -118,7 +97,7 @@ const Navbar = () => {
           className="flex md:justify-end md:order-2  space-x-3 md:space-x-0 rtl:space-x-reverse  md:w-48      "
           onMouseEnter={handleMouseEnter}
         >
-          {user && user.length > 0 ? (
+          {user ? (
             <div className="flex gap-4 items-center ">
               <Image
                 src={usericon}
@@ -130,16 +109,16 @@ const Navbar = () => {
               <div className="text-sm font-medium flex flex-col cursor-pointer  ">
                 <span className="font-medium">Bienvenido</span>
                 <span className="font-bold">
-                  {user[0].Nombre} {user[0].Apellido}
+                  {user.Nombre} {user.Apellido}
                 </span>
                 <span className="font-bold">
-                  {user[0].Grado_Nombre} {user[0].Grado_Categoria}
+                  {user.Grado_Nombre} {user.Grado_Categoria}
                 </span>
 
                 {/* Dropdown */}
                 {showMenu && (
                   <div
-                    className="absolute right-2 top-20 w-96  z-50 hidden md:block mt-1 bg-white border-b border-l border-r border-gray-200 py-2 rounded-md shadow-lg "
+                    className="absolute right-2 top-16 w-96  z-50 hidden md:block mt-1 bg-white border-b border-l border-r border-gray-200 py-2 rounded-md shadow-lg "
                     onMouseLeave={handleMouseLeave}
                   >
                     <ul className="flex flex-col gap-4 p-2 items-center">
@@ -152,14 +131,14 @@ const Navbar = () => {
                             height={50}
                             className="border-4 rounded-full"
                           />{" "}
-                          {user[0].Email}
+                          {user.Email}
                         </span>
                       </li>
 
-                      {user && user[0]?.Grado_Nombre && user[0]?.Grado_Categoria && (
+                      {user && user?.Grado_Nombre && user?.Grado_Categoria && (
                         <li>
                           <span className="font-bold">
-                            {user[0].Grado_Nombre} {user[0].Grado_Categoria}
+                            {user.Grado_Nombre} {user.Grado_Categoria}
                           </span>
                         </li>
                       )}
@@ -443,7 +422,7 @@ const Navbar = () => {
           </ul>
         </div>
       </div>
-      {showLoginModal && <Login onClose={toggleLoginModal} />}
+      {showLoginModal && <Login onClose={toggleLoginModal} updateUser={updateUser} />}
     </nav>
   );
 };

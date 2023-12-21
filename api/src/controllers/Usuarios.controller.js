@@ -1,4 +1,4 @@
-const { Usuario, Examen } = require("../../db");
+const { Usuario, Examen, Grado, Pago } = require("../../db");
 
 const createUserController = async (req, res) => {
   try {
@@ -15,6 +15,23 @@ const getAllUsuariosController = async (req, res) => {
   try {
     const usuarios = await Usuario.findAll({
       where: req.usuariosFiltros,
+      include: [
+        {
+          model: Grado,
+          as: "Grado", // Alias definido en la asociación Usuario.belongsTo(Grado, { as: "Grado" })
+        },
+        {
+          model: Pago,
+          include: [
+            {
+              model: Usuario, // Incluir Usuario a través de la asociación Pago.belongsTo(Usuario)
+            },
+            {
+              model: Grado, // Incluir Grado a través de la asociación Pago.belongsTo(Grado)
+            },
+          ],
+        },
+      ],
     });
 
     res.status(200).json(usuarios);
@@ -39,9 +56,74 @@ const patchUsuarioController = async (req, res) => {
       user.Grado_Nombre = Grado_Nombre;
       user.Grado_Categoria = Grado_Categoria;
 
-      await user.save(); // Guarda los cambios en la base de datos
-    }
+      await user.save();
 
+      const nuevoPago = await Pago.create({
+        EstadoCuota: "Pendiente",
+        EstadoInscripcionGrado: "Pendiente",
+        EstadoInscripcionExamenes: "Pendiente",
+        VencimientoCuota: [
+          {
+            mes: "febrero",
+            vencimiento: "2023-03-10",
+            pagado: false,
+          },
+          {
+            mes: "marzo",
+            vencimiento: "2023-04-10",
+            pagado: false,
+          },
+          {
+            mes: "abril",
+            vencimiento: "2023-05-10",
+            pagado: false,
+          },
+          {
+            mes: "mayo",
+            vencimiento: "2023-06-10",
+            pagado: false,
+          },
+          {
+            mes: "junio",
+            vencimiento: "2023-07-10",
+            pagado: false,
+          },
+          {
+            mes: "julio",
+            vencimiento: "2023-08-10",
+            pagado: false,
+          },
+          {
+            mes: "agosto",
+            vencimiento: "2023-09-10",
+            pagado: false,
+          },
+          {
+            mes: "septiembre",
+            vencimiento: "2023-10-10",
+            pagado: false,
+          },
+          {
+            mes: "octubre",
+            vencimiento: "2023-11-10",
+            pagado: false,
+          },
+          {
+            mes: "noviembre",
+            vencimiento: "2023-12-10",
+            pagado: false,
+          },
+        ],
+        VencimientoExamen: new Date("2023-12-10T00:00:00.000Z"),
+        VencimientoInscripcionGrado: new Date("2023-12-08T00:00:00.000Z"),
+        Grado_ID: user.Grado_ID,
+        Usuario_ID: id,
+      });
+
+      return res
+        .status(200)
+        .json({ message: "Datos de grado actualizados correctamente", nuevoPago });
+    }
     return res.status(200).json({ message: "Datos de grado actualizados correctamente" });
   } catch (error) {
     return res.status(500).json({ error: "Error al actualizar los datos de usuario" });

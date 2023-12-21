@@ -6,12 +6,13 @@ import Logo from "../logo";
 import eyeicon from "@/public/assets/svg/eyepassword.svg";
 import useLogin from "@/app/hooks/useLogin";
 import { Toaster, toast } from "sonner";
+import { User } from "../navbar";
 
 interface LoginProps {
   onClose: () => void;
+  updateUser: (user: User) => void;
 }
-const Login = ({ onClose }: LoginProps) => {
-  const router = useRouter();
+const Login = ({ onClose, updateUser }: LoginProps) => {
   const [showPassword, setShowPassword] = useState(false);
   const [isRegistering, setIsRegistering] = useState(false);
   const initialFormData = { email: "", password: "" };
@@ -44,16 +45,23 @@ const Login = ({ onClose }: LoginProps) => {
       });
 
       if (response.ok) {
+        const userFromServer = await response.json();
+
+        // Remover la contraseña del objeto de usuario
+        const { Password, ...userDataWithoutPassword } = userFromServer.user;
+
+        updateUser(userDataWithoutPassword);
+        toast.success("¡Bienvenido de nuevo!");
+
         if (rememberMe) {
-          localStorage.setItem("loginFormData", JSON.stringify(formData));
+          localStorage.setItem("user", JSON.stringify(userDataWithoutPassword));
           sessionStorage.removeItem("loginFormData");
-          toast.success("Bienvenido de nuevo!");
         } else {
-          sessionStorage.setItem("loginFormData", JSON.stringify(formData));
+          sessionStorage.setItem("user", JSON.stringify(userDataWithoutPassword));
           localStorage.removeItem("loginFormData");
-          toast.success("Bienvenido de nuevo!");
         }
-        router.push("/campus");
+
+        onClose();
       } else {
         toast.error("Error al validar credenciales");
       }
@@ -61,14 +69,6 @@ const Login = ({ onClose }: LoginProps) => {
       console.error("Error al validar credenciales:", error);
     }
   };
-
-  /*   useEffect(() => {
-    if (!rememberMe) {
-      sessionStorage.removeItem("loginFormData");
-    } else {
-      sessionStorage.setItem("loginFormData", JSON.stringify(formData));
-    }
-  }, [rememberMe, formData]); */
 
   return (
     <div className=" h-[100vh] flex justify-center items-center ">

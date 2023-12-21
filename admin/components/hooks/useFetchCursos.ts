@@ -2,16 +2,16 @@
 import { useState, useEffect } from 'react';
 import {  toast } from 'sonner'
 
-export interface Cursos {
+export interface Curso {
   ID: number;
   Grado_Nombre: string;
   Grado_Categoria: string;
 }
 
 const useFetchCursos = () => {
-  const [cursos, setCursos] = useState<Cursos[]>([]);
+  const [cursos, setCursos] = useState<Curso[]>([]);
   const [isLoading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
 console.log(cursos);
 
   useEffect(() => {
@@ -28,7 +28,7 @@ console.log(cursos);
 
         // Obtener los pagos asociados a cada curso
         const cursosConPagos = await Promise.all(
-          data.map(async (curso: Cursos) => {
+          data.map(async (curso: Curso) => {
             const pagosResponse = await fetch(`http://localhost:3001/api/pagos?Grado_ID=${curso.ID}`);
             if (!pagosResponse.ok) {
               throw new Error('Error al cargar los pagos del curso');

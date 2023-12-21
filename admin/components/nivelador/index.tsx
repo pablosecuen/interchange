@@ -14,6 +14,8 @@ import { HouseIcon } from "../icons/breadcrumb/house-icon";
 import Link from "next/link";
 import { UsersIcon } from "../icons/breadcrumb/users-icon";
 import { Toaster } from "sonner";
+import { TableWrapperExams } from "../table/tableNivelador";
+import { TableWrapperExamsCompleted } from "../table/tableNiveladorCompletado";
 
 const Nivelador = () => {
   const { completedExams, loadingResult, errorResult } = useGetCompletedExams();
@@ -99,67 +101,74 @@ const Nivelador = () => {
           </Button>
         </div>
       </div>
-      <div className="max-w-[95rem] mx-auto w-full border rounded-3xl overflow-hidden">
-        <div className="w-full flex-col h-full bg-[#18181b]  p-10 flex  relative ">
-          <div className="w-full border-b-4 p-4 gap-4">
-            {" "}
-            <h2 className="  text-center text-xl font-bold mb-4">
-              Lista de Exámenes Niveladores para enviar
-            </h2>
-            <ul className="flex  gap-8 justify-center ">
-              {examenes.map((examen) => (
-                <li
-                  key={examen.ID}
-                  className="w-64 h-64 flex flex-col items-center justify-evenly border-4 rounded-3xl"
-                >
-                  <h3 className="flex flex-col text-center">
-                    Titulo: <span> {examen.titulo}</span>
-                  </h3>
-
-                  <Button onPress={() => mostrarDetalleExamen(examen)}>ver examen</Button>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="w-full  p-4 gap-4">
-            <h2 className="  text-center text-xl font-bold my-4">
-              Examenes completados por alumnos niveladores
-            </h2>
-            <ul className="flex flex-wrap justify-center gap-8">
-              {completedExams.map((examen, index) => {
-                console.log(examen); // Agregar este console.log para ver los datos de cada examen
-                return (
+      <div className="max-w-[95rem] mx-auto w-full rounded-3xl overflow-hidden">
+        {/*    <div className="w-full flex-col h-full bg-[#18181b]  p-10 flex  relative ">
+            <div className="w-full border-b-4 p-4 gap-4">
+              {" "}
+              <h2 className="  text-center text-xl font-bold mb-4">
+                Lista de Exámenes Niveladores para enviar
+              </h2>
+              <ul className="flex  gap-8 justify-center ">
+                {examenes.map((examen) => (
                   <li
-                    key={index}
+                    key={examen.ID}
                     className="w-64 h-64 flex flex-col items-center justify-evenly border-4 rounded-3xl"
                   >
                     <h3 className="flex flex-col text-center">
-                      <span>
-                        Examen:{" "}
-                        <span className="text-green-600 capitalize">{examen?.examenTitle}</span>
-                      </span>
-                      <span className="font-bold"> Alumno:</span>
-                      <span className="brightness-200">
-                        {examen?.userName} {examen?.userlastname}
-                      </span>
-                      <span>{examen?.userEmail}</span>
+                      Titulo: <span> {examen.titulo}</span>
                     </h3>
-                    <Button onPress={() => mostrarDetalleExamenResultado(examen)}>
-                      ver examen
-                    </Button>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
 
-          <ExamenModal examen={examenSeleccionado} openchange={onOpenChange} isopen={isOpen} />
-          <ExamenModalResultados
-            examen={examenSeleccionadoResult}
-            openchange={onOpenChangeResult}
-            isopen={isOpenResult}
+                    <Button onPress={() => mostrarDetalleExamen(examen)}>ver examen</Button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="w-full  p-4 gap-4">
+              <h2 className="  text-center text-xl font-bold my-4">
+                Examenes completados por alumnos niveladores
+              </h2>
+              <ul className="flex flex-wrap justify-center gap-8">
+                {completedExams.map((examen, index) => {
+                  console.log(examen); // Agregar este console.log para ver los datos de cada examen
+                  return (
+                    <li
+                      key={index}
+                      className="w-64 h-64 flex flex-col items-center justify-evenly border-4 rounded-3xl"
+                    >
+                      <h3 className="flex flex-col text-center">
+                        <span>
+                          Examen:{" "}
+                          <span className="text-green-600 capitalize">{examen?.examenTitle}</span>
+                        </span>
+                        <span className="font-bold"> Alumno:</span>
+                        <span className="brightness-200">
+                          {examen?.userName} {examen?.userlastname}
+                        </span>
+                        <span>{examen?.userEmail}</span>
+                      </h3>
+                      <Button onPress={() => mostrarDetalleExamenResultado(examen)}>
+                        ver examen
+                      </Button>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+
+        
+          </div> */}
+        <div className="flex flex-col gap-4">
+          <TableWrapperExams mostrarDetalleExamen={mostrarDetalleExamen} />
+          <TableWrapperExamsCompleted
+            mostrarDetalleExamenResultado={mostrarDetalleExamenResultado}
           />
         </div>
+        <ExamenModal examen={examenSeleccionado} openchange={onOpenChange} isopen={isOpen} />
+        <ExamenModalResultados
+          examen={examenSeleccionadoResult}
+          openchange={onOpenChangeResult}
+          isopen={isOpenResult}
+        />
       </div>
     </div>
   );

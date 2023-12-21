@@ -17,6 +17,8 @@ import ModalAlumnos from "../modal/modal-alumnos";
 
 export const TableWrapper = () => {
   const { users, isLoading, error } = useFetchUsers();
+
+
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [selectedUser, setSelectedUser] = useState(null);
   const {

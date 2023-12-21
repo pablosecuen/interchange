@@ -14,3 +14,17 @@ export const columnsCursos = [
    {name: 'ALUMNOS', uid: 'Grado_Nombre'},
    {name: 'ACTIONS', uid: 'actions'},
 ];
+
+export const columnsExams = [
+   {name: 'TITULO', uid: "titulo"},
+   {name: 'ID', uid: "ID"},
+   {name: 'ACTIONS', uid: 'actions'},
+];
+
+export const columnsExamscomletados = [
+   {name: 'TITULO', uid: "examenTitle"},
+   {name: 'USUARIO', uid: "userEmail"},
+   {name: 'NOTA', uid: "nota"},
+   {name: 'ACTIONS', uid: 'actions'},
+];
+

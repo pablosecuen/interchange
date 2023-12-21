@@ -5,7 +5,6 @@ import eyeicon from "@/public/assets/svg/eyepassword.svg";
 import Logo from "../logo";
 import { useRouter } from "next/navigation";
 import useRegister from "@/app/hooks/useRegister";
-import { Toaster, toast } from "sonner";
 
 interface RegisterProps {
   onClose: () => void;
@@ -24,7 +23,7 @@ const Register = ({ onClose, toggleRegister }: RegisterProps) => {
     confirmPassword: "",
     firstName: "",
     lastName: "",
-    phone: "",
+    phone: "", // Agregamos el campo de teléfono aquí
   });
 
   const togglePasswordVisibility = () => {
@@ -42,7 +41,7 @@ const Register = ({ onClose, toggleRegister }: RegisterProps) => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (formData.password !== formData.confirmPassword) {
-      toast.error("Las contraseñas no coinciden");
+      alert("Las contraseñas no coinciden");
       return;
     }
 
@@ -67,17 +66,17 @@ const Register = ({ onClose, toggleRegister }: RegisterProps) => {
         if (rememberMe) {
           localStorage.setItem("loginFormData", JSON.stringify(formData));
           sessionStorage.removeItem("loginFormData");
-          toast.success("Registro exitoso. Datos guardados");
+          alert("Inicio de sesión exitoso. Datos guardados");
         } else {
           sessionStorage.setItem("loginFormData", JSON.stringify(formData));
           localStorage.removeItem("loginFormData");
         }
         router.push("/campus");
       } else {
-        toast.error("Error al validar credenciales");
+        alert("Error al validar credenciales");
       }
     } catch (error) {
-      toast.error(`Error al enviar la solicitud: ${error}`);
+      alert(`Error al enviar la solicitud: ${error}`);
       console.log(error);
     }
   };
@@ -101,7 +100,6 @@ const Register = ({ onClose, toggleRegister }: RegisterProps) => {
       className="w-1/3 min-h-[50vh] p-10 -mt-12 rounded-3xl backdrop-blur-3xl bg-white/20 shadow-black/30 shadow-xl z-50"
       onSubmit={handleSubmit}
     >
-      <Toaster richColors position="top-center" />
       <div className="mb-5">
         <label
           htmlFor="firstName"

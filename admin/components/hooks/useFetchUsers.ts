@@ -17,19 +17,22 @@ const useFetchUsers = () => {
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+console.log(users);
 
   
-  useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const response = await fetch('http://localhost:3001/api/users');
-        if (!response.ok) {
-          throw new Error('Error al cargar los usuarios');
-        }
-               const data = await response.json();
 
-        const usersWithGradesAndPayments = await Promise.all(
-          data.map(async (user: User) => {
+useEffect(() => {
+  const fetchUsers = async () => {
+    try {
+      const response = await fetch('http://localhost:3001/api/users');
+      if (!response.ok) {
+        throw new Error('Error al cargar los usuarios');
+      }
+      const data = await response.json();
+
+      const usersWithGradesAndPayments = await Promise.all(
+        data.map(async (user: User) => {
+          if (user.Grado_ID !== null) {
             // Obtener el grado asociado al usuario
             const gradoResponse = await fetch(`http://localhost:3001/api/grados?ID=${user.Grado_ID}`);
             if (!gradoResponse.ok) {
@@ -50,19 +53,25 @@ const useFetchUsers = () => {
               Grado: gradoData,
               Pagos: pagosData,
             };
-          })
-        );
-        toast.success("Usuarios cargados correctamente")
-        setUsers(usersWithGradesAndPayments);
-      } catch (error: any) {
-        setError(error);
-      } finally {
-        setLoading(false);
-      }
-    };
+          }
+          // Si el usuario no tiene un Grado_ID, devolvemos el usuario sin modificar
+          return user;
+        })
+      );
+      toast.success("Usuarios cargados correctamente")
+      setUsers(usersWithGradesAndPayments);
+    } catch (error: any) {
+      setError(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    fetchUsers();
-  }, []);
+  fetchUsers();
+}, []);
+
+// Resto de tu código...
+
 
   return { users, isLoading, error };
 };

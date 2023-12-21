@@ -23,7 +23,9 @@ interface Props {
 
 export default function ModalCuotas({ onOpenChange, isOpen, user }: Props) {
   const [vencimientoCuotas, setVencimientoCuotas] = useState(
-    user?.Pagos[0]?.VencimientoCuota || []
+    user?.Pagos && user.Pagos.length > 0 && user.Pagos[0].VencimientoCuota
+      ? user.Pagos[0].VencimientoCuota
+      : []
   );
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [indexToUpdate, setIndexToUpdate] = useState<number | null>(null);
@@ -89,6 +91,7 @@ export default function ModalCuotas({ onOpenChange, isOpen, user }: Props) {
           <>
             <ModalHeader className="flex flex-col gap-1">
               Cuotas de {user.Nombre} {user.Apellido}
+              Curso: {user.Grado_Nombre} {user.Grado_Categoria}
             </ModalHeader>
             <ModalBody>
               <Table aria-label="Tabla de cuotas">

@@ -56,21 +56,7 @@ module.exports = (sequelize) => {
     },
     Grado_ID: {
       type: DataTypes.UUID,
-      validate: {
-        notEmpty: true,
-      },
-    },
-    Grado_Nombre: {
-      type: DataTypes.STRING, // Campo para almacenar el nombre del Grado
-      validate: {
-        notEmpty: true,
-      },
-    },
-    Grado_Categoria: {
-      type: DataTypes.STRING, // Campo para almacenar la categoría del Grado
-      validate: {
-        notEmpty: true,
-      },
+      allowNull: true,
     },
   });
 

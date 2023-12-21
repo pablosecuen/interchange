@@ -1,4 +1,4 @@
-const { Grado } = require("../../db");
+const { Grado, Pago } = require("../../db");
 
 const createGradoController = async (req, res) => {
   try {
@@ -14,7 +14,8 @@ const createGradoController = async (req, res) => {
 const getAllGradosController = async (req, res) => {
   try {
     const grados = await Grado.findAll({
-      where:   req.gradosFiltros,
+      where: req.gradosFiltros,
+      include: [{ model: Pago }], // Cambiado el nombre del alias
     });
 
     res.status(200).json(grados);

@@ -48,26 +48,13 @@ module.exports = (sequelize) => {
       type: DataTypes.DATE,
       allowNull: false,
     },
-    MontoCuota: {
-      type: DataTypes.FLOAT,
+    Grado_ID: {
+      type: DataTypes.UUID,
       allowNull: false,
-      validate: {
-        min: 0,
-      },
     },
-    MontoInscripcionGrado: {
-      type: DataTypes.FLOAT,
+    Usuario_ID: {
+      type: DataTypes.UUID,
       allowNull: false,
-      validate: {
-        min: 0,
-      },
-    },
-    MontoInscripcionExamenes: {
-      type: DataTypes.FLOAT,
-      allowNull: false,
-      validate: {
-        min: 0,
-      },
     },
   });
 

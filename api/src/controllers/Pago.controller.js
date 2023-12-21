@@ -2,8 +2,9 @@ const { Pago } = require("../../db");
 
 const createPagoController = async (req, res) => {
   try {
-    const { cursoID } = req.params;
+    const { gradoId } = req.params;
     const pagoData = req.body;
+    pagoData.Grado_ID = gradoId;
     const newPago = await Pago.create(pagoData);
     res.status(201).json(newPago);
   } catch (error) {

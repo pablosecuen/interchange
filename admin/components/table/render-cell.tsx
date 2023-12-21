@@ -12,6 +12,8 @@ interface Props {
   handleAlumnoClick: (user: any) => void;
 }
 
+// En el componente RenderCell
+
 export const RenderCell = ({
   user,
   columnKey,
@@ -19,9 +21,20 @@ export const RenderCell = ({
   handleUserClick,
   handleAlumnoClick,
 }: Props) => {
-  // @ts-ignore
+  const getCourseInfo = () => {
+    if (columnKey === "Grado_Categoria") {
+      return user?.Grado?.[0]?.Grado_Categoria || "Sin información";
+    }
+    if (columnKey === "Grado_Nombre") {
+      return user?.Grado?.[0]?.Grado_Nombre || "Sin información";
+    }
+    return "";
+  };
 
   const cellValue = user[columnKey];
+  const columnValue =
+    columnKey === "Grado_Categoria" || columnKey === "Grado_Nombre" ? getCourseInfo() : cellValue;
+
   switch (columnKey) {
     case "Nombre":
       return (
@@ -83,6 +96,6 @@ export const RenderCell = ({
         </div>
       );
     default:
-      return cellValue;
+      return <span>{columnValue}</span>;
   }
 };
