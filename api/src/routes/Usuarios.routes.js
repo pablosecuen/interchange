@@ -21,7 +21,7 @@ router.get("/", handleUsuariosFilters, getAllUsuariosHandler);
 router.get("/:userId/examenes-asociados", getExamenesAsociadosHandler);
 router.post("/", validateUserData, createUserHandler);
 router.post("/login", loginHanlder);
-router.patch("/:id", validatePatchUserData, patchUsuarioHandler);
+router.patch("/:id", patchUsuarioHandler);
 router.delete("/:id", deleteUsuarioHandler);
 
 module.exports = router;

@@ -28,13 +28,12 @@ const patchUsuarioController = async (req, res) => {
   const { Grado_ID, Grado_Nombre, Grado_Categoria } = req.body;
 
   try {
-    const user = await Usuario.findByPk(id); // Busca el usuario por su ID
+    const user = await Usuario.findByPk(id);
 
     if (!user) {
       return res.status(404).json({ error: "Usuario no encontrado" });
     }
 
-    // Actualiza los campos de grado si se proporcionan en el body
     if (Grado_ID && Grado_Nombre && Grado_Categoria) {
       user.Grado_ID = Grado_ID;
       user.Grado_Nombre = Grado_Nombre;
@@ -103,8 +102,6 @@ const getExamenesAsociadosController = async (req, res) => {
       .json({ message: "Error al obtener los exámenes asociados", error: error.message });
   }
 };
-
-
 
 module.exports = {
   createUserController,

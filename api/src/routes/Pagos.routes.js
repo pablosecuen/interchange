@@ -7,6 +7,6 @@ const { updatePagadoHandler } = require("../handlers/Pago.handler");
 const router = express.Router();
 
 router.get("/", handlePagosFilters, getAllPagosController);
-router.put("/:pagoId", updatePagadoHandler);
+router.patch("/:pagoId", updatePagadoHandler);
 
 module.exports = router;
