@@ -5,6 +5,7 @@ import Register from "./register";
 import Logo from "../logo";
 import eyeicon from "@/public/assets/svg/eyepassword.svg";
 import useLogin from "@/app/hooks/useLogin";
+import { Toaster, toast } from "sonner";
 
 interface LoginProps {
   onClose: () => void;
@@ -46,14 +47,15 @@ const Login = ({ onClose }: LoginProps) => {
         if (rememberMe) {
           localStorage.setItem("loginFormData", JSON.stringify(formData));
           sessionStorage.removeItem("loginFormData");
-          alert("Inicio de sesión exitoso. Datos guardados");
+          toast.success("Bienvenido de nuevo!");
         } else {
           sessionStorage.setItem("loginFormData", JSON.stringify(formData));
           localStorage.removeItem("loginFormData");
+          toast.success("Bienvenido de nuevo!");
         }
         router.push("/campus");
       } else {
-        alert("Error al validar credenciales");
+        toast.error("Error al validar credenciales");
       }
     } catch (error) {
       console.error("Error al validar credenciales:", error);
@@ -70,6 +72,7 @@ const Login = ({ onClose }: LoginProps) => {
 
   return (
     <div className=" h-[100vh] flex justify-center items-center ">
+      <Toaster richColors position="top-center" />
       {isRegistering ? (
         <Register onClose={onClose} toggleRegister={toggleRegister} />
       ) : (

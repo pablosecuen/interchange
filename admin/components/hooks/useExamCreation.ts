@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Exam } from '../nivelador/crear-examen';
-
+import {  toast } from "sonner";
  // Asegúrate de importar los tipos correctos
 
 const useExamCreation = () => {
@@ -20,6 +20,9 @@ const useExamCreation = () => {
 
       if (!response.ok) {
         throw new Error('Hubo un error al crear el examen.');
+      }
+      if(response.ok && response.status === 201 || response.status === 200) {
+        toast.success("Examen creado con éxito");
       }
 
       const data = await response.json();

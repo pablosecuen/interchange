@@ -15,6 +15,7 @@ import {
 } from "@nextui-org/react";
 import { Exam } from "./crear-examen";
 import useFetchUsers, { User } from "../hooks/useFetchUsers";
+import { Toaster, toast } from "sonner";
 
 interface Props {
   isOpen: boolean;
@@ -52,9 +53,13 @@ const ModalEnvioExamen: React.FC<Props> = ({ isOpen, onOpenChange, examen }) => 
       if (!response.ok) {
         throw new Error("Error al enviar el examen al usuario");
       }
+      if ((response.ok && response.status === 202) || response.status === 200) {
+        toast.success("Examen enviado al usuario exitosamente");
+      }
 
       // Aquí puedes manejar la lógica adicional después de enviar el examen, si es necesario
     } catch (error) {
+      toast.error("Error al enviar el examen");
       console.error("Error al enviar el examen:", error);
       // Aquí puedes manejar el error de manera apropiada, mostrar un mensaje al usuario, etc.
     }
@@ -76,6 +81,7 @@ const ModalEnvioExamen: React.FC<Props> = ({ isOpen, onOpenChange, examen }) => 
         closeButton: "hover:bg-white/5 active:bg-white/10 ",
       }}
     >
+      <Toaster richColors position="top-center" />
       <ModalContent>
         {(onClose) => (
           <>

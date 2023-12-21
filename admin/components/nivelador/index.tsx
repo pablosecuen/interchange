@@ -13,6 +13,7 @@ import { ExportIcon } from "../icons/accounts/export-icon";
 import { HouseIcon } from "../icons/breadcrumb/house-icon";
 import Link from "next/link";
 import { UsersIcon } from "../icons/breadcrumb/users-icon";
+import { Toaster } from "sonner";
 
 const Nivelador = () => {
   const { completedExams, loadingResult, errorResult } = useGetCompletedExams();
@@ -57,6 +58,7 @@ const Nivelador = () => {
 
   return (
     <div className="my-14 max-w-[95rem] mx-auto w-full flex flex-col gap-4">
+      <Toaster richColors position="top-center" />
       <ul className="flex">
         <li className="flex gap-2">
           <HouseIcon />

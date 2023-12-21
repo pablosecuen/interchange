@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-
+import {  toast } from 'sonner'
 export interface ExamResults {
     userEmail?: string;
     Email?: string;
@@ -30,6 +30,9 @@ function useGetCompletedExams() {
         const response = await fetch("http://localhost:3001/api/examen-completado");
         if (!response.ok) {
           throw new Error(`Error ${response.status}: ${response.statusText}`);
+        }
+        if(response.ok){
+          toast.success("Exámenes completados obtenidos con éxito")
         }
     
         const data = await response.json();

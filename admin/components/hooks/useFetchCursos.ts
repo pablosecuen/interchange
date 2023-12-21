@@ -1,5 +1,6 @@
 "use client"
 import { useState, useEffect } from 'react';
+import {  toast } from 'sonner'
 
 export interface Cursos {
   ID: number;
@@ -18,7 +19,10 @@ console.log(cursos);
       try {
         const response = await fetch('http://localhost:3001/api/Grados');
         if (!response.ok) {
-          throw new Error('Error al cargar los cursos');
+          toast.error('Error al cargar los cursos');
+        } 
+        if (response.ok && response.status === 202 || response.status===200) {
+          toast.success("Cursos cargados con exito")
         }
         const data = await response.json();
 

@@ -1,5 +1,6 @@
 "use client"
 import { useState, useEffect } from 'react';
+import {  toast } from 'sonner'
 export interface User {
   ID: number;
 Nombre: string;
@@ -25,7 +26,7 @@ const useFetchUsers = () => {
         if (!response.ok) {
           throw new Error('Error al cargar los usuarios');
         }
-        const data = await response.json();
+               const data = await response.json();
 
         const usersWithGradesAndPayments = await Promise.all(
           data.map(async (user: User) => {
@@ -51,7 +52,7 @@ const useFetchUsers = () => {
             };
           })
         );
-
+        toast.success("Usuarios cargados correctamente")
         setUsers(usersWithGradesAndPayments);
       } catch (error: any) {
         setError(error);

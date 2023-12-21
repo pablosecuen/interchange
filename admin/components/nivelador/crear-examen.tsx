@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import useExamCreation from "../hooks/useExamCreation";
+import { Toaster } from "sonner";
 
 export interface Exam {
   ID?: string;
@@ -77,6 +78,7 @@ const CrearExamen = () => {
 
   return (
     <div className="w-full h-full border">
+      <Toaster richColors position="top-center" />
       <form>
         {exam.preguntas.map((pregunta, index) => (
           <div className="pregunta" key={`pregunta-${index}`}>

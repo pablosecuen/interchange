@@ -8,7 +8,7 @@ import {
   TableRow,
   useDisclosure,
 } from "@nextui-org/react";
-import React, { useState } from "react";
+import { Toaster } from "sonner";
 import { columnsCursos } from "./data";
 import useFetchCursos, { Cursos } from "../hooks/useFetchCursos";
 import { RenderCell } from "./render-cell-cursos";
@@ -27,6 +27,7 @@ export const TableWrapper = () => {
 
   return (
     <div className=" w-full flex flex-col gap-4">
+      <Toaster richColors position="top-center" />
       <Table aria-label="Tabla de cursos">
         <TableHeader columns={columnsCursos}>
           {(column) => (
