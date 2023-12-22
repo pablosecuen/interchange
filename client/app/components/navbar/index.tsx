@@ -10,7 +10,7 @@ import usericon from "@/public/assets/svg/usericon.png";
 import { Toaster } from "sonner";
 
 export interface User {
-  ID?: string;
+  ID: string;
   Apellido?: string;
   Nombre?: string;
   Email?: string;

@@ -14,7 +14,7 @@ export interface Exam {
 }
 
 const useGetNivelationExam = (): { loggedInUser: User | null; examsAssociated: Exam[] } => {
-  const [loggedInUser, setLoggedInUser] = useState<User | null>(null);
+  const [loggedInUser, setLoggedInUser] = useState<User  | null>(null);
   const [examsAssociated, setExamsAssociated] = useState<Exam[]>([]);
 
   useEffect(() => {
