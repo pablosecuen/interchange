@@ -16,10 +16,7 @@ const useFetchUsers = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
 console.log(users);
-
-  
 
 useEffect(() => {
   const fetchUsers = async () => {
@@ -39,22 +36,15 @@ useEffect(() => {
               throw new Error('Error al cargar el grado del usuario');
             }
             const gradoData = await gradoResponse.json();
-
-            // Obtener los pagos asociados al grado del usuario
-            const pagosResponse = await fetch(`http://localhost:3001/api/pagos?Grado_ID=${user.Grado_ID}`);
-            if (!pagosResponse.ok) {
-              throw new Error('Error al cargar los pagos del usuario');
-            }
-            const pagosData = await pagosResponse.json();
-
+          // Filtrar los pagos que corresponden al ID del usuario actual
+              const pagoUsuario = gradoData[0].Pagos.find((pago: any) => pago.Usuario_ID === user.ID);
             // Agregar la información del grado y los pagos al usuario
             return {
               ...user,
               Grado: gradoData,
-              Pagos: pagosData,
+              Pagos: pagoUsuario ? [pagoUsuario] : []
             };
-          }
-          // Si el usuario no tiene un Grado_ID, devolvemos el usuario sin modificar
+          }         
           return user;
         })
       );
@@ -69,9 +59,6 @@ useEffect(() => {
 
   fetchUsers();
 }, []);
-
-// Resto de tu código...
-
 
   return { users, isLoading, error };
 };
