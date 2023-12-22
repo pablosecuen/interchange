@@ -10,7 +10,7 @@ import {
 } from "@nextui-org/react";
 import { Toaster } from "sonner";
 import { columnsCursos } from "./data";
-import useFetchCursos, { Cursos } from "../hooks/useFetchCursos";
+import useFetchCursos from "../hooks/useFetchCursos";
 import { RenderCell } from "./render-cell-cursos";
 
 export const TableWrapper = () => {
