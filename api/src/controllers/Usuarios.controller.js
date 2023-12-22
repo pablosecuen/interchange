@@ -1,10 +1,13 @@
 const { Usuario, Examen, Grado, Pago } = require("../../db");
+const { sendEmailNotification } = require("../nodemailer");
 
 const createUserController = async (req, res) => {
   try {
     const userData = req.body;
     console.log(req.body);
     const newUser = await Usuario.create(userData);
+    const newUserEmail = newUser.Email;
+    sendEmailNotification(newUserEmail);
     res.status(201).json(newUser);
   } catch (error) {
     res.status(500).json({ message: "Error al crear el usuario", error: error.message });

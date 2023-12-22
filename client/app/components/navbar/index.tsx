@@ -10,14 +10,17 @@ import usericon from "@/public/assets/svg/usericon.png";
 import { Toaster } from "sonner";
 
 export interface User {
-  ID: string;
-  Apellido: string;
-  Nombre: string;
-  Email: string;
+  ID?: string;
+  Apellido?: string;
+  Nombre?: string;
+  Email?: string;
+  email?: string;
   Grado_Categoria?: string;
   Grado_ID?: string;
   Grado_Nombre?: string;
   Password?: string;
+  firstName?: string;
+  lastName?: string;
 }
 
 const Navbar = () => {
@@ -26,6 +29,7 @@ const Navbar = () => {
   const [user, setUser] = useState<User | null>(null);
   const [showMenu, setShowMenu] = useState(false);
   const router = useRouter();
+  console.log(user);
 
   const handleMouseEnter = () => {
     setShowMenu(true);
@@ -109,7 +113,9 @@ const Navbar = () => {
               <div className="text-sm font-medium flex flex-col cursor-pointer  ">
                 <span className="font-medium">Bienvenido</span>
                 <span className="font-bold">
-                  {user.Nombre} {user.Apellido}
+                  {user.Nombre && user.Apellido
+                    ? `${user.Nombre} ${user.Apellido}`
+                    : `${user.firstName} ${user.lastName}`}
                 </span>
                 <span className="font-bold">
                   {user.Grado_Nombre} {user.Grado_Categoria}
@@ -131,7 +137,7 @@ const Navbar = () => {
                             height={50}
                             className="border-4 rounded-full"
                           />{" "}
-                          {user.Email}
+                          {user.Email ? `${user.Email}` : `${user.email}`}
                         </span>
                       </li>
 

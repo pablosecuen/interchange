@@ -5,6 +5,7 @@ import eyeicon from "@/public/assets/svg/eyepassword.svg";
 import Logo from "../logo";
 import { useRouter } from "next/navigation";
 import useRegister from "@/app/hooks/useRegister";
+import { toast } from "sonner";
 
 interface RegisterProps {
   onClose: () => void;
@@ -64,19 +65,20 @@ const Register = ({ onClose, toggleRegister }: RegisterProps) => {
 
       if (response.ok) {
         if (rememberMe) {
-          localStorage.setItem("loginFormData", JSON.stringify(formData));
-          sessionStorage.removeItem("loginFormData");
-          alert("Inicio de sesión exitoso. Datos guardados");
+          localStorage.setItem("user", JSON.stringify(formData));
+          sessionStorage.removeItem("user");
+          toast.success("Inicio de sesión exitoso. Datos guardados");
         } else {
-          sessionStorage.setItem("loginFormData", JSON.stringify(formData));
-          localStorage.removeItem("loginFormData");
+          sessionStorage.setItem("user", JSON.stringify(formData));
+          localStorage.removeItem("user");
         }
         router.push("/campus");
+        onClose();
       } else {
-        alert("Error al validar credenciales");
+        toast.error("Error al validar credenciales");
       }
     } catch (error) {
-      alert(`Error al enviar la solicitud: ${error}`);
+      toast.error(`Error al enviar la solicitud: ${error}`);
       console.log(error);
     }
   };

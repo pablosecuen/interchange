@@ -55,10 +55,10 @@ const Login = ({ onClose, updateUser }: LoginProps) => {
 
         if (rememberMe) {
           localStorage.setItem("user", JSON.stringify(userDataWithoutPassword));
-          sessionStorage.removeItem("loginFormData");
+          sessionStorage.removeItem("user");
         } else {
           sessionStorage.setItem("user", JSON.stringify(userDataWithoutPassword));
-          localStorage.removeItem("loginFormData");
+          localStorage.removeItem("user");
         }
 
         onClose();
