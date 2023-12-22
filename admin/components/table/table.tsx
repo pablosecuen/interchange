@@ -8,19 +8,19 @@ import {
   TableRow,
   useDisclosure,
 } from "@nextui-org/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { columns } from "./data";
 import { RenderCell } from "./render-cell";
 import useFetchUsers from "../hooks/useFetchUsers";
 import ModalCuotas from "../modal/modal-cuotas";
 import ModalAlumnos from "../modal/modal-alumnos";
+import { Toaster } from "sonner";
 
 export const TableWrapper = () => {
   const { users, isLoading, error } = useFetchUsers();
-
-
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [selectedUser, setSelectedUser] = useState(null);
+
   const {
     isOpen: isOpenAlumnos,
     onOpen: onOpenAlumnos,
@@ -45,8 +45,10 @@ export const TableWrapper = () => {
     const errorMessage = typeof error === "string" ? error : "Error desconocido";
     return <p>Error al cargar usuarios: {errorMessage}</p>;
   }
+
   return (
     <div className=" w-full flex flex-col gap-4">
+      <Toaster richColors position="top-center" />
       <Table aria-label="Tabla de usuarios">
         <TableHeader columns={columns}>
           {(column) => (

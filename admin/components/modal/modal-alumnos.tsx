@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Modal,
   ModalContent,
@@ -8,7 +8,8 @@ import {
   Button,
 } from "@nextui-org/react";
 import useFetchCursos from "../hooks/useFetchCursos";
-import { Toaster, toast } from "sonner";
+import { Toaster } from "sonner";
+import useAssignGrado from "../hooks/useAsignGrado";
 
 interface ModalAlumnos {
   onOpenChange: (value: boolean) => void;
@@ -18,76 +19,9 @@ interface ModalAlumnos {
 
 export default function ModalAlumnos({ onOpenChange, isOpen, alumno }: ModalAlumnos) {
   const { cursos, isLoading, error } = useFetchCursos();
-  const [selectedGrado, setSelectedGrado] = useState<any>();
-  console.log(selectedGrado);
+  const { handleGradoChange, assignGrado, selectedGrado } = useAssignGrado(alumno, cursos);
 
   const propiedadesMostrar = ["Nombre", "Apellido", "Email", "Tipo"];
-
-  const handleGradoChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedCurso = JSON.parse(event.target.value);
-    setSelectedGrado(selectedCurso);
-  };
-
-  const assignGrado = async () => {
-    try {
-      if (!selectedGrado) {
-        console.error("Por favor, selecciona un grado");
-        return;
-      }
-
-      const response = await fetch(`http://localhost:3001/api/users/${alumno.ID}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          Grado_ID: selectedGrado.ID,
-          Grado_Nombre: selectedGrado.Grado_Nombre,
-          Grado_Categoria: selectedGrado.Grado_Categoria,
-        }),
-      });
-
-      if (!response.ok) {
-        console.log(response);
-        toast.error("Error al asignar el grado al alumno");
-        throw new Error("Error al asignar el grado al alumno");
-      }
-
-      if (response.ok) {
-        const updatedAlumno = await response.json();
-
-        const cursoEncontrado = cursos.find((curso: any) => curso.ID === selectedGrado);
-
-        if (cursoEncontrado) {
-          const { Grado_Nombre, Grado_Categoria } = cursoEncontrado;
-          const updatedGrado = {
-            ID: selectedGrado,
-            Grado_Nombre,
-            Grado_Categoria,
-          };
-
-          const updatedAlumnoObject = {
-            ...updatedAlumno,
-            Grado_ID: updatedGrado.ID,
-            Grado: [updatedGrado],
-          };
-          console.log("Alumno actualizado:", updatedAlumnoObject);
-
-          toast.success("Grado asignado exitosamente");
-
-          // Actualizar el estado del alumno con el nuevo objeto
-          // Aquí deberías usar el método para actualizar el estado del alumno en tu aplicación
-          // Por ejemplo: setAlumno(updatedAlumnoObject);
-        } else {
-          console.error("No se encontró el curso con el ID seleccionado");
-          // Manejar el caso en el que no se encuentra el curso
-        }
-      }
-    } catch (error) {
-      toast.error("Error al asignar el grado al alumno");
-      console.error("Error al asignar el grado al alumno:", error);
-    }
-  };
 
   const renderSelect = () => {
     if (!alumno || !alumno.Grado || alumno.Grado.length === 0) {

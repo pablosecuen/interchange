@@ -15,7 +15,7 @@ const getAllGradosController = async (req, res) => {
   try {
     const grados = await Grado.findAll({
       where: req.gradosFiltros,
-      include: [{ model: Pago }], // Cambiado el nombre del alias
+      include: [{ model: Pago }],
     });
 
     res.status(200).json(grados);

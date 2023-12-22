@@ -32,7 +32,7 @@ if (DATABASE_NAME && DATABASE_USERNAME && DATABASE_PASSWORD) {
   Pago.belongsTo(Usuario, { foreignKey: "Usuario_ID" });
   Pago.belongsTo(Grado, { foreignKey: "Grado_ID" });
 
-  Grado.hasOne(Pago, { foreignKey: "Grado_ID" });
+  Grado.hasMany(Pago, { foreignKey: "Grado_ID" });
   Usuario.hasOne(Pago, { foreignKey: "usuario_id" });
 
   // Relación Usuario y Examen

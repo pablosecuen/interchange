@@ -14,6 +14,7 @@ import {
   TableRow,
   Chip,
 } from "@nextui-org/react";
+import usePaymentUpdate from "../hooks/usePaymentUpdate";
 
 interface Props {
   isOpen: boolean;
@@ -27,48 +28,9 @@ export default function ModalCuotas({ onOpenChange, isOpen, user }: Props) {
       ? user.Pagos[0].VencimientoCuota
       : []
   );
-  const [showConfirmation, setShowConfirmation] = useState(false);
-  const [indexToUpdate, setIndexToUpdate] = useState<number | null>(null);
 
-  const handleConfirmation = async () => {
-    if (indexToUpdate !== null) {
-      await handleChangePaymentState(indexToUpdate);
-      setIndexToUpdate(null);
-      setShowConfirmation(false);
-    }
-  };
-
-  const handleChangePaymentState = async (index: number) => {
-    try {
-      //buscamos las 3 props necesarias para el body {mes, pagoid, y booleano}
-      const updatedVencimientoCuotas = [...vencimientoCuotas];
-      updatedVencimientoCuotas[index].pagado = !updatedVencimientoCuotas[index].pagado;
-      const pagoId = user.Pagos[0].ID; // Aquí obtienes el pagoId correcto
-      const updatedMes = updatedVencimientoCuotas[index].mes;
-
-      // Llamada al endpoint para actualizar el estado de pago
-      const response = await fetch(`http://localhost:3001/api/pagos/${pagoId}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          pagoId: pagoId,
-          mes: updatedMes,
-          nuevoEstado: updatedVencimientoCuotas[index].pagado,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Error al actualizar el estado de pago");
-      }
-      setVencimientoCuotas(updatedVencimientoCuotas);
-    } catch (error) {
-      console.error("Error al actualizar el estado de pago:", error);
-    }
-    setIndexToUpdate(index);
-    setShowConfirmation(true);
-  };
+  const { showConfirmation, setShowConfirmation, handleConfirmation, setIndexToUpdate } =
+    usePaymentUpdate(vencimientoCuotas, user);
 
   return (
     <Modal
@@ -102,7 +64,7 @@ export default function ModalCuotas({ onOpenChange, isOpen, user }: Props) {
                   <TableColumn>Acción</TableColumn>
                 </TableHeader>
                 <TableBody>
-                  {vencimientoCuotas.map((cuota: any, index: number) => {
+                  {vencimientoCuotas.map((cuota: any, index: any) => {
                     const currentDate = new Date();
                     const vencimientoDate = new Date(cuota.vencimiento);
                     let buttonColor = undefined; // Por defecto, no se establece color
