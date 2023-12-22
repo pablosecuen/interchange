@@ -6,10 +6,10 @@ const pagosRoutes = require("./src/routes/Pagos.routes");
 const examenRoutes = require("./src/routes/Examen.routes");
 const examenCompletadoRoutes = require("./src/routes/ExamenCompletado.routes");
 const { sequelize } = require("./db");
-const { sendEmailNotification } = require("./src/nodemailer");
+const { sendEmailNotificationRegister } = require("./src/nodemailer");
 
 const app = express();
-const MY_EMAIL = "institutointerchange@gmail.com";
+
 // Middleware para habilitar CORS
 app.use((req, res, next) => {
   const allowedOrigins = [
@@ -46,7 +46,7 @@ app.get("/send-email/:email", async (req, res) => {
   try {
     const { email: newUserEmail } = req.params;
 
-    const info = await sendEmailNotification(newUserEmail);
+    const info = await sendEmailNotificationRegister(newUserEmail);
     res.send(info);
   } catch (error) {
     res.send(error.message);

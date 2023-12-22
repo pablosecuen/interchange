@@ -1,5 +1,5 @@
 const { Usuario, Examen, Grado, Pago } = require("../../db");
-const { sendEmailNotification } = require("../nodemailer");
+const { sendEmailNotificationRegister, sendEmailNotificationCurso } = require("../nodemailer");
 
 const createUserController = async (req, res) => {
   try {
@@ -7,7 +7,7 @@ const createUserController = async (req, res) => {
     console.log(req.body);
     const newUser = await Usuario.create(userData);
     const newUserEmail = newUser.Email;
-    sendEmailNotification(newUserEmail);
+    sendEmailNotificationRegister(newUserEmail);
     res.status(201).json(newUser);
   } catch (error) {
     res.status(500).json({ message: "Error al crear el usuario", error: error.message });
@@ -122,7 +122,7 @@ const patchUsuarioController = async (req, res) => {
         Grado_ID: user.Grado_ID,
         Usuario_ID: id,
       });
-
+      sendEmailNotificationCurso(user.Email, user.Grado_Nombre, user.Grado_Categoria);
       return res
         .status(200)
         .json({ message: "Datos de grado actualizados correctamente", nuevoPago });
