@@ -34,6 +34,7 @@ console.log(cursos);
               throw new Error('Error al cargar los pagos del curso');
             }
             const pagosData = await pagosResponse.json();
+console.log(pagosData, "pagos data");
 
             return {
               ...curso,
@@ -41,6 +42,7 @@ console.log(cursos);
             };
           })
         );
+console.log(cursosConPagos, "curso conpagos");
 
         setCursos(cursosConPagos);
       } catch (error: any) {
