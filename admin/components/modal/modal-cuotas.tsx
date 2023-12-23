@@ -15,7 +15,6 @@ import {
   Chip,
 } from "@nextui-org/react";
 import usePaymentUpdate from "../hooks/usePaymentUpdate";
-import { toast } from "sonner";
 import useSendEmail from "../hooks/useSendEmailVencimiento";
 
 interface Props {

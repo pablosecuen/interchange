@@ -11,6 +11,8 @@ import { Toaster } from "sonner";
 import { columnsExams } from "./data";
 import useGetExams from "../hooks/useGetExams";
 import { RenderCellExam } from "./render-cell-exam";
+import Image from "next/image";
+import spinner from "../../public/spinner/Spinner.gif";
 
 interface TableWrapperExamsProps {
   mostrarDetalleExamen: (arg0: any) => void; // Reemplaza 'any' con el tipo correcto para el argumento
@@ -20,7 +22,11 @@ export const TableWrapperExams = ({ mostrarDetalleExamen }: TableWrapperExamsPro
   const { examenes, loading, error } = useGetExams();
 
   if (loading) {
-    return <p>Cargando cursos...</p>;
+    return (
+      <div className="w-full h-full flex justify-center items-center">
+        <Image src={spinner} alt="Cargando..." />
+      </div>
+    );
   }
 
   if (error) {

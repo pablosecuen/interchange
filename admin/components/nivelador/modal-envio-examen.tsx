@@ -16,7 +16,8 @@ import {
 import { Exam } from "./crear-examen";
 import useFetchUsers, { User } from "../hooks/useFetchUsers";
 import { Toaster, toast } from "sonner";
-
+import Image from "next/image";
+import spinner from "../../public/spinner/Spinner.gif";
 interface Props {
   isOpen: boolean;
   onOpenChange: (value: boolean) => void;
@@ -28,7 +29,11 @@ const ModalEnvioExamen: React.FC<Props> = ({ isOpen, onOpenChange, examen }) => 
   const { users, isLoading, error } = useFetchUsers();
   const [selectedUser, setSelectedUser] = useState<User | undefined>(undefined);
   if (isLoading) {
-    return <div>Cargando...</div>;
+    return (
+      <div className="w-full h-full flex justify-center items-center">
+        <Image src={spinner} alt="Cargando..." />
+      </div>
+    );
   }
 
   if (error) {

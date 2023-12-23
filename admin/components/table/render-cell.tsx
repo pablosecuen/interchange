@@ -8,19 +8,13 @@ interface Props {
   user: any;
   columnKey: string | React.Key;
   handleUserClick: (user: any) => void;
-  onOpen: () => void;
+  onOpen?: () => void;
   handleAlumnoClick: (user: any) => void;
 }
 
 // En el componente RenderCell
 
-export const RenderCell = ({
-  user,
-  columnKey,
-  onOpen,
-  handleUserClick,
-  handleAlumnoClick,
-}: Props) => {
+export const RenderCell = ({ user, columnKey, handleUserClick, handleAlumnoClick }: Props) => {
   const getCourseInfo = () => {
     if (columnKey === "Grado_Categoria") {
       return user?.Grado?.[0]?.Grado_Categoria || "Sin información";

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
   Modal,
   ModalContent,
@@ -11,6 +11,8 @@ import useFetchCursos from "../hooks/useFetchCursos";
 import { Toaster } from "sonner";
 import useAssignGrado from "../hooks/useAsignGrado";
 import useSendEmailCurso from "../hooks/useSendEmailCurso ";
+import Image from "next/image";
+import spinner from "../../public/spinner/Spinner.gif";
 
 interface ModalAlumnos {
   onOpenChange: (value: boolean) => void;
@@ -30,6 +32,19 @@ export default function ModalAlumnos({ onOpenChange, isOpen, alumno }: ModalAlum
   //no borrar el hook de la linea 29 aunque no este siendo llamado, se ejectuta automaticamente
 
   const propiedadesMostrar = ["Nombre", "Apellido", "Email", "Tipo"];
+
+  if (isLoading) {
+    return (
+      <div className="w-full h-full flex justify-center items-center">
+        <Image src={spinner} alt="Cargando..." />
+      </div>
+    );
+  }
+
+  if (error) {
+    const errorMessage = typeof error === "string" ? error : "Error desconocido";
+    return <p>Error al cargar usuarios: {errorMessage}</p>;
+  }
 
   const renderSelect = () => {
     if (!alumno || !alumno.Grado || alumno.Grado.length === 0) {
@@ -72,14 +87,6 @@ export default function ModalAlumnos({ onOpenChange, isOpen, alumno }: ModalAlum
 
     return null;
   };
-
-  if (isLoading) {
-    return <div>Cargando cursos...</div>;
-  }
-
-  if (error) {
-    return <div>Ocurrió un error: {error}</div>;
-  }
 
   return (
     <Modal

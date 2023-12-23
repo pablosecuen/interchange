@@ -7,11 +7,12 @@ import { EyeIcon } from "../icons/table/eye-icon";
 interface Props {
   curso: any;
   columnKey: string | React.Key;
+  handleSelectCurso: (curso: any) => void;
 }
 
-export const RenderCell = ({ curso, columnKey }: Props) => {
+export const RenderCell = ({ curso, columnKey, handleSelectCurso }: Props) => {
   // @ts-ignore
-  console.log(curso);
+
 
   const cellValue = curso[columnKey];
   switch (columnKey) {
@@ -30,9 +31,9 @@ export const RenderCell = ({ curso, columnKey }: Props) => {
     case "actions":
       return (
         <div className="flex items-center gap-4 ">
-          <div onClick={() => console.log(curso)}>
+          <div onClick={() => handleSelectCurso(curso)}>
             <Tooltip content="Details">
-              <button onClick={() => console.log(curso)}>
+              <button onClick={() => handleSelectCurso(curso)}>
                 <EyeIcon size={20} fill="#979797" />
               </button>
             </Tooltip>

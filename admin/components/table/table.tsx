@@ -8,13 +8,15 @@ import {
   TableRow,
   useDisclosure,
 } from "@nextui-org/react";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { columns } from "./data";
 import { RenderCell } from "./render-cell";
 import useFetchUsers from "../hooks/useFetchUsers";
 import ModalCuotas from "../modal/modal-cuotas";
 import ModalAlumnos from "../modal/modal-alumnos";
 import { Toaster } from "sonner";
+import Image from "next/image";
+import spinner from "../../public/spinner/Spinner.gif";
 
 export const TableWrapper = () => {
   const { users, isLoading, error } = useFetchUsers();
@@ -38,7 +40,11 @@ export const TableWrapper = () => {
   };
 
   if (isLoading) {
-    return <p>Cargando usuarios...</p>;
+    return (
+      <div className="w-full h-full flex justify-center items-center">
+        <Image src={spinner} alt="Cargando..." />
+      </div>
+    );
   }
 
   if (error) {

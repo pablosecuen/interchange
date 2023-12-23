@@ -12,12 +12,27 @@ import { Toaster } from "sonner";
 import { columnsCursos } from "./data";
 import useFetchCursos from "../hooks/useFetchCursos";
 import { RenderCell } from "./render-cell-cursos";
+import { useState } from "react";
+import ModalCurso from "../modal/modal-cursos";
+import Image from "next/image";
+import spinner from "../../public/spinner/Spinner.gif";
 
 export const TableWrapper = () => {
   const { cursos: Cursos, isLoading, error } = useFetchCursos();
+  const [selectedCurso, setSelectedCurso] = useState(null);
+  const { isOpen, onOpenChange } = useDisclosure();
+
+  const handleSelectCurso = (curso: any) => {
+    setSelectedCurso(curso);
+    onOpenChange();
+  };
 
   if (isLoading) {
-    return <p>Cargando cursos...</p>;
+    return (
+      <div className="w-full h-full flex justify-center items-center">
+        <Image src={spinner} alt="Cargando..." />
+      </div>
+    );
   }
 
   if (error) {
@@ -48,6 +63,7 @@ export const TableWrapper = () => {
                   {RenderCell({
                     curso: item,
                     columnKey: columnKey,
+                    handleSelectCurso: handleSelectCurso,
                   })}
                 </TableCell>
               )}
@@ -55,6 +71,9 @@ export const TableWrapper = () => {
           )}
         </TableBody>
       </Table>
+      {selectedCurso && (
+        <ModalCurso curso={selectedCurso} isOpen={isOpen} onOpenChange={onOpenChange} />
+      )}
     </div>
   );
 };

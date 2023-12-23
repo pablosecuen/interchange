@@ -16,6 +16,8 @@ import { UsersIcon } from "../icons/breadcrumb/users-icon";
 import { Toaster } from "sonner";
 import { TableWrapperExams } from "../table/tableNivelador";
 import { TableWrapperExamsCompleted } from "../table/tableNiveladorCompletado";
+import spinner from "../../public/spinner/Spinner.gif";
+import Image from "next/image";
 
 const Nivelador = () => {
   const { completedExams, loadingResult, errorResult } = useGetCompletedExams();
@@ -44,7 +46,11 @@ const Nivelador = () => {
   };
 
   if (loading) {
-    return <div>Cargando...</div>;
+    return (
+      <div className="w-full h-full flex justify-center items-center">
+        <Image src={spinner} alt="Cargando..." />
+      </div>
+    );
   }
 
   if (error) {
