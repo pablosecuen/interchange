@@ -5,6 +5,7 @@ const {
   deleteUsuarioController,
   loginController,
   getExamenesAsociadosController,
+
 } = require("../controllers/Usuarios.controller");
 
 const createUserHandler = (req, res) => {
@@ -30,11 +31,13 @@ const getExamenesAsociadosHandler = (req, res) => {
   getExamenesAsociadosController(req, res);
 };
 
+
 module.exports = {
   createUserHandler,
   getAllUsuariosHandler,
   patchUsuarioHandler,
   deleteUsuarioHandler,
   loginHanlder,
-  getExamenesAsociadosHandler
+  getExamenesAsociadosHandler,
+
 };

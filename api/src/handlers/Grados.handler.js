@@ -1,6 +1,7 @@
 const {
   createGradoController,
   getAllGradosController,
+  getUsersByCursoController,
 } = require("../controllers/Grados.controller");
 
 const createGradoHandler = (req, res) => {
@@ -11,4 +12,8 @@ const getAllGradosHandler = (req, res) => {
   getAllGradosController(req, res);
 };
 
-module.exports = { createGradoHandler, getAllGradosHandler };
+const getUsersByCursoHandler = (req, res) => {
+  getUsersByCursoController(req, res);
+};
+
+module.exports = { createGradoHandler, getAllGradosHandler, getUsersByCursoHandler };
