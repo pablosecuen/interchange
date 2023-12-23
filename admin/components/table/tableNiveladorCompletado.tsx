@@ -21,7 +21,6 @@ export const TableWrapperExamsCompleted = ({
 }: TableWrapperExamsProps) => {
   const { completedExams, loadingResult, errorResult } = useGetCompletedExams();
 
-
   if (loadingResult) {
     return <p>Cargando cursos...</p>;
   }
@@ -33,7 +32,7 @@ export const TableWrapperExamsCompleted = ({
 
   return (
     <div className=" w-full flex flex-col gap-4">
-      <Toaster richColors position="top-center" />
+      <Toaster richColors position="top-center" expand={true} />
       <Table aria-label="Tabla de cursos">
         <TableHeader columns={columnsExamscomletados}>
           {(column) => (

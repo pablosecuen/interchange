@@ -15,6 +15,8 @@ import {
   Chip,
 } from "@nextui-org/react";
 import usePaymentUpdate from "../hooks/usePaymentUpdate";
+import { toast } from "sonner";
+import useSendEmail from "../hooks/useSendEmailVencimiento";
 
 interface Props {
   isOpen: boolean;
@@ -28,7 +30,7 @@ export default function ModalCuotas({ onOpenChange, isOpen, user }: Props) {
       ? user.Pagos[0].VencimientoCuota
       : []
   );
-
+  const { sendEmailVencimiento } = useSendEmail(user.Email);
   const { showConfirmation, setShowConfirmation, handleConfirmation, setIndexToUpdate } =
     usePaymentUpdate(vencimientoCuotas, user);
 
@@ -94,7 +96,7 @@ export default function ModalCuotas({ onOpenChange, isOpen, user }: Props) {
                             {cuota.pagado ? "Pago" : "No Pago"}
                           </Chip>
                         </TableCell>
-                        <TableCell>
+                        <TableCell className="flex items-center gap-4">
                           <Button
                             color={cuota.pagado ? "danger" : "success"}
                             size="sm"
@@ -105,6 +107,15 @@ export default function ModalCuotas({ onOpenChange, isOpen, user }: Props) {
                           >
                             {!cuota.pagado ? "Marcar como pagado" : "Marcar como no pagado"}
                           </Button>
+                          {cuota.pagado ? null : (
+                            <Button
+                              size="sm"
+                              id="sendEmailButton"
+                              onPress={() => sendEmailVencimiento(user.Email)}
+                            >
+                              Enviar Correo
+                            </Button>
+                          )}
                         </TableCell>
                       </TableRow>
                     );

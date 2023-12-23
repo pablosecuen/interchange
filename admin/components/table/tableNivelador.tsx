@@ -30,7 +30,7 @@ export const TableWrapperExams = ({ mostrarDetalleExamen }: TableWrapperExamsPro
 
   return (
     <div className=" w-full flex flex-col gap-4">
-      <Toaster richColors position="top-center" />
+      <Toaster richColors position="top-center" expand={true} />
       <Table aria-label="Tabla de cursos">
         <TableHeader columns={columnsExams}>
           {(column) => (

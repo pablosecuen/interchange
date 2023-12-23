@@ -6,7 +6,11 @@ const pagosRoutes = require("./src/routes/Pagos.routes");
 const examenRoutes = require("./src/routes/Examen.routes");
 const examenCompletadoRoutes = require("./src/routes/ExamenCompletado.routes");
 const { sequelize } = require("./db");
-const { sendEmailNotificationRegister } = require("./src/nodemailer");
+const {
+  sendEmailNotificationRegister,
+  sendEmailNotificationCurso,
+  sendEmailNotificationVencimiento,
+} = require("./src/nodemailer");
 
 const app = express();
 
@@ -42,11 +46,33 @@ app.get("/", (req, res) => {
   res.send("Run /send-email to send test email");
 });
 
-app.get("/send-email/:email", async (req, res) => {
+app.get("/send-email/register/:email", async (req, res) => {
   try {
     const { email: newUserEmail } = req.params;
 
     const info = await sendEmailNotificationRegister(newUserEmail);
+    res.send(info);
+  } catch (error) {
+    res.send(error.message);
+  }
+});
+
+app.get("/send-email/curso/:email", async (req, res) => {
+  try {
+    const { email: newUserEmail } = req.params;
+
+    const info = await sendEmailNotificationCurso(newUserEmail);
+    res.send(info);
+  } catch (error) {
+    res.send(error.message);
+  }
+});
+
+app.get("/send-email/vencimiento/:email", async (req, res) => {
+  try {
+    const { email: newUserEmail } = req.params;
+
+    const info = await sendEmailNotificationVencimiento(newUserEmail);
     res.send(info);
   } catch (error) {
     res.send(error.message);

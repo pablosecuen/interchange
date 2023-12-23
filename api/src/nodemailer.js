@@ -102,6 +102,7 @@ const sendEmailNotificationRegister = async (newUserEmail) => {
 const sendEmailNotificationCurso = async (newUserEmail, Grado_Nombre, Grado_Categoria) => {
   try {
     const ACCESS_TOKEN = await oAuth2Client.getAccessToken();
+
     const transport = nodemailer.createTransport({
       service: "gmail",
       auth: {
@@ -116,7 +117,6 @@ const sendEmailNotificationCurso = async (newUserEmail, Grado_Nombre, Grado_Cate
         rejectUnauthorized: false,
       },
     });
-
     const mailOptions = {
       from: "institutointerchange@gmail.com",
       to: newUserEmail,
@@ -181,7 +181,7 @@ const sendEmailNotificationCurso = async (newUserEmail, Grado_Nombre, Grado_Cate
   }
 };
 
-const sendEmailNotificationVencimiento = async (newUserEmail, Grado_Nombre, Grado_Categoria) => {
+const sendEmailNotificationVencimiento = async (newUserEmail) => {
   try {
     const ACCESS_TOKEN = await oAuth2Client.getAccessToken();
     const transport = nodemailer.createTransport({

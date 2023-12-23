@@ -10,6 +10,7 @@ import {
 import useFetchCursos from "../hooks/useFetchCursos";
 import { Toaster } from "sonner";
 import useAssignGrado from "../hooks/useAsignGrado";
+import useSendEmailCurso from "../hooks/useSendEmailCurso ";
 
 interface ModalAlumnos {
   onOpenChange: (value: boolean) => void;
@@ -19,7 +20,14 @@ interface ModalAlumnos {
 
 export default function ModalAlumnos({ onOpenChange, isOpen, alumno }: ModalAlumnos) {
   const { cursos, isLoading, error } = useFetchCursos();
-  const { handleGradoChange, assignGrado, selectedGrado } = useAssignGrado(alumno, cursos);
+  const { handleGradoChange, assignGrado, selectedGrado, assignmentResult } = useAssignGrado(
+    alumno,
+    cursos
+  );
+
+  //importante aunque enviarEmailCurso no esta siendo llamado, funciona con los argumentos que se le pasan al custom hook
+  const { enviarEmailCurso } = useSendEmailCurso(alumno.Email, assignmentResult);
+  //no borrar el hook de la linea 29 aunque no este siendo llamado, se ejectuta automaticamente
 
   const propiedadesMostrar = ["Nombre", "Apellido", "Email", "Tipo"];
 

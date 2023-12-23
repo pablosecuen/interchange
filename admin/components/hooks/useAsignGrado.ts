@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { useRouter } from "next/router";
+
 import { toast } from "sonner";
 
 const useAssignGrado = (alumno:any, cursos:any) => {
-  const router = useRouter();
+
   const [selectedGrado, setSelectedGrado] = useState<any>();
+  const [assignmentResult, setAssignmentResult] = useState<any>();
 
   const handleGradoChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedCurso = JSON.parse(event.target.value);
@@ -30,10 +31,12 @@ const useAssignGrado = (alumno:any, cursos:any) => {
         }),
       });
 
+   
       if (!response.ok) {
         console.log(response);
         toast.error("Error al asignar el grado al alumno");
-        throw new Error("Error al asignar el grado al alumno");
+        setAssignmentResult({ success: false, message: "Error al asignar el grado al alumno" });
+        return;
       }
 
       if (response.ok) {
@@ -47,19 +50,21 @@ const useAssignGrado = (alumno:any, cursos:any) => {
             Grado_Categoria,
           };
           toast.success("Grado asignado exitosamente");
-          router.reload();
+ 
+          setAssignmentResult({ success: true, message: "Grado asignado exitosamente" });
         } else {
           console.error("No se encontró el curso con el ID seleccionado");
-          // Manejar el caso en el que no se encuentra el curso
+          setAssignmentResult({ success: false, message: "No se encontró el curso con el ID seleccionado" });
         }
       }
     } catch (error) {
       toast.error("Error al asignar el grado al alumno");
       console.error("Error al asignar el grado al alumno:", error);
+      setAssignmentResult({ success: false, message: `Error al asignar el grado al alumno: ${error}` });
     }
   };
 
-  return { handleGradoChange, assignGrado, selectedGrado };
+  return { handleGradoChange, assignGrado, selectedGrado, assignmentResult  };
 };
 
 export default useAssignGrado;
