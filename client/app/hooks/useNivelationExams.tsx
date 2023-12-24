@@ -13,9 +13,15 @@ export interface Exam {
   // ... Otros campos del examen
 }
 
-const useGetNivelationExam = (): { loggedInUser: User | null; examsAssociated: Exam[] } => {
+const useGetNivelationExam = (): {
+  loggedInUser: User | null;
+  examsAssociated: Exam[];
+  userHasExams: boolean;
+} => {
   const [loggedInUser, setLoggedInUser] = useState<User | null>(null);
   const [examsAssociated, setExamsAssociated] = useState<Exam[]>([]);
+
+  const userHasExams = examsAssociated.length > 0 ? true : false;
 
   useEffect(() => {
     const userDataSessionStorage = sessionStorage.getItem("user");
@@ -54,7 +60,7 @@ const useGetNivelationExam = (): { loggedInUser: User | null; examsAssociated: E
     }
   };
 
-  return { loggedInUser, examsAssociated };
+  return { loggedInUser, examsAssociated, userHasExams };
 };
 
 export default useGetNivelationExam;

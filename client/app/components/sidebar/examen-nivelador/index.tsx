@@ -22,7 +22,9 @@ function ExamenNivelador() {
   const renderQuestions = () => {
     return examsAssociated.map((exam, index) => (
       <div key={index} className="w-full">
-        <h3 className="text-center text-2xl font-bold tracking-widest py-8">{exam.titulo}</h3>
+        <h3 className="text-center text-2xl font-bold tracking-widest py-8 capitalize">
+          {exam.titulo}
+        </h3>
         <div className="w-full flex flex-wrap gap-10 justify-center">
           {exam.preguntas.map((question, qIndex) => (
             <div key={qIndex} className="border-4 rounded-3xl p-4 relative">
