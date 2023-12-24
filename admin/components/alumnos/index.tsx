@@ -41,7 +41,7 @@ export const Alumnos = () => {
               input: "w-full",
               mainWrapper: "w-full",
             }}
-            placeholder="Search users"
+            placeholder="Search alumnos"
           />
           <SettingsIcon />
           <TrashIcon />

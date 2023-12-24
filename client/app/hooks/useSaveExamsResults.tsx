@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { toast } from "sonner";
 
 export interface ExamResults {
   userID: string;
@@ -64,11 +65,10 @@ function useSaveExamsResults() {
       };
 
       await guardarResultadosExamen(data);
-      alert("Resultados del examen guardados exitosamente");
+      toast.success("Resultados del examen guardados exitosamente");
     } catch (error) {
-      alert("error");
+      toast.error("Error al guardar los resultados del examen");
       console.error("Error al guardar los resultados del examen:", error);
-      // Manejar el error, mostrar mensaje al usuario, etc.
     }
   };
 

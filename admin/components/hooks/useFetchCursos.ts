@@ -12,20 +12,21 @@ const useFetchCursos = () => {
   const [cursos, setCursos] = useState<Curso[]>([]);
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-console.log(cursos);
+  const [sucess, setSucess] = useState<any>();
+console.log(sucess);
 
   useEffect(() => {
     const fetchCursos = async () => {
       try {
         const response = await fetch('http://localhost:3001/api/Grados');
         if (!response.ok) {
+          setSucess(response)
           toast.error('Error al cargar los cursos');
         } 
         if (response.ok && response.status === 202 || response.status===200) {
-          toast.success("Cursos cargados con exito")
+
         }
         const data = await response.json();
-
         // Obtener los pagos asociados a cada curso
         const cursosConPagos = await Promise.all(
           data.map(async (curso: Curso) => {
@@ -34,7 +35,7 @@ console.log(cursos);
               throw new Error('Error al cargar los pagos del curso');
             }
             const pagosData = await pagosResponse.json();
-console.log(pagosData, "pagos data");
+
 
             return {
               ...curso,
@@ -42,7 +43,7 @@ console.log(pagosData, "pagos data");
             };
           })
         );
-console.log(cursosConPagos, "curso conpagos");
+
 
         setCursos(cursosConPagos);
       } catch (error: any) {
@@ -54,6 +55,7 @@ console.log(cursosConPagos, "curso conpagos");
 
     fetchCursos();
   }, []);
+
 
   return { cursos, isLoading, error };
 };

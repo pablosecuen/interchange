@@ -40,7 +40,7 @@ export const Cursos = () => {
               input: "w-full",
               mainWrapper: "w-full",
             }}
-            placeholder="Search users"
+            placeholder="Search cursos"
           />
           <SettingsIcon />
           <TrashIcon />

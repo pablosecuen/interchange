@@ -70,15 +70,18 @@ export const SidebarWrapper = () => {
                 isActive={router.pathname === "/contenido"}
                 title="Contenido"
                 icon={<DevIcon />}
-              />
+                href="contenido"
+              />{" "}
               <SidebarItem
                 isActive={router.pathname === "/view"}
                 title="Vista Previa"
+                href="view"
                 icon={<ViewIcon />}
               />
               <SidebarItem
-                isActive={router.pathname === "/Configuracion"}
-                title="Configuracion"
+                isActive={router.pathname === "/configuracion"}
+                title="configuracion"
+                href="configuracion"
                 icon={<SettingsIcon />}
               />
             </SidebarMenu>

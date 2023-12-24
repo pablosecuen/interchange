@@ -14,26 +14,26 @@ export interface Exam {
 }
 
 const useGetNivelationExam = (): { loggedInUser: User | null; examsAssociated: Exam[] } => {
-  const [loggedInUser, setLoggedInUser] = useState<User  | null>(null);
+  const [loggedInUser, setLoggedInUser] = useState<User | null>(null);
   const [examsAssociated, setExamsAssociated] = useState<Exam[]>([]);
 
   useEffect(() => {
-    const userDataSessionStorage = sessionStorage.getItem("loginFormData");
-    const userDataLocalStorage = localStorage.getItem("loginFormData");
+    const userDataSessionStorage = sessionStorage.getItem("user");
+    const userDataLocalStorage = localStorage.getItem("user");
 
     if (userDataSessionStorage) {
-      const { email } = JSON.parse(userDataSessionStorage);
-      getUserByEmail(email);
+      const { Email } = JSON.parse(userDataSessionStorage);
+      getUserByEmail(Email);
     } else if (userDataLocalStorage) {
-      const { email } = JSON.parse(userDataLocalStorage);
-      getUserByEmail(email);
+      const { Email } = JSON.parse(userDataLocalStorage);
+      getUserByEmail(Email);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const getUserByEmail = async (email: string) => {
+  const getUserByEmail = async (Email: string) => {
     try {
-      const response = await fetch(`http://localhost:3001/api/users?email=${email}`);
+      const response = await fetch(`http://localhost:3001/api/users?email=${Email}`);
       const users: User[] = await response.json();
       if (users.length > 0) {
         setLoggedInUser(users[0]);

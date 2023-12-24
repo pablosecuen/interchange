@@ -22,6 +22,7 @@ interface ModalAlumnos {
 
 export default function ModalAlumnos({ onOpenChange, isOpen, alumno }: ModalAlumnos) {
   const { cursos, isLoading, error } = useFetchCursos();
+
   const { handleGradoChange, assignGrado, selectedGrado, assignmentResult } = useAssignGrado(
     alumno,
     cursos

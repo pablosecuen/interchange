@@ -28,6 +28,9 @@ interface Props {
 const ModalEnvioExamen: React.FC<Props> = ({ isOpen, onOpenChange, examen }) => {
   const { users, isLoading, error } = useFetchUsers();
   const [selectedUser, setSelectedUser] = useState<User | undefined>(undefined);
+
+  console.log(selectedUser);
+
   if (isLoading) {
     return (
       <div className="w-full h-full flex justify-center items-center">
@@ -40,8 +43,7 @@ const ModalEnvioExamen: React.FC<Props> = ({ isOpen, onOpenChange, examen }) => 
     return <div>Error: {error}</div>;
   }
 
-  const handleSelectUser = async (user: User) => {
-    setSelectedUser(user);
+  const handleSendExam = async (selectedUser: any) => {
     try {
       // Lógica para enviar el examen al usuario seleccionado
       const response = await fetch(`http://localhost:3001/api/examen/enviar-examen`, {
@@ -50,8 +52,8 @@ const ModalEnvioExamen: React.FC<Props> = ({ isOpen, onOpenChange, examen }) => 
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          userId: user.ID,
-          examenId: examen.ID,
+          userID: selectedUser.ID,
+          examenID: examen.ID,
         }),
       });
 
@@ -112,8 +114,7 @@ const ModalEnvioExamen: React.FC<Props> = ({ isOpen, onOpenChange, examen }) => 
                           variant="light"
                           onClick={() => {
                             // Lógica para seleccionar el usuario y cerrar el modal
-                            handleSelectUser;
-                            onClose();
+                            setSelectedUser(user), handleSendExam(selectedUser);
                           }}
                           className="max-h-[80vh] overflow-y-auto"
                         >

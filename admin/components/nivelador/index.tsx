@@ -22,7 +22,7 @@ import Image from "next/image";
 const Nivelador = () => {
   const { completedExams, loadingResult, errorResult } = useGetCompletedExams();
   const { examenes, loading, error } = useGetExams();
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
   const {
     isOpen: isOpenResult,
     onOpen: onOpenResult,
@@ -45,7 +45,7 @@ const Nivelador = () => {
     onOpenChangeResult();
   };
 
-  if (loading) {
+  if (loadingResult) {
     return (
       <div className="w-full h-full flex justify-center items-center">
         <Image src={spinner} alt="Cargando..." />
@@ -55,9 +55,6 @@ const Nivelador = () => {
 
   if (error) {
     return <div>Error: {error}</div>;
-  }
-  if (loadingResult) {
-    return <div>Cargando...</div>;
   }
 
   if (errorResult) {
@@ -94,7 +91,7 @@ const Nivelador = () => {
               input: "w-full",
               mainWrapper: "w-full",
             }}
-            placeholder="Search users"
+            placeholder="Search examen"
           />
           <SettingsIcon />
           <TrashIcon />
