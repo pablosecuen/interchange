@@ -13,7 +13,10 @@ const LoadingError: React.FC<LoadingErrorProps> = ({ isLoading, error }) => {
       {isLoading ? (
         <Image src={spinner} alt="Cargando..." width={0} height={0} />
       ) : error ? (
-        <p>Error al cargar usuarios: {typeof error === "string" ? error : "Error desconocido"}</p>
+        <p>
+          Error al cargar recursos del servidor{" "}
+          {typeof error === "string" ? error : "Error desconocido"}
+        </p>
       ) : null}
     </div>
   );

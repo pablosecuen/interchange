@@ -7,26 +7,27 @@ const useGetExams = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
+
   useEffect(() => {
     const obtenerExamenes = async () => {
       try {
         const response = await fetch('http://localhost:3001/api/examen');
         if (!response.ok) {
-          toast.error('Hubo un problema al obtener los exámenes.')
+          toast.error('Hubo un problema al obtener los exámenes.');
           throw new Error('Hubo un problema al obtener los exámenes.');
+        } else {
+          toast.success('Examenes cargados exitosamente');
         }
-        if(response.ok){
-          toast.success('Examenes cargados exitosamente')
-        }
+        
         const data = await response.json();
         setExamenes(data.examenes);
         setLoading(false);
-      } catch (error:any) {
+      } catch (error: any) {
         setError(error.message);
         setLoading(false);
       }
     };
-
+  
     obtenerExamenes();
   }, []);
 

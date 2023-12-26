@@ -23,6 +23,7 @@ function useGetCompletedExams() {
   const [completedExams, setCompletedExams] = useState<ExamResults[]>([]);
   const [loadingResult, setLoading] = useState(true);
   const [errorResult, setError] = useState(null);
+  
 
   useEffect(() => {
     async function fetchCompletedExams() {
@@ -30,11 +31,9 @@ function useGetCompletedExams() {
         const response = await fetch("http://localhost:3001/api/examen-completado");
         if (!response.ok) {
           throw new Error(`Error ${response.status}: ${response.statusText}`);
-        }
-        if(response.ok){
-          toast.success("Exámenes completados obtenidos con éxito")
-        }
-    
+        } else { 
+             toast.success("Exámenes completados obtenidos con éxito")}
+
         const data = await response.json();
         const completedExamsWithDetails = await Promise.all(
           data.examenes.map(async (completedExam:any) => {
@@ -57,6 +56,7 @@ function useGetCompletedExams() {
       } catch (error:any) {
         setError(error.message || "Hubo un error al obtener los exámenes completados");
         setLoading(false);
+        toast.error("Error completados obtenidos con éxito")
       }
     }
     
