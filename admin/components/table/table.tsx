@@ -15,8 +15,6 @@ import useFetchUsers from "../hooks/useFetchUsers";
 import ModalCuotas from "../modal/modal-cuotas";
 import ModalAlumnos from "../modal/modal-alumnos";
 import { Toaster } from "sonner";
-import Image from "next/image";
-import spinner from "../../public/spinner/Spinner.gif";
 import LoadingError from "../loadingerror";
 
 export const TableWrapper = () => {
@@ -42,7 +40,7 @@ export const TableWrapper = () => {
 
   if (isLoading || error) {
     return (
-      <LoadingError isLoading={isLoading} error={error} /> // Renderizar el componente LoadingError
+      <LoadingError isLoading={isLoading} error={error} />
     );
   }
 
