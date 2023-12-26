@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import useExamCreation from "../hooks/useExamCreation";
 import { Toaster } from "sonner";
+import LoadingError from "../loading-error";
 
 export interface Exam {
   ID?: string;
@@ -79,45 +80,50 @@ const CrearExamen = () => {
   return (
     <div className="w-full h-full border">
       <Toaster richColors position="top-center" />
-      <form>
-        {exam.preguntas.map((pregunta, index) => (
-          <div className="pregunta" key={`pregunta-${index}`}>
-            <label htmlFor={`pregunta-${index}-text`}>Pregunta:</label>
-            <input
-              type="text"
-              id={`pregunta-${index}-text`}
-              value={pregunta.enunciado}
-              onChange={(e) => handleExamChange(index, "enunciado", e.target.value)}
-              className="bg-transparent border-b"
-            />
-            <br />
-            {pregunta.respuestas.map((respuesta, respIndex) => (
-              <div className="respuesta" key={`respuesta-${index}-${respIndex}`}>
-                <label htmlFor={`respuesta-${index}-${respIndex}-text`}>Respuesta:</label>
-                <input
-                  type="text"
-                  id={`respuesta-${index}-${respIndex}-text`}
-                  value={respuesta}
-                  onChange={(e) => handleExamChange(index, "respuesta", e.target.value, respIndex)}
-                  className="bg-transparent border-b"
-                />
-                <input
-                  type="checkbox"
-                  id={`respuesta-${index}-${respIndex}-correcta`}
-                  checked={checkedRespuestas[index][respIndex]}
-                  onChange={(e) => handleCheckBoxChange(index, respIndex, e.target.checked)}
-                />
-              </div>
-            ))}
-            <button type="button" onClick={(e) => agregarRespuesta(index, e)}>
-              + Agregar Respuesta
-            </button>
-          </div>
-        ))}
-        <button type="button" onClick={(e) => agregarPregunta(e)}>
-          + Agregar Pregunta
-        </button>
-      </form>
+      <LoadingError isLoading={loading} error={error} />
+      {!loading && !error && (
+        <form>
+          {exam.preguntas.map((pregunta, index) => (
+            <div className="pregunta" key={`pregunta-${index}`}>
+              <label htmlFor={`pregunta-${index}-text`}>Pregunta:</label>
+              <input
+                type="text"
+                id={`pregunta-${index}-text`}
+                value={pregunta.enunciado}
+                onChange={(e) => handleExamChange(index, "enunciado", e.target.value)}
+                className="bg-transparent border-b"
+              />
+              <br />
+              {pregunta.respuestas.map((respuesta, respIndex) => (
+                <div className="respuesta" key={`respuesta-${index}-${respIndex}`}>
+                  <label htmlFor={`respuesta-${index}-${respIndex}-text`}>Respuesta:</label>
+                  <input
+                    type="text"
+                    id={`respuesta-${index}-${respIndex}-text`}
+                    value={respuesta}
+                    onChange={(e) =>
+                      handleExamChange(index, "respuesta", e.target.value, respIndex)
+                    }
+                    className="bg-transparent border-b"
+                  />
+                  <input
+                    type="checkbox"
+                    id={`respuesta-${index}-${respIndex}-correcta`}
+                    checked={checkedRespuestas[index][respIndex]}
+                    onChange={(e) => handleCheckBoxChange(index, respIndex, e.target.checked)}
+                  />
+                </div>
+              ))}
+              <button type="button" onClick={(e) => agregarRespuesta(index, e)}>
+                + Agregar Respuesta
+              </button>
+            </div>
+          ))}
+          <button type="button" onClick={(e) => agregarPregunta(e)}>
+            + Agregar Pregunta
+          </button>
+        </form>
+      )}
     </div>
   );
 };

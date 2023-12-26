@@ -17,6 +17,7 @@ import ModalAlumnos from "../modal/modal-alumnos";
 import { Toaster } from "sonner";
 import Image from "next/image";
 import spinner from "../../public/spinner/Spinner.gif";
+import LoadingError from "../loading-error";
 
 export const TableWrapper = () => {
   const { users, isLoading, error } = useFetchUsers();
@@ -39,17 +40,10 @@ export const TableWrapper = () => {
     onOpenAlumnos();
   };
 
-  if (isLoading) {
+  if (isLoading || error) {
     return (
-      <div className="w-full h-full flex justify-center items-center">
-        <Image src={spinner} alt="Cargando..." />
-      </div>
+      <LoadingError isLoading={isLoading} error={error} /> // Renderizar el componente LoadingError
     );
-  }
-
-  if (error) {
-    const errorMessage = typeof error === "string" ? error : "Error desconocido";
-    return <p>Error al cargar usuarios: {errorMessage}</p>;
   }
 
   return (

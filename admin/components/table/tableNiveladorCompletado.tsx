@@ -19,16 +19,7 @@ interface TableWrapperExamsProps {
 export const TableWrapperExamsCompleted = ({
   mostrarDetalleExamenResultado,
 }: TableWrapperExamsProps) => {
-  const { completedExams, loadingResult, errorResult } = useGetCompletedExams();
-
-  if (loadingResult) {
-    return <p>Cargando cursos...</p>;
-  }
-
-  if (errorResult) {
-    const errorMessage = typeof errorResult === "string" ? errorResult : "Error desconocido";
-    return <p>Error al cargar cursos: {errorMessage}</p>;
-  }
+  const { completedExams } = useGetCompletedExams();
 
   return (
     <div className=" w-full flex flex-col gap-4">

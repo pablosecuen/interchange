@@ -12,6 +12,7 @@ import { TableWrapperModalCurso } from "../table/tablemodalcursos";
 import useFetchUsuariosByCursos from "../hooks/useFetchUsuariosByCursos";
 import Image from "next/image";
 import spinner from "./../../public/spinner/Spinner.gif";
+import LoadingError from "../loading-error";
 
 interface Props {
   isOpen: boolean;
@@ -57,7 +58,8 @@ const ModalCurso = ({ isOpen, onOpenChange, curso }: Props) => {
             <ModalHeader className="flex flex-col gap-1">Resumen</ModalHeader>
 
             <ModalBody>
-              <TableWrapperModalCurso users={usuarios} />
+              <LoadingError isLoading={loading} error={error} />
+              {!loading && !error && <TableWrapperModalCurso users={usuarios} />}
             </ModalBody>
             <ModalFooter>
               <Button color="danger" variant="light" onPress={onClose}>

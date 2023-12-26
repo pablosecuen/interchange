@@ -16,6 +16,7 @@ import { useState } from "react";
 import ModalCurso from "../modal/modal-cursos";
 import Image from "next/image";
 import spinner from "../../public/spinner/Spinner.gif";
+import LoadingError from "../loading-error";
 
 export const TableWrapper = () => {
   const { cursos: Cursos, isLoading, error } = useFetchCursos();
@@ -27,17 +28,8 @@ export const TableWrapper = () => {
     onOpenChange();
   };
 
-  if (isLoading) {
-    return (
-      <div className="w-full h-full flex justify-center items-center">
-        <Image src={spinner} alt="Cargando..." />
-      </div>
-    );
-  }
-
-  if (error) {
-    const errorMessage = typeof error === "string" ? error : "Error desconocido";
-    return <p>Error al cargar cursos: {errorMessage}</p>;
+  if (isLoading || error) {
+    return <LoadingError isLoading={isLoading} error={error} />;
   }
 
   return (

@@ -13,7 +13,7 @@ const useFetchCursos = () => {
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [sucess, setSucess] = useState<any>();
-console.log(sucess);
+
 
   useEffect(() => {
     const fetchCursos = async () => {
@@ -24,7 +24,7 @@ console.log(sucess);
           toast.error('Error al cargar los cursos');
         } 
         if (response.ok && response.status === 202 || response.status===200) {
-
+          toast.success('Cursos listados exitosamente');
         }
         const data = await response.json();
         // Obtener los pagos asociados a cada curso

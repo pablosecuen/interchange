@@ -13,6 +13,7 @@ import useAssignGrado from "../hooks/useAsignGrado";
 import useSendEmailCurso from "../hooks/useSendEmailCurso ";
 import Image from "next/image";
 import spinner from "../../public/spinner/Spinner.gif";
+import LoadingError from "../loading-error";
 
 interface ModalAlumnos {
   onOpenChange: (value: boolean) => void;
@@ -33,19 +34,6 @@ export default function ModalAlumnos({ onOpenChange, isOpen, alumno }: ModalAlum
   //no borrar el hook de la linea 29 aunque no este siendo llamado, se ejectuta automaticamente
 
   const propiedadesMostrar = ["Nombre", "Apellido", "Email", "Tipo"];
-
-  if (isLoading) {
-    return (
-      <div className="w-full h-full flex justify-center items-center">
-        <Image src={spinner} alt="Cargando..." />
-      </div>
-    );
-  }
-
-  if (error) {
-    const errorMessage = typeof error === "string" ? error : "Error desconocido";
-    return <p>Error al cargar usuarios: {errorMessage}</p>;
-  }
 
   const renderSelect = () => {
     if (!alumno || !alumno.Grado || alumno.Grado.length === 0) {
@@ -124,6 +112,7 @@ export default function ModalAlumnos({ onOpenChange, isOpen, alumno }: ModalAlum
                   </li>
                 ))}
               </div>
+              <LoadingError isLoading={isLoading} error={error} />
               <div>
                 {/* Aquí renderizas el resto de tu contenido */}
                 {renderSelect()}

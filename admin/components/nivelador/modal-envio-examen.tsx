@@ -18,6 +18,7 @@ import useFetchUsers, { User } from "../hooks/useFetchUsers";
 import { Toaster, toast } from "sonner";
 import Image from "next/image";
 import spinner from "../../public/spinner/Spinner.gif";
+import LoadingError from "../loading-error";
 interface Props {
   isOpen: boolean;
   onOpenChange: (value: boolean) => void;
@@ -28,20 +29,6 @@ interface Props {
 const ModalEnvioExamen: React.FC<Props> = ({ isOpen, onOpenChange, examen }) => {
   const { users, isLoading, error } = useFetchUsers();
   const [selectedUser, setSelectedUser] = useState<User | undefined>(undefined);
-
-  console.log(selectedUser);
-
-  if (isLoading) {
-    return (
-      <div className="w-full h-full flex justify-center items-center">
-        <Image src={spinner} alt="Cargando..." />
-      </div>
-    );
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
 
   const handleSendExam = async (selectedUser: any) => {
     try {
@@ -71,6 +58,35 @@ const ModalEnvioExamen: React.FC<Props> = ({ isOpen, onOpenChange, examen }) => 
       // Aquí puedes manejar el error de manera apropiada, mostrar un mensaje al usuario, etc.
     }
   };
+
+  const handleUserSelection = (user: User) => {
+    setSelectedUser(user);
+    handleSendExam(user);
+  };
+
+  if (isLoading || error) {
+    return (
+      <Modal
+        backdrop="opaque"
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        size="2xl"
+        radius="lg"
+        classNames={{
+          body: "py-6 max-h-[80vh] overflow-y-auto",
+          backdrop: "bg-[#292f46]/50 backdrop-opacity-40",
+          base: "border-[#292f46] bg-[#19172c] dark:bg-[#19172c] text-[#a8b0d3] ",
+          header: "border-b-[1px] border-[#292f46] ",
+          footer: "border-t-[1px] border-[#292f46] ",
+          closeButton: "hover:bg-white/5 active:bg-white/10 ",
+        }}
+      >
+        <ModalContent>
+          <LoadingError isLoading={isLoading} error={error} />
+        </ModalContent>
+      </Modal>
+    );
+  }
 
   return (
     <Modal
@@ -112,10 +128,7 @@ const ModalEnvioExamen: React.FC<Props> = ({ isOpen, onOpenChange, examen }) => 
                           size="sm"
                           color="success"
                           variant="light"
-                          onClick={() => {
-                            // Lógica para seleccionar el usuario y cerrar el modal
-                            setSelectedUser(user), handleSendExam(selectedUser);
-                          }}
+                          onClick={() => handleUserSelection(user)}
                           className="max-h-[80vh] overflow-y-auto"
                         >
                           Enviar
