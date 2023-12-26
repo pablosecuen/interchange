@@ -12,7 +12,7 @@ import { TableWrapperModalCurso } from "../table/tablemodalcursos";
 import useFetchUsuariosByCursos from "../hooks/useFetchUsuariosByCursos";
 import Image from "next/image";
 import spinner from "./../../public/spinner/Spinner.gif";
-import LoadingError from "../loading-error";
+import LoadingError from "../loadingerror";
 
 interface Props {
   isOpen: boolean;

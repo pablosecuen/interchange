@@ -16,7 +16,7 @@ import { useState } from "react";
 import ModalCurso from "../modal/modal-cursos";
 import Image from "next/image";
 import spinner from "../../public/spinner/Spinner.gif";
-import LoadingError from "../loading-error";
+import LoadingError from "../loadingerror";
 
 export const TableWrapper = () => {
   const { cursos: Cursos, isLoading, error } = useFetchCursos();

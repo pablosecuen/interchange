@@ -18,7 +18,7 @@ import { TableWrapperExams } from "../table/tableNivelador";
 import { TableWrapperExamsCompleted } from "../table/tableNiveladorCompletado";
 import spinner from "../../public/spinner/Spinner.gif";
 import Image from "next/image";
-import LoadingError from "../loading-error";
+import LoadingError from "../loadingerror";
 
 const Nivelador = () => {
   const { completedExams, loadingResult, errorResult } = useGetCompletedExams();

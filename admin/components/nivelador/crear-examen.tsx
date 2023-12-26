@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import useExamCreation from "../hooks/useExamCreation";
 import { Toaster } from "sonner";
-import LoadingError from "../loading-error";
+import LoadingError from "../loadingerror";
 
 export interface Exam {
   ID?: string;

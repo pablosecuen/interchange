@@ -17,7 +17,7 @@ import ModalAlumnos from "../modal/modal-alumnos";
 import { Toaster } from "sonner";
 import Image from "next/image";
 import spinner from "../../public/spinner/Spinner.gif";
-import LoadingError from "../loading-error";
+import LoadingError from "../loadingerror";
 
 export const TableWrapper = () => {
   const { users, isLoading, error } = useFetchUsers();
