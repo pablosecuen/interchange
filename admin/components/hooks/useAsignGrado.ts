@@ -15,7 +15,7 @@ const useAssignGrado = (alumno:any, cursos:any) => {
   const assignGrado = async () => {
     try {
       if (!selectedGrado) {
-        console.error("Por favor, selecciona un grado");
+        toast.error("Por favor, selecciona un grado");
         return;
       }
 

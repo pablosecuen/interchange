@@ -24,6 +24,7 @@ const validateGradoData = (req, res, next) => {
 
 const handleGradosFilters = async (req, res, next) => {
   const {
+    ID,
     Grado_Nombre,
     Grado_Categoria,
     PrecioInscripcion,
@@ -35,6 +36,10 @@ const handleGradosFilters = async (req, res, next) => {
   } = req.query;
 
   let filtros = {};
+
+  if (ID) {
+    filtros.ID = ID;
+  }
 
   if (Grado_Nombre) {
     filtros.Grado_Nombre = Grado_Nombre;

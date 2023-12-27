@@ -19,10 +19,10 @@ import Logo from "@/app/components/logo";
 
 const Nosotros = () => {
   return (
-    <div className=" overflow-x-hidden mt-16">
+    <div className=" overflow-x-hidden ">
       <div className="flex flex-col  items-center ">
-        <section className="w-full min-h-[80vh] max-w-7xl  relative mb-80 md:mb-0">
-          <div className="w-full h-[80vh] flex flex-col md:flex-row">
+        <section className="w-full min-h-[100vh] max-w-7xl  relative mb-80 md:mb-0">
+          <div className="w-full h-[100vh] flex flex-col md:flex-row">
             <div className="md:w-1/2 w-full flex flex-col items-start justify-center  order-1">
               {" "}
               <span className="font-bold text-3xl pt-16 md:pt-0 text-start  w-auto md:w-[650px] pb-4 md:pb-10 relative font-laila">
@@ -43,7 +43,7 @@ const Nosotros = () => {
                   INTERCHANGE
                 </p>
                 <div className=" font-laila  hidden md:flex">
-                  <div className="md:text-3xl perspective-container h-auto md:w-32 w-24  flex justify-center items-center relative ml-4  my-6">
+                  <div className="md:text-3xl perspective-container h-auto md:w-32 w-24  flex justify-center items-center relative ml-4  my-12">
                     <div className="bg-violet-700 rounded-md perspective-element py-1 px-6 text-white  h-10 w-60  absolute"></div>
                     <span className="w-auto absolute text-white ml-20  my-1">Interchange</span>
                   </div>
@@ -53,7 +53,7 @@ const Nosotros = () => {
               <div className="w-4 h-4 rounded-full bg-custom-yellow  absolute bottom-32 left-28"></div>
               <div className="w-3 h-3 rounded-full bg-custom-green  absolute bottom-48 left-12"></div>
             </div>
-            <div className="md:w-1/2 w-full md:h-[80vh]  order-2  relative mt-20 md:mt-0">
+            <div className="md:w-1/2 w-full md:h-[100vh]  order-2  relative mt-20 md:mt-0">
               <Image
                 src={group}
                 alt="group"

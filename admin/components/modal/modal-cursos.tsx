@@ -23,6 +23,7 @@ interface Props {
 const ModalCurso = ({ isOpen, onOpenChange, curso }: Props) => {
   const { usuarios, loading, error } = useFetchUsuariosByCursos(isOpen, curso);
 
+
   if (loading) {
     return (
       <div className="w-full h-full flex justify-center items-center">

@@ -46,6 +46,7 @@ const getAllUsuariosController = async (req, res) => {
 const patchUsuarioController = async (req, res) => {
   const { id } = req.params;
   const { Grado_ID, Grado_Nombre, Grado_Categoria } = req.body;
+  console.log(req.params, req.body);
 
   try {
     const user = await Usuario.findByPk(id);

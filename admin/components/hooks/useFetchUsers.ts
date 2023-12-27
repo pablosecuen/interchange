@@ -25,6 +25,7 @@ useEffect(() => {
         throw new Error('Error al cargar los usuarios');
       }
       const data = await response.json();
+console.log(data);
 
       const usersWithGradesAndPayments = await Promise.all(
         data.map(async (user: User) => {

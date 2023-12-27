@@ -90,5 +90,4 @@ sequelize.sync({ force: true }).then(() => {
   app.listen(PORT, () => {
     console.log(`Servidor corriendo en el puerto ${PORT}`);
   });
-});
- */
+}); */

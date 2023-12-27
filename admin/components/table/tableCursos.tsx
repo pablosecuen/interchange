@@ -23,6 +23,7 @@ export const TableWrapper = () => {
   const [selectedCurso, setSelectedCurso] = useState(null);
   const { isOpen, onOpenChange } = useDisclosure();
 
+
   const handleSelectCurso = (curso: any) => {
     setSelectedCurso(curso);
     onOpenChange();
