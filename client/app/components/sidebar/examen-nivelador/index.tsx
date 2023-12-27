@@ -1,79 +1,48 @@
+/* eslint-disable */
 import useGetNivelationExam from "@/app/hooks/useNivelationExams";
-import useSaveExamsResults from "@/app/hooks/useSaveExamsResults";
 import { useState } from "react";
+import ExamenPage from "./components/examen-page";
 
 function ExamenNivelador() {
   const { loggedInUser, examsAssociated } = useGetNivelationExam();
-  const [selectedAnswers, setSelectedAnswers] = useState<{ [key: string]: string }>({});
-  const { saveExamResults, loading } = useSaveExamsResults();
+  const [selectedExamId, setSelectedExamId] = useState(null);
 
-  const handleAnswerSelection = (e: React.ChangeEvent<HTMLInputElement>, questionIndex: number) => {
-    const { value } = e.target;
-    setSelectedAnswers({
-      ...selectedAnswers,
-      [questionIndex]: value,
-    });
+  const handleExamClick = (examId: any) => {
+    setSelectedExamId(examId);
   };
 
-  const handleClickSave = async () => {
-    await saveExamResults(loggedInUser, examsAssociated, selectedAnswers);
-  };
-
-  const renderQuestions = () => {
-    return examsAssociated.map((exam, index) => (
-      <div key={index} className="w-full">
-        <h3 className="text-center text-2xl font-bold tracking-widest py-8 capitalize">
-          {exam.titulo}
-        </h3>
-        <div className="w-full flex flex-wrap gap-10 justify-center">
-          {exam.preguntas.map((question, qIndex) => (
-            <div key={qIndex} className="border-4 rounded-3xl p-4 relative">
-              <span className="absolute right-3 top-2 border rounded-full px-2">{qIndex}</span>
-              <p className="font-bold text-center mt-6">{question.enunciado}</p>
-              <ul className="grid grid-cols-2 gap-2 mt-4">
-                {question.respuestas.map((answer, aIndex) => (
-                  <li key={aIndex} className="flex items-center">
-                    <input
-                      type="checkbox"
-                      value={answer}
-                      id={`answer_${qIndex}_${aIndex}`}
-                      onChange={(e) => handleAnswerSelection(e, qIndex)}
-                      checked={selectedAnswers[qIndex] === answer}
-                      className="mr-2"
-                    />
-                    <label htmlFor={`answer_${qIndex}_${aIndex}`}>{answer}</label>
-                  </li>
-                ))}
-              </ul>
-              <div className="w-full text-center py-4">
-                {" "}
-                <span className="font-bold">
-                  {selectedAnswers[qIndex] || "Ninguna seleccionada"}
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
+  const renderExamTable = () => {
+    return (
+      <div className="min-h-[90vh] w-full mt-20 flex justify-center items-center relative">
+        {loggedInUser && examsAssociated.length > 0 ? (
+          <table className="w-full md:m-20 md-2 ">
+            <thead className="w-auto bg-gray-200">
+              <tr className="grid grid-cols-2 font-bold text-xl tracking-widest">
+                <th className=" border h-14 flex items-center justify-center">Titulo</th>
+                <th className=" border h-14 flex items-center justify-center">Acción</th>
+              </tr>
+            </thead>
+            <tbody>
+              {examsAssociated.map((exam) => (
+                <tr key={exam.ID} className="grid grid-cols-2">
+                  <td className=" border h-14 flex items-center justify-center"> {exam.titulo}</td>
+                  <td className=" border h-14 flex items-center justify-center">
+                    <button className="yellow-btn" onClick={() => handleExamClick(exam.ID)}>
+                      Rendir
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <p className="text-3xl">Cargando...</p>
+        )}
       </div>
-    ));
+    );
   };
 
-  return (
-    <div className="animate-fade  min-h-[90vh] w-full mt-20 flex justify-center items-center relative">
-      {loggedInUser && examsAssociated.length > 0 ? (
-        renderQuestions()
-      ) : (
-        <p className="text-3xl">Cargando...</p>
-      )}
-      <button
-        onClick={handleClickSave}
-        disabled={loading}
-        className="absolute bottom-6 right-1/2 translate-x-1/2 yellow-btn"
-      >
-        Guardar resultados
-      </button>
-    </div>
-  );
+  return <>{selectedExamId ? <ExamenPage examId={selectedExamId} /> : renderExamTable()}</>;
 }
 
 export default ExamenNivelador;

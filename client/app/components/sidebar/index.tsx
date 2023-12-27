@@ -6,7 +6,6 @@ import useGetNivelationExam from "@/app/hooks/useNivelationExams";
 import { HomeIcon } from "../icons/sidebar/home-icon";
 import { DevIcon } from "../icons/sidebar/dev-icon";
 import { ViewIcon } from "../icons/sidebar/view-icon";
-import { SettingsIcon } from "../icons/sidebar/settings-icon";
 import ExamenNivelador from "./examen-nivelador";
 import Notas from "./notas";
 import Contenido from "./contenido";
@@ -26,6 +25,7 @@ const Sidebar: React.FC = () => {
     if (section !== selectedMenuItem) {
       setSelectedMenuItem(section);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [section]);
 
   const handleMenuItemClick = (itemId: MenuItem) => {

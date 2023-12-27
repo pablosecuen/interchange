@@ -1,3 +1,4 @@
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
 
@@ -15,6 +16,7 @@ export interface ExamResults {
 }
 
 function useSaveExamsResults() {
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
 
   const guardarResultadosExamen = async (data: ExamResults) => {
@@ -51,7 +53,7 @@ function useSaveExamsResults() {
     try {
       const preguntasYRespuestas = questions.map((question: any, index: number) => ({
         enunciado: question.enunciado,
-        respuestaUsuario: selectedAnswers[index] || "", // Respuesta del usuario o cadena vacía si no respondió
+        respuestaUsuario: selectedAnswers[index] || "",
         respuestaCorrecta: question.respuestaCorrecta,
       }));
 
@@ -66,6 +68,7 @@ function useSaveExamsResults() {
 
       await guardarResultadosExamen(data);
       toast.success("Resultados del examen guardados exitosamente");
+      router.push("campus?section=");
     } catch (error) {
       toast.error("Error al guardar los resultados del examen");
       console.error("Error al guardar los resultados del examen:", error);
