@@ -14,11 +14,10 @@ import {
   TableRow,
 } from "@nextui-org/react";
 import { Exam } from "./crear-examen";
-import useFetchUsers, { User } from "../hooks/useFetchUsers";
 import { Toaster, toast } from "sonner";
-import Image from "next/image";
-import spinner from "../../public/spinner/Spinner.gif";
-import LoadingError from "../loadingerror";
+import useFetchUsers, { User } from "../../hooks/useFetchUsers";
+import LoadingError from "../../loadingerror";
+
 interface Props {
   isOpen: boolean;
   onOpenChange: (value: boolean) => void;

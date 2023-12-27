@@ -1,5 +1,5 @@
 import React from "react";
-import { Cursos } from "../components/cursos";
+import { Cursos } from "../components/(...)/cursos";
 
 const cursos = () => {
   return <Cursos />;

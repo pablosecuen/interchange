@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { Exam } from '../nivelador/crear-examen';
+
 import {  toast } from "sonner";
+import { Exam } from '../(...)/nivelador/crear-examen';
  // Asegúrate de importar los tipos correctos
 
 const useExamCreation = () => {

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import { Exam } from '../nivelador/crear-examen';
+
 import { toast } from 'sonner';
+import { Exam } from '../(...)/nivelador/crear-examen';
 
 const useGetExams = () => {
   const [examenes, setExamenes] = useState<Exam[]>([]);

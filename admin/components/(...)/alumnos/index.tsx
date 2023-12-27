@@ -1,16 +1,17 @@
 import { Button, Input } from "@nextui-org/react";
 import Link from "next/link";
 import React from "react";
-import { DotsIcon } from "../icons/accounts/dots-icon";
-import { ExportIcon } from "../icons/accounts/export-icon";
-import { InfoIcon } from "../icons/accounts/info-icon";
-import { TrashIcon } from "../icons/accounts/trash-icon";
-import { HouseIcon } from "../icons/breadcrumb/house-icon";
-import { UsersIcon } from "../icons/breadcrumb/users-icon";
-import { SettingsIcon } from "../icons/sidebar/settings-icon";
-import { TableWrapper } from "../table/tableCursos";
+import { DotsIcon } from "../../icons/accounts/dots-icon";
+import { ExportIcon } from "../../icons/accounts/export-icon";
+import { InfoIcon } from "../../icons/accounts/info-icon";
+import { TrashIcon } from "../../icons/accounts/trash-icon";
+import { HouseIcon } from "../../icons/breadcrumb/house-icon";
+import { UsersIcon } from "../../icons/breadcrumb/users-icon";
+import { SettingsIcon } from "../../icons/sidebar/settings-icon";
+import { TableWrapper } from "../../table/table";
+import { AddUser } from "./add-user";
 
-export const Cursos = () => {
+export const Alumnos = () => {
   return (
     <div className="my-14 max-w-[95rem] mx-auto w-full flex flex-col gap-4">
       <ul className="flex">
@@ -24,7 +25,7 @@ export const Cursos = () => {
 
         <li className="flex gap-2">
           <UsersIcon />
-          <span>Cursos</span>
+          <span>Alumnos</span>
           <span> / </span>{" "}
         </li>
         <li className="flex gap-2">
@@ -32,7 +33,7 @@ export const Cursos = () => {
         </li>
       </ul>
 
-      <h3 className="text-xl font-semibold">Todos los Cursos</h3>
+      <h3 className="text-xl font-semibold">Todos los Alumnos</h3>
       <div className="flex justify-between flex-wrap gap-4 items-center">
         <div className="flex items-center gap-3 flex-wrap md:flex-nowrap">
           <Input
@@ -40,7 +41,7 @@ export const Cursos = () => {
               input: "w-full",
               mainWrapper: "w-full",
             }}
-            placeholder="Search cursos"
+            placeholder="Search alumnos"
           />
           <SettingsIcon />
           <TrashIcon />
@@ -48,7 +49,7 @@ export const Cursos = () => {
           <DotsIcon />
         </div>
         <div className="flex flex-row gap-3.5 flex-wrap">
-          {/*     <AddUser /> */}
+          <AddUser />
           <Button color="primary" startContent={<ExportIcon />}>
             Exportar a Excel
           </Button>

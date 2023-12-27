@@ -7,8 +7,9 @@ import {
   ModalFooter,
   useDisclosure,
 } from "@nextui-org/react";
+import { ExamResults } from "../../hooks/useGetCompletedExams";
 
-import { ExamResults } from "../hooks/useGetCompletedExams";
+
 
 interface ExamenModalProps {
   isopen: boolean;
@@ -21,7 +22,7 @@ const ExamenModalResultados: React.FC<ExamenModalProps> = ({ isopen, examen, ope
   console.log(examen);
 
   return (
-    <>
+
       <Modal
         backdrop="opaque"
         isOpen={isopen}
@@ -85,7 +86,7 @@ const ExamenModalResultados: React.FC<ExamenModalProps> = ({ isopen, examen, ope
           )}
         </ModalContent>
       </Modal>
-    </>
+
   );
 };
 

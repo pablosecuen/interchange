@@ -1,24 +1,30 @@
 import React, { useState } from "react";
-import useGetExams from "../hooks/useGetExams";
+
 import { Button, Input, useDisclosure } from "@nextui-org/react";
 import ExamenModal from "./modal-examen";
 import { Exam } from "./crear-examen";
-import useGetCompletedExams, { ExamResults } from "../hooks/useGetCompletedExams";
+
 import ExamenModalResultados from "./moda-examen-resultados";
-import { SettingsIcon } from "../icons/sidebar/settings-icon";
-import { TrashIcon } from "../icons/accounts/trash-icon";
-import { InfoIcon } from "../icons/accounts/info-icon";
-import { DotsIcon } from "../icons/accounts/dots-icon";
-import { ExportIcon } from "../icons/accounts/export-icon";
-import { HouseIcon } from "../icons/breadcrumb/house-icon";
+
 import Link from "next/link";
-import { UsersIcon } from "../icons/breadcrumb/users-icon";
+
 import { Toaster } from "sonner";
-import { TableWrapperExams } from "../table/tableNivelador";
-import { TableWrapperExamsCompleted } from "../table/tableNiveladorCompletado";
+
 import spinner from "../../public/spinner/Spinner.gif";
 import Image from "next/image";
-import LoadingError from "../loadingerror";
+
+import useGetExams from "../../hooks/useGetExams";
+import useGetCompletedExams, { ExamResults } from "../../hooks/useGetCompletedExams";
+import { HouseIcon } from "../../icons/breadcrumb/house-icon";
+import { UsersIcon } from "../../icons/breadcrumb/users-icon";
+import { SettingsIcon } from "../../icons/sidebar/settings-icon";
+import { TrashIcon } from "../../icons/accounts/trash-icon";
+import { InfoIcon } from "../../icons/accounts/info-icon";
+import { DotsIcon } from "../../icons/accounts/dots-icon";
+import { ExportIcon } from "../../icons/accounts/export-icon";
+import LoadingError from "../../loadingerror";
+import { TableWrapperExams } from "../../table/tableNivelador";
+import { TableWrapperExamsCompleted } from "../../table/tableNiveladorCompletado";
 
 const Nivelador = () => {
   const { completedExams, loadingResult, errorResult } = useGetCompletedExams();
