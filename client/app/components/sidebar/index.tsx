@@ -12,8 +12,9 @@ import Contenido from "./contenido";
 import Consultas from "./consultas";
 import { Community } from "../icons/community";
 import { NotificationIcon } from "../icons/navbar/notificationicon";
+import CampusHome from "./home";
 
-type MenuItem = "examen" | "notas" | "contenido" | "consultas";
+type MenuItem = "home" | "examen" | "notas" | "contenido" | "consultas";
 
 const Sidebar: React.FC = () => {
   const searchParams = useSearchParams();
@@ -25,7 +26,7 @@ const Sidebar: React.FC = () => {
     if (section !== selectedMenuItem) {
       setSelectedMenuItem(section);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [section]);
 
   const handleMenuItemClick = (itemId: MenuItem) => {
@@ -53,7 +54,7 @@ const Sidebar: React.FC = () => {
   return (
     <div className="min-h-[90vh] flex justify-start items-center overflow-hidden">
       <ul className="flex flex-col justify-center gap-10 w-96 bg-slate-100 px-4 border min-h-[90vh] mt-20">
-        {renderMenuItem("Home", "", <HomeIcon />)}
+        {renderMenuItem("Home", "home", <HomeIcon />)}
         {/* ... Otros elementos del menú */}
         {userHasExams && renderMenuItem("Examen", "examen", <DevIcon />)}
         {renderMenuItem("Notas", "notas", <ViewIcon />)}
@@ -62,6 +63,7 @@ const Sidebar: React.FC = () => {
       </ul>
       <div className="w-full h-full transition-opacity duration-500 animate-fade-in">
         {/* Renderizar contenido según el item seleccionado */}
+        {selectedMenuItem === "home" && <CampusHome />}
         {selectedMenuItem === "examen" && <ExamenNivelador />}
         {selectedMenuItem === "notas" && <Notas />}
         {selectedMenuItem === "contenido" && <Contenido />}
