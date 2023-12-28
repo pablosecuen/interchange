@@ -61,9 +61,7 @@ const enviarExamenUsuario = async (req, res) => {
   }
 };
 
-module.exports = {
-  enviarExamenUsuario,
-};
+
 
 module.exports = {
   crearExamenConPreguntasYRespuestas,

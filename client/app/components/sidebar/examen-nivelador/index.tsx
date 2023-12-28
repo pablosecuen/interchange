@@ -14,7 +14,7 @@ function ExamenNivelador() {
 
   const renderExamTable = () => {
     return (
-      <div className="min-h-[90vh] w-full  flex justify-center items-center relative">
+      <div className="min-h-[90vh] w-full  flex justify-center items-center relative animate-fade">
         {loggedInUser && examsAssociated.length > 0 ? (
           <table className="w-full md:m-20 md-2 ">
             <thead className="w-auto bg-gray-200">

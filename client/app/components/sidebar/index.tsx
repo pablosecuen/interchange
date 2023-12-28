@@ -19,7 +19,7 @@ type MenuItem = "home" | "examen" | "notas" | "contenido" | "consultas";
 const Sidebar: React.FC = () => {
   const searchParams = useSearchParams();
   const section = searchParams.get("section") as MenuItem;
-  const [selectedMenuItem, setSelectedMenuItem] = useState<MenuItem>("examen");
+  const [selectedMenuItem, setSelectedMenuItem] = useState<MenuItem>("home");
   const { userHasExams } = useGetNivelationExam();
 
   useEffect(() => {
@@ -61,7 +61,7 @@ const Sidebar: React.FC = () => {
         {renderMenuItem("Contenido", "contenido", <Community />)}
         {renderMenuItem("Consultas", "consultas", <NotificationIcon />)}
       </ul>
-      <div className="w-full h-full transition-opacity duration-500 animate-fade-in">
+      <div className="w-full h-full transition-opacity duration-500 animate-fade">
         {/* Renderizar contenido según el item seleccionado */}
         {selectedMenuItem === "home" && <CampusHome />}
         {selectedMenuItem === "examen" && <ExamenNivelador />}

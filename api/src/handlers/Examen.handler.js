@@ -16,8 +16,6 @@ const obtenerTodosLosExamenesHandler = async (req, res) => {
 };
 
 const enviarExamenUsuarioHandler = async (req, res) => {
-  // Verificar errores de validación
-
   await enviarExamenUsuario(req, res);
 };
 

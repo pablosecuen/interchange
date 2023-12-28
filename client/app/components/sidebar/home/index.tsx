@@ -17,7 +17,7 @@ const CampusHome: React.FC = () => {
   }
 
   return (
-    <div className="min-h-[90vh] w-full mt-20 flex justify-center items-center relative">
+    <div className="min-h-[90vh] w-full mt-20 flex justify-center items-center relative animate-fade">
       <div className="text-center md:w-1/2 mx-2 flex flex-col items-center justify-center">
         <Logo size="2xl" />
 

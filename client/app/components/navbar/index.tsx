@@ -29,7 +29,6 @@ const Navbar = () => {
   const [user, setUser] = useState<User | null>(null);
   const [showMenu, setShowMenu] = useState(false);
   const router = useRouter();
-  console.log(user);
 
   const handleMouseEnter = () => {
     setShowMenu(true);
@@ -149,7 +148,7 @@ const Navbar = () => {
                         </li>
                       )}
                       <li className="   flex justify-evenly w-full items-center ">
-                        <Link href="/campus">
+                        <Link href="/campus?section=home">
                           <button className="yellow-btn " type="button">
                             Campus Virtual
                           </button>
