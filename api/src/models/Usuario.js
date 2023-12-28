@@ -45,7 +45,8 @@ module.exports = (sequelize) => {
       },
     },
     Anotaciones: {
-      type: DataTypes.STRING(1000), 
+      type: DataTypes.STRING(1000),
+      allowNull: true,
     },
     Tipo: {
       type: DataTypes.STRING,
