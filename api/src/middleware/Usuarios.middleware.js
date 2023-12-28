@@ -10,6 +10,7 @@ const userSchema = Joi.object({
     .pattern(/^[a-zA-Z\s]+$/)
     .required(),
   Telefono: Joi.string().required(),
+  Anotaciones: Joi.string().min(0).max(1000),
   Email: Joi.string().email().required(),
   Password: Joi.string().min(8).required(),
   Tipo: Joi.string().required(),
@@ -90,28 +91,12 @@ const validatePatchUserData = (req, res, next) => {
   next();
 };
 
-// middleware/verificarSQLMiddleware.js
-const verificarAnotacionesMiddleware = (req, res, next) => {
-  const { error } = validarAnotaciones(req.body);
 
-  if (error) {
-    return res.status(400).json({ error: error.details[0].message });
-  }
 
-  next();
-};
-
-const validarAnotaciones = (data) => {
-  const schema = Joi.object({
-    Anotaciones: Joi.string().max(1000).required(),
-  });
-
-  return schema.validate(data);
-};
 
 module.exports = {
   validateUserData,
   handleUsuariosFilters,
   validatePatchUserData,
-  verificarAnotacionesMiddleware,
+
 };

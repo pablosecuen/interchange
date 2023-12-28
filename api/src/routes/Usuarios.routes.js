@@ -15,7 +15,6 @@ const {
   handleUsuariosFilters,
   validatePatchUserData,
   validateUserData,
-  verificarAnotacionesMiddleware,
 } = require("../middleware/Usuarios.middleware");
 
 const router = express.Router();
@@ -24,9 +23,9 @@ const router = express.Router();
 router.get("/", handleUsuariosFilters, getAllUsuariosHandler);
 router.get("/:userId/examenes-asociados", getExamenesAsociadosHandler);
 router.get("/:id/", getAnotacionesHandler);
-router.post("/", validateUserData, createUserHandler);
-router.post("/:id", verificarAnotacionesMiddleware, createAnotacionesHandler);
+router.post("/", createUserHandler);
 router.post("/login", loginHanlder);
+router.post("/:id", createAnotacionesHandler);
 router.patch("/:id", patchUsuarioHandler);
 router.patch("/:id", updateAnotacionesHandler);
 router.delete("/:id", deleteUsuarioHandler);

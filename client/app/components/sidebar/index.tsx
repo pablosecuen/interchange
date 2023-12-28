@@ -52,8 +52,8 @@ const Sidebar: React.FC = () => {
   );
 
   return (
-    <div className="min-h-[90vh] flex justify-start items-center overflow-hidden">
-      <ul className="flex flex-col justify-center gap-10 w-96 bg-slate-100 px-4 border min-h-[90vh] mt-20">
+    <div className=" flex min-h-[90vh] justify-start items-center ">
+      <ul className="flex flex-col justify-center gap-10 w-96 bg-slate-100 px-4 border h-screen mt-20">
         {renderMenuItem("Home", "home", <HomeIcon />)}
         {/* ... Otros elementos del menú */}
         {userHasExams && renderMenuItem("Examen", "examen", <DevIcon />)}

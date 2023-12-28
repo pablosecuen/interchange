@@ -68,7 +68,7 @@ function useSaveExamsResults() {
 
       await guardarResultadosExamen(data);
       toast.success("Resultados del examen guardados exitosamente");
-      router.push("campus?section=");
+      router.push("campus?section=home");
     } catch (error) {
       toast.error("Error al guardar los resultados del examen");
       console.error("Error al guardar los resultados del examen:", error);
