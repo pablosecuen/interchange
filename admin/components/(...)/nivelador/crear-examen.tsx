@@ -81,7 +81,7 @@ const CrearExamen = () => {
 
   return (
     <div className="w-full h-full border">
-      <Toaster richColors position="top-center" />
+     <Toaster richColors position="top-center" expand={true} closeButton={true} />
       <LoadingError isLoading={loading} error={error} />
       {!loading && !error && (
         <form>

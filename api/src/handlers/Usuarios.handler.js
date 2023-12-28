@@ -5,7 +5,9 @@ const {
   deleteUsuarioController,
   loginController,
   getExamenesAsociadosController,
-
+  getAnotaciones,
+  createAnotaciones,
+  updateAnotaciones,
 } = require("../controllers/Usuarios.controller");
 
 const createUserHandler = (req, res) => {
@@ -31,6 +33,17 @@ const getExamenesAsociadosHandler = (req, res) => {
   getExamenesAsociadosController(req, res);
 };
 
+const getAnotacionesHandler = (req, res) => {
+  getAnotaciones(req, res);
+};
+
+const createAnotacionesHandler = (req, res) => {
+  createAnotaciones(req, res);
+};
+
+const updateAnotacionesHandler = (req, res) => {
+  updateAnotaciones(req, res);
+};
 
 module.exports = {
   createUserHandler,
@@ -39,5 +52,7 @@ module.exports = {
   deleteUsuarioHandler,
   loginHanlder,
   getExamenesAsociadosHandler,
-
+  getAnotacionesHandler,
+  createAnotacionesHandler,
+  updateAnotacionesHandler,
 };

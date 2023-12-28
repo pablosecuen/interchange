@@ -82,7 +82,7 @@ const Navbar = () => {
   }, []);
   return (
     <nav className="bg-white  fixed w-full h-16 md:h-20 z-50 top-0 start-0  text-black  tracking-wider  font-laila !font-bold">
-      <Toaster richColors position="top-center" />
+      <Toaster richColors position="top-center" expand={true} closeButton={true} />
       <div className="max-w-screen  w-screen flex items-center justify-between  md:justify-around p-2 md:p-4  ">
         <Link
           href="/"

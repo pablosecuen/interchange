@@ -11,19 +11,24 @@ import { Toaster } from "sonner";
 import { columnsExamscomletados } from "./data";
 import useGetCompletedExams from "../hooks/useGetCompletedExams";
 import { RenderCellExamCompleted } from "./render-cell-examCompleted";
+import LoadingError from "../loadingerror";
 
 interface TableWrapperExamsProps {
-  mostrarDetalleExamenResultado: (arg0: any) => void; // Reemplaza 'any' con el tipo correcto para el argumento
+  mostrarDetalleExamenResultado: (arg0: any) => void;
 }
 
 export const TableWrapperExamsCompleted = ({
   mostrarDetalleExamenResultado,
 }: TableWrapperExamsProps) => {
-  const { completedExams } = useGetCompletedExams();
+  const { loadingResult, errorResult, completedExams } = useGetCompletedExams();
+
+  if (loadingResult || errorResult) {
+    <LoadingError isLoading={loadingResult} error={errorResult} />;
+  }
 
   return (
     <div className=" w-full flex flex-col gap-4">
-      <Toaster richColors position="top-center" expand={true} />
+      <Toaster richColors position="top-center" expand={true} closeButton={true} />
       <Table aria-label="Tabla de cursos">
         <TableHeader columns={columnsExamscomletados}>
           {(column) => (

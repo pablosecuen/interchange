@@ -72,7 +72,7 @@ const Login = ({ onClose, updateUser }: LoginProps) => {
 
   return (
     <div className=" h-[100vh] flex justify-center items-center ">
-      <Toaster richColors position="top-center" />
+     <Toaster richColors position="top-center" expand={true} closeButton={true} />
       {isRegistering ? (
         <Register onClose={onClose} toggleRegister={toggleRegister} />
       ) : (

@@ -103,7 +103,7 @@ const ModalEnvioExamen: React.FC<Props> = ({ isOpen, onOpenChange, examen }) => 
         closeButton: "hover:bg-white/5 active:bg-white/10 ",
       }}
     >
-      <Toaster richColors position="top-center" />
+      <Toaster richColors position="top-center" expand={true} closeButton={true} />
       <ModalContent>
         {(onClose) => (
           <>

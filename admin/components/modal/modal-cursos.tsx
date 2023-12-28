@@ -52,7 +52,7 @@ const ModalCurso = ({ isOpen, onOpenChange, curso }: Props) => {
         closeButton: "hover:bg-white/5 active:bg-white/10",
       }}
     >
-      <Toaster richColors position="top-center" expand={true} />
+      <Toaster richColors position="top-center" expand={true} closeButton={true} />
       <ModalContent>
         {(onClose) => (
           <>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Modal,
   ModalContent,
@@ -8,12 +8,11 @@ import {
   Button,
 } from "@nextui-org/react";
 import useFetchCursos from "../hooks/useFetchCursos";
-import { Toaster } from "sonner";
+import { Toaster, toast } from "sonner";
 import useAssignGrado from "../hooks/useAsignGrado";
 import useSendEmailCurso from "../hooks/useSendEmailCurso ";
-import Image from "next/image";
-import spinner from "../../public/spinner/Spinner.gif";
 import LoadingError from "../loadingerror";
+import useAnotaciones from "../hooks/useAnotaciones";
 
 interface ModalAlumnos {
   onOpenChange: (value: boolean) => void;
@@ -23,58 +22,95 @@ interface ModalAlumnos {
 
 export default function ModalAlumnos({ onOpenChange, isOpen, alumno }: ModalAlumnos) {
   const { cursos, isLoading, error } = useFetchCursos();
-
+  const { guardarAnotaciones } = useAnotaciones();
   const { handleGradoChange, assignGrado, selectedGrado, assignmentResult } = useAssignGrado(
     alumno,
     cursos
   );
-
   //importante aunque enviarEmailCurso no esta siendo llamado, funciona con los argumentos que se le pasan al custom hook
   const { enviarEmailCurso } = useSendEmailCurso(alumno.Email, assignmentResult);
   //no borrar el hook de la linea 29 aunque no este siendo llamado, se ejectuta automaticamente
+  const [anotaciones, setAnotaciones] = React.useState("");
 
   const propiedadesMostrar = ["Nombre", "Apellido", "Email", "Tipo"];
 
+  useEffect(() => {
+    if (isOpen && alumno && alumno.Anotaciones) {
+      setAnotaciones(alumno.Anotaciones);
+    }
+  }, [isOpen, alumno]);
+
+  const handleGuardarAnotaciones = () => {
+    guardarAnotaciones(alumno.ID, anotaciones);
+  };
+
   const renderSelect = () => {
-    if (!alumno || !alumno.Grado || alumno.Grado.length === 0) {
-      return (
-        <div>
-          <p>El alumno no tiene asignado un curso. Asignar curso:</p>
-          <select value={JSON.stringify(selectedGrado)} onChange={handleGradoChange}>
-            <option value="">Seleccionar un curso</option>
-            {cursos.map((curso: any) => (
-              <option
-                key={curso.ID}
-                value={JSON.stringify({
-                  ID: curso.ID,
-                  Grado_Nombre: curso.Grado_Nombre,
-                  Grado_Categoria: curso.Grado_Categoria,
-                })}
-              >
-                {`${curso.Grado_Nombre} - ${curso.Grado_Categoria}`}
-              </option>
-            ))}
-          </select>
-
-          <Button color="success" variant="light" onPress={assignGrado}>
-            Asignar Grado
-          </Button>
+    return (
+      <div className="flex flex-col gap-4">
+        <div className="flex flex-col">
+          {alumno && alumno.Grado && alumno.Grado.length > 0 ? (
+            <>
+              <p className="font-bold">Grado asignado:</p>
+              <p>{`${alumno.Grado[0].Grado_Nombre} - ${alumno.Grado[0].Grado_Categoria}`}</p>
+              <span>Cambiar Curso asignado. </span>
+              <div className="flex justify-between">
+                <select
+                  value={JSON.stringify(selectedGrado)}
+                  onChange={handleGradoChange}
+                  className="h-8"
+                >
+                  <option value="">Seleccionar un curso</option>
+                  {cursos.map((curso: any) => (
+                    <option
+                      key={curso.ID}
+                      value={JSON.stringify({
+                        ID: curso.ID,
+                        Grado_Nombre: curso.Grado_Nombre,
+                        Grado_Categoria: curso.Grado_Categoria,
+                      })}
+                    >
+                      {`${curso.Grado_Nombre} - ${curso.Grado_Categoria}`}
+                    </option>
+                  ))}
+                </select>
+                <Button color="success" variant="light" onPress={assignGrado}>
+                  Asignar Grado
+                </Button>
+              </div>
+            </>
+          ) : (
+            <>
+              <span>El alumno no tiene asignado un curso. </span>
+              <span>Asignar curso:</span>
+              <div className="flex justify-between">
+                <select
+                  value={JSON.stringify(selectedGrado)}
+                  onChange={handleGradoChange}
+                  className="h-8"
+                >
+                  <option value="">Seleccionar un curso</option>
+                  {cursos.map((curso: any) => (
+                    <option
+                      key={curso.ID}
+                      value={JSON.stringify({
+                        ID: curso.ID,
+                        Grado_Nombre: curso.Grado_Nombre,
+                        Grado_Categoria: curso.Grado_Categoria,
+                      })}
+                    >
+                      {`${curso.Grado_Nombre} - ${curso.Grado_Categoria}`}
+                    </option>
+                  ))}
+                </select>
+                <Button color="success" variant="light" onPress={assignGrado}>
+                  Asignar Grado
+                </Button>
+              </div>
+            </>
+          )}
         </div>
-      );
-    }
-
-    const { Grado_Nombre, Grado_Categoria } = alumno.Grado[0];
-
-    if (Grado_Nombre !== null && Grado_Categoria !== null) {
-      return (
-        <div>
-          <p className="font-bold">Grado asignado:</p>
-          <p>{`${Grado_Nombre} - ${Grado_Categoria}`}</p>
-        </div>
-      );
-    }
-
-    return null;
+      </div>
+    );
   };
 
   return (
@@ -84,7 +120,7 @@ export default function ModalAlumnos({ onOpenChange, isOpen, alumno }: ModalAlum
       onOpenChange={onOpenChange}
       radius="lg"
       classNames={{
-        body: "py-6",
+        body: "py-6 max-h-[90vh] overflow-y-auto",
         backdrop: "bg-[#292f46]/50 backdrop-opacity-40",
         base: "border-[#292f46] bg-[#19172c] dark:bg-[#19172c] text-[#a8b0d3]",
         header: "border-b-[1px] border-[#292f46]",
@@ -92,7 +128,7 @@ export default function ModalAlumnos({ onOpenChange, isOpen, alumno }: ModalAlum
         closeButton: "hover:bg-white/5 active:bg-white/10",
       }}
     >
-      <Toaster richColors position="top-center" />
+     <Toaster richColors position="top-center" expand={true} closeButton={true} />
       <ModalContent>
         {(onClose) => (
           <>
@@ -113,10 +149,20 @@ export default function ModalAlumnos({ onOpenChange, isOpen, alumno }: ModalAlum
                 ))}
               </div>
               <LoadingError isLoading={isLoading} error={error} />
-              <div>
-                {/* Aquí renderizas el resto de tu contenido */}
-                {renderSelect()}
+              <div className="flex flex-col gap-4">
+                <p className="font-bold tracking-wider  underline ">Anotaciones:</p>
+                <textarea
+                  value={anotaciones}
+                  onChange={(e) => setAnotaciones(e.target.value)}
+                  rows={8}
+                  cols={40}
+                  className="p-4 bg-[#19172c] border-2 border-white/40 rounded-2xl"
+                />
+                <Button color="primary" variant="light" onPress={handleGuardarAnotaciones}>
+                  Guardar Anotaciones
+                </Button>
               </div>
+              <div>{renderSelect()}</div>
             </ModalBody>
             <ModalFooter>
               <Button color="danger" variant="light" onPress={onClose}>

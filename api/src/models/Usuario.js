@@ -44,6 +44,9 @@ module.exports = (sequelize) => {
         notEmpty: true,
       },
     },
+    Anotaciones: {
+      type: DataTypes.STRING(1000), 
+    },
     Tipo: {
       type: DataTypes.STRING,
       validate: {

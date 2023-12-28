@@ -7,11 +7,15 @@ const {
   deleteUsuarioHandler,
   loginHanlder,
   getExamenesAsociadosHandler,
+  getAnotacionesHandler,
+  createAnotacionesHandler,
+  updateAnotacionesHandler,
 } = require("../handlers/Usuarios.handler");
 const {
   handleUsuariosFilters,
   validatePatchUserData,
   validateUserData,
+  verificarAnotacionesMiddleware,
 } = require("../middleware/Usuarios.middleware");
 
 const router = express.Router();
@@ -19,9 +23,12 @@ const router = express.Router();
 // rutas para  usuarios
 router.get("/", handleUsuariosFilters, getAllUsuariosHandler);
 router.get("/:userId/examenes-asociados", getExamenesAsociadosHandler);
+router.get("/:id/", getAnotacionesHandler);
 router.post("/", validateUserData, createUserHandler);
+router.post("/:id", verificarAnotacionesMiddleware, createAnotacionesHandler);
 router.post("/login", loginHanlder);
 router.patch("/:id", patchUsuarioHandler);
+router.patch("/:id", updateAnotacionesHandler);
 router.delete("/:id", deleteUsuarioHandler);
 
 module.exports = router;

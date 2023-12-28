@@ -38,7 +38,7 @@ app.use("/api/grados", gradosRoutes);
 app.use("/api/pagos", pagosRoutes);
 app.use("/api/examen", examenRoutes);
 app.use("/api/examen-completado", examenCompletadoRoutes);
-
+app.use("/api/anotaciones", userRoutes);
 // Puerto en el que el servidor escuchará
 const PORT = process.env.PORT || 3001;
 

@@ -90,4 +90,28 @@ const validatePatchUserData = (req, res, next) => {
   next();
 };
 
-module.exports = { validateUserData, handleUsuariosFilters, validatePatchUserData };
+// middleware/verificarSQLMiddleware.js
+const verificarAnotacionesMiddleware = (req, res, next) => {
+  const { error } = validarAnotaciones(req.body);
+
+  if (error) {
+    return res.status(400).json({ error: error.details[0].message });
+  }
+
+  next();
+};
+
+const validarAnotaciones = (data) => {
+  const schema = Joi.object({
+    Anotaciones: Joi.string().max(1000).required(),
+  });
+
+  return schema.validate(data);
+};
+
+module.exports = {
+  validateUserData,
+  handleUsuariosFilters,
+  validatePatchUserData,
+  verificarAnotacionesMiddleware,
+};

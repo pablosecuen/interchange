@@ -189,6 +189,64 @@ const getExamenesAsociadosController = async (req, res) => {
   }
 };
 
+const getAnotaciones = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const usuario = await Usuario.findByPk(id);
+
+    if (!usuario) {
+      return res.status(404).json({ error: "Usuario no encontrado" });
+    }
+
+    res.status(200).json({ anotaciones: usuario.Anotaciones });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Error al obtener las anotaciones" });
+  }
+};
+
+const createAnotaciones = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { Anotaciones } = req.body;
+
+    const usuario = await Usuario.findByPk(id);
+
+    if (!usuario) {
+      return res.status(404).json({ error: "Usuario no encontrado" });
+    }
+
+    usuario.Anotaciones = Anotaciones;
+    await usuario.save();
+
+    res.status(201).json({ mensaje: "Anotaciones creadas correctamente" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Error al crear las anotaciones" });
+  }
+};
+
+const updateAnotaciones = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { Anotaciones } = req.body;
+
+    const usuario = await Usuario.findByPk(id);
+
+    if (!usuario) {
+      return res.status(404).json({ error: "Usuario no encontrado" });
+    }
+
+    usuario.Anotaciones = Anotaciones;
+    await usuario.save();
+
+    res.status(200).json({ mensaje: "Anotaciones actualizadas correctamente" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Error al actualizar las anotaciones" });
+  }
+};
+
 module.exports = {
   createUserController,
   getAllUsuariosController,
@@ -196,4 +254,7 @@ module.exports = {
   deleteUsuarioController,
   loginController,
   getExamenesAsociadosController,
+  getAnotaciones,
+  createAnotaciones,
+  updateAnotaciones,
 };

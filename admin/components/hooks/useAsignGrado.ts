@@ -1,9 +1,10 @@
+import { useRouter } from "next/router";
 import { useState } from "react";
 
 import { toast } from "sonner";
 
 const useAssignGrado = (alumno:any, cursos:any) => {
-
+const router = useRouter()
   const [selectedGrado, setSelectedGrado] = useState<any>();
   const [assignmentResult, setAssignmentResult] = useState<any>();
 
@@ -30,18 +31,13 @@ const useAssignGrado = (alumno:any, cursos:any) => {
           Grado_Categoria: selectedGrado.Grado_Categoria,
         }),
       });
-
-   
       if (!response.ok) {
         console.log(response);
         toast.error("Error al asignar el grado al alumno");
         setAssignmentResult({ success: false, message: "Error al asignar el grado al alumno" });
         return;
       }
-
-      if (response.ok) {
         const cursoEncontrado = cursos.find((curso: any) => curso.ID === selectedGrado.ID);
-
         if (cursoEncontrado) {
           const { Grado_Nombre, Grado_Categoria } = cursoEncontrado;
           const updatedGrado = {
@@ -56,7 +52,9 @@ const useAssignGrado = (alumno:any, cursos:any) => {
           console.error("No se encontró el curso con el ID seleccionado");
           setAssignmentResult({ success: false, message: "No se encontró el curso con el ID seleccionado" });
         }
-      }
+        setTimeout(() => {
+          router.reload(); 
+        }, 2000);
     } catch (error) {
       toast.error("Error al asignar el grado al alumno");
       console.error("Error al asignar el grado al alumno:", error);

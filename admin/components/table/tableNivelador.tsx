@@ -21,14 +21,13 @@ interface TableWrapperExamsProps {
 
 export const TableWrapperExams = ({ mostrarDetalleExamen }: TableWrapperExamsProps) => {
   const { examenes, loading, error } = useGetExams();
-
   if (loading || error) {
-    return <LoadingError isLoading={loading} error={error} />;
+    <LoadingError isLoading={loading} error={error} />;
   }
 
   return (
     <div className=" w-full flex flex-col gap-4">
-      <Toaster richColors position="top-center" expand={true} />
+      <Toaster richColors position="top-center" expand={true} closeButton={true} />
       <Table aria-label="Tabla de cursos">
         <TableHeader columns={columnsExams}>
           {(column) => (

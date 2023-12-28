@@ -16,9 +16,8 @@ const useGetExams = () => {
         if (!response.ok) {
           toast.error('Hubo un problema al obtener los exámenes.');
           throw new Error('Hubo un problema al obtener los exámenes.');
-        } else {
-          toast.success('Examenes cargados exitosamente');
-        }
+        } 
+        toast.success('Examenes cargados exitosamente');
         
         const data = await response.json();
         setExamenes(data.examenes);

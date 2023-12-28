@@ -27,8 +27,6 @@ import { TableWrapperExams } from "../../table/tableNivelador";
 import { TableWrapperExamsCompleted } from "../../table/tableNiveladorCompletado";
 
 const Nivelador = () => {
-  const { completedExams, loadingResult, errorResult } = useGetCompletedExams();
-  const { examenes, loading, error } = useGetExams();
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
   const {
     isOpen: isOpenResult,
@@ -54,7 +52,7 @@ const Nivelador = () => {
 
   return (
     <div className="my-14 max-w-[95rem] mx-auto w-full flex flex-col gap-4">
-      <Toaster richColors position="top-center" />
+      <Toaster richColors position="top-center" expand={true} closeButton={true} />
       <ul className="flex">
         <li className="flex gap-2">
           <HouseIcon />
@@ -97,14 +95,11 @@ const Nivelador = () => {
       </div>
       <div className="max-w-[95rem] mx-auto w-full rounded-3xl overflow-hidden">
         <div className="flex flex-col gap-4">
-          <LoadingError isLoading={loading || loadingResult} error={error || errorResult} />
-          {!loading && !error && <TableWrapperExams mostrarDetalleExamen={mostrarDetalleExamen} />}
+          <TableWrapperExams mostrarDetalleExamen={mostrarDetalleExamen} />
 
-          {!loadingResult && !errorResult && (
-            <TableWrapperExamsCompleted
-              mostrarDetalleExamenResultado={mostrarDetalleExamenResultado}
-            />
-          )}
+          <TableWrapperExamsCompleted
+            mostrarDetalleExamenResultado={mostrarDetalleExamenResultado}
+          />
         </div>
         <ExamenModal examen={examenSeleccionado} openchange={onOpenChange} isopen={isOpen} />
         <ExamenModalResultados

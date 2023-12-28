@@ -23,9 +23,9 @@ const useFetchCursos = () => {
           setSucess(response)
           toast.error('Error al cargar los cursos');
         } 
-        if (response.ok && response.status === 202 || response.status===200) {
-          toast.success('Cursos listados exitosamente');
-        }
+
+ 
+
         const data = await response.json();
         // Obtener los pagos asociados a cada curso
         const cursosConPagos = await Promise.all(
@@ -36,7 +36,7 @@ const useFetchCursos = () => {
             }
             const pagosData = await pagosResponse.json();
 
-
+      
             return {
               ...curso,
               Pagos: pagosData,
@@ -44,7 +44,7 @@ const useFetchCursos = () => {
           })
         );
 
-
+        toast.success('Cursos listados exitosamente');
         setCursos(cursosConPagos);
       } catch (error: any) {
         setError(error);

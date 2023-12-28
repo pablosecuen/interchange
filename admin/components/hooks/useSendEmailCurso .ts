@@ -11,7 +11,9 @@ const useSendEmailCurso = (alumnoEmail:any, assignmentResult:any) => {
           method: 'GET',
         });
 
-        if (response.ok) {
+      if (!response.ok){
+        toast.error('Error al enviar el correo');
+          }
           const data = await response.json();
           toast.promise(
             Promise.resolve(data),
@@ -19,11 +21,7 @@ const useSendEmailCurso = (alumnoEmail:any, assignmentResult:any) => {
               success: 'Correo enviado con éxito',
               error: 'Error al enviar el correo',
             }
-          )
-
-        } else {
-          toast.error('Error al enviar el correo');
-        }
+        )
       } catch (error) {
         toast.error('Error al enviar el correo');
       }

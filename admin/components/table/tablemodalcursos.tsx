@@ -38,7 +38,7 @@ export const TableWrapperModalCurso = ({ users }: any) => {
 
   return (
     <div className=" w-full flex flex-col gap-4">
-      <Toaster richColors position="top-center" expand={true} />
+     <Toaster richColors position="top-center" expand={true} closeButton={true} />
       <Table aria-label="Tabla de usuarios">
         <TableHeader columns={columnsModalCursosAlumnos}>
           {(column) => (
