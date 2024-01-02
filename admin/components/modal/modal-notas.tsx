@@ -82,31 +82,36 @@ const CambiarNotasModal = ({ alumno, isOpen, onOpenChange }: ModalNotasProps) =>
 
   const trimestresDisponibles = [1, 2, 3, 4];
 
-  const handleGradoChange = (value: string) => {
-    setNotasData({ ...notasData, grado: value });
-  };
-
   const handleTrimestreChange = (value: string) => {
-    const newTrimestres = [...notasData.trimestres];
+    const newTrimestre = { trimestre: parseInt(value), nota: "" };
 
-    // Verificar si no hay elementos en la lista de trimestres
-    if (newTrimestres.length === 0) {
-      // Agregar un nuevo objeto con el valor del trimestre
-      newTrimestres.push({ trimestre: parseInt(value), nota: "" });
-    } else {
-      // Si hay elementos, actualizar el último elemento
-      const lastIndex = newTrimestres.length - 1;
-      newTrimestres[lastIndex].trimestre = parseInt(value);
+    const existingTrimestreIndex = notasData.trimestres.findIndex(
+      (trimestre) => trimestre.trimestre === parseInt(value)
+    );
+
+    if (existingTrimestreIndex === -1) {
+      setNotasData({
+        ...notasData,
+        trimestres: [...notasData.trimestres, newTrimestre],
+      });
     }
-
-    setNotasData({ ...notasData, trimestres: newTrimestres });
   };
 
   const handleNotaChange = (value: string) => {
     const lastIndex = notasData.trimestres.length - 1;
-    const newTrimestres = [...notasData.trimestres];
-    newTrimestres[lastIndex].nota = value;
-    setNotasData({ ...notasData, trimestres: newTrimestres });
+
+    if (lastIndex >= 0) {
+      const newTrimestres = [...notasData.trimestres];
+      newTrimestres[lastIndex] = {
+        ...newTrimestres[lastIndex],
+        nota: value,
+      };
+      setNotasData({ ...notasData, trimestres: newTrimestres });
+    }
+  };
+
+  const handleGradoChange = (value: string) => {
+    setNotasData({ ...notasData, grado: value });
   };
 
   const handleExamenFinalChange = (value: string) => {

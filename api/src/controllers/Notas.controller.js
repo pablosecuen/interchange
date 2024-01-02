@@ -1,6 +1,6 @@
 // Ajusta la ruta si es necesario
 
-const { Notas } = require("../../db");
+const { Notas, Usuario } = require("../../db");
 
 const getNotasByUserIdController = async (req, res) => {
   try {
@@ -37,30 +37,35 @@ const createNotas = async (userId, notasData) => {
 const updateNotasByUserIdController = async (req, res) => {
   try {
     const { userId } = req.params;
-    const RegistroNotas = req.body.Notas;
+    const newNotas = req.body.Notas;
 
-    if (!userId || !RegistroNotas || !Array.isArray(RegistroNotas) || RegistroNotas.length === 0) {
-      return res
-        .status(400)
-        .json({ message: "Se requiere el ID del usuario y una lista de notas válida." });
+    // ...validaciones de entrada...
+
+    // Buscar al Usuario
+    let user = await Usuario.findOne({ where: { ID: userId } });
+
+    if (!user) {
+      return res.status(404).json({ message: "No se encontró el usuario." });
     }
 
-    // Buscar las notas del usuario
-    let existingNotas = await Notas.findOne({ where: { Usuario_ID: userId } });
+    // Eliminar todas las notas existentes asociadas a ese usuario
+    await Notas.destroy({ where: { Usuario_ID: userId } });
 
-    if (!existingNotas) {
-      return res
-        .status(404)
-        .json({ message: "No se encontraron notas para el usuario especificado." });
-    }
+    // Crear las nuevas notas asociadas al usuario
+    await Notas.bulkCreate(
+      newNotas.map((nota) => ({
+        Usuario_ID: userId,
+        notas: nota,
+      }))
+    );
 
-    // Reemplazar completamente las notas existentes con los nuevos datos
-    existingNotas = Object.assign(existingNotas, { notas: RegistroNotas });
+    // Obtener el usuario actualizado con las notas
+    user = await Usuario.findOne({
+      where: { ID: userId },
+      include: [{ model: Notas, as: "RegistroNotas" }],
+    });
 
-    // Guardar las notas actualizadas en la base de datos
-    await existingNotas.save();
-
-    res.status(200).json({ message: "Notas actualizadas correctamente.", notas: existingNotas });
+    res.status(200).json({ message: "Notas actualizadas correctamente.", user });
   } catch (error) {
     res.status(500).json({ message: "Error al actualizar las notas.", error: error.message });
   }

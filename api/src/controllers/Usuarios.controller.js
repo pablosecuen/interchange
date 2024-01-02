@@ -8,8 +8,6 @@ const createUserController = async (req, res) => {
     const userData = req.body;
     const newUser = await Usuario.create(userData);
 
-    // Estructura de ejemplo de las notas
-    console.log(estructuraNotas);
     await createNotas(newUser.ID, estructuraNotas); // Llamada a la función para crear las notas
 
     const newUserEmail = newUser.Email;
@@ -56,7 +54,6 @@ const getAllUsuariosController = async (req, res) => {
 const patchUsuarioController = async (req, res) => {
   const { id } = req.params;
   const { Grado_ID, Grado_Nombre, Grado_Categoria } = req.body;
-  console.log(req.params, req.body);
 
   try {
     const user = await Usuario.findByPk(id);
