@@ -91,12 +91,12 @@ const validatePatchUserData = (req, res, next) => {
   next();
 };
 
+// Archivo: notasMiddleware.js
 
-
+// Archivo: notasMiddleware.js
 
 module.exports = {
   validateUserData,
   handleUsuariosFilters,
   validatePatchUserData,
-
 };

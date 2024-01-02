@@ -20,6 +20,7 @@ if (DATABASE_NAME && DATABASE_USERNAME && DATABASE_PASSWORD) {
   const Pago = require("./src/models/Pagos")(sequelize);
   const ExamenCompletado = require("./src/models/ExamenCompletado")(sequelize);
   const Examen = require("./src/models/Examen")(sequelize);
+  const Notas = require("./src/models/Notas")(sequelize);
 
   // Aquí puedes establecer las relaciones entre los modelos
   Usuario.belongsTo(Grado, { foreignKey: "Grado_ID" });
@@ -39,8 +40,12 @@ if (DATABASE_NAME && DATABASE_USERNAME && DATABASE_PASSWORD) {
   Usuario.belongsToMany(Examen, { through: "UsuarioExamen", foreignKey: "Usuario_ID" });
   Examen.belongsToMany(Usuario, { through: "UsuarioExamen", foreignKey: "Examen_ID" });
 
-  Usuario.hasMany(ExamenCompletado, { foreignKey: "userID" });
-  ExamenCompletado.belongsTo(Usuario, { foreignKey: "userID" });
+  Usuario.hasMany(ExamenCompletado, { foreignKey: "Usuario_ID" });
+  ExamenCompletado.belongsTo(Usuario, { foreignKey: "Usuario_ID" });
+
+  // Relación de Usuario con Notas con un alias 'RegistroNotas'
+  Usuario.hasMany(Notas, { foreignKey: "Usuario_ID", as: "RegistroNotas" });
+  Notas.belongsTo(Usuario, { foreignKey: "Usuario_ID" });
 
   // Exporta los modelos y la conexión
   module.exports = {
@@ -50,6 +55,7 @@ if (DATABASE_NAME && DATABASE_USERNAME && DATABASE_PASSWORD) {
     Pago,
     Examen,
     ExamenCompletado,
+    Notas,
     sequelize,
   };
 } else {

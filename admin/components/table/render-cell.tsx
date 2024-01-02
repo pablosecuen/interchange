@@ -10,11 +10,18 @@ interface Props {
   handleUserClick: (user: any) => void;
   onOpen?: () => void;
   handleAlumnoClick: (user: any) => void;
+  handleNotasClick: (user: any) => void;
 }
 
 // En el componente RenderCell
 
-export const RenderCell = ({ user, columnKey, handleUserClick, handleAlumnoClick }: Props) => {
+export const RenderCell = ({
+  user,
+  columnKey,
+  handleUserClick,
+  handleAlumnoClick,
+  handleNotasClick,
+}: Props) => {
   const getCourseInfo = () => {
     if (columnKey === "Grado_Categoria") {
       return user?.Grado?.[0]?.Grado_Categoria || "Sin información";
@@ -45,6 +52,14 @@ export const RenderCell = ({ user, columnKey, handleUserClick, handleAlumnoClick
       return (
         <div className="z-50 cursor-pointer">
           <button onClick={() => handleUserClick(user)}>
+            <EyeIcon size={20} fill="#979797" />
+          </button>
+        </div>
+      );
+    case "Notas":
+      return (
+        <div className="z-50 cursor-pointer">
+          <button onClick={() => handleNotasClick(user)}>
             <EyeIcon size={20} fill="#979797" />
           </button>
         </div>

@@ -10,12 +10,9 @@ const {
   getAnotacionesHandler,
   createAnotacionesHandler,
   updateAnotacionesHandler,
+  pathNotasHandler,
 } = require("../handlers/Usuarios.handler");
-const {
-  handleUsuariosFilters,
-  validatePatchUserData,
-  validateUserData,
-} = require("../middleware/Usuarios.middleware");
+const { handleUsuariosFilters } = require("../middleware/Usuarios.middleware");
 
 const router = express.Router();
 
@@ -28,6 +25,7 @@ router.post("/login", loginHanlder);
 router.post("/:id", createAnotacionesHandler);
 router.patch("/:id", patchUsuarioHandler);
 router.patch("/:id", updateAnotacionesHandler);
+router.patch("/notas/:id", pathNotasHandler);
 router.delete("/:id", deleteUsuarioHandler);
 
 module.exports = router;

@@ -8,6 +8,7 @@ const {
   getAnotaciones,
   createAnotaciones,
   updateAnotaciones,
+  patchNotasController,
 } = require("../controllers/Usuarios.controller");
 
 const createUserHandler = (req, res) => {
@@ -37,12 +38,16 @@ const getAnotacionesHandler = (req, res) => {
   getAnotaciones(req, res);
 };
 
-const createAnotacionesHandler = (req, res) => {
-  createAnotaciones(req, res);
+const createAnotacionesHandler = async (req, res) => {
+  await createAnotaciones(req, res);
 };
 
-const updateAnotacionesHandler = (req, res) => {
-  updateAnotaciones(req, res);
+const updateAnotacionesHandler = async (req, res) => {
+  await updateAnotaciones(req, res);
+};
+
+const pathNotasHandler = async (req, res) => {
+  await patchNotasController(req, res);
 };
 
 module.exports = {
@@ -55,4 +60,5 @@ module.exports = {
   getAnotacionesHandler,
   createAnotacionesHandler,
   updateAnotacionesHandler,
+  pathNotasHandler,
 };

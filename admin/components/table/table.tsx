@@ -16,6 +16,7 @@ import ModalCuotas from "../modal/modal-cuotas";
 import ModalAlumnos from "../modal/modal-alumnos";
 import { Toaster } from "sonner";
 import LoadingError from "../loadingerror";
+import CambiarNotasModal from "../modal/modal-notas";
 
 export const TableWrapper = () => {
   const { users, isLoading, error } = useFetchUsers();
@@ -28,6 +29,13 @@ export const TableWrapper = () => {
     onOpenChange: onOpenChangeAlumnos,
   } = useDisclosure();
 
+  const {
+    isOpen: isOpenNotas,
+    onOpen: onOpenNotas,
+
+    onOpenChange: onOpenChangeNotas,
+  } = useDisclosure();
+
   const handleUserClick = (user: any) => {
     setSelectedUser(user);
     onOpenChange();
@@ -38,15 +46,18 @@ export const TableWrapper = () => {
     onOpenAlumnos();
   };
 
+  const handleNotasClick = (user: any) => {
+    setSelectedUser(user);
+    onOpenNotas();
+  };
+
   if (isLoading || error) {
-    return (
-      <LoadingError isLoading={isLoading} error={error} />
-    );
+    return <LoadingError isLoading={isLoading} error={error} />;
   }
 
   return (
     <div className=" w-full flex flex-col gap-4">
-       <Toaster richColors position="top-center" expand={true} closeButton={true} />
+      <Toaster richColors position="top-center" expand={true} closeButton={true} />
       <Table aria-label="Tabla de usuarios">
         <TableHeader columns={columns}>
           {(column) => (
@@ -70,6 +81,7 @@ export const TableWrapper = () => {
                     onOpen: onOpen,
                     handleAlumnoClick: handleAlumnoClick,
                     handleUserClick: handleUserClick,
+                    handleNotasClick: handleNotasClick,
                   })}
                 </TableCell>
               )}
@@ -84,6 +96,11 @@ export const TableWrapper = () => {
             alumno={selectedUser}
             onOpenChange={onOpenChangeAlumnos}
             isOpen={isOpenAlumnos}
+          />
+          <CambiarNotasModal
+            alumno={selectedUser}
+            onOpenChange={onOpenChangeNotas}
+            isOpen={isOpenNotas}
           />
         </>
       )}

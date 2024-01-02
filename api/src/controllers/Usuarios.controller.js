@@ -1,11 +1,17 @@
-const { Usuario, Examen, Grado, Pago } = require("../../db");
+const { Usuario, Examen, Grado, Pago, Notas } = require("../../db");
 const { sendEmailNotificationRegister, sendEmailNotificationCurso } = require("../nodemailer");
+const estructuraNotas = require("../middleware/Notas.middleware");
+const { createNotas } = require("./Notas.controller");
 
 const createUserController = async (req, res) => {
   try {
     const userData = req.body;
-    console.log(req.body);
     const newUser = await Usuario.create(userData);
+
+    // Estructura de ejemplo de las notas
+    console.log(estructuraNotas);
+    await createNotas(newUser.ID, estructuraNotas); // Llamada a la función para crear las notas
+
     const newUserEmail = newUser.Email;
     sendEmailNotificationRegister(newUserEmail);
     res.status(201).json(newUser);
@@ -33,6 +39,10 @@ const getAllUsuariosController = async (req, res) => {
               model: Grado, // Incluir Grado a través de la asociación Pago.belongsTo(Grado)
             },
           ],
+        },
+        {
+          model: Notas, // Agregamos la inclusión de la relación Notas
+          as: "RegistroNotas", // El nombre de la asociación definida en Usuario.hasMany(Notas, { foreignKey: "Usuario_ID", as: "RegistroNotas" })
         },
       ],
     });
