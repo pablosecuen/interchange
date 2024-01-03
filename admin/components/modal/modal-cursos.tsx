@@ -23,7 +23,6 @@ interface Props {
 const ModalCurso = ({ isOpen, onOpenChange, curso }: Props) => {
   const { usuarios, loading, error } = useFetchUsuariosByCursos(isOpen, curso);
 
-
   if (loading) {
     return (
       <div className="w-full h-full flex justify-center items-center">
@@ -42,7 +41,7 @@ const ModalCurso = ({ isOpen, onOpenChange, curso }: Props) => {
       isOpen={isOpen}
       onOpenChange={onOpenChange}
       radius="lg"
-      size="2xl"
+      size="3xl"
       classNames={{
         body: "py-6",
         backdrop: "bg-[#292f46]/50 backdrop-opacity-40",
