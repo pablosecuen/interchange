@@ -33,6 +33,7 @@ export const columnsModalCursosAlumnos = [
    {name: 'APELLIDO', uid: 'Apellido'},
    {name: 'CURSO', uid: 'Grado_Categoria'},
    {name: 'AÑO', uid: 'Grado_Nombre'},
+   {name: 'NOTAS', uid: 'Notas'},
    {name: 'ACTIVO', uid: 'Activo'},
    {name: 'CUOTA', uid: 'cuota'}, 
    {name: 'ACTIONS', uid: 'actions'},
