@@ -13,7 +13,6 @@ interface Props {
 export const RenderCell = ({ curso, columnKey, handleSelectCurso }: Props) => {
   // @ts-ignore
 
-
   const cellValue = curso[columnKey];
   switch (columnKey) {
     case "Nombre":
