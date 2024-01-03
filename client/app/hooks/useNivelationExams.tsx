@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { User } from "../components/navbar";
+import { toast } from "sonner";
 
 export interface Exam {
   ID: string;
@@ -54,6 +55,12 @@ const useGetNivelationExam = (): {
     try {
       const response = await fetch(`http://localhost:3001/api/users/${userId}/examenes-asociados`);
       const data = await response.json();
+      if (!response.ok) {
+        toast.error("Error al obtener los exámenes asociados");
+        throw new Error(`Error ${response.status}: ${response.statusText}`);
+      } else {
+        toast.success("Exámenes asociados obtenidos exitosamente");
+      }
       setExamsAssociated(data.examenesAsociados);
     } catch (error) {
       console.error("Error al obtener los exámenes asociados:", error);
