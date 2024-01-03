@@ -6,6 +6,8 @@ import Image from "next/image";
 import { useState } from "react";
 import spinner from "@/public/assets/spinner/Spinnerblack.gif";
 import Link from "next/link";
+import LoadingError from "@/app/components/loadingerror";
+import { Toaster } from "sonner";
 
 function ExamenPage({ examId }: any) {
   const { loggedInUser, examsAssociated } = useGetNivelationExam();
@@ -35,12 +37,17 @@ function ExamenPage({ examId }: any) {
     }
   };
 
+  if (loading) {
+    return <LoadingError isLoading={loading} />;
+  }
+
   const renderQuestions = () => {
     return examsAssociated.map((exam, index) => (
       <div
         key={index}
         className="w-full flex flex-col justify-start p-10 mb-40 overflow-y-scroll border py-10 rounded-3xl"
       >
+        <Toaster richColors={true} expand={false} position="top-center" />
         <h3 className="text-center text-2xl font-bold tracking-widest py-8 capitalize ">
           {exam.titulo}
         </h3>
@@ -75,6 +82,7 @@ function ExamenPage({ examId }: any) {
             </div>
           ))}
         </div>
+        <Toaster richColors={true} expand={false} position="top-center" />
       </div>
     ));
   };
@@ -112,6 +120,7 @@ function ExamenPage({ examId }: any) {
       >
         Enviar resultados
       </button>
+      <Toaster richColors={true} expand={false} position="top-center" />
     </div>
   );
 }

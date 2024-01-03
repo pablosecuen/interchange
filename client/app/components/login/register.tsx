@@ -5,7 +5,7 @@ import eyeicon from "@/public/assets/svg/eyepassword.svg";
 import Logo from "../logo";
 import { useRouter } from "next/navigation";
 import useRegister from "@/app/hooks/useRegister";
-import { toast } from "sonner";
+import { Toaster, toast } from "sonner";
 
 interface RegisterProps {
   onClose: () => void;
@@ -102,6 +102,7 @@ const Register = ({ onClose, toggleRegister }: RegisterProps) => {
       className="w-1/3 min-h-[50vh] p-10 -mt-12 rounded-3xl backdrop-blur-3xl bg-white/20 shadow-black/30 shadow-xl z-50"
       onSubmit={handleSubmit}
     >
+      <Toaster richColors={true} expand={false} position="top-center" />
       <div className="mb-5">
         <label
           htmlFor="firstName"

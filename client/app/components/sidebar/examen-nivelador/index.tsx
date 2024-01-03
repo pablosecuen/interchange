@@ -2,6 +2,7 @@
 import useGetNivelationExam from "@/app/hooks/useNivelationExams";
 import { useState } from "react";
 import ExamenPage from "./components/examen-page";
+import { Toaster } from "sonner";
 
 function ExamenNivelador() {
   const { loggedInUser, examsAssociated } = useGetNivelationExam();
@@ -15,6 +16,7 @@ function ExamenNivelador() {
   const renderExamTable = () => {
     return (
       <div className=" w-full h-full flex justify-center items-center relative animate-fade">
+        <Toaster richColors={true} expand={false} position="top-center" />
         {loggedInUser && examsAssociated.length > 0 ? (
           <table className="w-full md:m-20 md-2 ">
             <thead className="w-auto bg-gray-200">

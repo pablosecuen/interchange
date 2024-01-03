@@ -3,6 +3,7 @@ import Image from "next/image";
 import React from "react";
 import "./courses-detail.css";
 import Link from "next/link";
+import { Toaster } from "sonner";
 
 interface ModalProps {
   grade: Grade | null;
@@ -20,6 +21,7 @@ const ModalCourses: React.FC<ModalProps> = ({ grade, onClose, modalOpen }) => {
   }`;
   return (
     <div className={modalClasses}>
+      <Toaster richColors={true} expand={false} position="top-center" />
       <span
         className="px-2 border z-50 border-black/20 transition duration-200 hover:bg-slate-200 bg-slate-100 rounded-full text-black  shadow-sm cursor-pointer absolute top-2 right-2 font-black "
         onClick={onClose}

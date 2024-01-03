@@ -13,6 +13,7 @@ import Consultas from "./consultas";
 import { Community } from "../icons/community";
 import { NotificationIcon } from "../icons/navbar/notificationicon";
 import CampusHome from "./home";
+import { Toaster } from "sonner";
 
 type MenuItem = "home" | "examen" | "notas" | "contenido" | "consultas";
 
@@ -53,6 +54,7 @@ const Sidebar: React.FC = () => {
 
   return (
     <div className=" flex min-h-[90vh] justify-start items-center ">
+      <Toaster richColors={true} expand={false} position="top-center" />
       <ul className="flex flex-col justify-center gap-10 w-96 bg-slate-100 px-4 border h-screen mt-20">
         {renderMenuItem("Home", "home", <HomeIcon />)}
         {/* ... Otros elementos del menú */}
