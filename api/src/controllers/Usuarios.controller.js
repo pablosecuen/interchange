@@ -1,14 +1,12 @@
 const { Usuario, Examen, Grado, Pago, Notas } = require("../../db");
 const { sendEmailNotificationRegister, sendEmailNotificationCurso } = require("../nodemailer");
-const estructuraNotas = require("../middleware/Notas.middleware");
-const { createNotas } = require("./Notas.controller");
+/* const estructuraNotas = require("../middleware/Notas.middleware");
+const { createNotas } = require("./Notas.controller"); */
 
 const createUserController = async (req, res) => {
   try {
     const userData = req.body;
     const newUser = await Usuario.create(userData);
-
-    await createNotas(newUser.ID, estructuraNotas); // Llamada a la función para crear las notas
 
     const newUserEmail = newUser.Email;
     sendEmailNotificationRegister(newUserEmail);

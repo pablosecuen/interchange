@@ -16,7 +16,8 @@ import ModalCuotas from "../modal/modal-cuotas";
 import ModalAlumnos from "../modal/modal-alumnos";
 import { Toaster } from "sonner";
 import LoadingError from "../loadingerror";
-import CambiarNotasModal from "../modal/modal-notas";
+import CambiarNotasModal from "../modal/modal-cambiar-notas";
+import TableWrapperNotas from "./tableNotas";
 
 export const TableWrapper = () => {
   const { users, isLoading, error } = useFetchUsers();
@@ -30,9 +31,14 @@ export const TableWrapper = () => {
   } = useDisclosure();
 
   const {
+    isOpen: isOpenNotasEdit,
+    onOpen: onOpenNotasEdit,
+    onOpenChange: onOpenChangeNotasEdit,
+  } = useDisclosure();
+
+  const {
     isOpen: isOpenNotas,
     onOpen: onOpenNotas,
-
     onOpenChange: onOpenChangeNotas,
   } = useDisclosure();
 
@@ -44,6 +50,11 @@ export const TableWrapper = () => {
   const handleAlumnoClick = (user: any) => {
     setSelectedUser(user);
     onOpenAlumnos();
+  };
+
+  const handleNotasEditClick = (user: any) => {
+    setSelectedUser(user);
+    onOpenNotasEdit();
   };
 
   const handleNotasClick = (user: any) => {
@@ -81,6 +92,7 @@ export const TableWrapper = () => {
                     onOpen: onOpen,
                     handleAlumnoClick: handleAlumnoClick,
                     handleUserClick: handleUserClick,
+                    handleNotasEditClick: handleNotasEditClick,
                     handleNotasClick: handleNotasClick,
                   })}
                 </TableCell>
@@ -98,6 +110,11 @@ export const TableWrapper = () => {
             isOpen={isOpenAlumnos}
           />
           <CambiarNotasModal
+            alumno={selectedUser}
+            onOpenChange={onOpenChangeNotasEdit}
+            isOpen={isOpenNotasEdit}
+          />
+          <TableWrapperNotas
             alumno={selectedUser}
             onOpenChange={onOpenChangeNotas}
             isOpen={isOpenNotas}

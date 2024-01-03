@@ -14,6 +14,8 @@ import { RenderCell } from "./render-cell";
 import ModalCuotas from "../modal/modal-cuotas";
 import ModalAlumnos from "../modal/modal-alumnos";
 import { Toaster } from "sonner";
+import CambiarNotasModal from "../modal/modal-cambiar-notas";
+import TableWrapperNotas from "./tableNotas";
 
 export const TableWrapperModalCurso = ({ users }: any) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -26,6 +28,20 @@ export const TableWrapperModalCurso = ({ users }: any) => {
     onOpenChange: onOpenChangeAlumnos,
   } = useDisclosure();
 
+  const {
+    isOpen: isOpenNotas,
+    onOpen: onOpenNotas,
+
+    onOpenChange: onOpenChangeNotas,
+  } = useDisclosure();
+
+  const {
+    isOpen: isOpenNotasEdit,
+    onOpen: onOpenNotasEdit,
+
+    onOpenChange: onOpenChangeNotasEdit,
+  } = useDisclosure();
+
   const handleUserClick = (user: any) => {
     setSelectedUser(user);
     onOpenChange();
@@ -36,9 +52,19 @@ export const TableWrapperModalCurso = ({ users }: any) => {
     onOpenAlumnos();
   };
 
+  const handleNotasEditClick = (user: any) => {
+    setSelectedUser(user);
+    onOpenNotasEdit();
+  };
+
+  const handleNotasClick = (user: any) => {
+    setSelectedUser(user);
+    onOpenNotas();
+  };
+
   return (
     <div className=" w-full flex flex-col gap-4">
-     <Toaster richColors position="top-center" expand={true} closeButton={true} />
+      <Toaster richColors position="top-center" expand={true} closeButton={true} />
       <Table aria-label="Tabla de usuarios">
         <TableHeader columns={columnsModalCursosAlumnos}>
           {(column) => (
@@ -62,6 +88,8 @@ export const TableWrapperModalCurso = ({ users }: any) => {
                     onOpen: onOpen,
                     handleAlumnoClick: handleAlumnoClick,
                     handleUserClick: handleUserClick,
+                    handleNotasEditClick: handleNotasEditClick,
+                    handleNotasClick: handleNotasClick,
                   })}
                 </TableCell>
               )}
@@ -76,6 +104,16 @@ export const TableWrapperModalCurso = ({ users }: any) => {
             alumno={selectedUser}
             onOpenChange={onOpenChangeAlumnos}
             isOpen={isOpenAlumnos}
+          />
+          <CambiarNotasModal
+            alumno={selectedUser}
+            onOpenChange={onOpenChangeNotasEdit}
+            isOpen={isOpenNotasEdit}
+          />
+          <TableWrapperNotas
+            alumno={selectedUser}
+            onOpenChange={onOpenChangeNotas}
+            isOpen={isOpenNotas}
           />
         </>
       )}

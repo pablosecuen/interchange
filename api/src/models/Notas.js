@@ -14,10 +14,8 @@ module.exports = (sequelize) => {
     },
     notas: {
       type: DataTypes.JSONB,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
+      allowNull: true,
+
     },
   });
 

@@ -10,6 +10,7 @@ interface Props {
   handleUserClick: (user: any) => void;
   onOpen?: () => void;
   handleAlumnoClick: (user: any) => void;
+  handleNotasEditClick: (user: any) => void;
   handleNotasClick: (user: any) => void;
 }
 
@@ -20,6 +21,7 @@ export const RenderCell = ({
   columnKey,
   handleUserClick,
   handleAlumnoClick,
+  handleNotasEditClick,
   handleNotasClick,
 }: Props) => {
   const getCourseInfo = () => {
@@ -58,7 +60,11 @@ export const RenderCell = ({
       );
     case "Notas":
       return (
-        <div className="z-50 cursor-pointer">
+        <div className="z-50 cursor-pointer flex items-center gap-8">
+          <button onClick={() => handleNotasEditClick(user)}>
+            <EditIcon size={20} fill="#979797" />
+          </button>
+
           <button onClick={() => handleNotasClick(user)}>
             <EyeIcon size={20} fill="#979797" />
           </button>

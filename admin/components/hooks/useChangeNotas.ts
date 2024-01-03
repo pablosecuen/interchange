@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "sonner";
 
-interface Nota {
+export interface Nota {
     grado: string;
     examenFinal: string;
     trimestres: { trimestre: number; nota: string }[];
+    notas?:any
   }
 
 const useChangeNotas = (alumno:any) => {
@@ -19,7 +20,7 @@ const useChangeNotas = (alumno:any) => {
         const gradosDisponibles = [
           { id: "Starters", nombre: "Starters" },
           { id: "Beginners", nombre: "Beginners" },
-          { id: "Pre-Kids", nombre: "preKids" },
+          { id: "Pre-Kids", nombre: "Pre_Kids" },
           { id: "Adol_1", nombre: "Adol_1" },
           { id: "Adol_2", nombre: "Adol_2" },
           { id: "Adol_3", nombre: "Adol_3" },
@@ -52,10 +53,12 @@ const useChangeNotas = (alumno:any) => {
             body: JSON.stringify({ Notas: [notasData] }),
           });
     
-toast.success("Notas actualizadas correctamente")
+
           if (!response.ok) {
             toast.error(`Error al actualizar las notas: ${response.statusText}`);
             throw new Error("Error al actualizar las notas", );
+        } else {
+            toast.success("Notas actualizadas correctamente")
         }
      } catch (error:any) {
           console.error("Error al actualizar las notas:", error.message);
