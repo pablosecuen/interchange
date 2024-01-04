@@ -32,7 +32,7 @@ const Landing = () => {
             </div>
             del mañana
           </h1>
-          <h2 className=" text-gray-400 pb-5 text-md  md:w-2/3 p-6 md:mx-0">
+          <h2 className=" text-gray-400 pb-5 text-md  md:w-2/3  md:mx-0">
             Muchas escuelas utilizan el término "excelencia" para resaltar las ambiciones de la
             escuela de ayudar a todos a lograr lo mejor de sí mismos. a todos a dar lo mejor de sí
             mismos.
