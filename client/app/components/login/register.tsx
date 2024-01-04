@@ -4,9 +4,10 @@ import Image from "next/image";
 import eyeicon from "@/public/assets/svg/eyepassword.svg";
 import Logo from "../logo";
 import { useRouter } from "next/navigation";
-import useRegister from "@/app/hooks/useRegister";
+
 import { Toaster, toast } from "sonner";
 import Link from "next/link";
+import useRegister from "@/app/hooks/useRegister";
 
 interface RegisterProps {
   onClose: () => void;

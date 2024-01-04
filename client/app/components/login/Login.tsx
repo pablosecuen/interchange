@@ -1,75 +1,46 @@
+"use client";
 import React, { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import Image from "next/image";
 import Register from "./register";
-import Logo from "../logo";
-import eyeicon from "@/public/assets/svg/eyepassword.svg";
-import useLogin from "@/app/hooks/useLogin";
-import { Toaster, toast } from "sonner";
+import { Toaster } from "sonner";
 import { User } from "../navbar";
+import useLogin from "@/app/hooks/useLogin";
+import Logo from "../logo";
 import Link from "next/link";
+import Image from "next/image";
+import eyeicon from "@/public/assets/svg/eyepassword.svg";
 
 interface LoginProps {
   onClose: () => void;
   updateUser: (user: User) => void;
 }
+
 const Login = ({ onClose, updateUser }: LoginProps) => {
   const [showPassword, setShowPassword] = useState(false);
   const [isRegistering, setIsRegistering] = useState(false);
   const initialFormData = { email: "", password: "" };
 
   // Utiliza el custom hook useLogin
-  const { formData, rememberMe, handleRememberMe, handleFormDataChange } =
-    useLogin(initialFormData);
-
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
+  const { formData, rememberMe, handleRememberMe, handleFormDataChange, handleLogin } = useLogin({
+    email: "",
+    password: "",
+  });
 
   const toggleRegister = () => {
     setIsRegistering(!isRegistering);
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    try {
-      const response = await fetch("http://localhost:3001/api/users/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: formData.email,
-          password: formData.password,
-        }),
-      });
-
-      if (response.ok) {
-        const userFromServer = await response.json();
-
-        // Remover la contraseña del objeto de usuario
-        const { Password, ...userDataWithoutPassword } = userFromServer.user;
-
-        updateUser(userDataWithoutPassword);
-        toast.success("¡Bienvenido de nuevo!");
-
-        if (rememberMe) {
-          localStorage.setItem("user", JSON.stringify(userDataWithoutPassword));
-          sessionStorage.removeItem("user");
-        } else {
-          sessionStorage.setItem("user", JSON.stringify(userDataWithoutPassword));
-          localStorage.removeItem("user");
-        }
-
-        onClose();
-      } else {
-        toast.error("Error al validar credenciales");
-      }
-    } catch (error) {
-      console.error("Error al validar credenciales:", error);
-    }
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
+
+  useEffect(() => {
+    const user = localStorage.getItem("user") || sessionStorage.getItem("user");
+    if (user) {
+      const userData = JSON.parse(user);
+      updateUser(userData);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className=" h-[100vh] flex justify-center items-center ">
@@ -79,7 +50,7 @@ const Login = ({ onClose, updateUser }: LoginProps) => {
       ) : (
         <form
           className=" md:w-1/3 min-h-[50vh] w-full  p-10 -mt-12 rounded-3xl backdrop-blur-3xl bg-white/20 shadow-black/30 shadow-xl z-50"
-          onSubmit={handleSubmit}
+          onSubmit={handleLogin}
         >
           <div className="mb-5">
             <label

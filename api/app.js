@@ -12,6 +12,7 @@ const {
   sendEmailNotificationRegister,
   sendEmailNotificationCurso,
   sendEmailNotificationVencimiento,
+  sendEmailPreInscripcion,
 } = require("./src/nodemailer");
 
 const app = express();
@@ -29,7 +30,12 @@ app.use((req, res, next) => {
   }
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, PATCH");
   res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  next();
+  // Handling preflight requests
+  if (req.method === "OPTIONS") {
+    res.sendStatus(200);
+  } else {
+    next();
+  }
 });
 app.use(morgan("dev"));
 app.use(express.json());
@@ -81,6 +87,49 @@ app.get("/send-email/vencimiento/:email", async (req, res) => {
     res.send(error.message);
   }
 });
+
+app.get(
+  "/send-email/preinscripcion/:email/:firstName/:lastName/:firstNameStudent/:lastNameStudent/:dateOfBirth/:phoneNumber/:address/:grade/:emailAddress/:phone/:message",
+  async (req, res) => {
+    try {
+      const {
+        email: newUserEmail,
+        firstName,
+        lastName,
+        firstNameStudent,
+        lastNameStudent,
+        dateOfBirth,
+        phoneNumber,
+        address,
+        grade,
+        emailAddress,
+        phone,
+        message,
+      } = req.params;
+
+      const decodedEmail = decodeURIComponent(newUserEmail);
+
+      const formData = {
+        floating_first_name: firstName,
+        floating_last_name: lastName,
+        floating_first_namestudent: firstNameStudent,
+        floating_last_namestudent: lastNameStudent,
+        floating_date_of_birth: dateOfBirth,
+        floating_phone_numberstudent: phoneNumber,
+        floating_addressstudent: address,
+        select_title: grade,
+        floating_email: emailAddress,
+        floating_phone: phone,
+        floating_message: message,
+      };
+
+      const info = await sendEmailPreInscripcion(decodedEmail, formData);
+      res.send(info);
+    } catch (error) {
+      res.send(error.message);
+    }
+  }
+);
 
 // Iniciar el servidor después de sincronizar los modelos
 sequelize.sync({ force: true }).then(() => {

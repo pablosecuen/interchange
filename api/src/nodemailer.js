@@ -263,8 +263,73 @@ const sendEmailNotificationVencimiento = async (newUserEmail) => {
   }
 };
 
+const sendEmailPreInscripcion = async (newUserEmail, formData) => {
+  try {
+    const ACCESS_TOKEN = await oAuth2Client.getAccessToken();
+    const transport = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        type: "OAuth2",
+        user: "institutointerchange@gmail.com",
+        clientId: process.env.CLIENT_ID,
+        clientSecret: process.env.CLIENT_SECRET,
+        refreshToken: process.env.REFRESH_TOKEN,
+        accessToken: ACCESS_TOKEN,
+      },
+      tls: {
+        rejectUnauthorized: false,
+      },
+    });
+
+    const mailOptions = {
+      from: "institutointerchange@gmail.com",
+      to: "institutointerchange@gmail.com",
+      subject: `¡Nueva consulta de pre-inscripcion!`,
+      html: `
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <title>Detalles de Preinscripción</title>
+          <style>
+          body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+          }
+          h1 {
+            color: #007bff;
+          }
+          p {
+            margin-bottom: 10px;
+          }
+          
+        </style>
+      </head>
+        <body>
+        <h1>Detalles de Preinscripción</h1>
+          <p>Nombre del adulto responsable: ${formData.floating_first_name} ${formData.floating_last_name}</p>
+          <p>Nombre del estudiante: ${formData.floating_first_namestudent} ${formData.floating_last_namestudent}</p>
+          <p>Fecha de Nacimiento del estudiante: ${formData.floating_date_of_birth}</p>
+          <p>Teléfono del estudiante: ${formData.floating_phone_numberstudent}</p>
+          <p>Dirección del estudiante: ${formData.floating_addressstudent}</p>
+          <p>Grado seleccionado: ${formData.select_title}</p>
+          <p>Email de contacto: ${formData.floating_email}</p>
+          <p>Teléfono de contacto: ${formData.floating_phone}</p>
+          <p>Mensaje: ${formData.floating_message}</p>
+        </body>
+      </html>
+    `,
+    };
+    const info = await transport.sendMail(mailOptions);
+    return info;
+  } catch (error) {
+    throw new Error(`Error sending email: ${error}`);
+  }
+};
+
 module.exports = {
   sendEmailNotificationRegister,
   sendEmailNotificationCurso,
   sendEmailNotificationVencimiento,
+  sendEmailPreInscripcion,
 };
