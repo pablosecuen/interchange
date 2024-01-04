@@ -7,15 +7,15 @@ import Image from "next/image";
 
 const PolaroidContainer = () => {
   return (
-    <div className="md:w-2/3 w-full  md:h-full flex justify-center items-center scale-50  md:scale-100 h-96  mt-36 md:mt-0">
+    <div className="lg:w-2/3 w-full  lg:h-full flex justify-center items-center scale-50 md:scale-75 xl:scale-100 h-96  mt-36 lg:mt-0">
       {/* card container*/}
       <div className="relative max-w-full w-full h-full   ">
         {/* card */}
-        <div className="absolute top-1/2 bg-white shadow-lg shadow-black/20 -translate-y-1/2 md:left-[60%] left-[50%] translate-x-1/2 border w-64 h-80 flex flex-col items-center p-4 scale-75 z-20">
+        <div className="absolute top-1/2 bg-white shadow-lg shadow-black/20 -translate-y-1/2 lg:left-[60%] left-[50%] translate-x-1/2 border w-64 h-80 flex flex-col items-center p-4 scale-75 z-20">
           <div className="h-4/5 w-11/12 border bg-stonehenge bg-cover bg-center relative"> </div>
         </div>
         {/* card */}
-        <div className="absolute top-1/2 -translate-y-1/2 shadow-black/20 shadow-lg bg-white left-[15%] md:left-[30%] -rotate-12 md:rotate-0 -translate-x-1/2 border w-64 h-80 flex flex-col items-center p-4 z-30">
+        <div className="absolute top-1/2 -translate-y-1/2 shadow-black/20 shadow-lg bg-white left-[15%] lg:left-[25%] -rotate-12 lg:rotate-0 -translate-x-1/2 border w-64 h-80 flex flex-col items-center p-4 z-30">
           <div className="h-4/5 w-11/12 border bg-warwick bg-cover bg-center relative">
             {" "}
             <Image
@@ -40,7 +40,7 @@ const PolaroidContainer = () => {
           </div>
         </div>
         {/* card */}
-        <div className="absolute top-1/2 -translate-y-1/2 shadow-lg shadow-black/20 bg-white md:right-[30%] right-[15%] rotate-12 md:rotate-0 translate-x-1/2 border w-64 h-80 flex flex-col items-center p-4 z-30">
+        <div className="absolute top-1/2 -translate-y-1/2 shadow-lg shadow-black/20 bg-white lg:right-[25%] right-[15%] rotate-12 lg:rotate-0 translate-x-1/2 border w-64 h-80 flex flex-col items-center p-4 z-30">
           <div className="h-4/5 w-11/12 border bg-oxford bg-cover bg-center relative">
             <Image
               src={clip}
@@ -52,7 +52,7 @@ const PolaroidContainer = () => {
           </div>
         </div>
         {/* card */}
-        <div className="absolute top-1/2 bg-white shadow-lg shadow-black/20 -translate-y-1/2 md:right-[60%] right-[50%] -translate-x-1/2 border w-64 h-80 flex flex-col items-center p-4 scale-75 z-20">
+        <div className="absolute top-1/2 bg-white shadow-lg shadow-black/20 -translate-y-1/2 lg:right-[60%] right-[50%] -translate-x-1/2 border w-64 h-80 flex flex-col items-center p-4 scale-75 z-20">
           <div className="h-4/5 w-11/12 border bg-stonehenge bg-cover bg-center relative">
             {" "}
             <Image

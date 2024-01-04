@@ -7,7 +7,7 @@ import mail from "@/public/assets/svg/mail.svg";
 
 function Footer() {
   return (
-    <footer className="bg-black/90 text-white">
+    <footer className="bg-black/90 text-white overflow-x-hidden">
       <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0  flex flex-col justify-center">
@@ -15,30 +15,34 @@ function Footer() {
               <Logo size="xl" />
             </Link>
 
-            <span className="text-sm text-gray-400">Arijon 1254</span>
-            <span className="text-sm text-gray-400">Rosario, Santa Fe, Argentina</span>
+            <span className=" text-xs lg:text-base text-gray-400">Arijon 1254</span>
+            <span className=" text-xs lg:text-base text-gray-400">
+              Rosario, Santa Fe, Argentina
+            </span>
           </div>
-          <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+          <div className="grid grid-cols-2 gap-8 sm:gap-0 sm:grid-cols-3 lg:gap-6 lg:grid-cols-3">
             <div>
-              <h2 className="mb-6 text-sm font-semibold text-white uppercase ">Paginas</h2>
+              <h2 className="mb-6  text-xs lg:text-base font-semibold text-white uppercase ">
+                Paginas
+              </h2>
               <ul className="text-gray-500 dark:text-gray-400 font-medium">
-                <li className="mb-4">
+                <li className="mb-4 g:text-sm text-xs lg:text-base ">
                   <Link href="/nosotros" className="hover:underline">
                     Nosotros
                   </Link>
                 </li>
 
-                <li className="mb-4">
+                <li className="mb-4 g:text-sm text-xs lg:text-base">
                   <Link href="/inscripcion" className="hover:underline">
                     Inscripción
                   </Link>
                 </li>
-                <li className="mb-4">
+                <li className="mb-4 g:text-sm text-xs lg:text-base">
                   <Link href="/tours" className="hover:underline">
                     Tours
                   </Link>
                 </li>
-                <li className="mb-4">
+                <li className="mb-4 g:text-sm text-xs lg:text-base">
                   <Link href="/grados" className="hover:underline">
                     Grados
                   </Link>
@@ -46,9 +50,11 @@ function Footer() {
               </ul>
             </div>
             <div>
-              <h2 className="mb-6 text-sm font-semibold text-white uppercase ">RR.SS.</h2>
+              <h2 className="mb-6  text-xs lg:text-base font-semibold text-white uppercase ">
+                RR.SS.
+              </h2>
               <ul className="text-gray-500 dark:text-gray-400 font-medium">
-                <li className="mb-4">
+                <li className="mb-4 g:text-sm text-xs lg:text-base">
                   <Link
                     href="https://www.facebook.com/p/Interchange-Instituto-de-Ingl%C3%A9s-100063674795643/?paipv=0&eav=AfacH2NoPL_t-xa_ANfsGts34nt1bnIyXVbTcCEnlWRNMn9hj-BxIezhAzOjUFVR41E&_rdr"
                     className="hover:underline "
@@ -67,16 +73,18 @@ function Footer() {
               </ul>
             </div>
             <div>
-              <h2 className="mb-6 text-sm font-semibold text-white uppercase ">Contacto</h2>
+              <h2 className="mb-6  text-xs lg:text-base font-semibold text-white uppercase ">
+                Contacto
+              </h2>
               <ul className="text-gray-500 dark:text-gray-400 font-medium">
-                <li className="mb-4 hover:underline flex gap-2 items-center cursor-pointer">
+                <li className="mb-4 g:text-sm text-xs lg:text-base hover:underline flex gap-2 items-center cursor-pointer">
                   <Image src={telefono} alt="" width={20} height={0} />
                   <Link href="tel:0341153119792">0341 15-311-9792</Link>
                 </li>
                 <li>
                   <Link
                     href="mailto:interchange@gmail.com"
-                    className="hover:underline flex gap-2 items-center"
+                    className="hover:underline flex gap-2 items-center g:text-sm text-xs lg:text-base"
                   >
                     <Image src={mail} alt="" width={20} height={0} />
                     interchange@gmail.com
@@ -88,7 +96,7 @@ function Footer() {
         </div>
         <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
         <div className="sm:flex sm:items-center sm:justify-between">
-          <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
+          <span className=" text-xs lg:text-base text-gray-500 sm:text-center dark:text-gray-400">
             © 2023{" "}
             <Link href="https://pablo-amico.vercel.app/" className="hover:underline">
               Pablo Amico
@@ -101,7 +109,7 @@ function Footer() {
               className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
             >
               <svg
-                className="w-4 h-4"
+                className="lg:w-4 lg:h-4 w-2 h-2"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
@@ -117,7 +125,7 @@ function Footer() {
             </Link>
             <Link href="#" className="text-gray-500 hover:text-gray-900 dark:hover:text-white">
               <svg
-                className="w-4 h-4"
+                className="lg:w-4 lg:h-4 w-2 h-2"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"

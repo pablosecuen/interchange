@@ -11,11 +11,9 @@ import label from "@/public/assets/svg/label.png";
 import design1 from "@/public/assets/svg/design1.png";
 import design2 from "@/public/assets/svg/design2.png";
 import design3 from "@/public/assets/svg/design3.png";
-
 import group from "@/public/assets/svg/group.png";
 import "./perspective.css";
 import { Banner } from "@/app/components/footer/banner";
-import Logo from "@/app/components/logo";
 
 const Nosotros = () => {
   return (

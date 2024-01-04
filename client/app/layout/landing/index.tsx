@@ -32,7 +32,7 @@ const Landing = () => {
             </div>
             del mañana
           </h1>
-          <h2 className=" text-gray-400 pb-5 text-md  md:w-2/3  md:mx-0">
+          <h2 className=" text-gray-400 pb-5 text-md  md:w-2/3 p-6 md:p-0 md:mx-0">
             Muchas escuelas utilizan el término "excelencia" para resaltar las ambiciones de la
             escuela de ayudar a todos a lograr lo mejor de sí mismos. a todos a dar lo mejor de sí
             mismos.
@@ -54,7 +54,7 @@ const Landing = () => {
           alt="arrow"
           width={100}
           height={0}
-          className="absolute bottom-10 left-48"
+          className="absolute bottom-10 left-48 hidden lg:block"
         />
       </div>
       <div className="w-full md:w-1/2 md:order-2 h-full md:h-auto relative ">

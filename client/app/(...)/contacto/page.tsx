@@ -4,8 +4,8 @@ import sparks from "@/public/assets/svg/spark.svg";
 import Image from "next/image";
 const Contacto = () => {
   return (
-    <section className="min-h-screen  w-screen md:w-full overflow-x-hidden flex justify-center items-center p-2">
-      <div className="md:flex md:w-full max-w-7xl h-full shadow-xl shadow-black/10 relative bg-white rounded-xl mt-20 md:mt-0 ">
+    <section className="min-h-screen md:mt-20  w-screen md:w-full overflow-x-hidden flex justify-center items-center p-2">
+      <div className="md:flex flex-col border items-center xl:flex-row md:w-full max-w-7xl h-full shadow-xl shadow-black/10 relative bg-white rounded-xl mt-20 md:mt-0 ">
         <Image
           src={sparks}
           alt="sparks"
@@ -24,13 +24,13 @@ const Contacto = () => {
         <div className="w-4 h-4 rounded-full bg-custom-orange  absolute -bottom-0 -right-20"></div>
         <div className="w-3 h-3 rounded-full bg-custom-purple  absolute -bottom-10 -right-10"></div>
         <div className="w-96 h-96 rounded-full bg-custom-purple hidden md:block absolute -bottom-48 -left-48 blur-3xl opacity-20 -z-10"></div>
-        <div className="md:w-1/2 order-1  flex justify-center items-center p-8">
+        <div className="md:w-full lg:w-3/4  order-1  flex justify-center items-center p-8">
           <span className="text-3xl bg-custom-green rounded-3xl text-white p-4">
             Queremos a saber de vos, podes contactarnos libremente para hacernos saber tus dudas,
             consultas o recomendaciones...
           </span>
         </div>
-        <div className="md:w-1/2 order-2 p-8 ">
+        <div className="md:w-full order-2 p-8 ">
           {" "}
           <form className="max-w-3xl mx-auto  md:w-full ">
             <div className="relative z-0 w-full mb-5 group">

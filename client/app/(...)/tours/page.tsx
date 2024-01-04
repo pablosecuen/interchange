@@ -11,8 +11,8 @@ import Beneficios from "./components/beneficios";
 
 const tours = () => {
   return (
-    <section className="min-h-[90vh] h-full w-full mt-28 md:mt-20 overflow-x-hidden ">
-      <div className="max-w-7xl w-full flex flex-col md:flex-row justify-center h-[60vh]  mx-auto relative px-4">
+    <section className="min-h-[90vh] h-full w-full mt-28 lg:mt-20 overflow-x-hidden ">
+      <div className="max-w-7xl w-full flex flex-col lg:flex-row justify-center h-[60vh]  mx-auto relative px-4">
         <Image src={envelope} alt="envelope" width={0} height={0} className="-right-32 absolute" />
         <Image
           src={pencil}
@@ -28,7 +28,7 @@ const tours = () => {
           height={0}
           className="-right-20 top-20 absolute"
         />
-        <div className=" md:w-1/3 md:mr-10 flex flex-col justify-center tracking-tight gap-2">
+        <div className=" lg:w-1/3 lg:mr-10 flex flex-col justify-center tracking-tight gap-2">
           {" "}
           <h3 className="text-4xl">
             Descrubre el mundo a{" "}
@@ -51,11 +51,11 @@ const tours = () => {
         <CardContainer />
       </div>
 
-      <div className="h-full w-full flex flex-col md:p-20 px-4 gap-4">
+      <div className="h-full w-full flex flex-col lg:p-20 px-4 gap-4">
         <span className="text-2xl" id="informacion">
           Informacion turistica de nuestro destino
         </span>
-        <p className="md:w-1/2">
+        <p className="lg:w-1/2">
           Londres, la capital vibrante del Reino Unido, emerge como un mosaico dinámico de historia,
           cultura y modernidad. A lo largo del majestuoso río Támesis, esta ciudad cosmopolita se
           extiende, deslumbrando a sus visitantes con su rica herencia y su energía contemporánea.

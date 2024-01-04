@@ -80,18 +80,18 @@ const Navbar = () => {
     }
   }, []);
   return (
-    <nav className="bg-white  fixed w-full h-16 md:h-20 z-50 top-0 start-0  text-black  tracking-wider  font-laila !font-bold">
+    <nav className="bg-white  fixed w-screen h-16 md:h-20 z-50 top-0 start-0  text-black  tracking-wider  font-laila !font-bold">
       <Toaster richColors position="top-center" expand={true} closeButton={true} />
       <div className="max-w-screen  w-screen flex items-center justify-between  md:justify-around p-2 md:p-4  ">
         <Link
           href="/"
           className="flex items-center md:justify-start justify-center  h-auto space-x-3 rtl:space-x-reverse "
         >
-          <div className="hidden md:block ">
+          <div className="hidden lg:block ">
             {" "}
             <Logo size="xl" />
           </div>
-          <div className=" md:hidden">
+          <div className=" lg:hidden">
             {" "}
             <Logo size="lg" />
           </div>
@@ -166,7 +166,7 @@ const Navbar = () => {
             // Si no hay usuario, mostrar el botón de inicio de sesión
             <button
               type="button"
-              className="yellow-btn font-bold"
+              className="yellow-btn font-bold md:mr-6 lg:mr-10"
               onClick={() => setShowLoginModal(true)}
             >
               Ingreso
@@ -246,7 +246,7 @@ const Navbar = () => {
               >
                 Tours
               </Link>
-              <ul className="!font-laila hidden sm:block">
+              <ul className="!font-laila hidden md:block">
                 <li>
                   <Link href="/tours#destinos" className="font-bold ">
                     Destinos
@@ -285,7 +285,7 @@ const Navbar = () => {
               >
                 Nosotros
               </Link>
-              <ul className="!font-laila hidden sm:block">
+              <ul className="!font-laila hidden md:block">
                 <li>
                   <Link href="/nosotros#instituto" className="font-bold ">
                     Nuestro Instituto
@@ -322,11 +322,11 @@ const Navbar = () => {
           id="navbar-sticky"
           style={{ transitionDuration: "1s" }}
         >
-          <ul className="flex  p-4 md:p-0 mt-4 font-medium  gap-6 md:mt-0  ">
+          <ul className="flex  p-4 md:p-0 mt-4 font-medium md:text-xs xl:text-base gap-6 md:mt-0  ">
             <li>
               <Link
                 href="/"
-                className={`block py-2 px-3  rounded md:bg-transparent  md:p-0 font-bold transition duration-[600ms]  ${
+                className={`block py-2 px-3  rounded md:bg-transparent   md:p-0 font-bold transition duration-[600ms]  ${
                   isCollapsed ? "opacity-0 md:opacity-100 " : " opacity-100"
                 }`}
                 aria-current="page"

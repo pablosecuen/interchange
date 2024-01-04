@@ -8,7 +8,7 @@ import Link from "next/link";
 const Trusted = () => {
   return (
     <section className="flex flex-col min-h-screen max-w-screen py-20">
-      <h2 className="uppercase md:text-4xl text-2xl  tracking-widest text-center font-laila font-bold ">
+      <h2 className="uppercase md:text-4xl text-2xl  tracking-widest text-center font-laila font-bold mx-2 sm:mx-0 ">
         EMPRESAS DE CONFIANZA
       </h2>
       <div className="max-w-4xl  overflow-x-hidden mx-auto md:h-auto h-auto my-10 ">

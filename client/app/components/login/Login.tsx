@@ -7,6 +7,7 @@ import eyeicon from "@/public/assets/svg/eyepassword.svg";
 import useLogin from "@/app/hooks/useLogin";
 import { Toaster, toast } from "sonner";
 import { User } from "../navbar";
+import Link from "next/link";
 
 interface LoginProps {
   onClose: () => void;
@@ -72,12 +73,12 @@ const Login = ({ onClose, updateUser }: LoginProps) => {
 
   return (
     <div className=" h-[100vh] flex justify-center items-center ">
-     <Toaster richColors position="top-center" expand={true} closeButton={true} />
+      <Toaster richColors position="top-center" expand={true} closeButton={true} />
       {isRegistering ? (
         <Register onClose={onClose} toggleRegister={toggleRegister} />
       ) : (
         <form
-          className=" w-1/3 min-h-[50vh]  p-10 -mt-12 rounded-3xl backdrop-blur-3xl bg-white/20 shadow-black/30 shadow-xl z-50"
+          className=" md:w-1/3 min-h-[50vh] w-full  p-10 -mt-12 rounded-3xl backdrop-blur-3xl bg-white/20 shadow-black/30 shadow-xl z-50"
           onSubmit={handleSubmit}
         >
           <div className="mb-5">
@@ -153,6 +154,7 @@ const Login = ({ onClose, updateUser }: LoginProps) => {
               Registrate aqui
             </span>
           </button>
+
           <div className="w-full flex justify-between">
             <button type="submit" className="yellow-btn h-10">
               Ingresar
@@ -162,6 +164,12 @@ const Login = ({ onClose, updateUser }: LoginProps) => {
               Close
             </button>
           </div>
+          <span className="hover:scale-105 transition font-thin text-xs  duration-300 cursor-pointer z-50">
+            Al continuar declaras estar de acuerddo con nuestras{" "}
+            <Link href="/terms" className="text-blue-500">
+              terminos de uso
+            </Link>
+          </span>
         </form>
       )}
     </div>

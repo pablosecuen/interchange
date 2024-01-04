@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export const Banner = () => {
   return (
-    <article className=" w-screen h-48 overflow-x- bg-gray-700 flex justify-center ">
+    <article className=" w-screen h-48 overflow-x- bg-gray-700 flex justify-center relative ">
       <div className="max-w-7xl w-full flex items-center ">
         <div className="flex justify-center items-center w-full h-full ">
           <h5 className="md:text-4xl text-2xl w-2/3 text-white brightness-200  font-laila font-bold">
@@ -20,22 +20,19 @@ export const Banner = () => {
               alt="arrow2"
               width={0}
               height={0}
-              className="absolute top-0 -left-24"
+              className="absolute top-0 md:top-1/4 lg:top-1/4 xl:top-0 -left-24 md:w-24 xl:w-auto"
             />
             <Link href="/inscripcion">
-              <button className="yellow-btn">Registro</button>
+              <button className="yellow-btn ">Registro</button>
             </Link>
-          </div>
-          <div className="md:w-1/2 relative flex justify-center h-full">
-            {" "}
-            <Image
-              src={banner1}
-              alt="banner1 "
-              width={0}
-              height={0}
-              className="absolute bottom-0 -right-32"
-            />
-          </div>
+          </div>{" "}
+          <Image
+            src={banner1}
+            alt="banner1 "
+            width={0}
+            height={0}
+            className="absolute bottom-0 w-32 md:w-36 -right-6 xs:right-0 xl:w-96"
+          />
         </div>
       </div>
     </article>

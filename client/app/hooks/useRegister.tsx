@@ -3,6 +3,10 @@
 import { useState, ChangeEvent } from "react";
 
 interface FormValues {
+  phoneAdult: string | number | readonly string[] | undefined;
+  emailAdult: string | number | readonly string[] | undefined;
+  lastNameAdult: string | number | readonly string[] | undefined;
+  firstNameAdult: string | number | readonly string[] | undefined;
   email: string;
   password: string;
   confirmPassword: string;
