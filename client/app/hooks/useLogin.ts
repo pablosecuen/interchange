@@ -1,4 +1,3 @@
-"use client";
 import { useState, ChangeEvent } from "react";
 import { toast } from "sonner";
 
@@ -45,25 +44,14 @@ const useLogin = (initialFormData: FormData): UseLoginProps => {
         }),
       });
 
-      const loginPromise = () => {
-        return new Promise<void>((resolve, reject) => {
-          if (response.ok) {
-            resolve();
-          } else {
-            reject(new Error("Error al validar credenciales"));
-          }
-        });
-      };
-
-      toast.promise(loginPromise(), {
-        loading: 'Validando credenciales...',
-        success: '¡Bienvenido de nuevo!',
-        error: (err) => err.message,
-      });
-
       if (response.ok) {
         const userFromServer = await response.json();
+
         const { Password, ...userDataWithoutPassword } = userFromServer.user;
+
+        // Llamar a la función para actualizar el usuario
+        // updateUser(userDataWithoutPassword);
+        toast.success("¡Bienvenido de nuevo!");
 
         if (rememberMe) {
           localStorage.setItem("user", JSON.stringify(userDataWithoutPassword));
@@ -72,6 +60,10 @@ const useLogin = (initialFormData: FormData): UseLoginProps => {
           sessionStorage.setItem("user", JSON.stringify(userDataWithoutPassword));
           localStorage.removeItem("user");
         }
+
+        // onClose();
+      } else {
+        toast.error("Error al validar credenciales");
       }
     } catch (error) {
       console.error("Error al validar credenciales:", error);
@@ -88,4 +80,3 @@ const useLogin = (initialFormData: FormData): UseLoginProps => {
 };
 
 export default useLogin;
-
