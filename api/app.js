@@ -13,6 +13,7 @@ const {
   sendEmailNotificationCurso,
   sendEmailNotificationVencimiento,
   sendEmailPreInscripcion,
+  sendEmailAcuerdoinstitucional,
 } = require("./src/nodemailer");
 
 const app = express();
@@ -130,6 +131,19 @@ app.get(
     }
   }
 );
+
+app.get("/send-email/acuerdoinstitucional/:adultemail", async (req, res) => {
+  try {
+    const { adultemail: EmailAdulto } = req.params;
+
+    const decodedEmail = decodeURIComponent(EmailAdulto);
+
+    const info = await sendEmailAcuerdoinstitucional(decodedEmail);
+    res.send(info);
+  } catch (error) {
+    res.send(error.message);
+  }
+});
 
 // Iniciar el servidor después de sincronizar los modelos
 sequelize.sync({ force: true }).then(() => {

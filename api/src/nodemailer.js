@@ -327,9 +327,94 @@ const sendEmailPreInscripcion = async (newUserEmail, formData) => {
   }
 };
 
+const sendEmailAcuerdoinstitucional = async (EmailAdulto) => {
+  try {
+    const ACCESS_TOKEN = await oAuth2Client.getAccessToken();
+    const transport = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        type: "OAuth2",
+        user: "institutointerchange@gmail.com",
+        clientId: process.env.CLIENT_ID,
+        clientSecret: process.env.CLIENT_SECRET,
+        refreshToken: process.env.REFRESH_TOKEN,
+        accessToken: ACCESS_TOKEN,
+      },
+      tls: {
+        rejectUnauthorized: false,
+      },
+    });
+
+    const mailOptions = {
+      from: "institutointerchange@gmail.com",
+      to: EmailAdulto,
+      subject: `¡Interchange desea recordarte que tenes una cuota vencida!`,
+      html: `
+      <!DOCTYPE html>
+      <html lang="en">
+      
+      <head>
+          <meta charset="UTF-8">
+          <title>Hola ${EmailAdulto} !</title>
+          <style>
+
+          .button {
+              display: inline-block;
+              padding: 10px 20px;
+              border-radius: 30px; 
+              background-color: yellow; 
+              color: black; 
+              text-decoration: none;
+              transition: transform 0.3s ease; 
+          }
+  
+          .button:hover {
+              transform: translateY(-2px); /* Desplazamiento hacia arriba */
+          }
+      </style>
+      </head>
+      
+      <body style="font-family: Arial, sans-serif;">
+      
+          <table cellpadding="0" cellspacing="0" width="100%" style="background-color: #f5f5f5;">
+              <tr>
+                  <td align="center">
+                      <table cellpadding="0" cellspacing="0" width="600" style="margin: 20px 0; background-color: #ffffff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                          <tr>
+                              <td style="padding: 40px 20px; text-align: center;">
+                                  <img src="https://scontent.fros2-1.fna.fbcdn.net/v/t39.30808-6/299023767_480174664115023_6334146979410293629_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=efb6e6&_nc_ohc=2wc1b-hDYgIAX9eLTzk&_nc_ht=scontent.fros2-1.fna&oh=00_AfAnLO6sOc0bortes0PjUJj--DQVWOdVV68TezDIgySEeA&oe=658BA3AE" alt="Logo del Instituto" width="150" style="display: block; margin: 0 auto 20px;">
+                                  <h1 style="color: #333333; font-size: 24px; margin: 0;">¡Hola ${EmailAdulto} !</h1>
+    <h2>Acuerdo institucional Interchange Instutute</h2>
+          <p>Les acercamos este link del formulario de acuerdo de confirmidad institucional para ser firmado digitalmente a la brevedad por el alumno o adulto responsable</p>
+          <p>Tener a consideración que la persona que firme el documento debe ser mayor de edad obligatoriamente</p>
+          <p>https://docs.google.com/forms/d/e/1FAIpQLSerXkA1OJNZANWGy5uI6Vy8oxG7F6uhvS6-h9PzkdY0RwZy9A/viewform</p>
+                               
+                                  <a href="https://interchange-eight.vercel.app/" class="button">Ir a la página principal</a>
+                        </td>                            
+                                  </td>
+                          </tr>
+                      </table>
+                  </td>
+              </tr>
+          </table>
+      
+      </body>
+      
+      </html>
+      
+    `,
+    };
+    const info = await transport.sendMail(mailOptions);
+    return info;
+  } catch (error) {
+    throw new Error(`Error sending email: ${error}`);
+  }
+};
+
 module.exports = {
   sendEmailNotificationRegister,
   sendEmailNotificationCurso,
   sendEmailNotificationVencimiento,
   sendEmailPreInscripcion,
+  sendEmailAcuerdoinstitucional,
 };
