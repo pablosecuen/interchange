@@ -24,12 +24,12 @@ const CampusHome: React.FC = () => {
   }
 
   return (
-    <div className="min-h-[90vh] w-full mt-20 flex justify-center items-center relative animate-fade">
+    <div className="min-h-[50vh] md:min-h-[80vh] w-full md:mt-20 flex justify-center md:items-center relative animate-fade">
       <div className="text-center md:w-1/2 mx-2 flex flex-col items-center justify-center lg:-mt-32">
         <Logo size="2xl" />
 
-        <h1 className="text-4xl font-bold mb-4 ">¡Bienvenido al Campus Virtual!</h1>
-        <div className="text-lg mb-8">
+        <h1 className="md:text-4xl text-2xl font-bold mb-4 ">¡Bienvenido al Campus Virtual!</h1>
+        <div className="md:text-lg md:mb-8">
           Hola, {isClient && <span className="font-bold">{user.Nombre}</span>}. Aquí encontrarás una
           plataforma educativa donde podrás acceder a tus exámenes, consultar material didáctico,
           ver tus notas y mucho más.

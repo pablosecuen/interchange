@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { toast } from "sonner";
 
 export interface Nota {
   notas: {
@@ -20,7 +19,6 @@ interface FetchNotasResult {
   error: Error | null;
   alumno: Alumno | null;
 }
-// ... (importaciones)
 
 function useFetchNotas(id: string): FetchNotasResult {
   const [loading, setLoading] = useState(true);
@@ -30,40 +28,25 @@ function useFetchNotas(id: string): FetchNotasResult {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true);
         const response = await fetch(`http://localhost:3001/api/users?id=${id}`);
         const data = await response.json();
 
-        const promise = () =>
-          new Promise<Alumno | null>((resolve, reject) => {
-            if (Array.isArray(data) && data.length > 0) {
-              const alumnoData: Alumno = {
-                Nombre: data[0].Nombre,
-                Apellido: data[0].Apellido,
-                RegistroNotas: data[0].RegistroNotas || [],
-              };
+        if (Array.isArray(data) && data.length > 0) {
+          const alumnoData: Alumno = {
+            Nombre: data[0].Nombre,
+            Apellido: data[0].Apellido,
+            RegistroNotas: data[0].RegistroNotas || [],
+          };
 
-              if (!response.ok) {
-                reject(new Error("error al obtener notas"));
-              } else {
-                resolve(alumnoData);
-              }
-            } else {
-              resolve(null);
-            }
-          });
-
-        toast.promise(promise, {
-          loading: "Obteniendo notas...",
-          success: (data) => {
-            if (data) {
-              setAlumno(data); // Actualizando el estado con los datos correctos
-              return "Notas obtenidas exitosamente";
-            } else {
-              return "No se encontraron notas";
-            }
-          },
-          error: "Error al obtener notas",
-        });
+          if (!response.ok) {
+            throw new Error("Error al obtener notas");
+          } else {
+            setAlumno(alumnoData); // Actualizando el estado con los datos correctos
+          }
+        } else {
+          setAlumno(null);
+        }
 
         setLoading(false);
       } catch (error: any) {

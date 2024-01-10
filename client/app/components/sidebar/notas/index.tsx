@@ -23,22 +23,22 @@ function Notas() {
   // Verificar si alumno es null o undefined
   if (!alumno) {
     return (
-      <div className="w-full h-[80vh] flex justify-center items-center">
+      <div className="w-full h-[50vh] flex justify-center items-center">
         <p>No se encontraron notas para este alumno.</p>
       </div>
     );
   }
 
   return (
-    <div className="animate-fade min-h-[90vh] w-full mt-20 flex">
+    <div className="animate-fade h-full w-full mb-20 md:mb-0 md:w-10/12 md:mx-20 mt-20 flex">
       <Toaster richColors={true} expand={false} position="top-center" />
       <table className="w-[80vw] mx-auto rounded">
         {/* Renderizar las cabeceras de la tabla */}
         <thead>
-          <tr className="bg-gray-300">
-            <th>Grado</th>
-            <th>Trimestres</th>
-            <th>Examen Final</th>
+          <tr className="bg-gray-300 ">
+            <th className="px-3 py-1">Grado</th>
+            <th className="px-3 py-1">Trimestres</th>
+            <th className="px-3 py-1">Examen Final</th>
           </tr>
         </thead>
         {/* Renderizar el cuerpo de la tabla */}
@@ -48,8 +48,8 @@ function Notas() {
               <td className="text-center">{registro.notas.grado}</td>
               <td>
                 {registro.notas.trimestres.map((trimestre, idx) => (
-                  <div key={idx} className="text-center">
-                    Trimestre {trimestre.trimestre}: {trimestre.nota}
+                  <div key={idx} className="text-center px-3 py-1">
+                    Trimestre {trimestre.trimestre} - Nota {trimestre.nota}
                   </div>
                 ))}
               </td>

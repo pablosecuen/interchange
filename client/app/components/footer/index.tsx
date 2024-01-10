@@ -7,7 +7,7 @@ import mail from "@/public/assets/svg/mail.svg";
 
 function Footer() {
   return (
-    <footer className="bg-black/90 text-white overflow-x-hidden">
+    <footer className="bg-black/90 text-white overflow-x-hidden w-full max-w-screen">
       <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0  flex flex-col justify-center">

@@ -58,9 +58,7 @@ const useGetNivelationExam = (): {
       if (!response.ok) {
         toast.error("Error al obtener los exámenes asociados");
         throw new Error(`Error ${response.status}: ${response.statusText}`);
-      } else {
-        toast.success("Exámenes asociados obtenidos exitosamente");
-      }
+      } 
       setExamsAssociated(data.examenesAsociados);
     } catch (error) {
       console.error("Error al obtener los exámenes asociados:", error);
