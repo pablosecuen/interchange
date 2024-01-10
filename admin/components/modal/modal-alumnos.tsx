@@ -13,6 +13,7 @@ import useAssignGrado from "../hooks/useAsignGrado";
 import useSendEmailCurso from "../hooks/useSendEmailCurso ";
 import LoadingError from "../loadingerror";
 import useAnotaciones from "../hooks/useAnotaciones";
+import useEnviarAcuerdoInstitucional from "../hooks/useEnviarAcuerdoInstitucional";
 
 interface ModalAlumnos {
   onOpenChange: (value: boolean) => void;
@@ -27,9 +28,12 @@ export default function ModalAlumnos({ onOpenChange, isOpen, alumno }: ModalAlum
     alumno,
     cursos
   );
+  const { enviarAcuerdoInstitucional, loading } = useEnviarAcuerdoInstitucional();
+
   //importante aunque enviarEmailCurso no esta siendo llamado, funciona con los argumentos que se le pasan al custom hook
   const { enviarEmailCurso } = useSendEmailCurso(alumno.Email, assignmentResult);
   //no borrar el hook de la linea 29 aunque no este siendo llamado, se ejectuta automaticamente
+
   const [anotaciones, setAnotaciones] = React.useState("");
 
   const propiedadesMostrar = ["Nombre", "Apellido", "Email", "Tipo"];
@@ -113,6 +117,15 @@ export default function ModalAlumnos({ onOpenChange, isOpen, alumno }: ModalAlum
     );
   };
 
+  const handleEnviarAcuerdo = () => {
+    if (alumno && alumno.EmailAdulto) {
+      enviarAcuerdoInstitucional(alumno.EmailAdulto);
+    } else {
+      // Manejar el caso en el que no haya un correo electrónico del adulto responsable definido en el alumno
+      console.error("Correo del adulto responsable no encontrado");
+    }
+  };
+
   return (
     <Modal
       backdrop="opaque"
@@ -128,7 +141,7 @@ export default function ModalAlumnos({ onOpenChange, isOpen, alumno }: ModalAlum
         closeButton: "hover:bg-white/5 active:bg-white/10",
       }}
     >
-     <Toaster richColors position="top-center" expand={true} closeButton={true} />
+      <Toaster richColors position="top-center" expand={true} closeButton={true} />
       <ModalContent>
         {(onClose) => (
           <>
@@ -164,7 +177,10 @@ export default function ModalAlumnos({ onOpenChange, isOpen, alumno }: ModalAlum
               </div>
               <div>{renderSelect()}</div>
             </ModalBody>
-            <ModalFooter>
+            <ModalFooter className="w-full flex justify-between">
+              <Button color="secondary" variant="light" onPress={handleEnviarAcuerdo}>
+                Enviar Acuerdo Institucional
+              </Button>
               <Button color="danger" variant="light" onPress={onClose}>
                 Cerrar
               </Button>

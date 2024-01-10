@@ -21,6 +21,8 @@ import TableWrapperNotas from "./tableNotas";
 
 export const TableWrapper = () => {
   const { users, isLoading, error } = useFetchUsers();
+  console.log(users);
+
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [selectedUser, setSelectedUser] = useState(null);
 
