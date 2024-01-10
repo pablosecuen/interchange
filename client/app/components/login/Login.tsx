@@ -46,7 +46,7 @@ const Login = ({ onClose, updateUser }: LoginProps) => {
     <div className=" h-[100vh] flex justify-center items-center ">
       <Toaster richColors position="top-center" expand={true} closeButton={true} />
       {isRegistering ? (
-        <Register onClose={onClose} toggleRegister={toggleRegister} />
+        <Register onClose={onClose} toggleRegister={toggleRegister} updateUser={updateUser} />
       ) : (
         <form
           className=" md:w-1/3 min-h-[50vh] w-full  p-10 -mt-12 rounded-3xl backdrop-blur-3xl bg-white/20 shadow-black/30 shadow-xl z-50"

@@ -8,6 +8,8 @@ import Image from "next/image";
 import Logo from "../logo";
 import usericon from "@/public/assets/svg/usericon.png";
 import { Toaster } from "sonner";
+import LoadingError from "../loadingerror";
+import Loading from "../loadingerror/loading";
 
 export interface User {
   ID: string;
@@ -28,6 +30,7 @@ const Navbar = () => {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [user, setUser] = useState<User | null>(null);
   const [showMenu, setShowMenu] = useState(false);
+  const [loadingUser, setLoadingUser] = useState(true);
   const router = useRouter();
 
   const handleMouseEnter = () => {
@@ -77,6 +80,7 @@ const Navbar = () => {
     if (userData) {
       const parsedUserData: User = JSON.parse(userData);
       setUser(parsedUserData);
+      setLoadingUser(false); // Cuando se carga el usuario, cambia el estado de carga a false
     }
   }, []);
   return (
@@ -100,8 +104,10 @@ const Navbar = () => {
           className="flex md:justify-end md:order-2  space-x-3 md:space-x-0 rtl:space-x-reverse  md:w-48      "
           onMouseEnter={handleMouseEnter}
         >
-          {user ? (
-            <div className="flex gap-4 items-center ">
+          {loadingUser ? (
+            <Loading isLoading={loadingUser} />
+          ) : user ? (
+            <div className="flex gap-4 items-center">
               <Image
                 src={usericon}
                 alt="user icon"
@@ -109,7 +115,7 @@ const Navbar = () => {
                 height={50}
                 className="border-4 rounded-full"
               />
-              <div className="text-sm font-medium flex flex-col cursor-pointer  ">
+              <div className="text-sm font-medium flex flex-col cursor-pointer">
                 <span className="font-medium">Bienvenido</span>
                 <span className="font-bold">
                   {user.Nombre && user.Apellido
@@ -119,27 +125,25 @@ const Navbar = () => {
                 <span className="font-bold">
                   {user.Grado_Nombre} {user.Grado_Categoria}
                 </span>
-
                 {/* Dropdown */}
                 {showMenu && (
                   <div
-                    className="absolute right-2 top-16 w-96  z-50 hidden md:block mt-1 bg-white border-b border-l border-r border-gray-200 py-2 rounded-md shadow-lg "
+                    className="absolute right-2 top-16 w-96 z-50 hidden md:block mt-1 bg-white border-b border-l border-r border-gray-200 py-2 rounded-md shadow-lg"
                     onMouseLeave={handleMouseLeave}
                   >
                     <ul className="flex flex-col gap-4 p-2 items-center">
-                      <li className="hover:bg-slate-100 w-full   ">
-                        <span className="text-xl text-gray-700 font-bold  font-2xl flex items-center justify-center gap-4">
+                      <li className="hover:bg-slate-100 w-full">
+                        <span className="text-xl text-gray-700 font-bold font-2xl flex items-center justify-center gap-4">
                           <Image
                             src={usericon}
                             alt="user icon"
                             width={50}
                             height={50}
                             className="border-4 rounded-full"
-                          />{" "}
+                          />
                           {user.Email ? `${user.Email}` : `${user.email}`}
                         </span>
                       </li>
-
                       {user && user?.Grado_Nombre && user?.Grado_Categoria && (
                         <li>
                           <span className="font-bold">
@@ -147,9 +151,9 @@ const Navbar = () => {
                           </span>
                         </li>
                       )}
-                      <li className="   flex justify-evenly w-full items-center ">
+                      <li className="flex justify-evenly w-full items-center">
                         <Link href="/campus?section=home">
-                          <button className="yellow-btn " type="button">
+                          <button className="yellow-btn" type="button">
                             Campus Virtual
                           </button>
                         </Link>
@@ -163,7 +167,7 @@ const Navbar = () => {
               </div>
             </div>
           ) : (
-            // Si no hay usuario, mostrar el botón de inicio de sesión
+            // Si no hay usuario, mostramos el botón de inicio de sesión
             <button
               type="button"
               className="yellow-btn font-bold md:mr-6 lg:mr-10"
@@ -172,6 +176,7 @@ const Navbar = () => {
               Ingreso
             </button>
           )}
+
           <button
             type="button"
             className="inline-flex items-center  p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"

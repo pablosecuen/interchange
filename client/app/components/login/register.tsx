@@ -8,29 +8,22 @@ import { useRouter } from "next/navigation";
 import { Toaster, toast } from "sonner";
 import Link from "next/link";
 import useRegister from "@/app/hooks/useRegister";
+import { User } from "../navbar";
 
 interface RegisterProps {
   onClose: () => void;
   toggleRegister: () => void;
+  updateUser: (user: User) => void;
 }
 
-const Register = ({ onClose, toggleRegister }: RegisterProps) => {
+const Register = ({ onClose, toggleRegister, updateUser }: RegisterProps) => {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
-
-  const { formData, handleChange, setFormData } = useRegister({
-    email: "",
-    password: "",
-    confirmPassword: "",
-    firstName: "",
-    lastName: "",
-    phone: "",
-    firstNameAdult: "",
-    lastNameAdult: "",
-    emailAdult: "",
-    phoneAdult: "",
+  const { formData, setFormData, handleChange, handleSubmit } = useRegister({
+    updateUser,
+    onClose,
   });
 
   const togglePasswordVisibility = () => {
@@ -43,50 +36,6 @@ const Register = ({ onClose, toggleRegister }: RegisterProps) => {
 
   const handleRememberMe = (e: React.ChangeEvent<HTMLInputElement>) => {
     setRememberMe(e.target.checked);
-  };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (formData.password !== formData.confirmPassword) {
-      alert("Las contraseñas no coinciden");
-      return;
-    }
-
-    try {
-      const response = await fetch("http://localhost:3001/api/users", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          Nombre: formData.firstName,
-          Apellido: formData.lastName,
-          Email: formData.email,
-          Telefono: formData.phone,
-          Password: formData.password,
-          Tipo: "Alumno",
-          Activo: true,
-        }),
-      });
-
-      if (response.ok) {
-        if (rememberMe) {
-          localStorage.setItem("user", JSON.stringify(formData));
-          sessionStorage.removeItem("user");
-          toast.success("Inicio de sesión exitoso. Datos guardados");
-        } else {
-          sessionStorage.setItem("user", JSON.stringify(formData));
-          localStorage.removeItem("user");
-        }
-        router.push("/campus");
-        onClose();
-      } else {
-        toast.error("Error al validar credenciales");
-      }
-    } catch (error) {
-      toast.error(`Error al enviar la solicitud: ${error}`);
-      console.log(error);
-    }
   };
 
   useEffect(() => {
@@ -106,7 +55,7 @@ const Register = ({ onClose, toggleRegister }: RegisterProps) => {
   return (
     <form
       className="md:w-1/3 min-h-[50vh] w-full  p-10 -mt-12 rounded-3xl backdrop-blur-3xl bg-white/20 shadow-black/30 shadow-xl z-50"
-      onSubmit={handleSubmit}
+      onSubmit={(e) => handleSubmit(rememberMe, e)}
     >
       <Toaster richColors={true} expand={false} position="top-center" />
 
