@@ -12,7 +12,7 @@ const Landing = () => {
   return (
     <section className="overflow-x-hidden w-screen  min-h-[100vh] h-full flex flex-col md:flex-row  mt-20 md:mt-0 z-40">
       <div className="w-full md:w-1/2 md:order-1  md:flex md:justify-end md:items-center md:pl-10  ">
-        <div className="flex-col  justify-end flex max-w-[550px] relatve">
+        <div className="flex-col  justify-end flex max-w-[550px] relatve lg:gap-4">
           {" "}
           <h1 className="md:text-5xl text-4xl perspective-container font-bold leading-relaxed pb-2 font-laila mx-auto md:mx-0 ">
             <Image
@@ -38,13 +38,7 @@ const Landing = () => {
             mismos.
           </h2>
           <div className="flex gap-6 pb-4 mx-auto md:mx-0">
-            <button type="button" className="yellow-btn">
-              Leer mas
-            </button>
-            <button
-              type="button"
-              className="  focus:ring-4 focus:outline-none bg-whitew text-gray-500 focus:ring-yellow-400 font-light rounded-full text-sm px-4 py-1 text-center border-2 hover:bg-gray-200 "
-            >
+            <button type="button" className="yellow-btn lg:mt-4">
               Leer mas
             </button>
           </div>
