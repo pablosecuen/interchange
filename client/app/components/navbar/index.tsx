@@ -30,7 +30,7 @@ const Navbar = () => {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [user, setUser] = useState<User | null>(null);
   const [showMenu, setShowMenu] = useState(false);
-  const [loadingUser, setLoadingUser] = useState(true);
+  const [loadingUser, setLoadingUser] = useState(false);
   const router = useRouter();
 
   const handleMouseEnter = () => {
@@ -80,7 +80,7 @@ const Navbar = () => {
     if (userData) {
       const parsedUserData: User = JSON.parse(userData);
       setUser(parsedUserData);
-      setLoadingUser(false); // Cuando se carga el usuario, cambia el estado de carga a false
+      setLoadingUser(false);
     }
   }, []);
   return (

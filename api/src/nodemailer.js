@@ -348,7 +348,7 @@ const sendEmailAcuerdoinstitucional = async (EmailAdulto) => {
     const mailOptions = {
       from: "institutointerchange@gmail.com",
       to: EmailAdulto,
-      subject: `¡Interchange desea recordarte que tenes una cuota vencida!`,
+      subject: `¡Acuerdo institucional Interchange!`,
       html: `
       <!DOCTYPE html>
       <html lang="en">
