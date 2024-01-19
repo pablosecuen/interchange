@@ -147,27 +147,52 @@ const Nosotros = () => {
               />
             </h4>
             <p className="text-lg pb-8 ">
-              Bienvenido a Interchange, tu destino para el aprendizaje del inglés de calidad. Nos
-              enorgullece ofrecer una experiencia educativa única y personalizada que va más allá de
-              las aulas tradicionales. Nuestra misión es inspirar y capacitar a nuestros estudiantes
-              para que alcancen la fluidez en inglés de manera efectiva y confiada.
+              Bienvenido a Interchange, tu destino para el aprendizaje del inglés de calidad. Somos
+              una institución con más de 20 años de trabajo serio y creativo. Siempre frente a la
+              innovación educativa en la enseñanza activa del inglés. Nos enorgullece ofrecer una
+              experiencia educativa única y personalizada que va más allá de las aulas
+              tradicionales. Nuestra misión es inspirar y capacitar a nuestros estudiantes para que
+              alcancen la fluidez en inglés de manera efectiva y confiada.
             </p>
             <h5 className="text-3xl  font-laila font-bold" id="metodologia">
-              Nuestra metodología
+              Nuestra propuesta
             </h5>
             <p className="text-lg pb-8">
-              Adoptamos una metodología dinámica centrada en el aprendizaje activo y la aplicación
-              práctica del inglés en situaciones reales. Nuestro enfoque innovador, respaldado por
-              tecnología de vanguardia y profesionales cualificados, garantiza una experiencia de
-              aprendizaje efectiva y motivadora.
+              Nuestra propuesta consiste en que los alumnos adquieran el idioma no sólo como medio
+              de comunicación sino también como herramienta de instrucción y como una ventana para
+              entender otras culturas
             </p>
-            <h5 className="text-3xl  font-laila font-bold" id="mision">
-              Nuestra Misión
-            </h5>
-            <p className="text-lg pb-8">
-              Capacitar a nuestros estudiantes para lograr la fluidez en inglés de manera efectiva,
-              ofreciendo una experiencia educativa única y personalizada.
-            </p>
+            <ul className="text-lg pb-8 list-disc">
+              <h5 className="text-3xl  font-laila font-bold pb-4" id="mision">
+                ¿Por qué elegir Interchange?
+              </h5>
+              <li>
+                Por la trayectoria que respalda nuestra experiencia en la enseñanza del idioma.
+              </li>
+              <li>Aulas equipadas con última tecnología</li>
+              <li>Cuerpo docente profesional y con calidad humana.</li>
+              <li>Actualización permanente en programa de estudio y capacitación docente.</li>
+              <li>
+                Interchange es centro preparatorio para exámenes de la Universidad de Cambridge.
+              </li>
+              <li>
+                Atención personalizada con seguimiento detallado en el proceso de aprendizaje de
+                nuestros alumnos con el objetivo de maximizar sus logros.
+              </li>
+              <li>
+                Ambiente amistoso y confiable lo que permite un aprendizaje más efectivo y
+                entretenido.
+              </li>
+              <li>
+                Clases participativas y dinámicas a través de canciones ,juegos , baile , videos ,
+                role-plays.
+              </li>
+              <li>Viajes de capacitación y estudio a Inglaterra.</li>
+              <li>
+                Y por sobre todas las cosas porque estamos siempre cerca tuyo , CRECIENDO JUNTOS,
+                adaptándonos a las necesidades de hoy y de mañana.
+              </li>
+            </ul>
             <h5 className="text-3xl  font-laila font-bold">Nuestra Visión</h5>
             <p className="text-lg pb-8">
               Destacar como líderes en educación, proporcionando a nuestros estudiantes las

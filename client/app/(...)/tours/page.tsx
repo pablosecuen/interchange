@@ -31,7 +31,7 @@ const tours = () => {
         <div className=" lg:w-1/3 lg:mr-10 flex flex-col justify-center tracking-tight gap-2">
           {" "}
           <h3 className="text-4xl">
-            Descrubre el mundo a{" "}
+            Descubre el mundo a{" "}
             <span className="text-custom-purple font-laila font-bold">traves del ingles</span>
           </h3>
           <p className="text-base">

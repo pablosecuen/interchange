@@ -6,7 +6,11 @@ import { Toaster } from "sonner";
 
 const Inscripcion = () => {
   const currentYear = new Date().getFullYear();
-  const nextYear = currentYear + 1;
+  let nextYear = currentYear;
+
+  if (new Date().getMonth() > 2) {
+    nextYear += 1;
+  }
 
   const initialState = {
     floating_first_name: "",
@@ -34,7 +38,7 @@ const Inscripcion = () => {
     <section className="w-full min-h-screen my-20">
       <Toaster richColors={true} expand={false} position="top-center" />
       <h3 className="md:text-4xl text-2xl font-bold tracking-widest text-center mt-40">
-        SOLICITUD DE INSCRIPCION {nextYear}
+        SOLICITUD DE PRE-INSCRIPCION {nextYear}
       </h3>
       <p className="md:text-lg px-4 md:px-0 font-bold mx-auto text-center py-4 max-w-4xl">
         Introducir los datos requeridos del interesado - La confirmación efectiva de la vacante será

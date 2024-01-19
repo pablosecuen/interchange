@@ -44,7 +44,7 @@ function Footer() {
                 </li>
                 <li className="mb-4 g:text-sm text-xs lg:text-base">
                   <Link href="/grados" className="hover:underline">
-                    Grados
+                    Cursos
                   </Link>
                 </li>
               </ul>

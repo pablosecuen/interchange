@@ -7,9 +7,9 @@ const Beneficios = () => {
   return (
     <article className="w-screen min-h-[100vh] h-full mb-36 flex flex-col gap-16 mt-20" id="porque">
       <h4 className="md:text-4xl text-3xl px-2  font-laila font-bold pb-4">
-        Unete y descubre una experiencia de{" "}
+        Unite y descubre una experiencia{" "}
         <span className="text-custom-purple relative">
-          turismo inolvidable !
+          inolvidable !
           <Image
             src={underline}
             alt="underline"
@@ -85,7 +85,7 @@ const Beneficios = () => {
             <div className="w-full h-1/3 flex flex-col justify-center items-center">
               {" "}
               <span className=" lg:text-md text-sm text-black font-semibold">
-                Aprendisaje nativo
+                Aprendizaje nativo
               </span>
               <p className="text-black/60 lg:text-sm text-xs">lorem ipsum</p>
             </div>
