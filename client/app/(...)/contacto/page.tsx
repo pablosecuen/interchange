@@ -26,7 +26,7 @@ const Contacto = () => {
         <div className="w-96 h-96 rounded-full bg-custom-purple hidden md:block absolute -bottom-48 -left-48 blur-3xl opacity-20 -z-10"></div>
         <div className="md:w-full lg:w-3/4  order-1  flex justify-center items-center p-8">
           <span className="text-3xl bg-custom-green rounded-3xl text-white p-4">
-            Queremos a saber de vos, podes contactarnos libremente para hacernos saber tus dudas,
+            Queremos saber de vos, podes contactarnos libremente para hacernos saber tus dudas,
             consultas o recomendaciones...
           </span>
         </div>

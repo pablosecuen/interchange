@@ -107,6 +107,7 @@ function Footer() {
             <Link
               href="https://github.com/pablosecuen/"
               className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
+              title="Github"
             >
               <svg
                 className="lg:w-4 lg:h-4 w-2 h-2"
@@ -123,7 +124,11 @@ function Footer() {
               </svg>
               <span className="sr-only">GitHub account</span>
             </Link>
-            <Link href="#" className="text-gray-500 hover:text-gray-900 dark:hover:text-white">
+            <Link
+              href="https://pablo-amico.vercel.app/"
+              className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
+              title="Portfolio"
+            >
               <svg
                 className="lg:w-4 lg:h-4 w-2 h-2"
                 aria-hidden="true"
@@ -137,7 +142,22 @@ function Footer() {
                   clipRule="evenodd"
                 />
               </svg>
-              <span className="sr-only">Dribbble account</span>
+              <span className="sr-only">Portfolio</span>
+            </Link>
+            <Link
+              href="https://pablo-amico.vercel.app/"
+              className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
+              title="Linkedin"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="lg:w-5 lg:h-5 w-2 h-2 -mt-[3px] -ml-[3px]"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path d="M 5 3 C 3.9 3 3 3.9 3 5 L 3 19 C 3 20.1 3.9 21 5 21 L 19 21 C 20.1 21 21 20.1 21 19 L 21 5 C 21 3.9 20.1 3 19 3 L 5 3 z M 5 5 L 19 5 L 19 19 L 5 19 L 5 5 z M 7.8007812 6.3007812 C 6.9007812 6.3007812 6.4003906 6.8 6.4003906 7.5 C 6.4003906 8.2 6.8992188 8.6992188 7.6992188 8.6992188 C 8.5992187 8.6992187 9.0996094 8.2 9.0996094 7.5 C 9.0996094 6.8 8.6007813 6.3007812 7.8007812 6.3007812 z M 6.5 10 L 6.5 17 L 9 17 L 9 10 L 6.5 10 z M 11.099609 10 L 11.099609 17 L 13.599609 17 L 13.599609 13.199219 C 13.599609 12.099219 14.499219 11.900391 14.699219 11.900391 C 14.899219 11.900391 15.599609 12.099219 15.599609 13.199219 L 15.599609 17 L 18 17 L 18 13.199219 C 18 10.999219 17.000781 10 15.800781 10 C 14.600781 10 13.899609 10.4 13.599609 11 L 13.599609 10 L 11.099609 10 z"></path>
+              </svg>
+              <span className="sr-only">Linkedin</span>
             </Link>
           </div>
         </div>

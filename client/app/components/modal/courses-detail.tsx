@@ -48,7 +48,7 @@ const ModalCourses: React.FC<ModalProps> = ({ grade, onClose, modalOpen }) => {
           <h2 className="md:text-4xl text-2xl mb-6">Horarios vigentes </h2>
           <p className="text-xs text-gray-800/70 mb-6">
             Los horarios detallados pueden estar sujetos a modificaciones determinadas por el
-            instituo en cualquier momento.
+            instituto en cualquier momento.
           </p>
           {/*         <p className="text-sm text-black/80 mb-6">{grade.description}</p> */}
           <ul className="flex text-custom-purple w-full justify-between ">
