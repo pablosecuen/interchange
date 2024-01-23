@@ -47,7 +47,7 @@ const useInscripcionForm = (initialState: any) => {
       const encodedLastNameStudent = encodeURIComponent(floating_last_namestudent);
       
   
-      const encodedURL = `http://localhost:3001/send-email/preinscripcion/${encodedEmail}/${encodedFirstName}/${encodedLastName}/${encodedFirstNameStudent}/${encodedLastNameStudent}/${encodedDateOfBirth}/${encodedPhoneNumber}/${encodedAddress}/${encodedGrade}/${encodedEmailAddress}/${encodedPhone}/${encodedMessage}`;
+      const encodedURL = `https://interchange-production.up.railway.app/send-email/preinscripcion/${encodedEmail}/${encodedFirstName}/${encodedLastName}/${encodedFirstNameStudent}/${encodedLastNameStudent}/${encodedDateOfBirth}/${encodedPhoneNumber}/${encodedAddress}/${encodedGrade}/${encodedEmailAddress}/${encodedPhone}/${encodedMessage}`;
   
       const promise = () => new Promise((resolve, reject) => {
         fetch(encodedURL, {

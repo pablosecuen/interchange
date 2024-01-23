@@ -20,7 +20,7 @@ const router = useRouter()
         return;
       }
 
-      const response = await fetch(`http://localhost:3001/api/users/${alumno.ID}`, {
+      const response = await fetch(`https://interchange-production.up.railway.app/api/users/${alumno.ID}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

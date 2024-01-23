@@ -6,7 +6,7 @@ const useAnotaciones = () => {
   const router = useRouter()
   const guardarAnotaciones = async (alumnoId: string, nuevasAnotaciones:string) => {
     try {
-      const response = await fetch(`http://localhost:3001/api/anotaciones/${alumnoId}`, {
+      const response = await fetch(`https://interchange-production.up.railway.app/api/anotaciones/${alumnoId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

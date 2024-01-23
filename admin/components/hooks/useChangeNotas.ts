@@ -45,7 +45,7 @@ const useChangeNotas = (alumno:any) => {
 
       const handleSubmit = async () => {
         try {
-          const response = await fetch(`http://localhost:3001/api/notas/${alumno.ID}`, {
+          const response = await fetch(`https://interchange-production.up.railway.app/api/notas/${alumno.ID}`, {
             method: "PATCH",
             headers: {
               "Content-Type": "application/json",

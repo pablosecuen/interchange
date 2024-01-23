@@ -43,7 +43,7 @@ const useRegister = ({ updateUser,onClose }: UseRegisterProps) => {
     }
 
     try {
-      const response = await fetch("http://localhost:3001/api/users", {
+      const response = await fetch("https://interchange-production.up.railway.app/api/users", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -4,7 +4,7 @@ import { toast } from 'sonner';
 const useSendEmail = (userEmail:string) => {
   const sendEmailVencimiento = async (userEmail: string) => {
     try {
-      const response = await fetch(`http://localhost:3001/send-email/vencimiento/${userEmail}`, {
+      const response = await fetch(`https://interchange-production.up.railway.app/send-email/vencimiento/${userEmail}`, {
         method: "GET",
       });
 

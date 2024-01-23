@@ -29,7 +29,7 @@ function useFetchNotas(id: string): FetchNotasResult {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`http://localhost:3001/api/users?id=${id}`);
+        const response = await fetch(`https://interchange-production.up.railway.app/api/users?id=${id}`);
         const data = await response.json();
 
         if (Array.isArray(data) && data.length > 0) {

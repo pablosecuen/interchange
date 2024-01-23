@@ -29,7 +29,7 @@ function useGetCompletedExams() {
 
     async function fetchCompletedExams() {
       try {
-        const response = await fetch("http://localhost:3001/api/examen-completado");
+        const response = await fetch("https://interchange-production.up.railway.app/api/examen-completado");
         if (!response.ok) {
           toast.error("Error completados obtenidos con éxito");
           throw new Error(`Error ${response.status}: ${response.statusText}`);
@@ -37,8 +37,8 @@ function useGetCompletedExams() {
 
         const data = await response.json();
         const examPromises = data.examenes.map(async (completedExam: any) => {
-          const examenResponse = await fetch(`http://localhost:3001/api/examen?examenID=${completedExam.examenID}`);
-          const userDataResponse = await fetch(`http://localhost:3001/api/users?userID=${completedExam.userID}`);
+          const examenResponse = await fetch(`https://interchange-production.up.railway.app/api/examen?examenID=${completedExam.examenID}`);
+          const userDataResponse = await fetch(`https://interchange-production.up.railway.app/api/users?userID=${completedExam.userID}`);
           const examenData = await examenResponse.json();
           const userData = await userDataResponse.json();
           return {

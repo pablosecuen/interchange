@@ -7,7 +7,7 @@ const useSendEmailCurso = (alumnoEmail:any, assignmentResult:any) => {
   const enviarEmailCurso = async () => {
     if (assignmentResult && assignmentResult.success) {
       try {
-        const response = await fetch(`http://localhost:3001/send-email/curso/${alumnoEmail}`, {
+        const response = await fetch(`https://interchange-production.up.railway.app/send-email/curso/${alumnoEmail}`, {
           method: 'GET',
         });
 

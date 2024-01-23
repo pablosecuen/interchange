@@ -33,16 +33,19 @@ const ModalEnvioExamen: React.FC<Props> = ({ isOpen, onOpenChange, examen }) => 
   const handleSendExam = async (selectedUser: any) => {
     try {
       // Lógica para enviar el examen al usuario seleccionado
-      const response = await fetch(`http://localhost:3001/api/examen/enviar-examen`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          userID: selectedUser.ID,
-          examenID: examen.ID,
-        }),
-      });
+      const response = await fetch(
+        `https://interchange-production.up.railway.app//api/examen/enviar-examen`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            userID: selectedUser.ID,
+            examenID: examen.ID,
+          }),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Error al enviar el examen al usuario");

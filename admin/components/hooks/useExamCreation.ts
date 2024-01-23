@@ -11,7 +11,7 @@ const useExamCreation = () => {
   const createExam = async (exam: Exam) => {
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:3001/api/examen/crear', {
+      const response = await fetch('https://interchange-production.up.railway.app/api/examen/crear', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

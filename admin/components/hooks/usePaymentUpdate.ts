@@ -13,7 +13,7 @@ const usePaymentUpdate = (vencimientoCuotas:any, user:any) => {
       const pagoId = user.Pagos[0].ID;
       const updatedMes = updatedVencimientoCuotas[index].mes;
 
-      const response = await fetch(`http://localhost:3001/api/pagos/${pagoId}`, {
+      const response = await fetch(`https://interchange-production.up.railway.app/api/pagos/${pagoId}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

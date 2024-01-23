@@ -12,7 +12,7 @@ const useGetExams = () => {
   useEffect(() => {
     const obtenerExamenes = async () => {
       try {
-        const response = await fetch('http://localhost:3001/api/examen');
+        const response = await fetch('https://interchange-production.up.railway.app/api/examen');
         if (!response.ok) {
           toast.error('Hubo un problema al obtener los exámenes.');
           throw new Error('Hubo un problema al obtener los exámenes.');

@@ -9,7 +9,7 @@ const useEnviarAcuerdoInstitucional = () => {
   const enviarAcuerdoInstitucional = async (email:string) => {
     try {
       setLoading(true);
-      const response = await fetch(`http://localhost:3001/send-email/acuerdoinstitucional/${email}`);
+      const response = await fetch(`https://interchange-production.up.railway.app/send-email/acuerdoinstitucional/${email}`);
       const data = await response.json();
       if (!response.ok) {
       toast.error("error al enviar el correo")

@@ -22,7 +22,7 @@ function useSaveExamsResults() {
   const guardarResultadosExamen = async (data: ExamResults) => {
     setLoading(true);
     try {
-      const response = await fetch("http://localhost:3001/api/examen-completado/guardar", {
+      const response = await fetch("https://interchange-production.up.railway.app/api/examen-completado/guardar", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
