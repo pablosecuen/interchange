@@ -1,17 +1,8 @@
 "use client"
 import { useState, useEffect } from 'react';
 import {  toast } from 'sonner'
-export interface User {
-  ID: number;
-Nombre: string;
-Apellido: string;
-Email: string;
-Tipo: string;
-Grado_ID: string;
-createdAt: string;
-updatedAt: string;
-Activo: Boolean;
-}
+import { User } from '../../types/user';
+
 const useFetchUsers = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [isLoading, setLoading] = useState(true);
@@ -51,7 +42,6 @@ console.log(data);
         );
         
         setUsers(usersWithGradesAndPayments);
-        toast.success("Usuarios cargados correctamente")
     } catch (error: any) {
       setError(error);
     } finally {

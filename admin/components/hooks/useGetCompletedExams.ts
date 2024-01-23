@@ -15,7 +15,8 @@ export interface ExamResults {
       respuestaUsuario: string;
       respuestaCorrecta: string;
     }[];
-    nota?: number;
+  nota?: number;
+  createdAt?: any
   }
   
 function useGetCompletedExams() {

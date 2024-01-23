@@ -1,12 +1,9 @@
 "use client"
 import { useState, useEffect } from 'react';
 import {  toast } from 'sonner'
+import { Curso } from '../(...)/cursos';
 
-export interface Curso {
-  ID: number;
-  Grado_Nombre: string;
-  Grado_Categoria: string;
-}
+
 
 const useFetchCursos = () => {
   const [cursos, setCursos] = useState<Curso[]>([]);

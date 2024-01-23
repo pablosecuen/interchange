@@ -1,26 +1,16 @@
 import React, { useState } from "react";
-
 import { Button, Input, useDisclosure } from "@nextui-org/react";
 import ExamenModal from "./modal-examen";
 import { Exam } from "./crear-examen";
-
 import ExamenModalResultados from "./moda-examen-resultados";
-
 import Link from "next/link";
-
 import { Toaster } from "sonner";
-
-import spinner from "../../public/spinner/Spinner.gif";
-import Image from "next/image";
-
-import useGetExams from "../../hooks/useGetExams";
+/* import useGetExams from "../../hooks/useGetExams"; */
 import useGetCompletedExams, { ExamResults } from "../../hooks/useGetCompletedExams";
 import { HouseIcon } from "../../icons/breadcrumb/house-icon";
 import { UsersIcon } from "../../icons/breadcrumb/users-icon";
 import { SettingsIcon } from "../../icons/sidebar/settings-icon";
-import { TrashIcon } from "../../icons/accounts/trash-icon";
-import { InfoIcon } from "../../icons/accounts/info-icon";
-import { DotsIcon } from "../../icons/accounts/dots-icon";
+import * as XLSX from "xlsx";
 import { ExportIcon } from "../../icons/accounts/export-icon";
 import LoadingError from "../../loadingerror";
 import { TableWrapperExams } from "../../table/tableNivelador";
@@ -28,6 +18,7 @@ import { TableWrapperExamsCompleted } from "../../table/tableNiveladorCompletado
 
 const Nivelador = () => {
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
+  const { loadingResult, errorResult, completedExams } = useGetCompletedExams();
   const {
     isOpen: isOpenResult,
     onOpen: onOpenResult,
@@ -39,6 +30,62 @@ const Nivelador = () => {
   );
   const [examenResultadosSeleccionado, setExamenResultadosSeleccionado] =
     useState<ExamResults | null>(null);
+
+  const [examenesFilter, setExamenesFilter] = useState<string>("");
+
+  const filteredExams = completedExams.filter((completedExam) => {
+    const { userID, respuestas, nota } = completedExam;
+    const searchLowerCase = examenesFilter.toLowerCase();
+
+    // Convertir el campo respuestas a una cadena de texto o al formato deseado
+    const respuestasString = JSON.stringify(respuestas);
+
+    // Verificar si nota está definido antes de usarlo
+    const match =
+      userID.toLowerCase().includes(searchLowerCase) ||
+      (nota && nota.toString().toLowerCase().includes(searchLowerCase)) ||
+      respuestasString.toLowerCase().includes(searchLowerCase);
+
+    return match;
+  });
+
+  const exportToExcel = () => {
+    // Crear un array para contener todas las filas desenrolladas
+    const flattenedData: any[] = [];
+
+    // Iterar sobre los exámenes completados
+    filteredExams.forEach((completedExam) => {
+      const { userID, respuestas, nota, createdAt, examenTitle, userName, userEmail } =
+        completedExam;
+
+      // Iterar sobre las respuestas de cada examen
+      respuestas.forEach((respuesta) => {
+        const { enunciado, respuestaUsuario, respuestaCorrecta } = respuesta;
+
+        // Crear una nueva fila para cada respuesta
+        const rowData = {
+          userID,
+          enunciado,
+          respuestaUsuario,
+          respuestaCorrecta,
+          nota,
+          createdAt,
+          examenTitle,
+          userName,
+          userEmail,
+        };
+
+        // Agregar la fila a la lista
+        flattenedData.push(rowData);
+      });
+    });
+
+    // Crear la hoja de cálculo y exportar a Excel
+    const worksheet = XLSX.utils.json_to_sheet(flattenedData);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Examenes");
+    XLSX.writeFile(workbook, "examenes.xlsx");
+  };
 
   const mostrarDetalleExamen = (examen: any) => {
     setExamenSeleccionado(examen);
@@ -81,24 +128,26 @@ const Nivelador = () => {
               mainWrapper: "w-full",
             }}
             placeholder="Search examen"
+            value={examenesFilter}
+            onChange={(e) => setExamenesFilter(e.target.value)}
           />
-          <SettingsIcon />
-          <TrashIcon />
-          <InfoIcon />
-          <DotsIcon />
         </div>
         <div className="flex flex-row gap-3.5 flex-wrap">
-          <Button color="primary" startContent={<ExportIcon />}>
+          <Button color="primary" startContent={<ExportIcon />} onPress={exportToExcel}>
             Exportar a Excel
           </Button>
         </div>
       </div>
       <div className="max-w-[95rem] mx-auto w-full rounded-3xl overflow-hidden">
         <div className="flex flex-col gap-4">
+          <span className="pl-4">Examanes en blanco</span>
           <TableWrapperExams mostrarDetalleExamen={mostrarDetalleExamen} />
-
+          <span className="pl-4">Examanes Completados</span>
           <TableWrapperExamsCompleted
             mostrarDetalleExamenResultado={mostrarDetalleExamenResultado}
+            loadingResult={loadingResult}
+            errorResult={errorResult}
+            completedExams={completedExams}
           />
         </div>
         <ExamenModal examen={examenSeleccionado} openchange={onOpenChange} isopen={isOpen} />

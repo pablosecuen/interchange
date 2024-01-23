@@ -15,13 +15,18 @@ import LoadingError from "../loadingerror";
 
 interface TableWrapperExamsProps {
   mostrarDetalleExamenResultado: (arg0: any) => void;
+  loadingResult: boolean;
+  errorResult: any;
+  completedExams: any;
 }
 
 export const TableWrapperExamsCompleted = ({
   mostrarDetalleExamenResultado,
+  loadingResult,
+  errorResult,
+  completedExams,
 }: TableWrapperExamsProps) => {
-  const { loadingResult, errorResult, completedExams } = useGetCompletedExams();
-
+  
   if (loadingResult || errorResult) {
     <LoadingError isLoading={loadingResult} error={errorResult} />;
   }
