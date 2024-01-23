@@ -15,8 +15,9 @@ import {
 } from "@nextui-org/react";
 import { Exam } from "./crear-examen";
 import { Toaster, toast } from "sonner";
-import useFetchUsers, { User } from "../../hooks/useFetchUsers";
+import useFetchUsers from "../../hooks/useFetchUsers";
 import LoadingError from "../../loadingerror";
+import { User } from "../../../types/user";
 
 interface Props {
   isOpen: boolean;
