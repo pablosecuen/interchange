@@ -10,19 +10,21 @@ import {
 } from "@nextui-org/react";
 import { Toaster } from "sonner";
 import { columnsCursos } from "./data";
-import useFetchCursos from "../hooks/useFetchCursos";
 import { RenderCell } from "./render-cell-cursos";
 import { useState } from "react";
 import ModalCurso from "../modal/modal-cursos";
-import Image from "next/image";
-import spinner from "../../public/spinner/Spinner.gif";
 import LoadingError from "../loadingerror";
+import { Curso } from "../(...)/cursos";
 
-export const TableWrapper = () => {
-  const { cursos: Cursos, isLoading, error } = useFetchCursos();
+interface CursoTableProps {
+  cursos: Curso[];
+  isLoading: boolean;
+  error: any;
+}
+
+export const TableWrapper = ({ cursos, isLoading, error }: CursoTableProps) => {
   const [selectedCurso, setSelectedCurso] = useState(null);
   const { isOpen, onOpenChange } = useDisclosure();
-
 
   const handleSelectCurso = (curso: any) => {
     setSelectedCurso(curso);
@@ -35,10 +37,10 @@ export const TableWrapper = () => {
 
   return (
     <div className=" w-full flex flex-col gap-4">
-     <Toaster richColors position="top-center" expand={true} closeButton={true} />
+      <Toaster richColors position="top-center" expand={true} closeButton={true} />
       <Table aria-label="Tabla de cursos">
         <TableHeader columns={columnsCursos}>
-          {(column) => (
+          {(column: any) => (
             <TableColumn
               key={column.uid}
               hideHeader={column.uid === "actions"}
@@ -48,10 +50,10 @@ export const TableWrapper = () => {
             </TableColumn>
           )}
         </TableHeader>
-        <TableBody items={Cursos}>
-          {(item) => (
+        <TableBody items={cursos}>
+          {(item: any) => (
             <TableRow key={item.ID}>
-              {(columnKey) => (
+              {(columnKey: any) => (
                 <TableCell>
                   {RenderCell({
                     curso: item,

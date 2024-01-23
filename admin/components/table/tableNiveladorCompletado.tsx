@@ -31,7 +31,7 @@ export const TableWrapperExamsCompleted = ({
       <Toaster richColors position="top-center" expand={true} closeButton={true} />
       <Table aria-label="Tabla de cursos">
         <TableHeader columns={columnsExamscomletados}>
-          {(column) => (
+          {(column: any) => (
             <TableColumn
               key={column.uid}
               hideHeader={column.uid === "actions"}
@@ -44,7 +44,7 @@ export const TableWrapperExamsCompleted = ({
         <TableBody items={completedExams}>
           {(item: any) => (
             <TableRow key={item.ID}>
-              {(columnKey) => (
+              {(columnKey: any) => (
                 <TableCell>
                   {RenderCellExamCompleted({
                     curso: item,
