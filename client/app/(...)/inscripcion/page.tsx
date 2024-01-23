@@ -42,7 +42,7 @@ const Inscripcion = () => {
       </h3>
       <p className="md:text-lg px-4 md:px-0 font-bold mx-auto text-center py-4 max-w-4xl">
         Introducir los datos requeridos del interesado - La confirmación efectiva de la vacante será
-        vía WhatApp y/o e-mail luego de recibido y confirmado el pago de la matrícula.
+        vía WhatsApp y/o e-mail luego de recibido y confirmado el pago de la matrícula.
       </p>
       <form className="max-w-3xl mx-auto  md:w-full pt-10 px-8 md:px-0" onSubmit={handleSubmit}>
         <span className="pb-10 text-center font-bold">ADULTO RESPONSABLE</span>
