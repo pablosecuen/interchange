@@ -40,7 +40,7 @@ export const TableWrapper = ({ cursos, isLoading, error }: CursoTableProps) => {
       <Toaster richColors position="top-center" expand={true} closeButton={true} />
       <Table aria-label="Tabla de cursos">
         <TableHeader columns={columnsCursos}>
-          {(column) => (
+          {(column: any) => (
             <TableColumn
               key={column.uid}
               hideHeader={column.uid === "actions"}
@@ -51,9 +51,9 @@ export const TableWrapper = ({ cursos, isLoading, error }: CursoTableProps) => {
           )}
         </TableHeader>
         <TableBody items={cursos}>
-          {(item) => (
+          {(item: any) => (
             <TableRow key={item.ID}>
-              {(columnKey) => (
+              {(columnKey: any) => (
                 <TableCell>
                   {RenderCell({
                     curso: item,

@@ -1,7 +1,7 @@
 import { Button, Input } from "@nextui-org/react";
 import Link from "next/link";
-import React, { useState } from "react"; /* 
-import { DotsIcon } from "../../icons/accounts/dots-icon"; */
+import React, { useState } from "react";
+import { DotsIcon } from "../../icons/accounts/dots-icon";
 import { ExportIcon } from "../../icons/accounts/export-icon";
 /* import { InfoIcon } from "../../icons/accounts/info-icon";
 import { TrashIcon } from "../../icons/accounts/trash-icon"; */
@@ -71,7 +71,7 @@ export const Cursos = () => {
             }}
             placeholder="Buscar grados"
             value={cursoFilter}
-            onChange={(e) => setCursoFilter(e.target.value)}
+            onChange={(e: any) => setCursoFilter(e.target.value)}
           />
         </div>
         <div className="flex flex-row gap-3.5 flex-wrap">

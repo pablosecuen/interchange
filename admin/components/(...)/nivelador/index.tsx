@@ -55,8 +55,7 @@ const Nivelador = () => {
 
     // Iterar sobre los exámenes completados
     filteredExams.forEach((completedExam) => {
-      const { userID, respuestas, nota, createdAt, examenTitle, userName, userEmail } =
-        completedExam;
+      const { userID, respuestas, nota, examenTitle, userName, userEmail } = completedExam;
 
       // Iterar sobre las respuestas de cada examen
       respuestas.forEach((respuesta) => {
@@ -69,7 +68,6 @@ const Nivelador = () => {
           respuestaUsuario,
           respuestaCorrecta,
           nota,
-          createdAt,
           examenTitle,
           userName,
           userEmail,
@@ -129,7 +127,7 @@ const Nivelador = () => {
             }}
             placeholder="Search examen"
             value={examenesFilter}
-            onChange={(e) => setExamenesFilter(e.target.value)}
+            onChange={(e: any) => setExamenesFilter(e.target.value)}
           />
         </div>
         <div className="flex flex-row gap-3.5 flex-wrap">

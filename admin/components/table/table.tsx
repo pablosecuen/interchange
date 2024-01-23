@@ -18,12 +18,12 @@ import { Toaster } from "sonner";
 import LoadingError from "../loadingerror";
 import CambiarNotasModal from "../modal/modal-cambiar-notas";
 import TableWrapperNotas from "./tableNotas";
-import { User } from "../../types/user";
+import { User } from "../hooks/useFetchUsers";
 
 interface tableAlumnosProps {
-  users?: User[];
-  isLoading?: boolean;
-  error?: any;
+  users: User[];
+  isLoading: boolean;
+  error: any;
 }
 export const TableWrapper = ({ users, isLoading, error }: tableAlumnosProps) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -76,7 +76,7 @@ export const TableWrapper = ({ users, isLoading, error }: tableAlumnosProps) => 
       <Toaster richColors position="top-center" expand={true} closeButton={true} />
       <Table aria-label="Tabla de usuarios">
         <TableHeader columns={columns}>
-          {(column) => (
+          {(column: any) => (
             <TableColumn
               key={column.uid}
               hideHeader={column.uid === "actions"}
@@ -87,9 +87,9 @@ export const TableWrapper = ({ users, isLoading, error }: tableAlumnosProps) => 
           )}
         </TableHeader>
         <TableBody items={users}>
-          {(item) => (
+          {(item: any) => (
             <TableRow key={item.ID}>
-              {(columnKey) => (
+              {(columnKey: any) => (
                 <TableCell>
                   {RenderCell({
                     user: item,
