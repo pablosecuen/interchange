@@ -26,7 +26,10 @@ const useFetchUsers = () => {
 useEffect(() => {
   const fetchUsers = async () => {
     try {
-      const response = await fetch('https://interchange-production.up.railway.app/api/users');
+      const response = await fetch('https://interchange-production.up.railway.app/api/users', {
+  method: 'GET',
+  credentials: 'include',  // Importante para enviar cookies y otros datos de autenticación
+});
       if (!response.ok) {
         throw new Error('Error al cargar los usuarios');
       }
