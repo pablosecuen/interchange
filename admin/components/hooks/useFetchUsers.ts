@@ -2,15 +2,21 @@
 import { useState, useEffect } from 'react';
 import {  toast } from 'sonner'
 export interface User {
-  ID: number;
-Nombre: string;
-Apellido: string;
-Email: string;
-Tipo: string;
-Grado_ID: string;
-createdAt: string;
-updatedAt: string;
-Activo: Boolean;
+  ID: string;
+  Nombre: string;
+  Apellido: string;
+  Telefono: string;
+  Email: string;
+  Password: string;
+  Anotaciones?: string | null;
+  Tipo?: string;
+  Activo: boolean;
+  Grado_ID?: string | null;
+  NombreAdulto?: string | null;
+  ApellidoAdulto?: string | null;
+  TelefonoAdulto?: string | null;
+    EmailAdulto?: string | null;
+    RegistroNotas:any
 }
 const useFetchUsers = () => {
   const [users, setUsers] = useState<User[]>([]);

@@ -8,6 +8,7 @@ import { CardAgents } from "./card-agents";
 import { CardTransactions } from "./card-transactions";
 import { Link } from "@nextui-org/react";
 import NextLink from "next/link";
+import useFetchUsers from "../hooks/useFetchUsers";
 
 const Chart = dynamic(() => import("../charts/steam").then((mod) => mod.Steam), {
   ssr: false,
@@ -54,7 +55,7 @@ export const Content = () => (
           Ver Todos
         </Link>
       </div>
-      <TableWrapper />
+      {/*             <TableWrapper users={users} isLoading={isLoading} error={error} /> */}
     </div>
   </div>
 );

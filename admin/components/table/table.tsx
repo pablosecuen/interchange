@@ -11,20 +11,24 @@ import {
 import React, { useState } from "react";
 import { columns } from "./data";
 import { RenderCell } from "./render-cell";
-import useFetchUsers from "../hooks/useFetchUsers";
+
 import ModalCuotas from "../modal/modal-cuotas";
 import ModalAlumnos from "../modal/modal-alumnos";
 import { Toaster } from "sonner";
 import LoadingError from "../loadingerror";
 import CambiarNotasModal from "../modal/modal-cambiar-notas";
 import TableWrapperNotas from "./tableNotas";
+import { User } from "../hooks/useFetchUsers";
 
-export const TableWrapper = () => {
-  const { users, isLoading, error } = useFetchUsers();
-  console.log(users);
 
+interface tableAlumnosProps {
+  users: User[];
+  isLoading: boolean;
+  error: any;
+}
+export const TableWrapper = ({ users, isLoading, error }: tableAlumnosProps) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const [selectedUser, setSelectedUser] = useState(null);
+  const [selectedUser, setSelectedUser] = useState<User | null>(null);
 
   const {
     isOpen: isOpenAlumnos,
@@ -44,22 +48,22 @@ export const TableWrapper = () => {
     onOpenChange: onOpenChangeNotas,
   } = useDisclosure();
 
-  const handleUserClick = (user: any) => {
+  const handleUserClick = (user: User) => {
     setSelectedUser(user);
     onOpenChange();
   };
 
-  const handleAlumnoClick = (user: any) => {
+  const handleAlumnoClick = (user: User) => {
     setSelectedUser(user);
     onOpenAlumnos();
   };
 
-  const handleNotasEditClick = (user: any) => {
+  const handleNotasEditClick = (user: User) => {
     setSelectedUser(user);
     onOpenNotasEdit();
   };
 
-  const handleNotasClick = (user: any) => {
+  const handleNotasClick = (user: User) => {
     setSelectedUser(user);
     onOpenNotas();
   };

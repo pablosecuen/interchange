@@ -1,17 +1,39 @@
 import { Button, Input } from "@nextui-org/react";
 import Link from "next/link";
-import React from "react";
-import { DotsIcon } from "../../icons/accounts/dots-icon";
+import React, { useState } from "react";
 import { ExportIcon } from "../../icons/accounts/export-icon";
-import { InfoIcon } from "../../icons/accounts/info-icon";
-import { TrashIcon } from "../../icons/accounts/trash-icon";
 import { HouseIcon } from "../../icons/breadcrumb/house-icon";
 import { UsersIcon } from "../../icons/breadcrumb/users-icon";
-import { SettingsIcon } from "../../icons/sidebar/settings-icon";
 import { TableWrapper } from "../../table/table";
 import { AddUser } from "./add-user";
+import useFetchUsers from "../../hooks/useFetchUsers";
+import * as XLSX from "xlsx";
 
 export const Alumnos = () => {
+  const { users, isLoading, error } = useFetchUsers();
+  const [userFilter, setUserFilter] = useState<string>("");
+
+  const filteredUsers = users.filter((user) => {
+    const { Nombre, Apellido, Telefono, Email } = user;
+    const searchLowerCase = userFilter.toLowerCase();
+
+    const match =
+      Nombre.toLowerCase().includes(searchLowerCase) ||
+      Apellido.toLowerCase().includes(searchLowerCase) ||
+      Telefono.toLowerCase().includes(searchLowerCase) ||
+      Email.toLowerCase().includes(searchLowerCase) ||
+      Telefono.toLowerCase().includes(searchLowerCase);
+
+    return match;
+  });
+
+  const exportToExcel = () => {
+    const worksheet = XLSX.utils.json_to_sheet(filteredUsers);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Alumnos");
+    XLSX.writeFile(workbook, "alumnos.xlsx");
+  };
+
   return (
     <div className="my-14 max-w-[95rem] mx-auto w-full flex flex-col gap-4">
       <ul className="flex">
@@ -41,22 +63,20 @@ export const Alumnos = () => {
               input: "w-full",
               mainWrapper: "w-full",
             }}
-            placeholder="Search alumnos"
+            placeholder="Buscar alumnos"
+            value={userFilter}
+            onChange={(e) => setUserFilter(e.target.value)}
           />
-          <SettingsIcon />
-          <TrashIcon />
-          <InfoIcon />
-          <DotsIcon />
         </div>
         <div className="flex flex-row gap-3.5 flex-wrap">
           <AddUser />
-          <Button color="primary" startContent={<ExportIcon />}>
+          <Button color="primary" startContent={<ExportIcon />} onPress={exportToExcel}>
             Exportar a Excel
           </Button>
         </div>
       </div>
       <div className="max-w-[95rem] mx-auto w-full">
-        <TableWrapper />
+        <TableWrapper users={filteredUsers} isLoading={isLoading} error={error} />
       </div>
     </div>
   );
