@@ -29,7 +29,12 @@ export const AddUser = () => {
                 <Input label="Last Name" variant="bordered" />
                 <Input label="Phone Number" variant="bordered" />
 
-                <Input label="Password" type="password" variant="bordered" />
+                <Input
+                  label="Password"
+                  type="password"
+                  variant="bordered"
+                  autoComplete="current-password"
+                />
                 <Input label="Confirm Password" type="password" variant="bordered" />
               </ModalBody>
               <ModalFooter>

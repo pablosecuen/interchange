@@ -58,11 +58,6 @@ export const SidebarWrapper = () => {
                 icon={<AccountsIcon />}
                 href="nivelador"
               />
-              {/*               <CollapseItems
-                icon={<BalanceIcon />}
-                items={["Banks Accounts", "Credit Cards", "Loans"]}
-                title="Balances"
-              /> */}
             </SidebarMenu>
 
             <SidebarMenu title="Campus">
@@ -78,12 +73,6 @@ export const SidebarWrapper = () => {
                 href="view"
                 icon={<ViewIcon />}
               />
-              {/*               <SidebarItem
-                isActive={router.pathname === "/configuracion"}
-                title="configuracion"
-                href="configuracion"
-                icon={<SettingsIcon />}
-              /> */}
             </SidebarMenu>
           </div>
           <div className={Sidebar.Footer()}>
