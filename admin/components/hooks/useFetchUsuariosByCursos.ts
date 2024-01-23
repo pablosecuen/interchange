@@ -19,7 +19,7 @@ const useFetchUsuariosByCursos = (isOpen: boolean, curso: Curso | null): FetchUs
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<Error | null>(null);
 
-
+//a
 
   useEffect(() => {
     const fetchUsuarios = async () => {
