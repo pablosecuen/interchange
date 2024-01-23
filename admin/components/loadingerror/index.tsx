@@ -3,8 +3,8 @@ import Image from "next/image";
 import spinner from "../../public/spinner/Spinner.gif";
 
 interface LoadingErrorProps {
-  isLoading: boolean;
-  error: any; // Tipo de error según tus necesidades
+  isLoading?: boolean;
+  error?: any; // Tipo de error según tus necesidades
 }
 
 const LoadingError: React.FC<LoadingErrorProps> = ({ isLoading, error }) => {

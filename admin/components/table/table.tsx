@@ -21,9 +21,9 @@ import TableWrapperNotas from "./tableNotas";
 import { User } from "../../types/user";
 
 interface tableAlumnosProps {
-  users: User[];
-  isLoading: boolean;
-  error: any;
+  users?: User[];
+  isLoading?: boolean;
+  error?: any;
 }
 export const TableWrapper = ({ users, isLoading, error }: tableAlumnosProps) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
