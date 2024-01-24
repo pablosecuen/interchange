@@ -13,19 +13,9 @@ if (process.env.RAILWAY === "true") {
   const dotenv = require("dotenv");
   dotenv.config();
 
-  let DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD;
-
-  if (process.env.RAILWAY === "false" || process.env.RAILWAY === undefined) {
-    // Configuración local
-    DATABASE_NAME = process.env.DATABASE_NAME_LOCAL;
-    DATABASE_USERNAME = process.env.DATABASE_USERNAME_LOCAL;
-    DATABASE_PASSWORD = process.env.DATABASE_PASSWORD_LOCAL;
-  } else {
-    // Configuración local por defecto (en caso de que RAILWAY no esté definido)
-    DATABASE_NAME = "default_local_database_name";
-    DATABASE_USERNAME = "default_local_database_username";
-    DATABASE_PASSWORD = "default_local_database_password";
-  }
+  let DATABASE_NAME = process.env.DATABASE_NAME_DEPLOY;
+  let DATABASE_USERNAME = process.env.DATABASE_USERNAME_DEPLOY;
+  let DATABASE_PASSWORD = process.env.DATABASE_PASSWORD_DEPLOY;
 
   sequelize = new Sequelize(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD, {
     host: "localhost",
