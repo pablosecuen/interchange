@@ -147,7 +147,7 @@ app.get("/send-email/acuerdoinstitucional/:adultemail", async (req, res) => {
 });
 
 // Iniciar el servidor después de sincronizar los modelos
-sequelize.sync({ force: true }).then(() => {
+sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => {
     console.log(`Servidor corriendo en el puerto ${PORT}`);
   });
