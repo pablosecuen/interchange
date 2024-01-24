@@ -43,62 +43,74 @@ const Login = ({ onClose, updateUser }: LoginProps) => {
   }, []);
 
   return (
-    <div className=" h-[100vh] flex justify-center items-center ">
+    <div className=" h-[100vh] flex justify-center items-center overflow-y-auto ">
       <Toaster richColors position="top-center" expand={true} closeButton={true} />
       {isRegistering ? (
         <Register onClose={onClose} toggleRegister={toggleRegister} updateUser={updateUser} />
       ) : (
         <form
-          className=" md:w-1/3 min-h-[50vh] w-full  p-10 -mt-12 rounded-3xl backdrop-blur-3xl bg-white/20 shadow-black/30 shadow-xl z-50"
+          className=" md:w-1/3 min-h-[50vh] w-full relative  p-10 -mt-12 rounded-3xl backdrop-blur-3xl bg-white/20 shadow-black/30 shadow-xl z-50"
           onSubmit={handleLogin}
         >
-          <div className="mb-5">
-            <label
-              htmlFor="email"
-              className="block mb-2 text-sm md:text-lg font-medium text-gray-900 dark:text-white"
-            >
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleFormDataChange}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              required
-            />
-          </div>
-          <div className="mb-5  relative">
-            <label
-              htmlFor="password"
-              className="block mb-2 text-sm md:text-lg font-medium text-gray-900 dark:text-white"
-            >
-              Contraseña
-            </label>
-            <input
-              type={showPassword ? "text" : "password"}
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleFormDataChange}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              required
-            />
-            <button
-              type="button"
-              onClick={togglePasswordVisibility}
-              className="absolute inset-y-0 right-0 flex items-center px-3 focus:outline-none"
-            >
-              <Image
-                src={eyeicon}
-                alt="mostrar password"
-                width={30}
-                height={30}
-                className="absolute right-2 bottom-1/4 translate-y-1/3"
+          <button
+            type="button"
+            onClick={onClose}
+            className="yellow-btn h-10 !px-6 absolute -top-6 -right-0"
+          >
+            Cerrar
+          </button>
+          <div className="flex flex-col  w-full gap-2">
+            <div className="relative z-0 w-full mb-5 group">
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleFormDataChange}
+                className="block py-2.5 px-0 w-full h-auto text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-custom-yellow focus:outline-none focus:ring-0 focus:border-custom-yellow peer "
+                placeholder=" "
+                required
               />
-            </button>
+              <label
+                htmlFor="email"
+                className="peer-focus:font-medium absolute text-lg text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-custom-yellow peer-focus:dark:text-custom-yellow peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >
+                Email
+              </label>
+            </div>
+            <div className="relative z-0 w-full mb-5 group">
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                name="password"
+                value={formData.password}
+                onChange={handleFormDataChange}
+                className="block py-2.5 px-0 w-full h-auto text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-custom-yellow focus:outline-none focus:ring-0 focus:border-custom-yellow peer "
+                placeholder=" "
+                required
+              />
+              <label
+                htmlFor="password"
+                className="peer-focus:font-medium absolute text-lg text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-custom-yellow peer-focus:dark:text-custom-yellow peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >
+                Contraseña
+              </label>
+              <button
+                type="button"
+                onClick={togglePasswordVisibility}
+                className="absolute inset-y-0 right-0 flex items-center px-3 focus:outline-none"
+              >
+                <Image
+                  src={eyeicon}
+                  alt="mostrar password"
+                  width={30}
+                  height={30}
+                  className="absolute right-2 bottom-1/2 translate-y-1/3"
+                />
+              </button>
+            </div>
           </div>
+
           <div className="flex items-center mb-5">
             <div className="flex items-center h-5 flex-col">
               <input
@@ -132,7 +144,7 @@ const Login = ({ onClose, updateUser }: LoginProps) => {
             </button>
             <Logo size="xl" />
             <button type="button" onClick={onClose} className="yellow-btn h-10 !px-6">
-              Close
+              Cerrar
             </button>
           </div>
           <span className="hover:scale-105 transition font-thin text-xs  duration-300 cursor-pointer z-50">

@@ -8,6 +8,10 @@ interface FormValues {
   phoneAdult: string | number | readonly string[] | undefined;
   emailAdult: string | number | readonly string[] | undefined;
   lastNameAdult: string | number | readonly string[] | undefined;
+  firstNameAdult2: string | number | readonly string[] | undefined;
+    phoneAdult2: string | number | readonly string[] | undefined;
+  emailAdult2: string | number | readonly string[] | undefined;
+  lastNameAdult2: string | number | readonly string[] | undefined;
   firstNameAdult: string | number | readonly string[] | undefined;
   email: string;
   password: string;
@@ -33,6 +37,10 @@ const useRegister = ({ updateUser,onClose }: UseRegisterProps) => {
     lastNameAdult: "",
     emailAdult: "",
     phoneAdult: "",
+    firstNameAdult2: "",
+    lastNameAdult2: "",
+    emailAdult2: "",
+    phoneAdult2: "",
   });
   const router = useRouter();
 
@@ -52,12 +60,16 @@ const useRegister = ({ updateUser,onClose }: UseRegisterProps) => {
         body: JSON.stringify({
           Nombre: formData.firstName,
           NombreAdulto: formData.firstNameAdult,
+          NombreAdulto2: formData.firstNameAdult2,
           Apellido: formData.lastName,
           ApellidoAdulto: formData.lastNameAdult,
+          ApellidoAdulto2: formData.lastNameAdult2,
           Email: formData.email,
           EmailAdulto: formData.emailAdult,
+          EmailAdulto2: formData.emailAdult2,
           Telefono: formData.phone,
           TelefonoAdulto: formData.phoneAdult,
+          TelefonoAdulto2: formData.phoneAdult2,
           Password: formData.password,
           Tipo: "Alumno",
           Activo: true,
