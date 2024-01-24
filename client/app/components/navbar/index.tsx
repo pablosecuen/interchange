@@ -6,7 +6,7 @@ import "./navbar.css";
 import Login from "../login/Login";
 import Image from "next/image";
 import Logo from "../logo";
-import usericon from "@/public/assets/svg/usericon.png";
+import usericon from "../../../public/assets/svg/usericon.png";
 import { Toaster } from "sonner";
 import LoadingError from "../loadingerror";
 import Loading from "../loadingerror/loading";
