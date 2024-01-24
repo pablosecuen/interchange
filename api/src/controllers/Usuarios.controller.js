@@ -7,7 +7,6 @@ const createUserController = async (req, res) => {
   try {
     const userData = req.body;
     const newUser = await Usuario.create(userData);
-    console.log(req.body);
     const newUserEmail = newUser.Email;
     sendEmailNotificationRegister(newUserEmail);
     res.status(201).json(newUser);
@@ -168,8 +167,6 @@ const loginController = async (req, res) => {
       return res.status(401).json({ error: "Credenciales incorrectas" });
     }
 
-    // Si las credenciales son correctas, aquí puedes generar un token JWT para la sesión
-    // y devolverlo en la respuesta para autenticar al usuario en sesiones futuras
 
     return res.status(200).json({ message: "Inicio de sesión exitoso", user });
   } catch (error) {
