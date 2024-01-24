@@ -2,7 +2,7 @@ const { Sequelize } = require("sequelize");
 
 let sequelize;
 
-if (process.env.RAILWAY === "true") {
+if (process.env.DATABASE_URL) {
   // Usar la URL de la base de datos proporcionada por Railway
   sequelize = new Sequelize(process.env.DATABASE_URL, {
     dialect: "postgres",
@@ -13,9 +13,9 @@ if (process.env.RAILWAY === "true") {
   const dotenv = require("dotenv");
   dotenv.config();
 
-  let DATABASE_NAME = process.env.DATABASE_NAME_DEPLOY;
-  let DATABASE_USERNAME = process.env.DATABASE_USERNAME_DEPLOY;
-  let DATABASE_PASSWORD = process.env.DATABASE_PASSWORD_DEPLOY;
+  let DATABASE_NAME = process.env.DATABASE_NAME_LOCAL;
+  let DATABASE_USERNAME = process.env.DATABASE_USERNAME_LOCAL;
+  let DATABASE_PASSWORD = process.env.DATABASE_PASSWORD_LOCAL;
 
   sequelize = new Sequelize(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD, {
     host: "localhost",
