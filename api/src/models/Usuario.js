@@ -34,6 +34,19 @@ module.exports = (sequelize) => {
         },
       },
     },
+    Dni: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: {
+          msg: "El dni es obligatorio",
+        },
+        len: {
+          args: [2, 50],
+          msg: "El dni debe tener entre 2 y 50 caracteres",
+        },
+      },
+    },
     Telefono: {
       type: DataTypes.STRING,
       allowNull: false,

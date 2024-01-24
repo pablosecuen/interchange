@@ -58,10 +58,10 @@ const Sidebar: React.FC = () => {
   );
 
   return (
-    <div className=" flex flex-col md:flex-row md:min-h-[90vh] justify-start items-center ">
+    <div className=" flex flex-col md:flex-row md:min-h-[90vh] justify-start items-center  ">
       <Toaster richColors={true} expand={false} position="top-center" />
       <ul
-        className={`flex  place-content-center py-2 md:py-0 w-auto place-items-center md:flex md:flex-col md:h-screen md:gap-10 flex-wrap justify-center items-center  mt-20 md:mt-0 gap-10 bg-slate-100 px-4 border   transition duration-300`}
+        className={`flex  place-content-center py-2  md:py-0 w-auto lg:w-96 place-items-center md:flex md:flex-col md:h-screen md:gap-10 flex-wrap justify-center items-center  mt-20 md:mt-0 gap-10 bg-slate-100 px-4 border   transition duration-300`}
       >
         {renderMenuItem("Home", "home", <HomeIcon />)}
         {userHasExams && renderMenuItem("Examen", "examen", <DevIcon />)}
@@ -69,7 +69,7 @@ const Sidebar: React.FC = () => {
         {renderMenuItem("Contenido", "contenido", <Community />)}
         {/*      {renderMenuItem("Consultas", "consultas", <NotificationIcon />)} */}
       </ul>
-      <div className="w-full h-full transition-opacity duration-500 animate-fade">
+      <div className="w-full h-full transition-opacity duration-500 animate-fade ">
         {/* Renderizar contenido según el item seleccionado */}
         {selectedMenuItem === "home" && <CampusHome />}
         {selectedMenuItem === "examen" && <ExamenNivelador />}

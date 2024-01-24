@@ -1,13 +1,21 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { baseUrl } from "./baseurl";
 
 export interface Nota {
-    grado: string;
-    examenFinal: string;
-    trimestres: { trimestre: number; nota: string }[];
-    notas?:any
-  }
+  grado: string;
+  examenFinal: string;
+  trimestres: {
+    trimestre: number;
+    t_escrito: string;
+    t_oral: string;
+    deb_asig: string;
+    deb_ent: string;
+    inasist: string;
+    conducta: string;
+    observaciones: string;
+  }[];
+}
 
 const useChangeNotas = (alumno:any) => {
     const [notasData, setNotasData] = useState<Nota>({
@@ -39,60 +47,75 @@ const useChangeNotas = (alumno:any) => {
           { id: "Adults_4", nombre: "Adults_4" },
           { id: "Adults_5", nombre: "Adults_5" },
           { id: "Adults_6", nombre: "Adults_6" },
+          { id: "F.C.E", nombre: "F C E" }
           // ... otros grados disponibles
         ];
         setGradoOptions(gradosDisponibles);
       }, []);
 
-      const handleSubmit = async () => {
-        try {
-          const response = await fetch(`${baseUrl}/api/notas/${alumno.ID}`, {
-            method: "PATCH",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ Notas: [notasData] }),
-          });
-    
+  const handleSubmit = async () => {
+    try {
+      const response = await fetch(`${baseUrl}/api/notas/${alumno.ID}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ Notas: [notasData] }),
+      });
 
-          if (!response.ok) {
-            toast.error(`Error al actualizar las notas: ${response.statusText}`);
-            throw new Error("Error al actualizar las notas", );
-        } else {
-            toast.success("Notas actualizadas correctamente")
-        }
-     } catch (error:any) {
-          console.error("Error al actualizar las notas:", error.message);
-        }
-      };
+      if (!response.ok) {
+        toast.error(`Error al actualizar las notas: ${response.statusText}`);
+        throw new Error("Error al actualizar las notas");
+      } else {
+        toast.success("Notas actualizadas correctamente");
+      }
+    } catch (error: any) {
+      console.error("Error al actualizar las notas:", error.message);
+    }
+  };
 
-      const handleTrimestreChange = (value: string) => {
-        const newTrimestre = { trimestre: parseInt(value), nota: "" };
-    
-        const existingTrimestreIndex = notasData.trimestres.findIndex(
-          (trimestre) => trimestre.trimestre === parseInt(value)
-        );
-    
-        if (existingTrimestreIndex === -1) {
-          setNotasData({
-            ...notasData,
-            trimestres: [...notasData.trimestres, newTrimestre],
-          });
-        }
-      };
+  const handleTrimestreChange = (value: string) => {
+    const newTrimestre = {
+      trimestre: parseInt(value),
+      t_escrito: "",
+      t_oral: "",
+      deb_asig: "",
+      deb_ent: "",
+      inasist: "",
+      conducta: "",
+      observaciones: "",
+    };
 
-      const handleNotaChange = (value: string) => {
-        const lastIndex = notasData.trimestres.length - 1;
-    
-        if (lastIndex >= 0) {
-          const newTrimestres = [...notasData.trimestres];
-          newTrimestres[lastIndex] = {
-            ...newTrimestres[lastIndex],
-            nota: value,
-          };
-          setNotasData({ ...notasData, trimestres: newTrimestres });
-        }
-      };
+    const existingTrimestreIndex = notasData.trimestres.findIndex(
+      (trimestre) => trimestre.trimestre === parseInt(value)
+    );
+
+    if (existingTrimestreIndex === -1) {
+      setNotasData({
+        ...notasData,
+        trimestres: [...notasData.trimestres, newTrimestre],
+      });
+    }
+  };
+
+const handleNotaChange = (value: string, categoria: string) => {
+  const lastIndex = notasData.trimestres.length - 1;
+
+  if (lastIndex >= 0) {
+    const newTrimestres = [...notasData.trimestres];
+    newTrimestres[lastIndex] = {
+      ...newTrimestres[lastIndex],
+      [categoria]: value,
+    };
+    console.log("New Trimestres:", newTrimestres);
+    setNotasData((prevNotasData) => ({
+  ...prevNotasData,
+  trimestres: newTrimestres,
+}));
+  }
+};
+
+
 
       const handleGradoChange = (value: string) => {
         setNotasData({ ...notasData, grado: value });
@@ -111,6 +134,7 @@ const useChangeNotas = (alumno:any) => {
     handleNotaChange,
     handleGradoChange,
     handleExamenFinalChange,
+    
   };
 };
 

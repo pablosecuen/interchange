@@ -36,5 +36,7 @@ yarn-error.log*
 next-env.d.ts
 
 
-/app.js
-/db.js
+# Custom exclusions
+db.js
+app.js
+baseUrl.ts

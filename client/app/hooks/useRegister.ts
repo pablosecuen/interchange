@@ -13,6 +13,7 @@ interface FormValues {
   emailAdult2: string | number | readonly string[] | undefined;
   lastNameAdult2: string | number | readonly string[] | undefined;
   firstNameAdult: string | number | readonly string[] | undefined;
+  dni:string ;
   email: string;
   password: string;
   confirmPassword: string;
@@ -32,6 +33,7 @@ const useRegister = ({ updateUser,onClose }: UseRegisterProps) => {
     confirmPassword: "",
     firstName: "",
     lastName: "",
+    dni:"",
     phone: "",
     firstNameAdult: "",
     lastNameAdult: "",
@@ -65,6 +67,7 @@ const useRegister = ({ updateUser,onClose }: UseRegisterProps) => {
           ApellidoAdulto: formData.lastNameAdult,
           ApellidoAdulto2: formData.lastNameAdult2,
           Email: formData.email,
+          Dni: formData.dni,
           EmailAdulto: formData.emailAdult,
           EmailAdulto2: formData.emailAdult2,
           Telefono: formData.phone,
