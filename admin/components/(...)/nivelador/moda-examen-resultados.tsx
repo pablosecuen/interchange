@@ -19,7 +19,7 @@ interface ExamenModalProps {
 
 const ExamenModalResultados: React.FC<ExamenModalProps> = ({ isopen, examen, openchange }) => {
   if (!examen) return null;
-  console.log(examen);
+
 
   return (
 

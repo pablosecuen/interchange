@@ -1,5 +1,5 @@
 // controllers/examenController.js
-// controllers/examenesController.js
+
 
 const { Examen, Usuario } = require("../../db");
 
@@ -33,15 +33,9 @@ const obtenerTodosLosExamenes = async (req, res) => {
 
 const enviarExamenUsuario = async (req, res) => {
   try {
-    // Obtener los datos validados y sanitizados del cuerpo de la solicitud
     const { userID, examenID } = req.body;
-    console.log(req.body);
-
-    // Buscar el usuario y el examen por sus respectivos IDs
     const usuario = await Usuario.findByPk(userID);
-    console.log("user id:", usuario);
     const examen = await Examen.findByPk(examenID);
-    console.log("examen id:", examenID);
 
     if (!usuario) {
       return res.status(404).json({ error: "Usuario  no encontrado" });
@@ -53,7 +47,6 @@ const enviarExamenUsuario = async (req, res) => {
     // Utilizar la relación para asociar el examen al usuario
     await usuario.addExamen(examen);
 
-    // Envío de respuesta exitosa
     res.status(200).json({ message: "Examen enviado correctamente al usuario." });
   } catch (error) {
     console.error("Error al enviar el examen al usuario:", error);

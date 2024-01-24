@@ -13,7 +13,6 @@ interface ModalProps {
 
 const ModalCourses: React.FC<ModalProps> = ({ grade, onClose, modalOpen }) => {
   if (!grade) return null;
-  console.log(grade);
 
   const modalClasses = `md:max-w-7xl  overflow-hidden rounded-3xl max-h-[80vh] z-50 shadow-2xl shadow-black/80 w-[95vw] h-[95vh] md:w-full md:h-full  fixed top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 bg-white transition ${
     modalOpen

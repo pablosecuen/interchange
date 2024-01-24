@@ -20,7 +20,6 @@ import TableWrapperNotas from "./tableNotas";
 export const TableWrapperModalCurso = ({ users }: any) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [selectedUser, setSelectedUser] = useState(null);
-  console.log("usuarios que recibe el modal", users);
 
   const {
     isOpen: isOpenAlumnos,

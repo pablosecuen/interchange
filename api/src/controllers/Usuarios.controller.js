@@ -7,7 +7,6 @@ const createUserController = async (req, res) => {
   try {
     const userData = req.body;
     const newUser = await Usuario.create(userData);
-    console.log(req.body);
     const newUserEmail = newUser.Email;
     sendEmailNotificationRegister(newUserEmail);
     res.status(201).json(newUser);
