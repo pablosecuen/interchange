@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
   Modal,
   ModalBody,
@@ -104,18 +104,94 @@ const CambiarNotasModal = ({ alumno, isOpen, onOpenChange }: ModalNotasProps) =>
                 </div>
 
                 <div className="flex items-center justify-between">
-                  {" "}
-                  <label>Nota del Trimistre Seleccionado</label>
+                  <label>T. Escrito</label>
                   <Input
                     type="number"
                     placeholder="Nota"
                     className="w-1/4"
                     value={
                       notasData.trimestres.length > 0
-                        ? notasData.trimestres[notasData.trimestres.length - 1].nota
+                        ? notasData.trimestres[notasData.trimestres.length - 1].t_escrito
                         : ""
                     }
-                    onChange={(e) => handleNotaChange(e.target.value)}
+                    onChange={(e) => handleNotaChange(e.target.value, "t_escrito")}
+                  />
+                </div>
+                <div className="flex items-center justify-between">
+                  <label>T. Oral</label>
+                  <Input
+                    type="number"
+                    placeholder="T_oral"
+                    className="w-1/4"
+                    value={
+                      notasData.trimestres.length > 0
+                        ? notasData.trimestres[notasData.trimestres.length - 1].t_oral
+                        : ""
+                    }
+                    onChange={(e) => handleNotaChange(e.target.value, "t_oral")}
+                  />
+                </div>
+                <div className="flex items-center justify-between">
+                  {" "}
+                  <label>Deb Asig </label>
+                  <Input
+                    type="number"
+                    placeholder="Deb_asig"
+                    className="w-1/4"
+                    value={
+                      notasData.trimestres.length > 0
+                        ? notasData.trimestres[notasData.trimestres.length - 1].deb_asig
+                        : ""
+                    }
+                    onChange={(e) => handleNotaChange(e.target.value, "deb_asig")}
+                  />
+                </div>
+
+                <div className="flex items-center justify-between">
+                  {" "}
+                  <label>Deb Ent </label>
+                  <Input
+                    type="number"
+                    placeholder="Deb_ent"
+                    className="w-1/4"
+                    value={
+                      notasData.trimestres.length > 0
+                        ? notasData.trimestres[notasData.trimestres.length - 1].deb_ent
+                        : ""
+                    }
+                    onChange={(e) => handleNotaChange(e.target.value, "deb_ent")}
+                  />
+                </div>
+
+                <div className="flex items-center justify-between">
+                  {" "}
+                  <label> Inasist </label>
+                  <Input
+                    type="number"
+                    placeholder="Inasist"
+                    className="w-1/4"
+                    value={
+                      notasData.trimestres.length > 0
+                        ? notasData.trimestres[notasData.trimestres.length - 1].inasist
+                        : ""
+                    }
+                    onChange={(e) => handleNotaChange(e.target.value, "inasist")}
+                  />
+                </div>
+
+                <div className="flex items-center justify-between">
+                  {" "}
+                  <label> Conducta </label>
+                  <Input
+                    type="number"
+                    placeholder="Conducta"
+                    className="w-1/4"
+                    value={
+                      notasData.trimestres.length > 0
+                        ? notasData.trimestres[notasData.trimestres.length - 1].conducta
+                        : ""
+                    }
+                    onChange={(e) => handleNotaChange(e.target.value, "conducta")}
                   />
                 </div>
 
@@ -124,10 +200,24 @@ const CambiarNotasModal = ({ alumno, isOpen, onOpenChange }: ModalNotasProps) =>
                   <label>Nota del Examen Final</label>
                   <Input
                     type="number"
-                    placeholder="Nota "
+                    placeholder="Examen final"
                     className="w-1/4"
                     value={notasData.examenFinal}
                     onChange={(e) => handleExamenFinalChange(e.target.value)}
+                  />
+                </div>
+                <div className="flex items-center justify-between">
+                  {" "}
+                  <label> Observaciones </label>
+                  <textarea
+                    placeholder="Observaciones"
+                    className="w-1/2"
+                    value={
+                      notasData.trimestres.length > 0
+                        ? notasData.trimestres[notasData.trimestres.length - 1].observaciones
+                        : ""
+                    }
+                    onChange={(e) => handleNotaChange(e.target.value, "observaciones")}
                   />
                 </div>
               </ModalBody>
