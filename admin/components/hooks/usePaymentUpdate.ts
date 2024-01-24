@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { toast } from "sonner";
+import { baseUrl } from "./baseurl";
 
 const usePaymentUpdate = (vencimientoCuotas:any, user:any) => {
   const [indexToUpdate, setIndexToUpdate] = useState(null);
@@ -13,7 +14,7 @@ const usePaymentUpdate = (vencimientoCuotas:any, user:any) => {
       const pagoId = user.Pagos[0].ID;
       const updatedMes = updatedVencimientoCuotas[index].mes;
 
-      const response = await fetch(`http://localhost:3001/api/pagos/${pagoId}`, {
+      const response = await fetch(`${baseUrl}/api/pagos/${pagoId}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

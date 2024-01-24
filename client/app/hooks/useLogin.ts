@@ -1,5 +1,6 @@
 import { useState, ChangeEvent } from "react";
 import { toast } from "sonner";
+import { baseUrl } from "./baseurl";
 
 interface FormData {
   email: string;
@@ -33,7 +34,7 @@ const useLogin = (initialFormData: FormData): UseLoginProps => {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch("http://localhost:3001/api/users/login", {
+      const response = await fetch(`${baseUrl}/api/users/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

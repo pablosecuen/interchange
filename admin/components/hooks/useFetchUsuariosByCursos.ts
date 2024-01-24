@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { User } from "./useFetchUsers"; // Asegúrate de importar el tipo User adecuadamente
+import { baseUrl } from "./baseurl";
 
 interface Curso {
   ID: number;
@@ -28,7 +29,7 @@ const useFetchUsuariosByCursos = (isOpen: boolean, curso: Curso | null): FetchUs
         setLoading(true);
         setError(null);
 
-        const response = await fetch(`http://localhost:3001/api/grados/${curso.ID}/usuarios`);
+        const response = await fetch(`${baseUrl}/api/grados/${curso.ID}/usuarios`);
         if (!response.ok) {
           throw new Error("Error al obtener los usuarios");
         }
@@ -37,7 +38,7 @@ const useFetchUsuariosByCursos = (isOpen: boolean, curso: Curso | null): FetchUs
         const usersWithGradesAndPayments = await Promise.all(
           data.map(async (user: User) => {
             if (user.Grado_ID !== null) {
-              const gradoResponse = await fetch(`http://localhost:3001/api/grados?ID=${user.Grado_ID}`);
+              const gradoResponse = await fetch(`${baseUrl}/api/grados?ID=${user.Grado_ID}`);
               if (!gradoResponse.ok) {
                 throw new Error("Error al cargar el grado del usuario");
               }

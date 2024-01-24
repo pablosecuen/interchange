@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { baseUrl } from "./baseurl";
 
 export interface Nota {
   notas: {
@@ -29,7 +30,7 @@ function useFetchNotas(id: string): FetchNotasResult {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`http://localhost:3001/api/users?id=${id}`);
+        const response = await fetch(`${baseUrl}/api/users?id=${id}`);
         const data = await response.json();
 
         if (Array.isArray(data) && data.length > 0) {

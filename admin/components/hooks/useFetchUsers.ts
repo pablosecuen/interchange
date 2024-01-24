@@ -1,6 +1,7 @@
 "use client"
 import { useState, useEffect } from 'react';
 import {  toast } from 'sonner'
+import { baseUrl } from './baseurl';
 export interface User {
   ID: string;
   Nombre: string;
@@ -26,7 +27,7 @@ const useFetchUsers = () => {
 useEffect(() => {
   const fetchUsers = async () => {
     try {
-      const response = await fetch('http://localhost:3001/api/users');
+      const response = await fetch(`${baseUrl}/api/users`);
       if (!response.ok) {
         throw new Error('Error al cargar los usuarios');
       }
@@ -37,7 +38,7 @@ console.log(data);
         data.map(async (user: User) => {
           if (user.Grado_ID !== null) {
             // Obtener el grado asociado al usuario
-            const gradoResponse = await fetch(`http://localhost:3001/api/grados?ID=${user.Grado_ID}`);
+            const gradoResponse = await fetch(`${baseUrl}/api/grados?ID=${user.Grado_ID}`);
             if (!gradoResponse.ok) {
               toast.error("Error al cargar usuarios cargados correctamente")
               throw new Error('Error al cargar el grado del usuario');

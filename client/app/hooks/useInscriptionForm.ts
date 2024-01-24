@@ -1,6 +1,7 @@
 "use client"
 import { useState } from "react";
 import { toast } from "sonner";
+import { baseUrl } from "./baseurl";
 
 const useInscripcionForm = (initialState: any) => {
   const [formData, setFormData] = useState(initialState);
@@ -47,7 +48,7 @@ const useInscripcionForm = (initialState: any) => {
       const encodedLastNameStudent = encodeURIComponent(floating_last_namestudent);
       
   
-      const encodedURL = `http://localhost:3001/send-email/preinscripcion/${encodedEmail}/${encodedFirstName}/${encodedLastName}/${encodedFirstNameStudent}/${encodedLastNameStudent}/${encodedDateOfBirth}/${encodedPhoneNumber}/${encodedAddress}/${encodedGrade}/${encodedEmailAddress}/${encodedPhone}/${encodedMessage}`;
+      const encodedURL = `${baseUrl}/send-email/preinscripcion/${encodedEmail}/${encodedFirstName}/${encodedLastName}/${encodedFirstNameStudent}/${encodedLastNameStudent}/${encodedDateOfBirth}/${encodedPhoneNumber}/${encodedAddress}/${encodedGrade}/${encodedEmailAddress}/${encodedPhone}/${encodedMessage}`;
   
       const promise = () => new Promise((resolve, reject) => {
         fetch(encodedURL, {

@@ -1,6 +1,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
+import { baseUrl } from "./baseurl";
 
 export interface ExamResults {
   userID: string;
@@ -22,7 +23,7 @@ function useSaveExamsResults() {
   const guardarResultadosExamen = async (data: ExamResults) => {
     setLoading(true);
     try {
-      const response = await fetch("http://localhost:3001/api/examen-completado/guardar", {
+      const response = await fetch(`${baseUrl}/api/examen-completado/guardar`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

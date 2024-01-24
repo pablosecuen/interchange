@@ -1,10 +1,11 @@
 
 import { toast } from 'sonner';
+import { baseUrl } from './baseurl';
 
 const useSendEmail = (userEmail:string) => {
   const sendEmailVencimiento = async (userEmail: string) => {
     try {
-      const response = await fetch(`http://localhost:3001/send-email/vencimiento/${userEmail}`, {
+      const response = await fetch(`${baseUrl}/send-email/vencimiento/${userEmail}`, {
         method: "GET",
       });
 

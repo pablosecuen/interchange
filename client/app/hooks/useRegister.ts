@@ -2,6 +2,7 @@ import { useState, ChangeEvent } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { User } from "../components/navbar";
+import { baseUrl } from "./baseurl";
 
 interface FormValues {
   phoneAdult: string | number | readonly string[] | undefined;
@@ -43,7 +44,7 @@ const useRegister = ({ updateUser,onClose }: UseRegisterProps) => {
     }
 
     try {
-      const response = await fetch("http://localhost:3001/api/users", {
+      const response = await fetch(`${baseUrl}/api/users`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

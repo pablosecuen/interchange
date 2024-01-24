@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { toast } from 'sonner';
+import { baseUrl } from './baseurl';
 
 // Custom hook para enviar el acuerdo institucional por correo electrónico
 const useEnviarAcuerdoInstitucional = () => {
@@ -9,7 +10,7 @@ const useEnviarAcuerdoInstitucional = () => {
   const enviarAcuerdoInstitucional = async (email:string) => {
     try {
       setLoading(true);
-      const response = await fetch(`http://localhost:3001/send-email/acuerdoinstitucional/${email}`);
+      const response = await fetch(`${baseUrl}/send-email/acuerdoinstitucional/${email}`);
       const data = await response.json();
       if (!response.ok) {
       toast.error("error al enviar el correo")
