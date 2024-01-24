@@ -1,4 +1,5 @@
 const { Sequelize } = require("sequelize");
+require("dotenv").config();
 
 let sequelize;
 
@@ -7,7 +8,6 @@ sequelize = new Sequelize(process.env.DATABASE_URL, {
   dialect: "postgres",
   logging: false,
 });
-
 
 const Usuario = require("./src/models/Usuario")(sequelize);
 const Grado = require("./src/models/Grado")(sequelize);
