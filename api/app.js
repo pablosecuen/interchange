@@ -53,7 +53,7 @@ app.use("/api/notas", notasRoutes);
 const PORT = process.env.PORT || 3001;
 
 app.get("/", (req, res) => {
-  res.send("Run /send-email to send test email");
+  res.send("Hola localhost");
 });
 
 app.get("/send-email/register/:email", async (req, res) => {
@@ -146,7 +146,7 @@ app.get("/send-email/acuerdoinstitucional/:adultemail", async (req, res) => {
 });
 
 // Iniciar el servidor después de sincronizar los modelos
-sequelize.sync({ force: true }).then(() => {
+sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => {
     console.log(`Servidor corriendo en el puerto ${PORT}`);
   });
