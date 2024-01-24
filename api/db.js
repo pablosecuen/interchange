@@ -13,9 +13,19 @@ if (process.env.RAILWAY === "true") {
   const dotenv = require("dotenv");
   dotenv.config();
 
-  let DATABASE_NAME = process.env.DATABASE_NAME || "interchange";
-  let DATABASE_USERNAME = process.env.DATABASE_USERNAME || "postgres";
-  let DATABASE_PASSWORD = process.env.DATABASE_PASSWORD || "admin";
+  let DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD;
+
+  if (process.env.RAILWAY === "false" || process.env.RAILWAY === undefined) {
+    // Configuración local
+    DATABASE_NAME = process.env.DATABASE_NAME_LOCAL;
+    DATABASE_USERNAME = process.env.DATABASE_USERNAME_LOCAL;
+    DATABASE_PASSWORD = process.env.DATABASE_PASSWORD_LOCAL;
+  } else {
+    // Configuración local por defecto (en caso de que RAILWAY no esté definido)
+    DATABASE_NAME = "default_local_database_name";
+    DATABASE_USERNAME = "default_local_database_username";
+    DATABASE_PASSWORD = "default_local_database_password";
+  }
 
   sequelize = new Sequelize(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD, {
     host: "localhost",
@@ -23,6 +33,8 @@ if (process.env.RAILWAY === "true") {
     logging: false,
   });
 }
+
+// Resto del código...
 
 const Usuario = require("./src/models/Usuario")(sequelize);
 const Grado = require("./src/models/Grado")(sequelize);
