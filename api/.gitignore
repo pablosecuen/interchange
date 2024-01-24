@@ -28,13 +28,13 @@ yarn-error.log*
 # local env files
 .env*.local
 .env
-<<<<<<< HEAD
-
-=======
->>>>>>> e434b9728bdaf3fa1b25fde648b7d15d0ec439af
 # vercel
 .vercel
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+
+./app.js
+./db.js
