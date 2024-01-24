@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 
 import { toast } from "sonner";
+import { baseUrl } from "./baseurl";
 
 const useAssignGrado = (alumno:any, cursos:any) => {
 const router = useRouter()
@@ -20,7 +21,7 @@ const router = useRouter()
         return;
       }
 
-      const response = await fetch(`https://interchange-production.up.railway.app/api/users/${alumno.ID}`, {
+      const response = await fetch(`${baseUrl}/api/users/${alumno.ID}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

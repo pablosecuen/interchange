@@ -1,13 +1,14 @@
 import { useEffect } from 'react';
 import { toast } from 'sonner';
 import { useRouter } from "next/router";
+import { baseUrl } from './baseurl';
 
 const useSendEmailCurso = (alumnoEmail:any, assignmentResult:any) => {
   const router = useRouter();
   const enviarEmailCurso = async () => {
     if (assignmentResult && assignmentResult.success) {
       try {
-        const response = await fetch(`https://interchange-production.up.railway.app/send-email/curso/${alumnoEmail}`, {
+        const response = await fetch(`${baseUrl}/send-email/curso/${alumnoEmail}`, {
           method: 'GET',
         });
 

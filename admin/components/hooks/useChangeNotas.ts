@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "sonner";
+import { baseUrl } from "./baseurl";
 
 export interface Nota {
     grado: string;
@@ -45,7 +46,7 @@ const useChangeNotas = (alumno:any) => {
 
       const handleSubmit = async () => {
         try {
-          const response = await fetch(`https://interchange-production.up.railway.app/api/notas/${alumno.ID}`, {
+          const response = await fetch(`${baseUrl}/api/notas/${alumno.ID}`, {
             method: "PATCH",
             headers: {
               "Content-Type": "application/json",

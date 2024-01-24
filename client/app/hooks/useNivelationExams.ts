@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { User } from "../components/navbar";
 import { toast } from "sonner";
+import { baseUrl } from "./baseurl";
 
 export interface Exam {
   ID: string;
@@ -40,7 +41,7 @@ const useGetNivelationExam = (): {
 
   const getUserByEmail = async (Email: string) => {
     try {
-      const response = await fetch(`https://interchange-production.up.railway.app/api/users?email=${Email}`);
+      const response = await fetch(`${baseUrl}/api/users?email=${Email}`);
       const users: User[] = await response.json();
       if (users.length > 0) {
         setLoggedInUser(users[0]);
@@ -53,7 +54,7 @@ const useGetNivelationExam = (): {
 
   const getExamsAssociated = async (userId: string) => {
     try {
-      const response = await fetch(`https://interchange-production.up.railway.app/api/users/${userId}/examenes-asociados`);
+      const response = await fetch(`${baseUrl}/api/users/${userId}/examenes-asociados`);
       const data = await response.json();
       if (!response.ok) {
         toast.error("Error al obtener los exámenes asociados");

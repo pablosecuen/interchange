@@ -36,6 +36,5 @@ yarn-error.log*
 next-env.d.ts
 
 
-# app.js 
-.app.js
-db.js
+/app.js
+/db.js

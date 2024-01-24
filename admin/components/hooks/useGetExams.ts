@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { toast } from 'sonner';
 import { Exam } from '../(...)/nivelador/crear-examen';
+import { baseUrl } from './baseurl';
 
 const useGetExams = () => {
   const [examenes, setExamenes] = useState<Exam[]>([]);
@@ -12,7 +13,7 @@ const useGetExams = () => {
   useEffect(() => {
     const obtenerExamenes = async () => {
       try {
-        const response = await fetch('https://interchange-production.up.railway.app/api/examen');
+        const response = await fetch(`${baseUrl}/api/examen`);
         if (!response.ok) {
           toast.error('Hubo un problema al obtener los exámenes.');
           throw new Error('Hubo un problema al obtener los exámenes.');

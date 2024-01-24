@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import {  toast } from "sonner";
 import { Exam } from '../(...)/nivelador/crear-examen';
+import { baseUrl } from './baseurl';
  // Asegúrate de importar los tipos correctos
 
 const useExamCreation = () => {
@@ -11,7 +12,7 @@ const useExamCreation = () => {
   const createExam = async (exam: Exam) => {
     setLoading(true);
     try {
-      const response = await fetch('https://interchange-production.up.railway.app/api/examen/crear', {
+      const response = await fetch(`${baseUrl}/api/examen/crear`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
