@@ -53,9 +53,9 @@ app.use("/api/notas", notasRoutes);
 // Puerto en el que el servidor escuchará
 const PORT = process.env.PORT || 3001;
 
-/* app.get("/", (req, res) => {
-  res.send("Run /send-email to send test email");
-}); */
+app.get("/", (req, res) => {
+  res.send("¡Hola, Interchange!");
+});
 
 app.get("/send-email/register/:email", async (req, res) => {
   try {
