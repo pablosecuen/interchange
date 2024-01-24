@@ -2,29 +2,12 @@ const { Sequelize } = require("sequelize");
 
 let sequelize;
 
-if (process.env.DATABASE_URL) {
-  // Usar la URL de la base de datos proporcionada por Railway
-  sequelize = new Sequelize(process.env.DATABASE_URL, {
-    dialect: "postgres",
-    logging: false,
-  });
-} else {
-  // Configuración local
-  const dotenv = require("dotenv");
-  dotenv.config();
+// Usar la URL de la base de datos proporcionada por Railway
+sequelize = new Sequelize(process.env.DATABASE_URL, {
+  dialect: "postgres",
+  logging: false,
+});
 
-  let DATABASE_NAME = process.env.DATABASE_NAME_LOCAL;
-  let DATABASE_USERNAME = process.env.DATABASE_USERNAME_LOCAL;
-  let DATABASE_PASSWORD = process.env.DATABASE_PASSWORD_LOCAL;
-
-  sequelize = new Sequelize(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD, {
-    host: "localhost",
-    dialect: "postgres",
-    logging: false,
-  });
-}
-
-// Resto del código...
 
 const Usuario = require("./src/models/Usuario")(sequelize);
 const Grado = require("./src/models/Grado")(sequelize);
