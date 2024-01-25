@@ -19,22 +19,7 @@ import { useRouter } from "next/router";
 export const SidebarWrapper = () => {
   const router = useRouter();
   const { collapsed, setCollapsed } = useSidebarContext();
-  const { isAuthenticated, userType, checkAuth } = useAuthContext();
-
-  useEffect(() => {
-    const checkAuthentication = async () => {
-      checkAuth();
-
-      if (!isAuthenticated) {
-        // Verifica si el código se está ejecutando en el lado del cliente antes de usar router
-        if (typeof window !== "undefined") {
-          router.push("/login");
-        }
-      }
-    };
-
-    checkAuthentication();
-  }, [isAuthenticated, checkAuth, router]);
+  const { userType } = useAuthContext();
 
   const renderMenuItems = () => {
     switch (userType) {

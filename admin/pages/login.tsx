@@ -7,6 +7,8 @@ import eyeicon from "../public/eyepassword.svg";
 import useLogin from "../components/hooks/useLogin";
 import Logo from "../components/logo";
 import useAuth from "../components/hooks/useAuth";
+import { Button } from "@nextui-org/react";
+import router from "next/router";
 
 export interface User {
   tipo: string;
@@ -58,18 +60,30 @@ const LoginForm = () => {
     await handleLogin({ email: formData.email, password: formData.password });
   };
 
+  const handleCerrarClick = () => {
+    // Redirigir al usuario a la URL deseada al hacer clic en el botón
+    router.push("https://interchange-azure.vercel.app/");
+  };
+
   return (
-    <div className=" h-[100vh]  flex flex-col justify-center gap-20 items-center overflow-y-auto z-50">
+    <div className=" h-[100vh]  flex flex-col justify-center gap-20 items-center overflow-y-auto z-50 animate-fade">
       <Toaster richColors position="top-center" expand={true} closeButton={true} />
-      <h3 className="">Acceso Institucional - Area administrativa</h3>
+      <h3 className="text-2xl">Acceso Institucional - Area administrativa</h3>
       <form
-        className=" md:w-1/3 min-h-[50vh] w-full relative  p-10 -mt-12 rounded-3xl backdrop-blur-3xl bg-white/20 shadow-black/30 shadow-xl z-50"
+        className=" md:w-1/3 min-h-[40vh] w-full relative  p-10 -mt-12 rounded-3xl backdrop-blur-3xl bg-white/20 shadow-black/30 shadow-xl z-50 "
         onSubmit={handleSubmit}
       >
-        <button type="button" className="yellow-btn h-10 !px-6 absolute -top-6 -right-0">
+        <Button
+          color="secondary"
+          variant="faded"
+          type="button"
+          className=" h-10 !px-6 absolute -top-6 -right-0"
+          onPress={handleCerrarClick}
+        >
           Cerrar
-        </button>
-        <div className="flex flex-col  w-full gap-2">
+        </Button>
+
+        <div className="flex flex-col  w-full gap-4">
           <div className="relative z-0 w-full mb-5 group">
             <input
               type="email"
@@ -121,39 +135,21 @@ const LoginForm = () => {
           </div>
         </div>
 
-        {/*         <div className="flex items-center mb-5">
-          <div className="flex items-center h-5 flex-col">
-            <input
-              id="remember"
-              type="checkbox"
-              checked={rememberMe}
-              onChange={handleRememberMe}
-              className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
-            />
-          </div>
-          <label
-            htmlFor="remember"
-            className="ms-2 text-sm md:text-lg font-medium text-gray-900 dark:text-gray-300"
-          >
-            Recuerdame
-          </label>
-        </div> */}
-
-        <div className="w-full flex justify-between">
-          <button type="submit" className="yellow-btn h-10">
+        <div className="w-full flex justify-between flex-col gap-8">
+          <Button type="submit" color="primary" className="yellow-btn h-10">
             Ingresar
-          </button>
-          <Logo size="xl" />
-          <button type="button" className="yellow-btn h-10 !px-6">
-            Cerrar
-          </button>
+          </Button>
+          <span className="hover:scale-105 transition font-thin text-xs  duration-300 cursor-pointer z-50">
+            Al continuar declaras estar de acuerddo con nuestras{" "}
+            <Link href="/terms" className="text-blue-500">
+              terminos de uso
+            </Link>
+          </span>
+          <div className="w-full flex justify-center">
+            {" "}
+            <Logo size="xl" />
+          </div>
         </div>
-        <span className="hover:scale-105 transition font-thin text-xs  duration-300 cursor-pointer z-50">
-          Al continuar declaras estar de acuerddo con nuestras{" "}
-          <Link href="/terms" className="text-blue-500">
-            terminos de uso
-          </Link>
-        </span>
       </form>
     </div>
   );

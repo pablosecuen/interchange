@@ -64,7 +64,7 @@ const config: Config = {
       backgroundSize: {
         'full': '100% 100%', // Establecemos que la imagen se deforme para llenar el contenedor
       },
-      animation: { carousel: 'marquee 240s linear infinite',       fade: 'fadeIn 0.5s ease-in-out',}
+      animation: { carousel: 'marquee 240s linear infinite',       fade: 'fadeIn 2s ease-in-out',}
     },
   },
   plugins: [require('flowbite/plugin')],
