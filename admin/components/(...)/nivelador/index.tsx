@@ -113,7 +113,7 @@ const Nivelador = () => {
           <span> / </span>{" "}
         </li>
         <li className="flex gap-2">
-          <span>Lista</span>
+          <span> Lista</span>
         </li>
       </ul>
 

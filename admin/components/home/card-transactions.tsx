@@ -1,8 +1,8 @@
 import { Avatar, Card, CardBody } from "@nextui-org/react";
 import React from "react";
 
-const items = [
-  {
+const items: any = [
+  /*   {
     name: "Jose Perez",
     picture: "https://i.pravatar.cc/150?u=a042581f4e29026024d",
     amount: "$50000",
@@ -31,7 +31,7 @@ const items = [
     picture: "https://i.pravatar.cc/150?u=a042581f4e29026024d",
     amount: "60000 USD",
     date: "9/20/2021",
-  },
+  }, */
 ];
 
 export const CardTransactions = () => {
@@ -45,7 +45,7 @@ export const CardTransactions = () => {
         </div>
 
         <div className="flex flex-col gap-6 ">
-          {items.map((item) => (
+          {items.map((item: any) => (
             <div key={item.name} className="grid grid-cols-4 w-full">
               <div className="w-full">
                 <Avatar
