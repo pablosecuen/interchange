@@ -1,55 +1,70 @@
 const { Sequelize } = require("sequelize");
-require("dotenv").config();
 
-let sequelize;
+const dotenv = require("dotenv");
+dotenv.config();
 
-// Usar la URL de la base de datos proporcionada por Railway
-sequelize = new Sequelize(process.env.DATABASE_URL, {
-  dialect: "postgres",
-  logging: false,
-});
+let DATABASE_NAME = process.env.DATABASE_NAME;
+let DATABASE_USERNAME = process.env.DATABASE_USERNAME;
+let DATABASE_PASSWORD = process.env.DATABASE_PASSWORD;
 
-const Usuario = require("./src/models/Usuario")(sequelize);
-const Grado = require("./src/models/Grado")(sequelize);
-const Contenido = require("./src/models/Contenido")(sequelize);
-const Pago = require("./src/models/Pagos")(sequelize);
-const ExamenCompletado = require("./src/models/ExamenCompletado")(sequelize);
-const Examen = require("./src/models/Examen")(sequelize);
-const Notas = require("./src/models/Notas")(sequelize);
+if (DATABASE_NAME && DATABASE_USERNAME && DATABASE_PASSWORD) {
+  const sequelize = new Sequelize(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD, {
+    host: "localhost",
+    dialect: "postgres",
+    logging: false,
+  });
 
-// Aquí puedes establecer las relaciones entre los modelos
-Usuario.belongsTo(Grado, { foreignKey: "Grado_ID" });
-Grado.hasMany(Usuario, { foreignKey: "Grado_ID" });
+  const Usuario = require("./src/models/Usuario")(sequelize);
+  const Campus = require("./src/models/Campus")(sequelize);
+  const Grado = require("./src/models/Grado")(sequelize);
+  const Contenido = require("./src/models/Contenido")(sequelize);
+  const Pago = require("./src/models/Pagos")(sequelize);
+  const ExamenCompletado = require("./src/models/ExamenCompletado")(sequelize);
+  const Examen = require("./src/models/Examen")(sequelize);
+  const Notas = require("./src/models/Notas")(sequelize);
 
-Contenido.belongsTo(Grado, { foreignKey: "Grado_ID" });
-Grado.hasMany(Contenido, { foreignKey: "Grado_ID" });
+  // Exporta los modelos y la conexión
+  module.exports = {
+    Usuario,
+    Grado,
+    Contenido,
+    Pago,
+    Examen,
+    ExamenCompletado,
+    Notas,
+    Campus,
+    sequelize,
+  };
 
-// Relación con Usuario y Grado
-Pago.belongsTo(Usuario, { foreignKey: "Usuario_ID" });
-Pago.belongsTo(Grado, { foreignKey: "Grado_ID" });
+  // Aquí puedes establecer las relaciones entre los modelos
+  Usuario.belongsTo(Grado, { foreignKey: "Grado_ID" });
+  Grado.hasMany(Usuario, { foreignKey: "Grado_ID" });
 
-Grado.hasMany(Pago, { foreignKey: "Grado_ID" });
-Usuario.hasOne(Pago, { foreignKey: "usuario_id" });
+  Contenido.belongsTo(Grado, { foreignKey: "Grado_ID" });
+  Grado.hasMany(Contenido, { foreignKey: "Grado_ID" });
 
-// Relación Usuario y Examen
-Usuario.belongsToMany(Examen, { through: "UsuarioExamen", foreignKey: "Usuario_ID" });
-Examen.belongsToMany(Usuario, { through: "UsuarioExamen", foreignKey: "Examen_ID" });
+  // Relación con Usuario y Grado
+  Pago.belongsTo(Usuario, { foreignKey: "Usuario_ID" });
+  Pago.belongsTo(Grado, { foreignKey: "Grado_ID" });
 
-Usuario.hasMany(ExamenCompletado, { foreignKey: "Usuario_ID" });
-ExamenCompletado.belongsTo(Usuario, { foreignKey: "Usuario_ID" });
+  Grado.hasMany(Pago, { foreignKey: "Grado_ID" });
+  Usuario.hasOne(Pago, { foreignKey: "usuario_id" });
 
-// Relación de Usuario con Notas con un alias 'RegistroNotas'
-Usuario.hasMany(Notas, { foreignKey: "Usuario_ID", as: "RegistroNotas" });
-Notas.belongsTo(Usuario, { foreignKey: "Usuario_ID" });
+  // Relación Usuario y Examen
+  Usuario.belongsToMany(Examen, { through: "UsuarioExamen", foreignKey: "Usuario_ID" });
+  Examen.belongsToMany(Usuario, { through: "UsuarioExamen", foreignKey: "Examen_ID" });
 
-// Exporta los modelos y la conexión
-module.exports = {
-  Usuario,
-  Grado,
-  Contenido,
-  Pago,
-  Examen,
-  ExamenCompletado,
-  Notas,
-  sequelize,
-};
+  Usuario.hasMany(ExamenCompletado, { foreignKey: "Usuario_ID" });
+  ExamenCompletado.belongsTo(Usuario, { foreignKey: "Usuario_ID" });
+
+  // Relación de Usuario con Notas con un alias 'RegistroNotas'
+  Usuario.hasMany(Notas, { foreignKey: "Usuario_ID", as: "RegistroNotas" });
+  Notas.belongsTo(Usuario, { foreignKey: "Usuario_ID" });
+
+  // Relación con Grado
+  Campus.belongsTo(Grado, { foreignKey: "Grado_ID" });
+  Grado.hasMany(Campus, { foreignKey: "Grado_ID" });
+} else {
+  console.error("Las variables de entorno de la base de datos no están completamente definidas.");
+  process.exit(1);
+}

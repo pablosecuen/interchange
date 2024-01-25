@@ -71,10 +71,10 @@ export const SidebarWrapper = () => {
 
                   <SidebarMenu title="Campus">
                     <SidebarItem
-                      isActive={router.pathname === "/contenido"}
-                      title="Contenido"
+                      isActive={router.pathname === "/campus"}
+                      title="Campus"
                       icon={<DevIcon />}
-                      href="contenido"
+                      href="campus"
                     />{" "}
                     <SidebarItem
                       isActive={router.pathname === "/view"}
@@ -132,10 +132,10 @@ export const SidebarWrapper = () => {
 
                   <SidebarMenu title="Campus">
                     <SidebarItem
-                      isActive={router.pathname === "/contenido"}
-                      title="Contenido"
+                      isActive={router.pathname === "/campus"}
+                      title="Campus"
                       icon={<DevIcon />}
-                      href="contenido"
+                      href="campus"
                     />{" "}
                     <SidebarItem
                       isActive={router.pathname === "/view"}

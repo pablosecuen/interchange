@@ -39,3 +39,14 @@ export const columnsModalCursosAlumnos = [
    {name: 'CUOTA', uid: 'cuota'}, 
    {name: 'ACTIONS', uid: 'actions'},
 ];
+
+
+export const columnsContent = [
+   {name: 'Titulo', uid: 'Title'},
+   {name: 'CURSO', uid: 'Grado_Categoria'},
+   { name: 'AÑO', uid: 'Grado_Nombre' },
+   {name: 'DESDE', uid: 'createdAt'},
+   {name: 'TIPO', uid: 'Tipo' },
+   {name: 'LINK', uid: 'Link'},
+   {name: 'ACTIONS', uid: 'actions'},
+];

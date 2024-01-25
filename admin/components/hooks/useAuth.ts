@@ -22,7 +22,7 @@ const useAuth = (): UseAuthProps => {
         const userData = JSON.parse(localStorage.getItem("user") || sessionStorage.getItem("user") || '{}');    
 
         setUserType(userData?.Tipo || null);
-        router.push("/")
+      
       } else {
 
         setUserType(null);

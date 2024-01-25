@@ -18,6 +18,8 @@ const getNotasByUserIdController = async (req, res) => {
 };
 
 const createNotas = async (userId, notasData) => {
+  console.log(userId);
+  console.log(notasData);
   try {
     if (!userId || notasData === undefined) {
       throw new Error("Se requiere el ID del usuario y datos válidos de notas.");
@@ -40,6 +42,7 @@ const createNotas = async (userId, notasData) => {
 
     return { message: "Notas actualizadas correctamente.", notas: existingNotas };
   } catch (error) {
+    console.log(error);
     throw new Error("Error al crear o actualizar las notas: " + error.message);
   }
 };
