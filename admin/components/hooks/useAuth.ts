@@ -19,12 +19,14 @@ const useAuth = (): UseAuthProps => {
       setIsAuthenticated(userIsLoggedIn);
 
       if (userIsLoggedIn) {
-        const userData = JSON.parse(localStorage.getItem("user") || sessionStorage.getItem("user") || '{}');       
+        const userData = JSON.parse(localStorage.getItem("user") || sessionStorage.getItem("user") || '{}');    
+
         setUserType(userData?.Tipo || null);
+        router.push("/")
       } else {
+
         setUserType(null);
       }
-
       return userType;
     } catch (error) {
       console.error("Error al verificar el inicio de sesión:", error);
