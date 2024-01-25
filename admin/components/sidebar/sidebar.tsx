@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Sidebar } from "./sidebar.styles";
 import { Avatar, Tooltip } from "@nextui-org/react";
 import { CompaniesDropdown } from "./companies-dropdown";
@@ -14,17 +14,27 @@ import { SidebarItem } from "./sidebar-item";
 import { SidebarMenu } from "./sidebar-menu";
 import { FilterIcon } from "../icons/sidebar/filter-icon";
 import { useSidebarContext } from "../layout/layout-context";
-import { useRouter } from "next/router";
 import { useAuthContext } from "../authContext/authContext";
-
+import { useRouter } from "next/router";
 export const SidebarWrapper = () => {
   const router = useRouter();
   const { collapsed, setCollapsed } = useSidebarContext();
-  const { isAuthenticated, userType } = useAuthContext();
+  const { isAuthenticated, userType, checkAuth } = useAuthContext();
 
-  if (!isAuthenticated) {
-    return null;
-  }
+  useEffect(() => {
+    const checkAuthentication = async () => {
+      checkAuth();
+
+      if (!isAuthenticated) {
+        // Verifica si el código se está ejecutando en el lado del cliente antes de usar router
+        if (typeof window !== "undefined") {
+          router.push("/login");
+        }
+      }
+    };
+
+    checkAuthentication();
+  }, [isAuthenticated, checkAuth, router]);
 
   const renderMenuItems = () => {
     switch (userType) {
