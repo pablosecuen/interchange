@@ -47,22 +47,29 @@ const useLogin = (initialFormData: FormData): UseLoginProps => {
         }),
       });
 
-      if (response.ok) {
+       if (response.ok) {
         const userFromServer = await response.json();
 
-        const { Password, ...userDataWithoutPassword } = userFromServer.user;
-        toast.success("¡Bienvenido de nuevo!");
+        if (userFromServer.user.Tipo === "admin" || userFromServer.user.Tipo === "teacher") {
+          // Usuario autenticado y es admin o teacher
+          const { Password, ...userDataWithoutPassword } = userFromServer.user;
+          toast.success("¡Bienvenido de nuevo!");
 
+          if (rememberMe) {
+            localStorage.setItem("user", JSON.stringify(userDataWithoutPassword));
+            sessionStorage.removeItem("user");
+          } else {
+            sessionStorage.setItem("user", JSON.stringify(userDataWithoutPassword));
+            localStorage.removeItem("user");
+          }
 
-        if (rememberMe) {
-          localStorage.setItem("user", JSON.stringify(userDataWithoutPassword));
-          sessionStorage.removeItem("user");
-        } else {
-          sessionStorage.setItem("user", JSON.stringify(userDataWithoutPassword));
-          localStorage.removeItem("user");
-        }
           router.push('/');
-           return true;
+          return true;
+           } else {
+          // Usuario no es admin ni teacher
+          toast.error("Credenciales incorrectas");
+          return false;
+        }
       } else {
         toast.error("Error al validar credenciales");
          return false;
