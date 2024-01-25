@@ -6,6 +6,7 @@ const pagosRoutes = require("./src/routes/Pagos.routes");
 const examenRoutes = require("./src/routes/Examen.routes");
 const examenCompletadoRoutes = require("./src/routes/ExamenCompletado.routes");
 const notasRoutes = require("./src/routes/Notas.routes");
+const campusRoutes = require("./src/routes/Campus.routes");
 
 const { sequelize } = require("./db");
 const {
@@ -49,6 +50,7 @@ app.use("/api/examen", examenRoutes);
 app.use("/api/examen-completado", examenCompletadoRoutes);
 app.use("/api/anotaciones", userRoutes);
 app.use("/api/notas", notasRoutes);
+app.use("/api/campus", campusRoutes);
 // Puerto en el que el servidor escuchará
 const PORT = process.env.PORT || 3001;
 

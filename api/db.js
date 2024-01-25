@@ -15,12 +15,26 @@ if (DATABASE_NAME && DATABASE_USERNAME && DATABASE_PASSWORD) {
   });
 
   const Usuario = require("./src/models/Usuario")(sequelize);
+  const Campus = require("./src/models/Campus")(sequelize);
   const Grado = require("./src/models/Grado")(sequelize);
   const Contenido = require("./src/models/Contenido")(sequelize);
   const Pago = require("./src/models/Pagos")(sequelize);
   const ExamenCompletado = require("./src/models/ExamenCompletado")(sequelize);
   const Examen = require("./src/models/Examen")(sequelize);
   const Notas = require("./src/models/Notas")(sequelize);
+
+  // Exporta los modelos y la conexión
+  module.exports = {
+    Usuario,
+    Grado,
+    Contenido,
+    Pago,
+    Examen,
+    ExamenCompletado,
+    Notas,
+    Campus,
+    sequelize,
+  };
 
   // Aquí puedes establecer las relaciones entre los modelos
   Usuario.belongsTo(Grado, { foreignKey: "Grado_ID" });
@@ -47,17 +61,9 @@ if (DATABASE_NAME && DATABASE_USERNAME && DATABASE_PASSWORD) {
   Usuario.hasMany(Notas, { foreignKey: "Usuario_ID", as: "RegistroNotas" });
   Notas.belongsTo(Usuario, { foreignKey: "Usuario_ID" });
 
-  // Exporta los modelos y la conexión
-  module.exports = {
-    Usuario,
-    Grado,
-    Contenido,
-    Pago,
-    Examen,
-    ExamenCompletado,
-    Notas,
-    sequelize,
-  };
+  // Relación con Grado
+  Campus.belongsTo(Grado, { foreignKey: "Grado_ID" });
+  Grado.hasMany(Campus, { foreignKey: "Grado_ID" });
 } else {
   console.error("Las variables de entorno de la base de datos no están completamente definidas.");
   process.exit(1);

@@ -1,5 +1,5 @@
 // controllers/examenController.js
-// controllers/examenesController.js
+
 
 const { Examen, Usuario } = require("../../db");
 
