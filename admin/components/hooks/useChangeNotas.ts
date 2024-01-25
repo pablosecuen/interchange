@@ -3,6 +3,7 @@ import { toast } from "sonner";
 import { baseUrl } from "./baseurl";
 
 export interface Nota {
+  notas: any;
   grado: string;
   examenFinal: string;
   trimestres: {
