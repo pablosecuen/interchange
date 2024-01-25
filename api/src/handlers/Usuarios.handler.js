@@ -9,6 +9,7 @@ const {
   createAnotaciones,
   updateAnotaciones,
   patchNotasController,
+  patchTiposController,
 } = require("../controllers/Usuarios.controller");
 
 const createUserHandler = (req, res) => {
@@ -50,6 +51,10 @@ const pathNotasHandler = async (req, res) => {
   await patchNotasController(req, res);
 };
 
+const patchTiposHanlder = async (req, res) => {
+  await patchTiposController(req, res);
+};
+
 module.exports = {
   createUserHandler,
   getAllUsuariosHandler,
@@ -61,4 +66,5 @@ module.exports = {
   createAnotacionesHandler,
   updateAnotacionesHandler,
   pathNotasHandler,
+  patchTiposHanlder,
 };

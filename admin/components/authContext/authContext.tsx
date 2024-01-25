@@ -18,7 +18,6 @@ interface AuthProviderProps {
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const { isAuthenticated, checkAuth, userType } = useAuth();
   const { handleLogin } = useLogin({ email: "", password: "" });
-  console.log(userType);
 
   useEffect(() => {
     checkAuth();

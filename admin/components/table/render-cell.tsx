@@ -1,8 +1,9 @@
-import { User, Tooltip, Chip, Button } from "@nextui-org/react";
+import { User, Tooltip, Chip } from "@nextui-org/react";
 import React from "react";
 import { DeleteIcon } from "../icons/table/delete-icon";
 import { EditIcon } from "../icons/table/edit-icon";
 import { EyeIcon } from "../icons/table/eye-icon";
+import UserTypeModal from "../modal/user-type-moda";
 
 interface Props {
   user: any;
@@ -82,6 +83,13 @@ export const RenderCell = ({
             {cellValue === true ? "Activo" : cellValue === false ? "Borrado" : "Sin estado"}
           </span>
         </Chip>
+      );
+    case "Tipo":
+      return (
+        <div className="w-full flex items-center gap-2">
+          <span className="capitalize"> {user.Tipo}</span>
+          <UserTypeModal alumno={user} />
+        </div>
       );
 
     case "actions":

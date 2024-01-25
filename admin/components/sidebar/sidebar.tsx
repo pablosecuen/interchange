@@ -21,13 +21,10 @@ export const SidebarWrapper = () => {
   const router = useRouter();
   const { collapsed, setCollapsed } = useSidebarContext();
   const { isAuthenticated, userType } = useAuthContext();
-  console.log(isAuthenticated, userType);
 
   if (!isAuthenticated) {
     return null;
   }
-
-  // En SidebarWrapper
 
   const renderMenuItems = () => {
     switch (userType) {

@@ -138,6 +138,30 @@ const patchUsuarioController = async (req, res) => {
   }
 };
 
+const patchTiposController = async (req, res) => {
+  const { id } = req.params;
+  const { Tipo } = req.body;
+
+  try {
+    const user = await Usuario.findByPk(id);
+
+    if (!user) {
+      return res.status(404).json({ error: "Usuario no encontrado" });
+    }
+
+    if (Tipo) {
+      user.Tipo = Tipo;
+
+      await user.save();
+
+      return res.status(200).json({ message: "Datos de tipo actualizados correctamente" });
+    }
+    return res.status(200).json({ message: "Datos de tipo actualizados correctamente" });
+  } catch (error) {
+    return res.status(500).json({ error: "Error al actualizar los datos de tipo" });
+  }
+};
+
 const deleteUsuarioController = async (req, res) => {
   try {
     const { id } = req.params;
@@ -166,7 +190,6 @@ const loginController = async (req, res) => {
     if (!user || user.Password !== password) {
       return res.status(401).json({ error: "Credenciales incorrectas" });
     }
-
 
     return res.status(200).json({ message: "Inicio de sesión exitoso", user });
   } catch (error) {
@@ -259,4 +282,5 @@ module.exports = {
   getAnotaciones,
   createAnotaciones,
   updateAnotaciones,
+  patchTiposController,
 };
