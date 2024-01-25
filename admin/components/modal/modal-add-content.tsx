@@ -8,10 +8,11 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 import React, { useEffect } from "react";
-import useFetchCursos, { Curso } from "../hooks/useFetchCursos";
+import useFetchCursos from "../hooks/useFetchCursos";
 import useCreateContent from "../hooks/useCreateContent";
 
 import { useRouter } from "next/navigation";
+import { Curso } from "../(...)/cursos";
 
 interface CampusData {
   Title: string;
