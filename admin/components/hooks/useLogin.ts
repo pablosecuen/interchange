@@ -1,7 +1,8 @@
 import { useState, ChangeEvent } from "react";
 import { toast } from "sonner";
 import { baseUrl } from "./baseurl";
-import { useRouter } from "next/navigation";
+/* import { useRouter } from "next/navigation"; */
+import router from "next/router";
 
 export interface FormData {
   email: string;
@@ -20,7 +21,7 @@ const useLogin = (initialFormData: FormData): UseLoginProps => {
   
   const [formData, setFormData] = useState<FormData>(initialFormData);
   const [rememberMe, setRememberMe] = useState<boolean>(false);
-  const router = useRouter();
+
   const handleRememberMe: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     const isChecked = e.target.checked;
     setRememberMe(isChecked);
@@ -54,7 +55,7 @@ const useLogin = (initialFormData: FormData): UseLoginProps => {
           // Usuario autenticado y es admin o teacher
           const { Password, ...userDataWithoutPassword } = userFromServer.user;
           toast.success("¡Bienvenido de nuevo!");
-
+          router.push("/")
           if (rememberMe) {
             localStorage.setItem("user", JSON.stringify(userDataWithoutPassword));
             sessionStorage.removeItem("user");
@@ -63,7 +64,7 @@ const useLogin = (initialFormData: FormData): UseLoginProps => {
             localStorage.removeItem("user");
           }
 
-          router.push('/');
+  
           return true;
            } else {
           // Usuario no es admin ni teacher
