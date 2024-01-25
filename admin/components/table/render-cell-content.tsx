@@ -3,7 +3,7 @@ import React from "react";
 import { DeleteIcon } from "../icons/table/delete-icon";
 import { EditIcon } from "../icons/table/edit-icon";
 import { EyeIcon } from "../icons/table/eye-icon";
-import UserTypeModal from "../modal/user-type-moda";
+import Link from "next/link";
 
 interface Props {
   content: any;
@@ -16,10 +16,10 @@ interface Props {
 export const RenderCell = ({ content, columnKey }: Props) => {
   const getCourseInfo = () => {
     if (columnKey === "Grado_Categoria") {
-      return content?.Grado?.[0]?.Grado_Categoria || "Sin información";
+      return content?.Grado_Categoria || "Sin información";
     }
     if (columnKey === "Grado_Nombre") {
-      return content?.Grado?.[0]?.Grado_Nombre || "Sin información";
+      return content?.Grado_Nombre || "Sin información";
     }
     return "";
   };
@@ -27,6 +27,7 @@ export const RenderCell = ({ content, columnKey }: Props) => {
   const cellValue = content[columnKey];
   const columnValue =
     columnKey === "Grado_Categoria" || columnKey === "Grado_Nombre" ? getCourseInfo() : cellValue;
+  console.log(content.Link);
 
   switch (columnKey) {
     case "Nombre":
@@ -40,12 +41,24 @@ export const RenderCell = ({ content, columnKey }: Props) => {
           {content.Title}
         </User>
       );
-    case "link":
+    case "Link":
       return (
         <div className="z-50 cursor-pointer">
-          <button onClick={() => console.log(content)}>
-            <EyeIcon size={20} fill="#979797" />
-          </button>
+          {content.Link && content.Link.length > 0 ? (
+            content.Link.map((link: string, index: number) => (
+              <Link
+                key={index}
+                href={link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline hover:text-primary transition duration-300"
+              >
+                {`Link ${index + 1}`}
+              </Link>
+            ))
+          ) : (
+            <span>Sin enlaces</span>
+          )}
         </div>
       );
     case "tipo":
@@ -60,6 +73,14 @@ export const RenderCell = ({ content, columnKey }: Props) => {
           </button>
         </div>
       );
+    case "createdAt":
+      // Formatear la fecha en dd/mm/yy
+      const formattedDate = new Date(cellValue).toLocaleDateString("es-ES", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "2-digit",
+      });
+      return <span>{formattedDate}</span>;
     case "Activo":
       return (
         <Chip
@@ -85,14 +106,14 @@ export const RenderCell = ({ content, columnKey }: Props) => {
             </Tooltip>
           </div>
           <div>
-            <Tooltip content="Edit user" color="secondary">
+            <Tooltip content="Edit Content" color="secondary">
               <button onClick={() => console.log(content)}>
                 <EditIcon size={20} fill="#979797" />
               </button>
             </Tooltip>
           </div>
           <div>
-            <Tooltip content="Delete user" color="danger">
+            <Tooltip content="Delete Content" color="danger">
               <button onClick={() => console.log("Delete user", content.ID)}>
                 <DeleteIcon size={20} fill="#FF0080" />
               </button>

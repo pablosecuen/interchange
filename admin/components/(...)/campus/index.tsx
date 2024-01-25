@@ -6,13 +6,15 @@ import { HouseIcon } from "../../icons/breadcrumb/house-icon";
 import { UsersIcon } from "../../icons/breadcrumb/users-icon";
 import * as XLSX from "xlsx";
 import { TableWrapperContent } from "../../table/tableContent";
+import useFetchContent from "../../hooks/useFetchContent";
+import AddContent from "../../modal/modal-add-content";
 
 export const Campus = () => {
-  const { content, isLoading, error } = useFetchContent();
+  const { contentList, loading, error } = useFetchContent();
   const [contentFilter, setContentFilter] = useState<string>("");
 
-  const filteredContent = content.filter((c: any) => {
-    const { Title, Link, Description, Tipo } = content;
+  const filteredContent = contentList.filter((c: any) => {
+    const { Title, Link, Description, Tipo } = c;
     const searchLowerCase = contentFilter.toLowerCase();
 
     const match =
@@ -65,13 +67,14 @@ export const Campus = () => {
           />
         </div>
         <div className="flex flex-row gap-3.5 flex-wrap">
+          <AddContent />
           <Button color="primary" startContent={<ExportIcon />} onPress={exportToExcel}>
             Exportar a Excel
           </Button>
         </div>
       </div>
       <div className="max-w-[95rem] mx-auto w-full">
-        <TableWrapperContent content={filteredContent} isLoading={isLoading} error={error} />
+        <TableWrapperContent content={filteredContent} isLoading={loading} error={error} />
       </div>
     </div>
   );
