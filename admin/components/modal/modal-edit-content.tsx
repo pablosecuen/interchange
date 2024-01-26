@@ -12,9 +12,10 @@ import {
 import { Select, SelectItem } from "@nextui-org/select";
 import { Content } from "../hooks/useFetchContent";
 import useEditContent from "../hooks/useEditContent";
-import useFetchCursos, { Curso } from "../hooks/useFetchCursos";
+import useFetchCursos from "../hooks/useFetchCursos";
 import { EditIcon } from "../icons/table/edit-icon";
 import { EyeIcon } from "../icons/table/eye-icon";
+import { Curso } from "../(...)/cursos";
 
 interface EditContentModalProps {
   content: Content;
