@@ -105,13 +105,13 @@ import salesbury3 from '@/public/assets/svg/salesbury/4.jpg';
 import salesbury4 from '@/public/assets/svg/salesbury/5.jpg';
 import salesbury5 from '@/public/assets/svg/salesbury/6.webp';
 import warner from '@/public/assets/svg/warner/1.jpg'
-import warner1 from '@/public/assets/svg/warner/2.jpg'
+import warner1 from '@/public/assets/svg/warner/2.webp'
 import warner2 from '@/public/assets/svg/warner/3.jpg'
 import warner3 from '@/public/assets/svg/warner/4.jpg'
 import godolphin from '@/public/assets/svg/godolphin/godolphin.jpg'
 import godolphin1 from '@/public/assets/svg/godolphin/godolphin1.jpg'
 import godolphin2 from '@/public/assets/svg/godolphin/godolphin2.jpg'
-import godolphin3 from '@/public/assets/svg/godolphin/godolphin3.jpg'
+import godolphin3 from '@/public/assets/svg/godolphin/godolphin3.webp'
 
 
 export const toursData: Tour[] = [

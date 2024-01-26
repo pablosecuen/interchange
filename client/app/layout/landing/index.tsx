@@ -4,7 +4,7 @@ import "./perspective.css";
 import Image from "next/image";
 import arrow from "@/public/assets/svg/arrow.svg";
 import scramble from "@/public/assets/svg/scramble.svg";
-import child from "@/public/assets/svg/child.svg";
+import child from "@/public/assets/svg/child.webp";
 import ilustracion from "@/public/assets/svg/ilustracion.svg";
 import ilustracion2 from "@/public/assets/svg/Ilustracion2.svg";
 

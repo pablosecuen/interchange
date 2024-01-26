@@ -2,7 +2,7 @@ import Carousel from "@/app/components/carousel";
 import Image from "next/image";
 import React from "react";
 import sparks from "@/public/assets/svg/spark.svg";
-import girlpic from "@/public/assets/svg/girlpic.svg";
+import girlpic from "@/public/assets/svg/girlpic.webp";
 import Link from "next/link";
 
 const Trusted = () => {
