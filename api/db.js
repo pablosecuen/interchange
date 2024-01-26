@@ -65,6 +65,6 @@ if (DATABASE_URL) {
   Campus.belongsTo(Grado, { foreignKey: "Grado_ID" });
   Grado.hasMany(Campus, { foreignKey: "Grado_ID" });
 } else {
-  console.error("La variable de entorno RAILWAY_DATABASE_URL no está definida.");
+  console.error("error al conectar la db");
   process.exit(1);
 }
