@@ -3,14 +3,16 @@ const { Sequelize } = require("sequelize");
 const dotenv = require("dotenv");
 dotenv.config();
 
-
 const DATABASE_URL = process.env.RAILWAY_DATABASE_URL;
 
 if (DATABASE_URL) {
-  const sequelize = new Sequelize(DATABASE_URL, {
-    dialect: "postgres",
-    logging: false,
-  });
+  const sequelize = new Sequelize(
+    "postgresql://postgres:12dGbCC--bgg3-34F*5C35*AgAGEb1AF@viaduct.proxy.rlwy.net:20341/railway",
+    {
+      dialect: "postgres",
+      logging: false,
+    }
+  );
 
   const Usuario = require("./src/models/Usuario")(sequelize);
   const Campus = require("./src/models/Campus")(sequelize);
