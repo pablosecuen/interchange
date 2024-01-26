@@ -7,7 +7,7 @@ import {
   ModalHeader,
   useDisclosure,
 } from "@nextui-org/react";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Toaster, toast } from "sonner";
 import { TableWrapperModalCurso } from "../table/tablemodalcursos";
 import useFetchUsuariosByCursos from "../hooks/useFetchUsuariosByCursos";
@@ -15,7 +15,7 @@ import Image from "next/image";
 import spinner from "./../../public/spinner/Spinner.gif";
 import LoadingError from "../loadingerror";
 import { EyeIcon } from "../icons/table/eye-icon";
-import { Curso } from "../hooks/useFetchCursos";
+import { Curso } from "../(...)/cursos";
 
 interface Props {
   curso: Curso;
