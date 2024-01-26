@@ -140,10 +140,7 @@ const LoginForm = () => {
             Ingresar
           </Button>
           <span className="hover:scale-105 transition font-thin text-xs  duration-300 cursor-pointer z-50">
-            Al continuar declaras estar de acuerddo con nuestras{" "}
-            <Link href="/terms" className="text-blue-500">
-              terminos de uso
-            </Link>
+            Al continuar declaras estar de acuerdo con nuestros terminos y condiciones de uso
           </span>
           <div className="w-full flex justify-center">
             {" "}

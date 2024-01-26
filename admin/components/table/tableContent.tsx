@@ -27,7 +27,6 @@ export const TableWrapperContent = ({ content, isLoading, error }: tableContentP
   if (isLoading || error) {
     return <LoadingError isLoading={isLoading} error={error} />;
   }
-  console.log(content);
 
   return (
     <div className=" w-full flex flex-col gap-4">

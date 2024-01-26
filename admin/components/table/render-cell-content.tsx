@@ -4,6 +4,8 @@ import { DeleteIcon } from "../icons/table/delete-icon";
 import { EditIcon } from "../icons/table/edit-icon";
 import { EyeIcon } from "../icons/table/eye-icon";
 import Link from "next/link";
+import EditContentModal from "../modal/modal-edit-content";
+import ModalDetailsContent from "../modal/moda-content-detail";
 
 interface Props {
   content: any;
@@ -67,6 +69,7 @@ export const RenderCell = ({ content, columnKey }: Props) => {
           <button onClick={() => console.log(content)}>
             <EditIcon size={20} fill="#979797" />
           </button>
+          <EditContentModal content={content} />
 
           <button onClick={() => console.log(content)}>
             <EyeIcon size={20} fill="#979797" />
@@ -98,18 +101,14 @@ export const RenderCell = ({ content, columnKey }: Props) => {
     case "actions":
       return (
         <div className="flex items-center gap-4 ">
-          <div onClick={() => console.log(content)}>
+          <div>
             <Tooltip content="Details">
-              <button onClick={() => console.log(content)}>
-                <EyeIcon size={20} fill="#979797" />
-              </button>
+              <ModalDetailsContent content={content} />
             </Tooltip>
           </div>
           <div>
             <Tooltip content="Edit Content" color="secondary">
-              <button onClick={() => console.log(content)}>
-                <EditIcon size={20} fill="#979797" />
-              </button>
+              <EditContentModal content={content} />
             </Tooltip>
           </div>
           <div>

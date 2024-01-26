@@ -4,27 +4,20 @@ import { DeleteIcon } from "../icons/table/delete-icon";
 import { EditIcon } from "../icons/table/edit-icon";
 import { EyeIcon } from "../icons/table/eye-icon";
 import UserTypeModal from "../modal/user-type-moda";
+import ModalCuotas from "../modal/modal-cuotas";
+import ModalAlumnos from "../modal/modal-alumnos";
+import CambiarNotasModal from "../modal/modal-cambiar-notas";
+import TableWrapperNotas from "./tableNotas";
 
 interface Props {
   user: any;
   columnKey: string | React.Key;
-  handleUserClick: (user: any) => void;
   onOpen?: () => void;
-  handleAlumnoClick: (user: any) => void;
-  handleNotasEditClick: (user: any) => void;
-  handleNotasClick: (user: any) => void;
 }
 
 // En el componente RenderCell
 
-export const RenderCell = ({
-  user,
-  columnKey,
-  handleUserClick,
-  handleAlumnoClick,
-  handleNotasEditClick,
-  handleNotasClick,
-}: Props) => {
+export const RenderCell = ({ user, columnKey }: Props) => {
   const getCourseInfo = () => {
     if (columnKey === "Grado_Categoria") {
       return user?.Grado?.[0]?.Grado_Categoria || "Sin información";
@@ -54,21 +47,15 @@ export const RenderCell = ({
     case "cuota":
       return (
         <div className="z-50 cursor-pointer">
-          <button onClick={() => handleUserClick(user)}>
-            <EyeIcon size={20} fill="#979797" />
-          </button>
+          <ModalCuotas user={user} />
         </div>
       );
     case "Notas":
       return (
         <div className="z-50 cursor-pointer flex items-center gap-8">
-          <button onClick={() => handleNotasEditClick(user)}>
-            <EditIcon size={20} fill="#979797" />
-          </button>
+          <CambiarNotasModal alumno={user} />
 
-          <button onClick={() => handleNotasClick(user)}>
-            <EyeIcon size={20} fill="#979797" />
-          </button>
+          <TableWrapperNotas alumno={user} />
         </div>
       );
     case "Activo":
@@ -95,19 +82,8 @@ export const RenderCell = ({
     case "actions":
       return (
         <div className="flex items-center gap-4 ">
-          <div onClick={() => handleAlumnoClick(user)}>
-            <Tooltip content="Details">
-              <button onClick={() => handleAlumnoClick(user)}>
-                <EyeIcon size={20} fill="#979797" />
-              </button>
-            </Tooltip>
-          </div>
           <div>
-            <Tooltip content="Edit user" color="secondary">
-              <button onClick={() => console.log(user)}>
-                <EditIcon size={20} fill="#979797" />
-              </button>
-            </Tooltip>
+            <ModalAlumnos alumno={user} />
           </div>
           <div>
             <Tooltip content="Delete user" color="danger">
