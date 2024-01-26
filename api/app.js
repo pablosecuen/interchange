@@ -22,9 +22,10 @@ const app = express();
 // Middleware para habilitar CORS
 app.use((req, res, next) => {
   const allowedOrigins = [
-    "http://localhost:3000",
+  "http://localhost:3000",
     "http://localhost:3002",
     "https://interchange-3pb8.vercel.app/",
+    "https://interchange-azure.vercel.app/",
   ];
   const origin = req.headers.origin;
   if (allowedOrigins.includes(origin)) {
