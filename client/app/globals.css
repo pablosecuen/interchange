@@ -14,14 +14,17 @@ body {
 @font-face {
   font-family: "Laila-Regular";
   src: url("/fonts/Laila-Regular.ttf") format("truetype");
+  font-display: swap;
 }
 @font-face {
   font-family: "Nunito-Regular";
   src: url("/fonts/NunitoSans-Regular.ttf") format("truetype");
+  font-display: swap;
 }
 @font-face {
   font-family: "Poppins-Regular";
   src: url("/fonts/Poppins-Regular.ttf") format("truetype");
+  font-display: swap;
 }
 
 * {
