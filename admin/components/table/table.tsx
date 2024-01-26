@@ -1,23 +1,16 @@
 import {
-  Link,
   Table,
   TableBody,
   TableCell,
   TableColumn,
   TableHeader,
   TableRow,
-  useDisclosure,
 } from "@nextui-org/react";
-import React, { useState } from "react";
+import React from "react";
 import { columns } from "./data";
 import { RenderCell } from "./render-cell";
-
-import ModalCuotas from "../modal/modal-cuotas";
-import ModalAlumnos from "../modal/modal-alumnos";
 import { Toaster } from "sonner";
 import LoadingError from "../loadingerror";
-import CambiarNotasModal from "../modal/modal-cambiar-notas";
-import TableWrapperNotas from "./tableNotas";
 import { User } from "../hooks/useFetchUsers";
 
 interface tableAlumnosProps {
@@ -26,46 +19,7 @@ interface tableAlumnosProps {
   error: any;
 }
 export const TableWrapper = ({ users, isLoading, error }: tableAlumnosProps) => {
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const [selectedUser, setSelectedUser] = useState<User | null>(null);
 
-  const {
-    isOpen: isOpenAlumnos,
-    onOpen: onOpenAlumnos,
-    onOpenChange: onOpenChangeAlumnos,
-  } = useDisclosure();
-
-  const {
-    isOpen: isOpenNotasEdit,
-    onOpen: onOpenNotasEdit,
-    onOpenChange: onOpenChangeNotasEdit,
-  } = useDisclosure();
-
-  const {
-    isOpen: isOpenNotas,
-    onOpen: onOpenNotas,
-    onOpenChange: onOpenChangeNotas,
-  } = useDisclosure();
-
-  const handleUserClick = (user: User) => {
-    setSelectedUser(user);
-    onOpenChange();
-  };
-
-  const handleAlumnoClick = (user: User) => {
-    setSelectedUser(user);
-    onOpenAlumnos();
-  };
-
-  const handleNotasEditClick = (user: User) => {
-    setSelectedUser(user);
-    onOpenNotasEdit();
-  };
-
-  const handleNotasClick = (user: User) => {
-    setSelectedUser(user);
-    onOpenNotas();
-  };
 
   if (isLoading || error) {
     return <LoadingError isLoading={isLoading} error={error} />;
@@ -94,11 +48,6 @@ export const TableWrapper = ({ users, isLoading, error }: tableAlumnosProps) => 
                   {RenderCell({
                     user: item,
                     columnKey: columnKey,
-                    onOpen: onOpen,
-                    handleAlumnoClick: handleAlumnoClick,
-                    handleUserClick: handleUserClick,
-                    handleNotasEditClick: handleNotasEditClick,
-                    handleNotasClick: handleNotasClick,
                   })}
                 </TableCell>
               )}
@@ -106,26 +55,7 @@ export const TableWrapper = ({ users, isLoading, error }: tableAlumnosProps) => 
           )}
         </TableBody>
       </Table>
-      {selectedUser && (
-        <>
-          <ModalCuotas user={selectedUser} onOpenChange={onOpenChange} isOpen={isOpen} />
-          <ModalAlumnos
-            alumno={selectedUser}
-            onOpenChange={onOpenChangeAlumnos}
-            isOpen={isOpenAlumnos}
-          />
-          <CambiarNotasModal
-            alumno={selectedUser}
-            onOpenChange={onOpenChangeNotasEdit}
-            isOpen={isOpenNotasEdit}
-          />
-          <TableWrapperNotas
-            alumno={selectedUser}
-            onOpenChange={onOpenChangeNotas}
-            isOpen={isOpenNotas}
-          />
-        </>
-      )}
+    
     </div>
   );
 };

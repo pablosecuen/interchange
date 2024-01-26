@@ -61,6 +61,7 @@ useEffect(() => {
     } catch (error: any) {
       setError(error);
     } finally {
+      toast.error("Error al cargar usuarios")
       setLoading(false);
     }
   };

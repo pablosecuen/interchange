@@ -1,6 +1,7 @@
 import  { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { baseUrl } from "./baseurl";
+import { useRouter } from "next/router";
 
 export interface Nota {
   notas?: any;
@@ -18,7 +19,8 @@ export interface Nota {
   }[];
 }
 
-const useChangeNotas = (alumno:any) => {
+const useChangeNotas = (alumno: any) => {
+  const router = useRouter()
     const [notasData, setNotasData] = useState<Nota>({
         grado: "",
         examenFinal: "",
@@ -69,6 +71,9 @@ const useChangeNotas = (alumno:any) => {
         throw new Error("Error al actualizar las notas");
       } else {
         toast.success("Notas actualizadas correctamente");
+               setTimeout(() => {
+          router.reload(); 
+        }, 1000);
       }
     } catch (error: any) {
       console.error("Error al actualizar las notas:", error.message);

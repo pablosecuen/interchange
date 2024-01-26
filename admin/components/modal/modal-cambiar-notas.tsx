@@ -7,16 +7,19 @@ import {
   Button,
   Input,
   ModalContent,
+  useDisclosure,
+  Textarea,
 } from "@nextui-org/react";
 import useChangeNotas from "../hooks/useChangeNotas";
-//a
+import { EditIcon } from "../icons/table/edit-icon";
+import { Select, SelectItem } from "@nextui-org/select";
+
 interface ModalNotasProps {
-  onOpenChange: (value: boolean) => void;
-  isOpen: boolean;
   alumno: any;
 }
 
-const CambiarNotasModal = ({ alumno, isOpen, onOpenChange }: ModalNotasProps) => {
+const CambiarNotasModal = ({ alumno }: ModalNotasProps) => {
+  const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
   const {
     notasData,
     gradoOptions,
@@ -30,13 +33,16 @@ const CambiarNotasModal = ({ alumno, isOpen, onOpenChange }: ModalNotasProps) =>
   const trimestresDisponibles = [1, 2, 3, 4];
 
   return (
-    <div className="flex justify-center items-center w-full h-full">
+    <>
+      <button color="primary" title="Detalles notas" onClick={onOpen}>
+        <EditIcon size={20} fill="#979797" />
+      </button>
       <Modal
         backdrop="opaque"
         isOpen={isOpen}
         onOpenChange={onOpenChange}
         radius="lg"
-        size="lg"
+        size="xl"
         classNames={{
           body: "py-6 ",
           backdrop: "bg-[#292f46]/50 backdrop-opacity-40",
@@ -66,23 +72,22 @@ const CambiarNotasModal = ({ alumno, isOpen, onOpenChange }: ModalNotasProps) =>
                   <div className="flex flex-col w-full">
                     {" "}
                     <label>Seleccionar grado</label>
-                    <select
+                    <Select
                       placeholder="Seleccionar grado"
                       value={notasData.grado}
                       onChange={(e) => handleGradoChange(e.target.value)}
                     >
-                      <option value="">Seleccionar grado</option>
                       {gradoOptions.map((grado) => (
-                        <option key={grado.id} value={grado.id}>
+                        <SelectItem key={grado.id} value={grado.id}>
                           {grado.nombre}
-                        </option>
+                        </SelectItem>
                       ))}
-                    </select>
+                    </Select>
                   </div>
                   <div className="flex flex-col w-full">
                     {" "}
                     <label>Seleccionar trimestre</label>
-                    <select
+                    <Select
                       placeholder="Seleccionar trimestre"
                       value={
                         notasData.trimestres.length > 0
@@ -93,13 +98,12 @@ const CambiarNotasModal = ({ alumno, isOpen, onOpenChange }: ModalNotasProps) =>
                       }
                       onChange={(e) => handleTrimestreChange(e.target.value)}
                     >
-                      <option value="">Seleccionar un trimestre</option>
                       {trimestresDisponibles.map((t, index) => (
-                        <option key={index} value={t}>
-                          {t}
-                        </option>
+                        <SelectItem key={index} value={t}>
+                          {t.toString()}
+                        </SelectItem>
                       ))}
-                    </select>
+                    </Select>
                   </div>
                 </div>
 
@@ -209,7 +213,7 @@ const CambiarNotasModal = ({ alumno, isOpen, onOpenChange }: ModalNotasProps) =>
                 <div className="flex items-center justify-between">
                   {" "}
                   <label> Observaciones </label>
-                  <textarea
+                  <Textarea
                     placeholder="Observaciones"
                     className="w-1/2"
                     value={
@@ -233,7 +237,7 @@ const CambiarNotasModal = ({ alumno, isOpen, onOpenChange }: ModalNotasProps) =>
           )}
         </ModalContent>
       </Modal>
-    </div>
+    </>
   );
 };
 

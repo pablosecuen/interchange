@@ -14,17 +14,14 @@ const getAllCampus = async (req, res) => {
 
 const getAllCampusByGradoID = async (req, res) => {
   try {
-    // Obtén el Grado_ID de la solicitud GET
     const { Grado_ID } = req.params;
 
-    // Busca todos los Campus con el Grado_ID especificado
     const campuses = await Campus.findAll({
       where: {
         Grado_ID: Grado_ID,
       },
     });
 
-    // Devuelve la respuesta al cliente
     return res.json(campuses);
   } catch (error) {
     console.error("Error al obtener los campus por Grado_ID:", error);
@@ -55,9 +52,10 @@ const createCampus = async (req, res) => {
 
 const updateCampus = async (req, res) => {
   try {
-    const { ID } = req.params;
+    const { campusId } = req.params;
     const { Title, description, Link, Tipo, Grado_ID } = req.body;
-
+    console.log(req.body);
+    console.log(req.params);
     const updatedCampus = await Campus.update(
       {
         Title,
@@ -67,7 +65,7 @@ const updateCampus = async (req, res) => {
         Grado_ID,
       },
       {
-        where: { ID },
+        where: { ID: campusId },
         returning: true,
       }
     );

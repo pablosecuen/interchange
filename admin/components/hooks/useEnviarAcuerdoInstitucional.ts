@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { toast } from 'sonner';
 import { baseUrl } from './baseurl';
+import { useRouter } from 'next/router';
 
 // Custom hook para enviar el acuerdo institucional por correo electrónico
 const useEnviarAcuerdoInstitucional = () => {
+  const router = useRouter()
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -16,7 +18,10 @@ const useEnviarAcuerdoInstitucional = () => {
       toast.error("error al enviar el correo")
       throw new Error(data.message);
       }
-        toast.success("correo enviado exitosamente!")
+      toast.success("correo enviado exitosamente!")
+           setTimeout(() => {
+          router.reload(); 
+        }, 1000);
       setLoading(false);
     } catch (error:any) {
       setError(error.message);

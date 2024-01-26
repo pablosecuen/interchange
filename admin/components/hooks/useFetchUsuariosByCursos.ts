@@ -55,12 +55,11 @@ const useFetchUsuariosByCursos = (isOpen: boolean, curso: Curso | null): FetchUs
             return user;
           })
         );
-
-        toast.success("Usuarios cargados correctamente");
         setUsuarios(usersWithGradesAndPayments);
       } catch (error:any) {
         setError(error);
       } finally {
+        toast.error("Error al cargar usuarios")
         setLoading(false);
       }
     };

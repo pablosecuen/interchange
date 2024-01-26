@@ -1,18 +1,7 @@
-import {
-  Link,
-  Table,
-  TableBody,
-  TableCell,
-  TableColumn,
-  TableHeader,
-  TableRow,
-  useDisclosure,
-} from "@nextui-org/react";
+import { Table, TableBody, TableCell, TableColumn, TableHeader, TableRow } from "@nextui-org/react";
 import { Toaster } from "sonner";
 import { columnsCursos } from "./data";
 import { RenderCell } from "./render-cell-cursos";
-import { useState } from "react";
-import ModalCurso from "../modal/modal-cursos";
 import LoadingError from "../loadingerror";
 import { Curso } from "../(...)/cursos";
 
@@ -23,14 +12,6 @@ interface CursoTableProps {
 }
 
 export const TableWrapper = ({ cursos, isLoading, error }: CursoTableProps) => {
-  const [selectedCurso, setSelectedCurso] = useState(null);
-  const { isOpen, onOpenChange } = useDisclosure();
-
-  const handleSelectCurso = (curso: any) => {
-    setSelectedCurso(curso);
-    onOpenChange();
-  };
-
   if (isLoading || error) {
     return <LoadingError isLoading={isLoading} error={error} />;
   }
@@ -58,7 +39,6 @@ export const TableWrapper = ({ cursos, isLoading, error }: CursoTableProps) => {
                   {RenderCell({
                     curso: item,
                     columnKey: columnKey,
-                    handleSelectCurso: handleSelectCurso,
                   })}
                 </TableCell>
               )}
@@ -66,9 +46,6 @@ export const TableWrapper = ({ cursos, isLoading, error }: CursoTableProps) => {
           )}
         </TableBody>
       </Table>
-      {selectedCurso && (
-        <ModalCurso curso={selectedCurso} isOpen={isOpen} onOpenChange={onOpenChange} />
-      )}
     </div>
   );
 };

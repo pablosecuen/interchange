@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { baseUrl } from './baseurl';
+import { toast } from 'sonner';
 
 export interface Content {
   ID?: string;
@@ -22,6 +23,7 @@ const useFetchContent = () => {
       try {
         const response = await fetch(`${baseUrl}/api/campus`); 
         if (!response.ok) {
+          toast.error('Error al cargar los datos del campus');
           throw new Error('Error al cargar los datos del campus');
         }
 

@@ -25,7 +25,7 @@ const useAnotaciones = () => {
       toast.success("Anotaciones guardadas correctamente");
       setTimeout(() => {
         router.reload(); 
-      }, 2000);
+      }, 1000);
     } catch (error: any) {
       console.error("Error al guardar las anotaciones:", error.message);
       toast.error("Error al guardar las anotaciones");

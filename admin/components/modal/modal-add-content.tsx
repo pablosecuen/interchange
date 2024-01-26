@@ -1,5 +1,6 @@
 import {
   Button,
+  Input,
   Modal,
   ModalBody,
   ModalContent,
@@ -7,6 +8,7 @@ import {
   ModalHeader,
   useDisclosure,
 } from "@nextui-org/react";
+import { Select, SelectItem } from "@nextui-org/select";
 import React, { useEffect } from "react";
 import useFetchCursos from "../hooks/useFetchCursos";
 import useCreateContent from "../hooks/useCreateContent";
@@ -79,10 +81,10 @@ const AddContent = () => {
               <ModalHeader className="flex flex-col gap-1">Nuevo Contenido</ModalHeader>
               <ModalBody>
                 <label>Titulo:</label>
-                <input type="text" name="Title" value={newContent.Title} onChange={handleChange} />
+                <Input type="text" name="Title" value={newContent.Title} onChange={handleChange} />
 
                 <label>Descripcion:</label>
-                <input
+                <Input
                   type="text"
                   name="Description"
                   value={newContent.Description}
@@ -90,7 +92,7 @@ const AddContent = () => {
                 />
 
                 <label>Links (comma-separated):</label>
-                <input
+                <Input
                   type="text"
                   name="Link"
                   value={newContent.Link.join(",")}
@@ -98,17 +100,20 @@ const AddContent = () => {
                 />
 
                 <label>Tipo:</label>
-                <select name="Tipo" value={newContent.Tipo} onChange={handleChange}>
-                  <option value="">Elije un tipo de contenido</option>
-                  <option value="Audio">Audio</option>
-                  <option value="Video">Video</option>
-                </select>
+                <Select name="Tipo" value={newContent.Tipo} onChange={handleChange}>
+                  <SelectItem key="" value="">
+                    Elije un tipo de contenido
+                  </SelectItem>
+                  <SelectItem key="Audio" value="Audio">
+                    Audio
+                  </SelectItem>
+                  <SelectItem key="Video" value="Video">
+                    Video
+                  </SelectItem>
+                </Select>
 
                 <label>Curso:</label>
-                <select name="Grado_ID" value={newContent.Grado_ID} onChange={handleChange}>
-                  <option value="" disabled>
-                    Seleccione un curso
-                  </option>
+                <Select name="Grado_ID" value={newContent.Grado_ID} onChange={handleChange}>
                   {isLoading ? (
                     <option value="" disabled>
                       Cargando cursos...
@@ -119,12 +124,12 @@ const AddContent = () => {
                     </option>
                   ) : (
                     cursos.map((curso: Curso) => (
-                      <option key={curso.ID} value={curso.ID}>
-                        {curso.Grado_Categoria} {curso.Grado_Nombre}
-                      </option>
+                      <SelectItem key={curso.ID} value={curso.ID}>
+                        {`${curso.Grado_Categoria} ${curso.Grado_Nombre}`}
+                      </SelectItem>
                     ))
                   )}
-                </select>
+                </Select>
               </ModalBody>
               <ModalFooter>
                 <Button color="danger" variant="flat" onClick={onClose}>

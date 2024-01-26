@@ -18,12 +18,14 @@ const useGetExams = () => {
           toast.error('Hubo un problema al obtener los exámenes.');
           throw new Error('Hubo un problema al obtener los exámenes.');
         } 
-        toast.success('Examenes cargados exitosamente');
+   
         
         const data = await response.json();
         setExamenes(data.examenes);
         setLoading(false);
       } catch (error: any) {
+        toast.error('Hubo un problema al obtener los exámenes.');
+  
         setError(error.message);
         setLoading(false);
       }

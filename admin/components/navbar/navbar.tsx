@@ -25,7 +25,7 @@ export const NavbarWrapper = ({ children }: Props) => {
     };
 
     checkAuthentication();
-  }, [isAuthenticated, checkAuth, router]);
+  }, [isAuthenticated, checkAuth]);
 
   if (!isAuthenticated) {
     return (
