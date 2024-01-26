@@ -18,12 +18,12 @@ import { Banner } from "@/app/components/footer/banner";
 const Nosotros = () => {
   return (
     <div className=" overflow-x-hidden ">
-      <div className="flex flex-col  items-center ">
-        <section className="w-full min-h-[100vh] max-w-7xl  relative mb-80 md:mb-0">
+      <div className="flex flex-col  items-center p-10 md:p-0">
+        <section className="w-full min-h-[100vh] max-w-7xl  relative  md:mb-0">
           <div className="w-full h-[100vh] flex flex-col md:flex-row">
             <div className="md:w-1/2 w-full flex flex-col items-start justify-center  order-1">
               {" "}
-              <span className="font-bold text-3xl pt-16 md:pt-0 text-start  w-auto md:w-[650px] pb-4 md:pb-10 relative font-laila">
+              <span className="font-bold md:text-3xl text-xl pt-16 md:pt-0 text-start  w-auto md:w-[650px] pb-4 md:pb-10 relative font-laila">
                 {" "}
                 <Image
                   src={highlight}
@@ -34,7 +34,7 @@ const Nosotros = () => {
                 />
                 NOSOTROS
               </span>
-              <h3 className="text-3xl  perspective-container max-w-[600px] font-bold  pb-2 font-laila">
+              <h3 className="md:text-3xl text-xl  perspective-container max-w-[600px] font-bold  pb-2 font-laila">
                 “ Transformando Sueños en Palabras, palabras en Poder:
                 <br />
                 <p className="uppercase tracking-widest py-4 md:hidden text-custom-red">
