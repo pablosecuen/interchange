@@ -6,7 +6,7 @@ dotenv.config();
 const DATABASE_URL = process.env.RAILWAY_DATABASE_URL;
 
 if (DATABASE_URL) {
-  const sequelize = new Sequelize(DATABASE_URL, {
+  const sequelize = new Sequelize(DATABASE_URL.toString(), {
     dialect: "postgres",
     logging: false,
   });
