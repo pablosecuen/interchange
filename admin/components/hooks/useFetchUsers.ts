@@ -32,7 +32,7 @@ useEffect(() => {
         throw new Error('Error al cargar los usuarios');
       }
       const data = await response.json();
-console.log(data);
+
 
       const usersWithGradesAndPayments = await Promise.all(
         data.map(async (user: User) => {
@@ -58,10 +58,10 @@ console.log(data);
         );
         
         setUsers(usersWithGradesAndPayments);
-        toast.success("Usuarios cargados correctamente")
     } catch (error: any) {
       setError(error);
     } finally {
+      toast.error("Error al cargar usuarios")
       setLoading(false);
     }
   };

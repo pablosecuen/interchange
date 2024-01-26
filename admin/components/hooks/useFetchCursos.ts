@@ -1,6 +1,6 @@
 "use client"
 import { useState, useEffect } from 'react';
-import {  toast } from 'sonner'
+import {   toast } from 'sonner'
 import { baseUrl } from './baseurl';
 
 export interface Curso {
@@ -33,6 +33,7 @@ const useFetchCursos = () => {
           data.map(async (curso: Curso) => {
             const pagosResponse = await fetch(`${baseUrl}/api/pagos?Grado_ID=${curso.ID}`);
             if (!pagosResponse.ok) {
+              toast.error('Error al cargar los pagos del curso');
               throw new Error('Error al cargar los pagos del curso');
             }
             const pagosData = await pagosResponse.json();
@@ -45,7 +46,6 @@ const useFetchCursos = () => {
           })
         );
 
-        toast.success('Cursos listados exitosamente');
         setCursos(cursosConPagos);
       } catch (error: any) {
         setError(error);

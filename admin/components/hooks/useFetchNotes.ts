@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { baseUrl } from "./baseurl";
+import { toast } from "sonner";
 
 export interface Nota {
   notas: {
@@ -41,6 +42,7 @@ function useFetchNotas(id: string): FetchNotasResult {
           };
 
           if (!response.ok) {
+            toast.error("Error al obtener notas");
             throw new Error("Error al obtener notas");
           } else {
             setAlumno(alumnoData); // Actualizando el estado con los datos correctos

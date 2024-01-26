@@ -33,7 +33,6 @@ const router = useRouter()
         }),
       });
       if (!response.ok) {
-        console.log(response);
         toast.error("Error al asignar el grado al alumno");
         setAssignmentResult({ success: false, message: "Error al asignar el grado al alumno" });
         return;
@@ -55,7 +54,7 @@ const router = useRouter()
         }
         setTimeout(() => {
           router.reload(); 
-        }, 2000);
+        }, 1000);
     } catch (error) {
       toast.error("Error al asignar el grado al alumno");
       console.error("Error al asignar el grado al alumno:", error);

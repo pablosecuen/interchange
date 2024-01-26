@@ -62,7 +62,8 @@ function useGetCompletedExams() {
       successFlag = true;
 
       setLoading(false);
-    } catch (error: any) {
+      } catch (error: any) {
+        toast.error("Error completados obtenidos con éxito");
       setError(error.message || "Hubo un error al obtener los exámenes completados");
       setLoading(false);
     } finally {

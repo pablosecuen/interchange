@@ -1,12 +1,15 @@
 import { useState } from 'react';
 import { baseUrl } from './baseurl';
 import { Content } from './useFetchContent';
+import { toast } from 'sonner';
+import { useRouter } from 'next/router';
 
 const useEditContent = (initialState: Content) => {
+    const router = useRouter()
   const [editedContent, setEditedContent] = useState<Content>(initialState);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<any | null>(null);
-console.log(initialState);
+
 
     const editContent = async () => {
         try {
@@ -28,10 +31,13 @@ console.log(initialState);
             });
 
             if (!response.ok) {
+                toast.error('Error al editar el contenido');
                 throw new Error('Error al editar el contenido');
             }
 
-
+     setTimeout(() => {
+          router.reload(); 
+        }, 1000);
         } catch (error) {
             setError(error);
         } finally {

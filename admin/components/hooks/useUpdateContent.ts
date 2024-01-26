@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { baseUrl } from './baseurl';
+import { toast } from 'sonner';
+import { useRouter } from 'next/router';
 
 interface UpdateContent {
   ID: string;
@@ -11,6 +13,7 @@ interface UpdateContent {
 }
 
 const useUpdateContent = () => {
+  const router = useRouter()
   const [updateContent, setUpdateContent] = useState<UpdateContent | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -29,9 +32,12 @@ const useUpdateContent = () => {
       });
 
       if (!response.ok) {
+        toast.error('Error al actualizar el campus');
         throw new Error('Error al actualizar el campus');
       }
-
+     setTimeout(() => {
+          router.reload(); 
+        }, 1000);
       setUpdateContent(null);
     } catch (error:any) {
       setError(error.message);
