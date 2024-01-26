@@ -53,6 +53,7 @@ const Landing = () => {
       </div>
       <div className="w-full md:w-1/2 md:order-2 h-full md:h-auto relative ">
         <Image
+          priority={true}
           src={child}
           alt="child image"
           width={550}
