@@ -7,14 +7,15 @@ import scramble from "@/public/assets/svg/scramble.svg";
 import child from "@/public/assets/svg/child.webp";
 import ilustracion from "@/public/assets/svg/ilustracion.svg";
 import ilustracion2 from "@/public/assets/svg/Ilustracion2.svg";
+import Link from "next/link";
 
 const Landing = () => {
   return (
     <section className="overflow-x-hidden w-screen  min-h-[100vh] h-full flex flex-col md:flex-row  mt-20 md:mt-0 z-40">
       <div className="w-full md:w-1/2 md:order-1  md:flex md:justify-end md:items-center md:pl-10  ">
-        <div className="flex-col  justify-end flex max-w-[550px] relatve lg:gap-4">
+        <div className="flex-col  justify-end flex md:w-1/2 relatve lg:gap-4">
           {" "}
-          <h1 className="md:text-5xl text-4xl perspective-container font-bold leading-relaxed pb-2 font-laila mx-auto md:mx-0 ">
+          <h1 className="md:text-5xl text-4xl perspective-container font-bold leading-relaxed pb-2 font-laila mx-auto md:mx-0  md:w-ull">
             <Image
               src={scramble}
               alt="scramble"
@@ -32,15 +33,12 @@ const Landing = () => {
             </div>
             del mañana
           </h1>
-          <h2 className=" text-gray-400 pb-5 text-md  md:w-2/3 p-6 md:p-0 md:mx-0">
-            Muchas escuelas utilizan el término "excelencia" para resaltar las ambiciones de la
-            escuela de ayudar a todos a lograr lo mejor de sí mismos. a todos a dar lo mejor de sí
-            mismos.
-          </h2>
           <div className="flex gap-6 pb-4 mx-auto md:mx-0">
-            <button type="button" className="yellow-btn lg:mt-4">
-              Leer mas
-            </button>
+            <Link href="/nosotros">
+              <button type="button" className="yellow-btn lg:mt-4">
+                Leer mas
+              </button>
+            </Link>
           </div>
         </div>
         <Image

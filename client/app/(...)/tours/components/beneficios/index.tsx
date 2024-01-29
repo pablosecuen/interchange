@@ -2,6 +2,7 @@ import React from "react";
 import underline from "@/public/assets/svg/underline.svg";
 import Image from "next/image";
 import Logo from "@/app/components/logo";
+import Link from "next/link";
 
 const Beneficios = () => {
   return (
@@ -28,76 +29,142 @@ const Beneficios = () => {
         <Logo size="2xl" />
       </div>
 
-      <div className="w-full flex flex-col gap-10 text-xs  md:pt-20">
-        <span className="text-center md:text-3xl text-2xl font-laila tracking-widest font-bold uppercase">
+      <div className="w-full flex flex-col gap-10 text-xs  ">
+        <h4 className="text-center md:text-3xl text-2xl font-laila tracking-widest font-bold uppercase underline-offset-2 underline">
           Nuestro Programa
-        </span>
-        <div className="flex justify-evenly flex-col md:flex-row gap-4 lg:gap-0 px-4">
-          {" "}
-          <div className="md:h-48 md:w-96 border border-black rounded-3xl md:text-lg  items-center flex p-4">
-            <div className="w-6 h-6  bg-custom-yellow m-2 rounded-full hidden lg:block"></div>
-            <p className="lg:w-4/5 text-xs lg:text-base w-full">
-              {" "}
-              <strong>Inmersión Total en Inglés:</strong> Practica el idioma todos los días en
-              situaciones de la vida real mientras te comunicas con hablantes nativos.
-            </p>
-          </div>
-          <div className="md:h-48 md:w-96 border border-black rounded-3xl md:text-lg items-center flex p-4">
-            <div className="w-6 h-6  hidden lg:block bg-custom-yellow m-2 rounded-full"></div>
-            <p className="lg:w-4/5 text-xs lg:text-base">
-              <strong>Clases Intensivas de Inglés:</strong> Participa en clases intensivas diseñadas
-              para mejorar tus habilidades lingüísticas de manera rápida y efectiva.
-            </p>
-          </div>
-          <div className="md:h-48 md:w-96 border border-black rounded-3xl md:text-lg items-center flex p-4">
-            <div className="w-6 h-6  hidden lg:block bg-custom-yellow m-2 rounded-full"></div>
-            <p className="lg:w-4/5 text-xs lg:text-base">
-              <strong>Exploración Cultural:</strong> Visita lugares emblemáticos, museos y eventos
-              culturales para enriquecer tu comprensión de la historia y sociedad británicas.
-            </p>
-          </div>
-          <div className="md:h-48 md:w-96 border border-black rounded-3xl md:text-lg items-center flex p-4">
-            <div className="w-6 h-6  hidden lg:block bg-custom-yellow m-2 rounded-full"></div>
-            <p className="lg:w-4/5 text-xs lg:text-base">
-              <strong>Actividades Sociales:</strong> Disfruta de actividades en grupo, excursiones y
-              eventos sociales que te permitan interactuar con otros estudiantes y lugareños.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div className="w-full flex flex-col gap-10  py-10 ">
-        <span className="text-center md:text-3xl text-xl font-laila tracking-widest font-bold">
-          POR QUE VIAJAR CON NOSOTROS?
-        </span>
-        <div className="flex flex-col md:flex-row items-center justify-evenly  lg:gap-20">
-          {" "}
-          <div className="lg:h-80 lg:w-64 h-64 w-48 border  rounded-3xl items-center flex flex-col overflow-hidden shadow-lg transition duration-300 hover:translate-y-2 hover:shadow-black/40">
-            <div className="w-full h-2/3 bg-gray-200"></div>
-            <div className="w-full h-1/3 flex flex-col justify-center items-center">
-              {" "}
-              <span className=" lg:text-md text-sm text-black font-semibold">Cuidado infantil</span>
-              <p className="text-black/60 lg:text-sm text-xs">lorem ipsum</p>
+        </h4>
+        <div className="w-full mx-auto  flex flex-col gap-10  py-10 ">
+          <div className="grid grid-cols-1 sm:grid-cols-2  xl:grid-cols-4  md:gap-8 gap-4 lg:gap-10 xl:mx-20 mx-auto">
+            {" "}
+            <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+              <Link href="#">
+                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                  Actividades Sociales
+                </h5>
+              </Link>
+              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                Disfruta de actividades en grupo, excursiones y eventos sociales que te permitan
+                interactuar con otros estudiantes y lugareños.
+              </p>
+              <Link href="#">
+                <button className=" yellow-btn">
+                  Consultar
+                  <svg
+                    className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 14 10"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M1 5h12m0 0L9 1m4 4L9 9"
+                    />
+                  </svg>
+                </button>
+              </Link>
             </div>
-          </div>
-          <div className="lg:h-80 lg:w-64 h-64 w-48 border  rounded-3xl items-center flex flex-col overflow-hidden shadow-lg transition duration-300 hover:translate-y-2 hover:shadow-black/40">
-            <div className="w-full h-2/3 bg-gray-200"></div>
-            <div className="w-full h-1/3 flex flex-col justify-center items-center">
-              {" "}
-              <span className=" lg:text-md text-sm text-black font-semibold">
-                Aprendizaje nativo
-              </span>
-              <p className="text-black/60 lg:text-sm text-xs">lorem ipsum</p>
+            <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+              <Link href="#">
+                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                  Clases Intensivas de Inglés
+                </h5>
+              </Link>
+              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                Participa en clases intensivas diseñadas para mejorar tus habilidades lingüísticas
+                de manera rápida y efectiva.
+              </p>
+              <Link href="#">
+                <Link href="#">
+                  <button className=" yellow-btn">
+                    Consultar
+                    <svg
+                      className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 14 10"
+                    >
+                      <path
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M1 5h12m0 0L9 1m4 4L9 9"
+                      />
+                    </svg>
+                  </button>
+                </Link>
+              </Link>
             </div>
-          </div>
-          <div className="lg:h-80 lg:w-64 h-64 w-48 border  rounded-3xl items-center flex flex-col overflow-hidden shadow-lg transition duration-300 hover:translate-y-2 hover:shadow-black/40">
-            <div className="w-full h-2/3 bg-gray-200"></div>
-            <div className="w-full h-1/3 flex flex-col justify-center items-center">
-              {" "}
-              <span className=" lg:text-md text-sm text-black font-semibold">
-                Staff super talentoso
-              </span>
-              <p className="text-black/60 lg:text-sm text-xs">lorem ipsum</p>
+            <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+              <Link href="#">
+                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                  Inmersión Total en Inglés
+                </h5>
+              </Link>
+              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                Practica el idioma todos los días en situaciones de la vida real mientras te
+                comunicas con hablantes nativos.
+              </p>
+              <Link href="#">
+                <Link href="#">
+                  <button className=" yellow-btn">
+                    Consultar
+                    <svg
+                      className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 14 10"
+                    >
+                      <path
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M1 5h12m0 0L9 1m4 4L9 9"
+                      />
+                    </svg>
+                  </button>
+                </Link>
+              </Link>
+            </div>
+            <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+              <Link href="#">
+                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                  Exploración Cultural
+                </h5>
+              </Link>
+              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                Visita lugares emblemáticos, museos y eventos culturales para enriquecer tu
+                comprensión de la historia y sociedad británicas.
+              </p>
+              <Link href="#">
+                <Link href="#">
+                  <button className=" yellow-btn">
+                    Consultar
+                    <svg
+                      className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 14 10"
+                    >
+                      <path
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M1 5h12m0 0L9 1m4 4L9 9"
+                      />
+                    </svg>
+                  </button>
+                </Link>
+              </Link>
             </div>
           </div>
         </div>

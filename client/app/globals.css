@@ -4,7 +4,7 @@
 
 .yellow-btn {
   /* Estilos del botón */
-  @apply focus:ring-0  bg-custom-yellow text-white  font-medium rounded-full text-sm px-4 py-2 text-center hover:bg-yellow-500 transition duration-300 hover:-translate-y-[2px];
+  @apply focus:ring-0 flex items-center  bg-custom-yellow text-white  font-medium rounded-full text-sm px-4 py-2 text-center hover:bg-yellow-500 transition duration-300 hover:-translate-y-[2px];
 }
 
 body {

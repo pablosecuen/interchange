@@ -202,7 +202,7 @@ const Nosotros = () => {
           </div>
         </section>
         <h3 className="md:text-5xl  text-2xl px-4 text-center max-w-[1000px] my-20 font-laila font-bold">
-          Unite a nosotros y haz del aprendizaje una experiencia compartida
+          Unite a nosotros y hacé del aprendizaje una experiencia compartida
         </h3>
       </div>
       <Banner />
