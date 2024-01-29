@@ -307,7 +307,8 @@ const sendEmailPreInscripcion = async (newUserEmail, formData) => {
       </head>
         <body>
         <h1>Detalles de Preinscripción</h1>
-          <p>Nombre del adulto responsable: ${formData.floating_first_name} ${formData.floating_last_name}</p>
+          <p>Nombre del adulto responsable 1: ${formData.floating_first_name} ${formData.floating_last_name}</p>
+          <p>Nombre del adulto responsable 2: ${formData.floating_first_name1} ${formData.floating_last_name1}</p>
           <p>Nombre del estudiante: ${formData.floating_first_namestudent} ${formData.floating_last_namestudent}</p>
           <p>Fecha de Nacimiento del estudiante: ${formData.floating_date_of_birth}</p>
           <p>Teléfono del estudiante: ${formData.floating_phone_numberstudent}</p>

@@ -22,7 +22,7 @@ const app = express();
 // Middleware para habilitar CORS
 app.use((req, res, next) => {
   const allowedOrigins = [
-  "http://localhost:3000",
+    "http://localhost:3000",
     "http://localhost:3002",
     "https://interchange-3pb8.vercel.app",
     "https://interchange-azure.vercel.app",
@@ -94,13 +94,15 @@ app.get("/send-email/vencimiento/:email", async (req, res) => {
 });
 
 app.get(
-  "/send-email/preinscripcion/:email/:firstName/:lastName/:firstNameStudent/:lastNameStudent/:dateOfBirth/:phoneNumber/:address/:grade/:emailAddress/:phone/:message",
+  "/send-email/preinscripcion/:email/:firstName/:lastName/:firstName1/:lastName1/:firstNameStudent/:lastNameStudent/:dateOfBirth/:phoneNumber/:address/:grade/:emailAddress/:phone/:message",
   async (req, res) => {
     try {
       const {
         email: newUserEmail,
         firstName,
         lastName,
+        firstName1,
+        lastName1,
         firstNameStudent,
         lastNameStudent,
         dateOfBirth,
@@ -117,6 +119,8 @@ app.get(
       const formData = {
         floating_first_name: firstName,
         floating_last_name: lastName,
+        floating_first_name1: firstName1,
+        floating_last_name1: lastName1,
         floating_first_namestudent: firstNameStudent,
         floating_last_namestudent: lastNameStudent,
         floating_date_of_birth: dateOfBirth,
@@ -131,7 +135,7 @@ app.get(
       const info = await sendEmailPreInscripcion(decodedEmail, formData);
       res.send(info);
     } catch (error) {
-      res.send(error.message);
+      res.send(error.message, "app");
     }
   }
 );

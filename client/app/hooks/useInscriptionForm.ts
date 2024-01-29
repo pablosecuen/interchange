@@ -23,6 +23,8 @@ const useInscripcionForm = (initialState: any) => {
       const {
         floating_first_name,
         floating_last_name,
+        floating_first_name1,
+        floating_last_name1,
         floating_first_namestudent,
         floating_last_namestudent,
         floating_date_of_birth,
@@ -37,6 +39,8 @@ const useInscripcionForm = (initialState: any) => {
       const encodedEmail = encodeURIComponent("institutointerchange@gmail.com");
       const encodedFirstName = encodeURIComponent(floating_first_name);
       const encodedLastName = encodeURIComponent(floating_last_name);
+      const encodedFirstName1 = encodeURIComponent(floating_first_name1);
+      const encodedLastName1 = encodeURIComponent(floating_last_name1);
       const encodedDateOfBirth = encodeURIComponent(floating_date_of_birth);
       const encodedPhoneNumber = encodeURIComponent(floating_phone_numberstudent);
       const encodedAddress = encodeURIComponent(floating_addressstudent);
@@ -48,7 +52,8 @@ const useInscripcionForm = (initialState: any) => {
       const encodedLastNameStudent = encodeURIComponent(floating_last_namestudent);
       
   
-      const encodedURL = `${baseUrl}/send-email/preinscripcion/${encodedEmail}/${encodedFirstName}/${encodedLastName}/${encodedFirstNameStudent}/${encodedLastNameStudent}/${encodedDateOfBirth}/${encodedPhoneNumber}/${encodedAddress}/${encodedGrade}/${encodedEmailAddress}/${encodedPhone}/${encodedMessage}`;
+      const encodedURL = `${baseUrl}/send-email/preinscripcion/${encodedEmail}/${encodedFirstName}/${encodedLastName}/${encodedFirstName1}/${encodedLastName1}/${encodedFirstNameStudent}/${encodedLastNameStudent}/${encodedDateOfBirth}/${encodedPhoneNumber}/${encodedAddress}/${encodedGrade}/${encodedEmailAddress}/${encodedPhone}/${encodedMessage}`;
+  console.log(encodedURL);
   
       const promise = () => new Promise((resolve, reject) => {
         fetch(encodedURL, {
