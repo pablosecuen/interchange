@@ -24,6 +24,7 @@ const Cursos = () => {
     setModalOpen(false);
   };
 
+
   useEffect(() => {
     const handleCloseModal = (event: MouseEvent) => {
       if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
@@ -42,7 +43,7 @@ const Cursos = () => {
     };
   }, [modalOpen]);
 
-  const tabs = ["Todos", "Starter", "Beginner", "Prekid", "Kids", "Teens", "F.C.E", "Adults"];
+  const tabs = ["Todos", "Starter", "Beginner", "Prekid", "Kids", "Adols", "F.C.E", "Adults"];
 
   const filteredContent = gradesContent.filter(
     (content) => content.category.toLowerCase() === activeTab.toLowerCase()

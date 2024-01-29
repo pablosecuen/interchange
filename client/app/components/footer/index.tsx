@@ -43,7 +43,7 @@ function Footer() {
                   </Link>
                 </li>
                 <li className="mb-4 g:text-sm text-xs lg:text-base">
-                  <Link href="/grados" className="hover:underline">
+                  <Link href="/cursos" className="hover:underline">
                     Cursos
                   </Link>
                 </li>
@@ -79,7 +79,7 @@ function Footer() {
               <ul className="text-gray-500 dark:text-gray-400 font-medium">
                 <li className="mb-4 g:text-sm text-xs lg:text-base hover:underline flex gap-2 items-center cursor-pointer">
                   <Image src={telefono} alt="" width={20} height={0} />
-                  <Link href="tel:0341153119792">0341 15-311-9792</Link>
+                  <Link href="https://wa.me/54341153119792">0341 15-311-9792</Link>
                 </li>
                 <li>
                   <Link

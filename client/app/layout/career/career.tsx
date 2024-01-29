@@ -6,6 +6,7 @@ import career3 from "@/public/assets/svg/career3.png";
 import pinkarrow from "@/public/assets/svg/pinkarrow.svg";
 import greensparkle from "@/public/assets/svg/greensparkle.svg";
 import Image from "next/image";
+import Link from "next/link";
 
 const Career = () => {
   return (
@@ -23,7 +24,9 @@ const Career = () => {
           <li className="pb-2">La educación consiste en crear líderes para el mañana</li>
           <li className="pb-2">La educación es la continuación de una orgullosa tradición</li>
         </ul>
-        <button className="yellow-btn">Más información</button>
+        <Link href="nosotros">
+          <button className="yellow-btn">Más información</button>
+        </Link>
         <Image
           src={greensparkle}
           alt="greensparkle"

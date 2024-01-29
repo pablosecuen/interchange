@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const Beneficios = () => {
   return (
-    <article className="w-screen min-h-[100vh] h-full mb-36 flex flex-col gap-16 mt-20" id="porque">
+    <article className="w-screen min-h-[50vh] h-full mb-36 flex flex-col gap-16 mt-20" id="porque">
       <h4 className="md:text-4xl text-3xl px-2  font-laila font-bold pb-4">
         Unite y descubre una experiencia{" "}
         <span className="text-custom-purple relative">
@@ -37,7 +37,7 @@ const Beneficios = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2  xl:grid-cols-4  md:gap-8 gap-4 lg:gap-10 xl:mx-20 mx-auto">
             {" "}
             <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-              <Link href="#">
+              <Link href="https://wa.me/54341153119792">
                 <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                   Actividades Sociales
                 </h5>
@@ -46,7 +46,7 @@ const Beneficios = () => {
                 Disfruta de actividades en grupo, excursiones y eventos sociales que te permitan
                 interactuar con otros estudiantes y lugareños.
               </p>
-              <Link href="#">
+              <Link href="https://wa.me/54341153119792">
                 <button className=" yellow-btn">
                   Consultar
                   <svg
@@ -68,7 +68,7 @@ const Beneficios = () => {
               </Link>
             </div>
             <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-              <Link href="#">
+              <Link href="https://wa.me/54341153119792">
                 <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                   Clases Intensivas de Inglés
                 </h5>
@@ -77,8 +77,8 @@ const Beneficios = () => {
                 Participa en clases intensivas diseñadas para mejorar tus habilidades lingüísticas
                 de manera rápida y efectiva.
               </p>
-              <Link href="#">
-                <Link href="#">
+              <Link href="https://wa.me/54341153119792">
+                <Link href="https://wa.me/54341153119792">
                   <button className=" yellow-btn">
                     Consultar
                     <svg
@@ -101,7 +101,7 @@ const Beneficios = () => {
               </Link>
             </div>
             <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-              <Link href="#">
+              <Link href="https://wa.me/54341153119792">
                 <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                   Inmersión Total en Inglés
                 </h5>
@@ -110,8 +110,8 @@ const Beneficios = () => {
                 Practica el idioma todos los días en situaciones de la vida real mientras te
                 comunicas con hablantes nativos.
               </p>
-              <Link href="#">
-                <Link href="#">
+              <Link href="https://wa.me/54341153119792">
+                <Link href="https://wa.me/54341153119792">
                   <button className=" yellow-btn">
                     Consultar
                     <svg
@@ -134,7 +134,7 @@ const Beneficios = () => {
               </Link>
             </div>
             <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-              <Link href="#">
+              <Link href="https://wa.me/54341153119792">
                 <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                   Exploración Cultural
                 </h5>
@@ -143,8 +143,8 @@ const Beneficios = () => {
                 Visita lugares emblemáticos, museos y eventos culturales para enriquecer tu
                 comprensión de la historia y sociedad británicas.
               </p>
-              <Link href="#">
-                <Link href="#">
+              <Link href="https://wa.me/54341153119792">
+                <Link href="https://wa.me/54341153119792">
                   <button className=" yellow-btn">
                     Consultar
                     <svg

@@ -64,9 +64,6 @@ const Navbar = () => {
   useEffect(() => {
     const handleResize = () => {
       const screenWidth = window.innerWidth;
-      if (screenWidth < 768) {
-        setIsCollapsed(false);
-      }
     };
     handleResize();
     window.addEventListener("resize", handleResize);
@@ -209,7 +206,7 @@ const Navbar = () => {
           onClick={toggleNavbar}
         ></div>
         <div
-          className={`items-start   md:order-1 bg- md:bg-transparent rounded-lg h-[92vh] pb-8  flex-col justify-between  md:hidden z-50 ${
+          className={`items-start w-1/2  md:order-1 bg- md:bg-transparent rounded-lg h-[92vh] pb-8  flex-col justify-between  md:hidden z-50 ${
             isCollapsed
               ? "opacity-100  transform absolute top-14 right-0  translate-x-[100%] md:translate-x-0 !h-0  transition duration-500"
               : "right-0 opacity-100 absolute top-14 bg-white "
