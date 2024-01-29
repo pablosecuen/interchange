@@ -12,10 +12,10 @@ import Link from "next/link";
 const Landing = () => {
   return (
     <section className="overflow-x-hidden w-screen  min-h-[100vh] h-full flex flex-col md:flex-row  mt-20 md:mt-0 z-40">
-      <div className="w-full md:w-2/3 md:order-1  md:flex md:justify-end md:items-center md:pl-10  ">
-        <div className="flex-col justify-end flex max-w-[550px] relatve lg:gap-4">
+      <div className="w-full md:w-1/2 md:order-1  md:flex md:justify-end md:items-center md:pl-10  ">
+        <div className="flex-col  justify-end flex max-w-[550px] relatve lg:gap-4">
           {" "}
-          <h1 className="md:text-5xl text-4xl perspective-container font-bold leading-relaxed pb-2 font-laila mx-auto md:mx-0  md:w-ull">
+          <h1 className="md:text-5xl text-4xl perspective-container font-bold leading-relaxed pb-2 font-laila mx-auto md:mx-0 ">
             <Image
               src={scramble}
               alt="scramble"
@@ -38,11 +38,10 @@ const Landing = () => {
             anticipan
           </h2>
           <div className="flex gap-6 pb-4 mx-auto md:mx-0">
-            <Link href="/nosotros">
-              <button type="button" className="yellow-btn lg:mt-4">
-                Leer mas
-              </button>
-            </Link>
+            <Link href="/nosotros"></Link>
+            <button type="button" className="yellow-btn lg:mt-4">
+              Leer mas
+            </button>
           </div>
         </div>
         <Image
