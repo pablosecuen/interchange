@@ -17,7 +17,6 @@ interface LoginProps {
 const Login = ({ onClose, updateUser }: LoginProps) => {
   const [showPassword, setShowPassword] = useState(false);
   const [isRegistering, setIsRegistering] = useState(false);
-  const initialFormData = { email: "", password: "" };
 
   // Utiliza el custom hook useLogin
   const { formData, rememberMe, handleRememberMe, handleFormDataChange, handleLogin } = useLogin({
@@ -50,10 +49,7 @@ const Login = ({ onClose, updateUser }: LoginProps) => {
       ) : (
         <form
           className=" md:w-1/3 min-h-[50vh] w-full relative  p-10 -mt-12 rounded-3xl backdrop-blur-3xl bg-white/20 shadow-black/30 shadow-xl z-50"
-          onSubmit={(e) => {
-            e.preventDefault();
-            handleLogin(e);
-          }}
+          onSubmit={handleLogin}
         >
           <button
             type="button"
