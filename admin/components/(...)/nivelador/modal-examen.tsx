@@ -9,23 +9,25 @@ import {
 } from "@nextui-org/react";
 import { Exam } from "./crear-examen";
 import ModalEnvioExamen from "./modal-envio-examen";
+import { EyeIcon } from "../../icons/table/eye-icon";
 
 interface ExamenModalProps {
-  isopen: boolean;
-  openchange: (value: boolean) => void;
   examen: Exam | null;
 }
 
-const ExamenModal: React.FC<ExamenModalProps> = ({ isopen, examen, openchange }) => {
+const ExamenModal: React.FC<ExamenModalProps> = ({ examen }) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   if (!examen) return null;
 
   return (
     <>
+      <button color="primary" title="Ver detalles" onClick={onOpen}>
+        <EyeIcon size={20} fill="#979797" />
+      </button>
       <Modal
         backdrop="opaque"
-        isOpen={isopen}
-        onOpenChange={openchange}
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
         radius="lg"
         size="5xl"
         classNames={{
@@ -67,9 +69,7 @@ const ExamenModal: React.FC<ExamenModalProps> = ({ isopen, examen, openchange })
                 </div>
               </ModalBody>
               <ModalFooter>
-                <Button color="warning" variant="light" onPress={onOpenChange}>
-                  enviar examen a usuario
-                </Button>
+                <ModalEnvioExamen examen={examen} />
                 <Button color="success" variant="light" onPress={onClose}>
                   exportar a excel
                 </Button>
@@ -81,7 +81,6 @@ const ExamenModal: React.FC<ExamenModalProps> = ({ isopen, examen, openchange })
           )}
         </ModalContent>
       </Modal>
-      <ModalEnvioExamen examen={examen} onOpenChange={onOpenChange} isOpen={isOpen} />
     </>
   );
 };

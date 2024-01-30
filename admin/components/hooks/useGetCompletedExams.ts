@@ -68,10 +68,7 @@ function useGetCompletedExams() {
       setError(error.message || "Hubo un error al obtener los exámenes completados");
       setLoading(false);
     } finally {
-      // Mostramos la alerta solo si las operaciones se han completado con éxito y la notificación aún no se ha mostrado
-      if (successFlag) {
-        toast.success("Exámenes completados obtenidos con éxito");
-      }
+    
     }
   }
 

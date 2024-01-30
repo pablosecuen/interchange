@@ -11,12 +11,10 @@ import { Toaster } from "sonner";
 import { columnsExams } from "./data";
 import useGetExams from "../hooks/useGetExams";
 import { RenderCellExam } from "./render-cell-exam";
-import Image from "next/image";
-import spinner from "../../public/spinner/Spinner.gif";
 import LoadingError from "../loadingerror";
 
 interface TableWrapperExamsProps {
-  mostrarDetalleExamen: (arg0: any) => void; // Reemplaza 'any' con el tipo correcto para el argumento
+  mostrarDetalleExamen: (arg0: any) => void;
 }
 
 export const TableWrapperExams = ({ mostrarDetalleExamen }: TableWrapperExamsProps) => {
@@ -46,9 +44,8 @@ export const TableWrapperExams = ({ mostrarDetalleExamen }: TableWrapperExamsPro
               {(columnKey) => (
                 <TableCell>
                   {RenderCellExam({
-                    curso: item,
+                    examen: item,
                     columnKey: columnKey,
-                    mostrarDetalleExamen: mostrarDetalleExamen,
                   })}
                 </TableCell>
               )}

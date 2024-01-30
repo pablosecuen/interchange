@@ -1,19 +1,19 @@
-import { User, Tooltip} from "@nextui-org/react";
+import { User, Tooltip } from "@nextui-org/react";
 import React from "react";
 import { DeleteIcon } from "../icons/table/delete-icon";
 import { EditIcon } from "../icons/table/edit-icon";
-import { EyeIcon } from "../icons/table/eye-icon";
+import ExamenModal from "../(...)/nivelador/modal-examen";
 
 interface Props {
-  curso: any;
+  examen: any;
   columnKey: string | React.Key;
-  mostrarDetalleExamen: (arg0: any) => void;
+
 }
 
-export const RenderCellExam = ({ curso, columnKey, mostrarDetalleExamen }: Props) => {
+export const RenderCellExam = ({ examen, columnKey,  }: Props) => {
   // @ts-ignore
 
-  const cellValue = curso[columnKey];
+  const cellValue = examen[columnKey];
   switch (columnKey) {
     case "Nombre":
       return (
@@ -23,7 +23,7 @@ export const RenderCellExam = ({ curso, columnKey, mostrarDetalleExamen }: Props
           }}
           name={cellValue}
         >
-          {curso.Email}
+          {examen.Email}
         </User>
       );
 
@@ -32,21 +32,19 @@ export const RenderCellExam = ({ curso, columnKey, mostrarDetalleExamen }: Props
         <div className="flex items-center gap-4 ">
           <div>
             <Tooltip content="Details">
-              <button onClick={() => mostrarDetalleExamen(curso)}>
-                <EyeIcon size={20} fill="#979797" />
-              </button>
+              <ExamenModal examen={examen} />
             </Tooltip>
           </div>
           <div>
             <Tooltip content="Editar curso" color="secondary">
-              <button onClick={() => console.log(curso)}>
+              <button onClick={() => console.log(examen)}>
                 <EditIcon size={20} fill="#979797" />
               </button>
             </Tooltip>
           </div>
           <div>
             <Tooltip content="Borrar curso" color="danger">
-              <button onClick={() => console.log("Delete curso", curso.ID)}>
+              <button onClick={() => console.log("Delete curso", examen.ID)}>
                 <DeleteIcon size={20} fill="#FF0080" />
               </button>
             </Tooltip>

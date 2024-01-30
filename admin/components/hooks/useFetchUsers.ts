@@ -40,7 +40,7 @@ useEffect(() => {
             // Obtener el grado asociado al usuario
             const gradoResponse = await fetch(`${baseUrl}/api/grados?ID=${user.Grado_ID}`);
             if (!gradoResponse.ok) {
-              toast.error("Error al cargar usuarios cargados correctamente")
+              toast.error("Error al cargar usuarios por curso")
               throw new Error('Error al cargar el grado del usuario');
             } 
             const gradoData = await gradoResponse.json();
@@ -61,7 +61,6 @@ useEffect(() => {
     } catch (error: any) {
       setError(error);
     } finally {
-      toast.error("Error al cargar usuarios")
       setLoading(false);
     }
   };
