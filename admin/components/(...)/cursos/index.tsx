@@ -33,7 +33,7 @@ export const Cursos = () => {
     const worksheet = XLSX.utils.json_to_sheet(filteredCursos);
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, "Grados");
-    XLSX.writeFile(workbook, "grados.xlsx");
+    XLSX.writeFile(workbook, "cursos.xlsx");
   };
 
   return (

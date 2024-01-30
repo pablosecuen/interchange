@@ -11,7 +11,7 @@ const LoadingError: React.FC<LoadingErrorProps> = ({ isLoading, error }) => {
   return (
     <div className="w-full h-full flex justify-center items-center">
       {isLoading ? (
-        <Image src={spinner} alt="Cargando..." width={0} height={0} />
+        <Image src={spinner} alt="Cargando..." width={0} height={0} className="w-8 h-8" />
       ) : error ? (
         <p>
           Error al cargar recursos del servidor{" "}

@@ -8,11 +8,9 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 import React from "react";
-import { Toaster, toast } from "sonner";
+import { Toaster } from "sonner";
 import { TableWrapperModalCurso } from "../table/tablemodalcursos";
 import useFetchUsuariosByCursos from "../hooks/useFetchUsuariosByCursos";
-import Image from "next/image";
-import spinner from "./../../public/spinner/Spinner.gif";
 import LoadingError from "../loadingerror";
 import { EyeIcon } from "../icons/table/eye-icon";
 import { Curso } from "../(...)/cursos";
@@ -23,15 +21,8 @@ interface Props {
 
 const ModalCurso = ({ curso }: Props) => {
   const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
-  const { usuarios, loading, error } = useFetchUsuariosByCursos(isOpen, curso);
 
-  if (loading) {
-    return (
-      <div className="w-full h-full flex justify-center items-center">
-        <Image src={spinner} alt="Cargando..." />
-      </div>
-    );
-  }
+  const { usuarios, loading, error } = useFetchUsuariosByCursos(isOpen, curso);
 
   if (error) {
     return <p>Ocurrió un error al cargar los usuarios: {error.message}</p>;
