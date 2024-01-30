@@ -44,14 +44,14 @@ const Trusted = () => {
           </h3>
           <p>Clases personalizadas &quot;tailor made&quot; a tus medidas y necesidades</p>
           <ul className="grid grid-cols-2 decoration-custom-orange list-disc text-custom-orange pl-4 md:px-4 relative">
-            <li>Campus virtual</li>
-            <li>Fácil aprendizaje</li>
-            <li>Multiples horarios</li>
-            <li>Asequible</li>
+            <li className="text-sm md:text-base">Campus virtual</li>
+            <li className="text-sm md:text-base">Fácil aprendizaje</li>
+            <li className="text-sm md:text-base">Multiples horarios</li>
+            <li className="text-sm md:text-base">Asequible</li>
             <div className="bg-custom-orange w-4 h-4 rounded-full absolute md:top-0 bottom-0 right-0"></div>
           </ul>
           <Link href="/inscripcion">
-            <button className="yellow-btn  mt-4">Empezar</button>
+            <button className="yellow-btn  mt-4 mx-auto ">Empezar</button>
           </Link>
         </div>
       </div>

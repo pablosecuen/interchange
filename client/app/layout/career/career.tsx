@@ -24,8 +24,8 @@ const Career = () => {
           <li className="pb-2">La educación consiste en crear líderes para el mañana</li>
           <li className="pb-2">La educación es la continuación de una orgullosa tradición</li>
         </ul>
-        <Link href="nosotros">
-          <button className="yellow-btn">Más información</button>
+        <Link href="nosotros" className="w-full md:w-auto">
+          <button className="yellow-btn ml-auto">Más información</button>
         </Link>
         <Image
           src={greensparkle}

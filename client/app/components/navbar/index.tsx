@@ -167,7 +167,7 @@ const Navbar = () => {
             // Si no hay usuario, mostramos el botón de inicio de sesión
             <button
               type="button"
-              className="yellow-btn font-bold md:mr-6 lg:mr-10"
+              className="yellow-btn font-bold md:mr-6 lg:mr-10 scale-75 md:scale-100"
               onClick={() => setShowLoginModal(true)}
             >
               Ingreso
@@ -270,7 +270,7 @@ const Navbar = () => {
                                 Campus Virtual
                               </button>
                             </Link>
-                            <button className="yellow-btn !w-36" onClick={handleLogout}>
+                            <button className="yellow-btn" onClick={handleLogout}>
                               Logout
                             </button>
                           </li>

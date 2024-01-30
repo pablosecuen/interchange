@@ -31,7 +31,7 @@ const Courses = () => {
       </div>
       <div>
         <Link href="/cursos">
-          <button className="yellow-btn ">Ver todos los cursos</button>
+          <button className="yellow-btn mx-auto">Ver todos los cursos</button>
         </Link>
       </div>
     </section>
