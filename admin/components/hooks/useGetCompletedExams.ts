@@ -2,10 +2,11 @@ import { useState, useEffect } from "react";
 import {  toast } from 'sonner'
 import { baseUrl } from "./baseurl";
 export interface ExamResults {
-    userEmail?: string;
+  userEmail?: string;
+  titulo?: string;
     Email?: string;
     userName?: string;
-    examenTitle?: string;
+  examenTitle?: string;
     userID: string;
     username: string;
     userlastname: string;

@@ -54,7 +54,7 @@ function ExamenPage({ examId }: any) {
         <div className="w-full  grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1  flex-wrap gap-10  justify-center">
           {exam.preguntas.map((question, qIndex) => (
             <div key={qIndex} className="border-4 rounded-3xl p-4 relative">
-              <span className="absolute right-3 top-2 border rounded-full px-2">{qIndex}</span>
+              <span className="absolute right-3 top-2 border rounded-full px-2">{qIndex + 1}</span>
               <p className="font-bold text-center mt-6">{question.enunciado}</p>
               <ul className="grid grid-cols-2 gap-2 mt-4">
                 {question.respuestas.map((answer, aIndex) => (

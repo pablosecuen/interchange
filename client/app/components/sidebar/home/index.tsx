@@ -12,7 +12,12 @@ const CampusHome: React.FC = () => {
 
   // Buscar el objeto de usuario en localStorage o sessionStorage
 
-  const userData = localStorage.getItem("user") || sessionStorage.getItem("user");
+  // Buscar el objeto de usuario en localStorage o sessionStorage
+  let userData;
+
+  if (typeof window !== "undefined") {
+    userData = localStorage.getItem("user") || sessionStorage.getItem("user");
+  }
 
   if (userData) {
     try {
