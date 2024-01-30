@@ -50,7 +50,10 @@ const Login = ({ onClose, updateUser }: LoginProps) => {
       ) : (
         <form
           className=" md:w-1/3 min-h-[50vh] w-full relative  p-10 -mt-12 rounded-3xl backdrop-blur-3xl bg-white/20 shadow-black/30 shadow-xl z-50"
-          onSubmit={handleLogin}
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleLogin(e);
+          }}
         >
           <button
             type="button"

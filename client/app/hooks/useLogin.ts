@@ -12,7 +12,7 @@ interface UseLoginProps {
   rememberMe: boolean;
   handleRememberMe: React.ChangeEventHandler<HTMLInputElement>;
   handleFormDataChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  handleLogin: () => void;
+  handleLogin: (e:any) => void;
 }
 
 const useLogin = (initialFormData: FormData): UseLoginProps => {
@@ -32,7 +32,8 @@ const useLogin = (initialFormData: FormData): UseLoginProps => {
     }));
   };
 
-  const handleLogin = async () => {
+  const handleLogin = async (e: any) => {
+     e.preventDefault();
     try {
       const response = await fetch(`${baseUrl}/api/users/login`, {
         method: "POST",
