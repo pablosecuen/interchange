@@ -19,10 +19,12 @@ const Login = ({ onClose, updateUser }: LoginProps) => {
   const [isRegistering, setIsRegistering] = useState(false);
 
   // Utiliza el custom hook useLogin
-  const { formData, rememberMe, handleRememberMe, handleFormDataChange, handleLogin } = useLogin({
-    email: "",
-    password: "",
-  });
+  const { formData, rememberMe, handleRememberMe, handleFormDataChange, handleLogin, user } =
+    useLogin({
+      email: "",
+      password: "",
+      updateUser,
+    });
 
   const toggleRegister = () => {
     setIsRegistering(!isRegistering);
@@ -33,13 +35,12 @@ const Login = ({ onClose, updateUser }: LoginProps) => {
   };
 
   useEffect(() => {
-    const user = localStorage.getItem("user") || sessionStorage.getItem("user");
     if (user) {
-      const userData = JSON.parse(user);
-      updateUser(userData);
+      // Realiza acciones adicionales después de un inicio de sesión exitoso
+      updateUser(user);
+      onClose();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [user, updateUser, onClose]);
 
   return (
     <div className=" h-[100vh] flex justify-center items-center overflow-y-auto ">
@@ -49,7 +50,10 @@ const Login = ({ onClose, updateUser }: LoginProps) => {
       ) : (
         <form
           className=" md:w-1/3 min-h-[50vh] w-full relative  p-10 -mt-12 rounded-3xl backdrop-blur-3xl bg-white/20 shadow-black/30 shadow-xl z-50"
-          onSubmit={handleLogin}
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleLogin(e);
+          }}
         >
           <button
             type="button"

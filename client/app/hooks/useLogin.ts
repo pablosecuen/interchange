@@ -1,10 +1,15 @@
-import { useState, ChangeEvent } from "react";
+// useLogin.ts
+
+import { useState, ChangeEvent, useEffect } from "react";
 import { toast } from "sonner";
 import { baseUrl } from "./baseurl";
+import { User } from "../components/navbar";
+import { useRouter } from "next/navigation";
 
 interface FormData {
   email: string;
   password: string;
+  updateUser?: (user: User) => void; 
 }
 
 interface UseLoginProps {
@@ -12,12 +17,17 @@ interface UseLoginProps {
   rememberMe: boolean;
   handleRememberMe: React.ChangeEventHandler<HTMLInputElement>;
   handleFormDataChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  handleLogin: () => void;
+  handleLogin: (e: any) => void;
+  user: User | null;
+  updateUser: (user: User) => void;
+  
 }
 
 const useLogin = (initialFormData: FormData): UseLoginProps => {
+  const router = useRouter()
   const [formData, setFormData] = useState<FormData>(initialFormData);
   const [rememberMe, setRememberMe] = useState<boolean>(false);
+  const [user, setUser] = useState<User | null>(null);
 
   const handleRememberMe: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     const isChecked = e.target.checked;
@@ -32,8 +42,8 @@ const useLogin = (initialFormData: FormData): UseLoginProps => {
     }));
   };
 
-  const handleLogin = async () => {
-
+  const handleLogin = async (e: any) => {
+    e.preventDefault();
     try {
       const response = await fetch(`${baseUrl}/api/users/login`, {
         method: "POST",
@@ -48,11 +58,10 @@ const useLogin = (initialFormData: FormData): UseLoginProps => {
 
       if (response.ok) {
         const userFromServer = await response.json();
-
         const { Password, ...userDataWithoutPassword } = userFromServer.user;
 
-        // Llamar a la función para actualizar el usuario
-        // updateUser(userDataWithoutPassword);
+        setUser(userDataWithoutPassword); // Almacena la información del usuario en el estado
+router.push("/")
         toast.success("¡Bienvenido de nuevo!");
 
         if (rememberMe) {
@@ -63,7 +72,7 @@ const useLogin = (initialFormData: FormData): UseLoginProps => {
           localStorage.removeItem("user");
         }
 
-        // onClose();
+        // onClose(); Puedes llamar onClose aquí si es necesario, o puedes manejarlo fuera del hook
       } else {
         toast.error("Error al validar credenciales");
       }
@@ -72,12 +81,21 @@ const useLogin = (initialFormData: FormData): UseLoginProps => {
     }
   };
 
+  useEffect(() => {
+    if (user && initialFormData.updateUser) {
+      // Verifica que updateUser está definido antes de llamarlo
+      initialFormData.updateUser(user);
+    }
+  }, [user, initialFormData.updateUser, initialFormData]);
+
   return {
     formData,
     rememberMe,
     handleRememberMe,
     handleFormDataChange,
     handleLogin,
+    user,
+    updateUser: setUser, // Actualiza el estado del usuario en el hook
   };
 };
 
