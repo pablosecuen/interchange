@@ -6,6 +6,7 @@ import {
   ModalContent,
   ModalFooter,
   ModalHeader,
+  Textarea,
   useDisclosure,
 } from "@nextui-org/react";
 import { Select, SelectItem } from "@nextui-org/select";
@@ -83,14 +84,6 @@ const AddContent = () => {
                 <label>Titulo:</label>
                 <Input type="text" name="Title" value={newContent.Title} onChange={handleChange} />
 
-                <label>Descripcion:</label>
-                <Input
-                  type="text"
-                  name="Description"
-                  value={newContent.Description}
-                  onChange={handleChange}
-                />
-
                 <label>Links (comma-separated):</label>
                 <Input
                   type="text"
@@ -109,6 +102,9 @@ const AddContent = () => {
                   </SelectItem>
                   <SelectItem key="Video" value="Video">
                     Video
+                  </SelectItem>
+                  <SelectItem key="Descargable" value="Descargable">
+                    Descargable
                   </SelectItem>
                 </Select>
 
@@ -130,6 +126,14 @@ const AddContent = () => {
                     ))
                   )}
                 </Select>
+
+                <label>Descripcion:</label>
+                <Textarea
+                  type="text"
+                  name="Description"
+                  value={newContent.Description}
+                  onChange={handleChange}
+                />
               </ModalBody>
               <ModalFooter>
                 <Button color="danger" variant="flat" onClick={onClose}>

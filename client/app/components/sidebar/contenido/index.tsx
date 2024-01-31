@@ -16,7 +16,10 @@ function Contenido() {
   const [selectedOption, setSelectedOption] = useState<string>("");
 
   useEffect(() => {
+    // Intenta obtener la información del usuario desde el local storage
     const storedUserString = localStorage.getItem("user");
+
+    // Si no está en el local storage, intenta obtenerlo del session storage
     if (!storedUserString) {
       const storedUserSession = sessionStorage.getItem("user");
       setUser(storedUserSession ? JSON.parse(storedUserSession) : null);
@@ -107,7 +110,9 @@ function Contenido() {
             </div>
           ))}
         </div>
-        <div className="col-span-8 p-4 md:col-span-9">{filteredData[0]?.Description}</div>
+        <div className="col-span-8 p-4 md:col-span-9">
+          {filteredData.find((item) => item.Title === selectedOption)?.Description}
+        </div>
       </div>
     </div>
   );
