@@ -48,7 +48,7 @@ const Sidebar: React.FC = () => {
     <li
       key={path}
       onClick={() => handleMenuItemClick(path as MenuItem)}
-      className={`flex items-center gap-2 cursor-pointer md:text-lg transition duration-300 opacity-80 tracking-wide ${
+      className={`flex items-center justify-start  w-full gap-2 cursor-pointer md:text-lg transition duration-300 opacity-80 tracking-wide ${
         isActive(path) ? " opacity-100 brightness-110 font-bold tracking-widest" : ""
       }`}
     >
@@ -58,10 +58,10 @@ const Sidebar: React.FC = () => {
   );
 
   return (
-    <div className=" flex flex-col md:flex-row md:min-h-[90vh] justify-start items-center  ">
+    <div className=" flex flex-col md:flex-row md:min-h-[80vh] justify-start items-center  ">
       <Toaster richColors={true} expand={false} position="top-center" />
       <ul
-        className={`flex  place-content-center py-2  md:py-0 w-auto lg:w-96 place-items-center md:flex md:flex-col md:h-screen md:gap-10 flex-wrap justify-center items-center  mt-20 md:mt-0 gap-10 bg-slate-100 px-4 border   transition duration-300`}
+        className={`flex  place-content-center py-2  md:py-0 w-auto lg:w-64 place-items-center md:flex md:flex-col md:h-screen md:gap-10 flex-wrap justify-center items-center  mt-20 md:mt-0 gap-10 bg-slate-100 px-4 border   transition duration-300`}
       >
         {renderMenuItem("Home", "home", <HomeIcon />)}
         {userHasExams && renderMenuItem("Examen", "examen", <DevIcon />)}
