@@ -98,7 +98,7 @@ function Footer() {
         <div className="sm:flex sm:items-center sm:justify-between">
           <span className=" text-xs lg:text-base text-gray-500 sm:text-center dark:text-gray-400">
             © 2023{" "}
-            <Link href="https://pablo-amico.vercel.app/" className="hover:underline">
+            <Link href="https://pablosecuen.github.io/portfolio/" className="hover:underline">
               Pablo Amico
             </Link>
             . Todos los derechos reservados.
