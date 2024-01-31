@@ -68,17 +68,13 @@ Este repositorio contiene el código fuente de una aplicación de Interchange Ca
 
 INSTALAR DEPENDENCIAS
 
-cd admin
+cd dashboard
 npm install
-
 cd ../api
 npm install
-
 cd ../web
 npm install
 
-Configurar Variables de Entorno:
-Configura las variables de entorno según las necesidades de cada parte del sistema.
 
 
 
