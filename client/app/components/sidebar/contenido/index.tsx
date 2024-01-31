@@ -16,10 +16,7 @@ function Contenido() {
   const [selectedOption, setSelectedOption] = useState<string>("");
 
   useEffect(() => {
-    // Intenta obtener la información del usuario desde el local storage
     const storedUserString = localStorage.getItem("user");
-
-    // Si no está en el local storage, intenta obtenerlo del session storage
     if (!storedUserString) {
       const storedUserSession = sessionStorage.getItem("user");
       setUser(storedUserSession ? JSON.parse(storedUserSession) : null);
@@ -29,7 +26,6 @@ function Contenido() {
   }, []);
 
   useEffect(() => {
-    // Filtra el campusData según la información del grado del usuario logeado
     if (user && user.Grado_ID) {
       const { Grado_ID } = user;
 
@@ -45,7 +41,6 @@ function Contenido() {
   if (loading) return <LoadingError isLoading={loading} error={error} />;
 
   const cursoTitle = `${filteredData[0]?.Grado_Categoria}${" "}${filteredData[0]?.Grado_Nombre}`;
-  console.log(filteredData);
 
   return (
     <div className="animate-fade min-h-[90vh] w-full md:p-20 p-4 ">
