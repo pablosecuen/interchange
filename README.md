@@ -69,15 +69,21 @@ Este repositorio contiene el código fuente de una aplicación de Interchange Ca
 INSTALAR DEPENDENCIAS
 
 DASHBOARD ADMIN
+
 cd admin
+
 npm install
 
 SERVIDOR BACKEND
+
 cd ../api
+
 npm install
 
 INTERFAZ WEB
+
 cd ../web
+
 npm install
 
 
@@ -86,15 +92,21 @@ npm install
 EJECUCION DEL PROYECTO
 
 DASHBOARD ADMINISTRADOR
+
 cd admin
+
 npm run dev
 
 SERVIDOR BACKEND
+
 cd api
+
 npm start
 
 
 INTERFAZ WEB
+
 cd web
+
 npm run dev
 
