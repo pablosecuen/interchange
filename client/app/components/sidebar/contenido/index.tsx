@@ -54,9 +54,9 @@ function Contenido() {
           {cursoTitle}
         </div>
         <div className="col-span-4 md:p-4 md:col-span-4 hidden md:block"></div>
-        <div className="col-span-8 md:p-4 h-full md:col-span-8">
+        <div className="col-span-8 md:p-4 h-full md:col-span-8 ">
           <span className="md:p-4 text-xl">Elije el contenido de la lista para reproducirlo</span>
-          <div className="mx-auto py-8 md:min-h-[470px] md:h-[470px] h-[350px]">
+          <div className=" py-8 md:min-h-[470px] md:h-[470px] h-[350px] md:w-[835px]">
             {playerLinks === "" ? (
               <Image src={placeholder} alt="placeholder" width={0} height={0} />
             ) : (
