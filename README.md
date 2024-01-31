@@ -60,7 +60,8 @@ Este repositorio contiene el código fuente de una aplicación de Interchange Ca
 ## Configuración del Desarrollo
 
 1. **Clonar el Repositorio:**
-   ```bash https://github.com/pablosecuen/interchange.git
+   ```bash
+   git clone [https://github.com/pablosecuen/interchange.git](https://github.com/pablosecuen/interchange.git)
   
 
 
