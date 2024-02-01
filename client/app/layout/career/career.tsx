@@ -15,10 +15,7 @@ const Career = () => {
         <h3 className="text-4xl font-laila font-bold z-40">
           ¡Estamos para crear posibilidades y éxito en tu carrera!
         </h3>
-        <p className="text-md text-gray-400">
-          Muchas escuelas utilizan el término "excelencia" para destacar la ambición de la escuela
-          de ayudar a todos a dar lo mejor de sí mismos.
-        </p>
+
         <ul className="list-disc">
           <li className="pb-2">Estamos para crear posibilidades y éxito en tu carrera</li>
           <li className="pb-2">La educación consiste en crear líderes para el mañana</li>
