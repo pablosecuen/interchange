@@ -16,6 +16,7 @@ const useCreateContent = () => {
     Grado_ID: '',
         Grado_Nombre: '',   
     Grado_Categoria: '',  
+    createdAt: '',
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<any | null>(null);
@@ -45,6 +46,7 @@ const useCreateContent = () => {
         Grado_ID: '',
         Grado_Nombre: '',   
         Grado_Categoria: '',  
+         createdAt: '',
       });
         setTimeout(() => {
           router.reload(); 
