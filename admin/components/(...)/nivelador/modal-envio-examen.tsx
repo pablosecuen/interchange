@@ -30,7 +30,7 @@ const ModalEnvioExamen: React.FC<Props> = ({ examen }) => {
   const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
   const { users, isLoading, error } = useFetchUsers();
   const [selectedUser, setSelectedUser] = useState<User | undefined>(undefined);
-  console.log(users);
+  
 
   const handleSendExam = async (selectedUser: any) => {
     try {

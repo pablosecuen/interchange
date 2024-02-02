@@ -3,6 +3,7 @@ import { baseUrl } from './baseurl';
 import { toast } from 'sonner';
 
 export interface Content {
+  createdAt: string | number | Date;
   ID?: string;
   Title: string;
   Description: string;

@@ -19,7 +19,7 @@ export const Campus = () => {
 
     const match =
       Title.toLowerCase().includes(searchLowerCase) ||
-      Link.toLowerCase().includes(searchLowerCase) ||
+      Link.some((linkItem: string) => linkItem.toLowerCase().includes(searchLowerCase)) ||
       Description.toLowerCase().includes(searchLowerCase) ||
       Tipo.toLowerCase().includes(searchLowerCase);
     return match;
@@ -31,6 +31,13 @@ export const Campus = () => {
     XLSX.utils.book_append_sheet(workbook, worksheet, "Contenido");
     XLSX.writeFile(workbook, "contenido.xlsx");
   };
+
+  const sortedContent = filteredContent.sort((a, b) => {
+    const dateA: any = new Date(a.createdAt);
+    const dateB: any = new Date(b.createdAt);
+
+    return dateB - dateA;
+  });
 
   return (
     <div className="my-14 max-w-[95rem] mx-auto w-full flex flex-col gap-4">
@@ -74,7 +81,7 @@ export const Campus = () => {
         </div>
       </div>
       <div className="max-w-[95rem] mx-auto w-full">
-        <TableWrapperContent content={filteredContent} isLoading={loading} error={error} />
+        <TableWrapperContent content={sortedContent} isLoading={loading} error={error} />
       </div>
     </div>
   );

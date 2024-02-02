@@ -29,6 +29,11 @@ export const Cursos = () => {
     return match;
   });
 
+  const sortedCursos = filteredCursos.slice().sort((a, b) => {
+    return a.Grado_Categoria.localeCompare(b.Grado_Categoria);
+  });
+
+
   const exportToExcel = () => {
     const worksheet = XLSX.utils.json_to_sheet(filteredCursos);
     const workbook = XLSX.utils.book_new();
@@ -78,7 +83,7 @@ export const Cursos = () => {
         </div>
       </div>
       <div className="max-w-[95rem] mx-auto w-full">
-        <TableWrapper cursos={filteredCursos} isLoading={isLoading} error={error} />
+        <TableWrapper cursos={sortedCursos} isLoading={isLoading} error={error} />
       </div>
     </div>
   );

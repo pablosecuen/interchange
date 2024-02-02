@@ -53,7 +53,7 @@ const useInscripcionForm = (initialState: any) => {
       
   
       const encodedURL = `${baseUrl}/send-email/preinscripcion/${encodedEmail}/${encodedFirstName}/${encodedLastName}/${encodedFirstName1}/${encodedLastName1}/${encodedFirstNameStudent}/${encodedLastNameStudent}/${encodedDateOfBirth}/${encodedPhoneNumber}/${encodedAddress}/${encodedGrade}/${encodedEmailAddress}/${encodedPhone}/${encodedMessage}`;
-  console.log(encodedURL);
+
   
       const promise = () => new Promise((resolve, reject) => {
         fetch(encodedURL, {

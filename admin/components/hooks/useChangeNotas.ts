@@ -113,7 +113,6 @@ const handleNotaChange = (value: string, categoria: string) => {
       ...newTrimestres[lastIndex],
       [categoria]: value,
     };
-    console.log("New Trimestres:", newTrimestres);
     setNotasData((prevNotasData) => ({
   ...prevNotasData,
   trimestres: newTrimestres,

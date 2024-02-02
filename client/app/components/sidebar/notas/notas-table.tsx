@@ -6,8 +6,6 @@ interface NotasTableProps {
 }
 
 const NotasTable = ({ curso, notas }: NotasTableProps) => {
-  console.log(notas);
-  console.log(curso);
 
   const categorias = Object.keys(notas[0]);
 
