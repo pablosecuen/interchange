@@ -72,7 +72,7 @@ const sendEmailNotificationRegister = async (newUserEmail) => {
                       <table cellpadding="0" cellspacing="0" width="600" style="margin: 20px 0; background-color: #ffffff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
                           <tr>
                               <td style="padding: 40px 20px; text-align: center;">
-                                  <img src="https://scontent.fros2-1.fna.fbcdn.net/v/t39.30808-6/299023767_480174664115023_6334146979410293629_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=efb6e6&_nc_ohc=2wc1b-hDYgIAX9eLTzk&_nc_ht=scontent.fros2-1.fna&oh=00_AfAnLO6sOc0bortes0PjUJj--DQVWOdVV68TezDIgySEeA&oe=658BA3AE" alt="Logo del Instituto" width="150" style="display: block; margin: 0 auto 20px;">
+                                  <img src="https://www.interchange.com.ar/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Finterchange.d7cdaeff.png&w=1080&q=75">
                                   <h1 style="color: #333333; font-size: 24px; margin: 0;">¡Bienvenido a Interchange!</h1>
                                   <p style="color: #666666; font-size: 16px;">Hola ${newUserEmail},</p>
                                   <p style="color: #666666; font-size: 16px;">🌻 Gracias por registrarte en nuestra plataforma. 🌻</p>
@@ -154,7 +154,7 @@ const sendEmailNotificationCurso = async (newUserEmail, Grado_Nombre, Grado_Cate
                       <table cellpadding="0" cellspacing="0" width="600" style="margin: 20px 0; background-color: #ffffff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
                           <tr>
                               <td style="padding: 40px 20px; text-align: center;">
-                                  <img src="https://scontent.fros2-1.fna.fbcdn.net/v/t39.30808-6/299023767_480174664115023_6334146979410293629_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=efb6e6&_nc_ohc=2wc1b-hDYgIAX9eLTzk&_nc_ht=scontent.fros2-1.fna&oh=00_AfAnLO6sOc0bortes0PjUJj--DQVWOdVV68TezDIgySEeA&oe=658BA3AE" alt="Logo del Instituto" width="150" style="display: block; margin: 0 auto 20px;">
+                                  <img src="https://www.interchange.com.ar/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Finterchange.d7cdaeff.png&w=1080&q=75">
                                   <h1 style="color: #333333; font-size: 24px; margin: 0;">¡Bienvenido ${Grado_Nombre} - ${Grado_Categoria} en Interchange !</h1>
                                   <p style="color: #666666; font-size: 16px;">Hola ${newUserEmail},</p>
                                   <p style="color: #666666; font-size: 16px;">Has sido asignado a  ${Grado_Nombre} - ${Grado_Categoria} por el Instituto Interchange</p>
@@ -236,7 +236,7 @@ const sendEmailNotificationVencimiento = async (newUserEmail) => {
                       <table cellpadding="0" cellspacing="0" width="600" style="margin: 20px 0; background-color: #ffffff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
                           <tr>
                               <td style="padding: 40px 20px; text-align: center;">
-                                  <img src="https://scontent.fros2-1.fna.fbcdn.net/v/t39.30808-6/299023767_480174664115023_6334146979410293629_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=efb6e6&_nc_ohc=2wc1b-hDYgIAX9eLTzk&_nc_ht=scontent.fros2-1.fna&oh=00_AfAnLO6sOc0bortes0PjUJj--DQVWOdVV68TezDIgySEeA&oe=658BA3AE" alt="Logo del Instituto" width="150" style="display: block; margin: 0 auto 20px;">
+                                  <img src="https://www.interchange.com.ar/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Finterchange.d7cdaeff.png&w=1080&q=75">
                                   <h1 style="color: #333333; font-size: 24px; margin: 0;">¡Hola ${newUserEmail} !</h1>
     
                                   <p style="color: #666666; font-size: 16px;">Por favor, comunicate con la administración del instituto para regular el saldo de la cuota vencida</p>
@@ -383,7 +383,7 @@ const sendEmailAcuerdoinstitucional = async (EmailAdulto) => {
                       <table cellpadding="0" cellspacing="0" width="600" style="margin: 20px 0; background-color: #ffffff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
                           <tr>
                               <td style="padding: 40px 20px; text-align: center;">
-                                  <img src="https://scontent.fros2-1.fna.fbcdn.net/v/t39.30808-6/299023767_480174664115023_6334146979410293629_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=efb6e6&_nc_ohc=2wc1b-hDYgIAX9eLTzk&_nc_ht=scontent.fros2-1.fna&oh=00_AfAnLO6sOc0bortes0PjUJj--DQVWOdVV68TezDIgySEeA&oe=658BA3AE" alt="Logo del Instituto" width="150" style="display: block; margin: 0 auto 20px;">
+                                  <img src="https://www.interchange.com.ar/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Finterchange.d7cdaeff.png&w=1080&q=75">
                                   <h1 style="color: #333333; font-size: 24px; margin: 0;">¡Hola ${EmailAdulto} !</h1>
     <h2>Acuerdo institucional Interchange Instutute</h2>
           <p>Les acercamos este link del formulario de acuerdo de confirmidad institucional para ser firmado digitalmente a la brevedad por el alumno o adulto responsable</p>
