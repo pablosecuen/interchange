@@ -8,16 +8,18 @@ import ModalCuotas from "../modal/modal-cuotas";
 import ModalAlumnos from "../modal/modal-alumnos";
 import CambiarNotasModal from "../modal/modal-cambiar-notas";
 import TableWrapperNotas from "./tableNotas";
+import useDeleteUser from "../hooks/useDeleteUsuer";
 
 interface Props {
   user: any;
   columnKey: string | React.Key;
   onOpen?: () => void;
+  deleteUser?: (ID: string) => void;
 }
 
 // En el componente RenderCell
 
-export const RenderCell = ({ user, columnKey }: Props) => {
+export const RenderCell = ({ user, columnKey, deleteUser }: Props) => {
   const getCourseInfo = () => {
     if (columnKey === "Grado_Categoria") {
       return user?.Grado?.[0]?.Grado_Categoria || "Sin información";
@@ -87,9 +89,11 @@ export const RenderCell = ({ user, columnKey }: Props) => {
           </div>
           <div>
             <Tooltip content="Delete user" color="danger">
-              <button onClick={() => console.log("Delete user", user.ID)}>
-                <DeleteIcon size={20} fill="#FF0080" />
-              </button>
+              {deleteUser && (
+                <button onClick={() => deleteUser(user.ID)}>
+                  <DeleteIcon size={20} fill="#FF0080" />
+                </button>
+              )}
             </Tooltip>
           </div>
         </div>

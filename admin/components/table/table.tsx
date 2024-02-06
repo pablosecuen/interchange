@@ -1,17 +1,11 @@
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableColumn,
-  TableHeader,
-  TableRow,
-} from "@nextui-org/react";
+import { Table, TableBody, TableCell, TableColumn, TableHeader, TableRow } from "@nextui-org/react";
 import React from "react";
 import { columns } from "./data";
 import { RenderCell } from "./render-cell";
 import { Toaster } from "sonner";
 import LoadingError from "../loadingerror";
 import { User } from "../hooks/useFetchUsers";
+import useDeleteUser from "../hooks/useDeleteUsuer";
 
 interface tableAlumnosProps {
   users: User[];
@@ -19,8 +13,7 @@ interface tableAlumnosProps {
   error: any;
 }
 export const TableWrapper = ({ users, isLoading, error }: tableAlumnosProps) => {
-
-
+  const { deleteUser } = useDeleteUser();
   if (isLoading || error) {
     return <LoadingError isLoading={isLoading} error={error} />;
   }
@@ -48,6 +41,7 @@ export const TableWrapper = ({ users, isLoading, error }: tableAlumnosProps) => 
                   {RenderCell({
                     user: item,
                     columnKey: columnKey,
+                    deleteUser: deleteUser,
                   })}
                 </TableCell>
               )}
@@ -55,7 +49,6 @@ export const TableWrapper = ({ users, isLoading, error }: tableAlumnosProps) => 
           )}
         </TableBody>
       </Table>
-    
     </div>
   );
 };
