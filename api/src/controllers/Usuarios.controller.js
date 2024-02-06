@@ -13,7 +13,6 @@ const createUserController = async (req, res) => {
     sendEmailNotificationRegister(newUserEmail);
     res.status(201).json(newUser);
   } catch (error) {
-
     res.status(500).json({ message: "Error al crear el usuario", error: error.message });
   }
 };
@@ -127,6 +126,11 @@ const patchUsuarioController = async (req, res) => {
           {
             mes: "examenes",
             vencimiento: `${currentYear}-12-10`,
+            pagado: false,
+          },
+          {
+            mes: `inscripcion ${currentYear + 1}`,
+            vencimiento: `${currentYear + 1}-02-10`,
             pagado: false,
           },
         ],
