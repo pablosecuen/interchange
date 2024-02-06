@@ -109,7 +109,7 @@ const useRegister = ({ updateUser,onClose }: UseRegisterProps) => {
       }
     } catch (error) {
       toast.error(`Error al enviar la solicitud: ${error}`);
-  
+      console.log(error);
     }
   };
 
