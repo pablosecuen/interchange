@@ -104,14 +104,12 @@ module.exports = (sequelize) => {
     },
     Activo: {
       type: DataTypes.BOOLEAN,
-      allowNull: false,
       defaultValue: true,
     },
     Grado_ID: {
       type: DataTypes.UUID,
       allowNull: true,
     },
-    // Nuevos campos para adultos responsables
     NombreAdulto: {
       type: DataTypes.STRING,
       allowNull: true,
