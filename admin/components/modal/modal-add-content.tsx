@@ -118,9 +118,9 @@ const AddContent = () => {
                     </option>
                   ) : (
                     cursos.map((curso: Curso) => (
-                      <SelectItem key={curso.ID} value={curso.ID}>
+                      <option key={curso.ID} value={curso.ID}>
                         {`${curso.Grado_Categoria} ${curso.Grado_Nombre}`}
-                      </SelectItem>
+                      </option>
                     ))
                   )}
                 </select>
