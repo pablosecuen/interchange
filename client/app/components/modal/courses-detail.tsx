@@ -4,7 +4,7 @@ import React from "react";
 import "./courses-detail.css";
 import Link from "next/link";
 import { Toaster } from "sonner";
-import Draggable from "react-draggable";
+
 
 interface ModalProps {
   grade: Grade | null;
@@ -21,7 +21,7 @@ const ModalCourses: React.FC<ModalProps> = ({ grade, onClose, modalOpen }) => {
       : "opacity-0 duration-500 pointer-events-none"
   }`;
   return (
-    <Draggable>
+
       <div className={modalClasses}>
         <Toaster richColors={true} expand={false} position="top-center" />
         <span
@@ -89,7 +89,7 @@ const ModalCourses: React.FC<ModalProps> = ({ grade, onClose, modalOpen }) => {
           </div>
         </div>
       </div>
-    </Draggable>
+
   );
 };
 
