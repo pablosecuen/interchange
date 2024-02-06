@@ -22,36 +22,35 @@ export const TableWrapper = ({ users, isLoading, error }: tableAlumnosProps) => 
   return (
     <div className=" w-full flex flex-col gap-4">
       <Toaster richColors position="top-center" expand={true} closeButton={true} />
-      <Draggable>
-        <Table aria-label="Tabla de usuarios">
-          <TableHeader columns={columns}>
-            {(column: any) => (
-              <TableColumn
-                key={column.uid}
-                hideHeader={column.uid === "actions"}
-                align={column.uid === "actions" ? "center" : "start"}
-              >
-                {column.name}
-              </TableColumn>
-            )}
-          </TableHeader>
-          <TableBody items={users}>
-            {(item: any) => (
-              <TableRow key={item.ID}>
-                {(columnKey: any) => (
-                  <TableCell>
-                    {RenderCell({
-                      user: item,
-                      columnKey: columnKey,
-                      deleteUser: deleteUser,
-                    })}
-                  </TableCell>
-                )}
-              </TableRow>
-            )}
-          </TableBody>
-        </Table>
-      </Draggable>
+
+      <Table aria-label="Tabla de usuarios">
+        <TableHeader columns={columns}>
+          {(column: any) => (
+            <TableColumn
+              key={column.uid}
+              hideHeader={column.uid === "actions"}
+              align={column.uid === "actions" ? "center" : "start"}
+            >
+              {column.name}
+            </TableColumn>
+          )}
+        </TableHeader>
+        <TableBody items={users}>
+          {(item: any) => (
+            <TableRow key={item.ID}>
+              {(columnKey: any) => (
+                <TableCell>
+                  {RenderCell({
+                    user: item,
+                    columnKey: columnKey,
+                    deleteUser: deleteUser,
+                  })}
+                </TableCell>
+              )}
+            </TableRow>
+          )}
+        </TableBody>
+      </Table>
     </div>
   );
 };

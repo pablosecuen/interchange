@@ -32,7 +32,7 @@ export const TableWrapperContent = ({ content, isLoading, error }: tableContentP
   return (
     <div className=" w-full flex flex-col gap-4">
       <Toaster richColors position="top-center" expand={true} closeButton={true} />
-      <Draggable>
+
         <Table aria-label="Tabla de usuarios">
           <TableHeader columns={columnsContent}>
             {(column: any) => (
@@ -61,7 +61,7 @@ export const TableWrapperContent = ({ content, isLoading, error }: tableContentP
             )}
           </TableBody>
         </Table>
-      </Draggable>
+
     </div>
   );
 };

@@ -16,6 +16,7 @@ export interface Curso {
 
 export const Cursos = () => {
   const { cursos, isLoading, error } = useFetchCursos();
+
   const [cursoFilter, setCursoFilter] = useState<string>("");
 
   const filteredCursos = cursos.filter((curso) => {
@@ -32,7 +33,6 @@ export const Cursos = () => {
   const sortedCursos = filteredCursos.slice().sort((a, b) => {
     return a.Grado_Categoria.localeCompare(b.Grado_Categoria);
   });
-
 
   const exportToExcel = () => {
     const worksheet = XLSX.utils.json_to_sheet(filteredCursos);

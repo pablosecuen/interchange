@@ -20,7 +20,7 @@ export const TableWrapper = ({ cursos, isLoading, error }: CursoTableProps) => {
   return (
     <div className=" w-full flex flex-col gap-4">
       <Toaster richColors position="top-center" expand={true} closeButton={true} />
-      <Draggable>
+
         <Table aria-label="Tabla de cursos">
           <TableHeader columns={columnsCursos}>
             {(column: any) => (
@@ -48,7 +48,7 @@ export const TableWrapper = ({ cursos, isLoading, error }: CursoTableProps) => {
             )}
           </TableBody>
         </Table>
-      </Draggable>
+
     </div>
   );
 };

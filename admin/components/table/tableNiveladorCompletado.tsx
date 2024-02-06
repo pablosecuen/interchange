@@ -34,36 +34,35 @@ export const TableWrapperExamsCompleted = ({
   return (
     <div className=" w-full flex flex-col gap-4">
       <Toaster richColors position="top-center" expand={true} closeButton={true} />
-      <Draggable>
-        <Table aria-label="Tabla de cursos">
-          <TableHeader columns={columnsExamscomletados}>
-            {(column: any) => (
-              <TableColumn
-                key={column.uid}
-                hideHeader={column.uid === "actions"}
-                align={column.uid === "actions" ? "center" : "start"}
-              >
-                {column.name}
-              </TableColumn>
-            )}
-          </TableHeader>
-          <TableBody items={completedExams}>
-            {(item: any) => (
-              <TableRow key={item.ID}>
-                {(columnKey: any) => (
-                  <TableCell>
-                    {RenderCellExamCompleted({
-                      curso: item,
-                      columnKey: columnKey,
-                      mostrarDetalleExamenResultado: mostrarDetalleExamenResultado,
-                    })}
-                  </TableCell>
-                )}
-              </TableRow>
-            )}
-          </TableBody>
-        </Table>
-      </Draggable>
+
+      <Table aria-label="Tabla de cursos">
+        <TableHeader columns={columnsExamscomletados}>
+          {(column: any) => (
+            <TableColumn
+              key={column.uid}
+              hideHeader={column.uid === "actions"}
+              align={column.uid === "actions" ? "center" : "start"}
+            >
+              {column.name}
+            </TableColumn>
+          )}
+        </TableHeader>
+        <TableBody items={completedExams}>
+          {(item: any) => (
+            <TableRow key={item.ID}>
+              {(columnKey: any) => (
+                <TableCell>
+                  {RenderCellExamCompleted({
+                    curso: item,
+                    columnKey: columnKey,
+                    mostrarDetalleExamenResultado: mostrarDetalleExamenResultado,
+                  })}
+                </TableCell>
+              )}
+            </TableRow>
+          )}
+        </TableBody>
+      </Table>
     </div>
   );
 };
