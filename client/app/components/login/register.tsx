@@ -335,7 +335,7 @@ const Register = ({ onClose, toggleRegister, updateUser }: RegisterProps) => {
           <button
             type="button"
             onClick={onClose}
-            className="yellow-btn h-10 !px-12 scale-75 md:scale-100"
+            className="yellow-btn h-10 !px-10 scale-75 md:scale-100"
           >
             Close
           </button>
