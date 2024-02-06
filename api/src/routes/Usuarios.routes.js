@@ -28,6 +28,6 @@ router.patch("/:id", patchUsuarioHandler);
 router.patch("/:id", updateAnotacionesHandler);
 router.patch("/notas/:id", pathNotasHandler);
 router.patch("/tipo/:id", patchTiposHanlder);
-router.delete("/delete/:id", deleteUsuarioHandler);
+router.delete("/:id", deleteUsuarioHandler);
 
 module.exports = router;

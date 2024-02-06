@@ -45,7 +45,7 @@ const useRegister = ({ updateUser,onClose }: UseRegisterProps) => {
     phoneAdult2: "",
   });
   const router = useRouter();
-console.log(formData);
+
 
   const handleSubmit = async (rememberMe: boolean, e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -103,13 +103,13 @@ console.log(formData);
         router.push("/campus?section=home");
       } else {
    
-        console.log(response);
+  
         
         toast.error("Error al validar credenciales");
       }
     } catch (error) {
       toast.error(`Error al enviar la solicitud: ${error}`);
-      console.log(error);
+  
     }
   };
 

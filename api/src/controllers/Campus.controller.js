@@ -32,7 +32,7 @@ const getAllCampusByGradoID = async (req, res) => {
 const createCampus = async (req, res) => {
   try {
     const { Title, Description, Link, Tipo, Grado_ID, Grado_Nombre, Grado_Categoria } = req.body;
-    console.log(req.body);
+
     const newCampus = await Campus.create({
       Title,
       Description,
@@ -54,8 +54,7 @@ const updateCampus = async (req, res) => {
   try {
     const { campusId } = req.params;
     const { Title, description, Link, Tipo, Grado_ID } = req.body;
-    console.log(req.body);
-    console.log(req.params);
+
     const updatedCampus = await Campus.update(
       {
         Title,

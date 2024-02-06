@@ -5,15 +5,15 @@ const { createNotas } = require("./Notas.controller"); */
 
 const createUserController = async (req, res) => {
   const userData = req.body;
-  console.log(req.body);
+
   try {
     const newUser = await Usuario.create(userData);
-    console.log(newUser);
+
     const newUserEmail = newUser.Email;
     sendEmailNotificationRegister(newUserEmail);
     res.status(201).json(newUser);
   } catch (error) {
-    console.log(error);
+
     res.status(500).json({ message: "Error al crear el usuario", error: error.message });
   }
 };
@@ -171,9 +171,9 @@ const patchTiposController = async (req, res) => {
 };
 
 const deleteUsuarioController = async (req, res) => {
-  try {
-    const { id } = req.params;
+  const { id } = req.params;
 
+  try {
     const usuario = await Usuario.findByPk(id);
 
     if (!usuario) {

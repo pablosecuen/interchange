@@ -19,7 +19,7 @@ interface ObjectDetailsModalProps {
 
 const ModalDetailsContent: React.FC<ObjectDetailsModalProps> = ({ content }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  console.log(content);
+
 
   return (
     <>

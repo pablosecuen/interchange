@@ -27,11 +27,10 @@ const getAllPagosController = async (req, res) => {
 const updatePagadoController = async (req, res) => {
   const { mes, nuevoEstado } = req.body;
   const { pagoId } = req.params;
-  console.log("Pago ID recibido:", pagoId);
 
   try {
     const pago = await Pago.findByPk(pagoId);
-    console.log("Pago encontrado:", pago);
+
     if (!pago) {
       return res.status(404).json({ message: "Pago no encontrado" });
     }
@@ -43,8 +42,7 @@ const updatePagadoController = async (req, res) => {
       return res.status(400).json({ message: "Los vencimientos no son un array" });
     }
     const vencimientoAModificar = vencimientos.find((vencimiento) => {
-      console.log("Mes almacenado:", vencimiento.mes);
-      console.log("Mes buscado:", mes);
+
       return vencimiento.mes === mes;
     });
     if (!vencimientoAModificar) {

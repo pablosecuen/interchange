@@ -16,7 +16,7 @@ const useDeleteUser = () => {
     setSuccess(false);
 
     try {
-      const response = await fetch(`${baseUrl}/api/users/delete/${id}`, {
+      const response = await fetch(`${baseUrl}/api/users/${id}`, {
         method: "DELETE",
       });
 
