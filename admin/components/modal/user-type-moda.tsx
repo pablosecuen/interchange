@@ -12,27 +12,22 @@ import useUserType from "../hooks/useUserType"; // Ajusta la ruta según la ubic
 import { User } from "../../pages/login";
 import { EditIcon } from "../icons/table/edit-icon";
 import Draggable from "react-draggable";
-import { Select, SelectItem } from "@nextui-org/select";
 
 interface UserTypeModalProps {
   alumno: User; // Ajusta según la interfaz real de tu objeto Alumno
 }
-
 const UserTypeModal: React.FC<UserTypeModalProps> = ({ alumno }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedType, setSelectedType] = useState<string>(alumno.tipo || "alumno");
   const { setUserType, updateUserType } = useUserType(selectedType);
-
   const handleTypeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const value = event.target.value;
     setSelectedType(value);
     setUserType(value);
   };
-
   const handleSubmit = async () => {
     await updateUserType(alumno.ID, selectedType);
   };
-
   return (
     <>
       <button onClick={onOpen}>
@@ -58,21 +53,11 @@ const UserTypeModal: React.FC<UserTypeModalProps> = ({ alumno }) => {
                 <ModalHeader className="flex flex-col gap-1">Cambiar Tipo de Usuario</ModalHeader>
                 <ModalBody>
                   <label>Tipo:</label>
-                  <Select
-                    value={selectedType}
-                    onChange={handleTypeChange}
-                    label="Selecciona un tipo"
-                  >
-                    <SelectItem value="alumno" key={""}>
-                      Alumno
-                    </SelectItem>
-                    <SelectItem value="teacher" key={""}>
-                      Teacher
-                    </SelectItem>
-                    <SelectItem value="admin" key={""}>
-                      Admin
-                    </SelectItem>
-                  </Select>
+                  <select value={selectedType} onChange={handleTypeChange}>
+                    <option value="alumno">Alumno</option>
+                    <option value="teacher">Teacher</option>
+                    <option value="admin">Admin</option>
+                  </select>
                 </ModalBody>
                 <ModalFooter>
                   <Button color="danger" variant="flat" onClick={onClose}>
@@ -90,5 +75,4 @@ const UserTypeModal: React.FC<UserTypeModalProps> = ({ alumno }) => {
     </>
   );
 };
-
 export default UserTypeModal;

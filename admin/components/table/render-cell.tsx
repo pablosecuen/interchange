@@ -1,8 +1,6 @@
 import { User, Tooltip, Chip } from "@nextui-org/react";
 import React from "react";
 import { DeleteIcon } from "../icons/table/delete-icon";
-import { EditIcon } from "../icons/table/edit-icon";
-import { EyeIcon } from "../icons/table/eye-icon";
 import UserTypeModal from "../modal/user-type-moda";
 import ModalCuotas from "../modal/modal-cuotas";
 import ModalAlumnos from "../modal/modal-alumnos";

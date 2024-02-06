@@ -16,7 +16,6 @@ import useCreateContent from "../hooks/useCreateContent";
 
 import { useRouter } from "next/navigation";
 import { Curso } from "../(...)/cursos";
-import Draggable from "react-draggable";
 
 interface CampusData {
   Title: string;
@@ -76,97 +75,76 @@ const AddContent = () => {
       <Button color="primary" onPress={onOpen}>
         Subir Contenido
       </Button>
-      <Draggable>
-        <Modal
-          isOpen={isOpen}
-          onOpenChange={onClose}
-          placement="top-center"
-          classNames={{
-            body: "py-6 ",
-            backdrop: "bg-[#292f46]/50 backdrop-opacity-40",
-            base: "border-[#292f46] bg-[#19172c]  text-[#a8b0d3] ",
-            header: "border-b-[1px] border-[#292f46] ",
-            footer: "border-t-[1px] border-[#292f46] ",
-            closeButton: "hover:bg-white/5 active:bg-white/10 ",
-          }}
-        >
-          <ModalContent>
-            {(onClose) => (
-              <>
-                <ModalHeader className="flex flex-col gap-1">Nuevo Contenido</ModalHeader>
-                <ModalBody>
-                  <label>Titulo:</label>
-                  <Input
-                    type="text"
-                    name="Title"
-                    value={newContent.Title}
-                    onChange={handleChange}
-                  />
+      <Modal isOpen={isOpen} onOpenChange={onClose} placement="top-center">
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">Nuevo Contenido</ModalHeader>
+              <ModalBody>
+                <label>Titulo:</label>
+                <Input type="text" name="Title" value={newContent.Title} onChange={handleChange} />
 
-                  <label>Links (comma-separated):</label>
-                  <Input
-                    type="text"
-                    name="Link"
-                    value={newContent.Link.join(",")}
-                    onChange={handleLinkChange}
-                  />
+                <label>Links (comma-separated):</label>
+                <Input
+                  type="text"
+                  name="Link"
+                  value={newContent.Link.join(",")}
+                  onChange={handleLinkChange}
+                />
 
-                  <label>Tipo:</label>
-                  <Select name="Tipo" value={newContent.Tipo} onChange={handleChange}>
-                    <SelectItem key="" value="">
-                      Elije un tipo de contenido
-                    </SelectItem>
-                    <SelectItem key="Audio" value="Audio">
-                      Audio
-                    </SelectItem>
-                    <SelectItem key="Video" value="Video">
-                      Video
-                    </SelectItem>
-                    <SelectItem key="Descargable" value="Descargable">
-                      Descargable
-                    </SelectItem>
-                  </Select>
+                <label>Tipo:</label>
+                <select name="Tipo" value={newContent.Tipo} onChange={handleChange}>
+                  <option value="">Elije un tipo de contenido</option>
+                  <option key="Audio" value="Audio">
+                    Audio
+                  </option>
+                  <option key="Video" value="Video">
+                    Video
+                  </option>
+                  <option key="Descargable" value="Descargable">
+                    Descargable
+                  </option>
+                </select>
 
-                  <label>Curso:</label>
-                  <Select name="Grado_ID" value={newContent.Grado_ID} onChange={handleChange}>
-                    {isLoading ? (
-                      <SelectItem value="" isDisabled key={""}>
-                        Cargando cursos...
+                <label>Curso:</label>
+                <select name="Grado_ID" value={newContent.Grado_ID} onChange={handleChange}>
+                  {isLoading ? (
+                    <option value="" disabled>
+                      Cargando cursos...
+                    </option>
+                  ) : error ? (
+                    <option value="" disabled>
+                      Error al cargar cursos
+                    </option>
+                  ) : (
+                    cursos.map((curso: Curso) => (
+                      <SelectItem key={curso.ID} value={curso.ID}>
+                        {`${curso.Grado_Categoria} ${curso.Grado_Nombre}`}
                       </SelectItem>
-                    ) : error ? (
-                      <SelectItem value="" isDisabled key={""}>
-                        Error al cargar cursos
-                      </SelectItem>
-                    ) : (
-                      cursos.map((curso: Curso) => (
-                        <SelectItem key={curso.ID} value={curso.ID}>
-                          {`${curso.Grado_Categoria} ${curso.Grado_Nombre}`}
-                        </SelectItem>
-                      ))
-                    )}
-                  </Select>
+                    ))
+                  )}
+                </select>
 
-                  <label>Descripcion:</label>
-                  <Textarea
-                    type="text"
-                    name="Description"
-                    value={newContent.Description}
-                    onChange={handleChange}
-                  />
-                </ModalBody>
-                <ModalFooter>
-                  <Button color="danger" variant="flat" onClick={onClose}>
-                    Cerrar
-                  </Button>
-                  <Button color="primary" onPress={handleSubmit} disabled={loading}>
-                    {loading ? "Creando..." : "Crear"}
-                  </Button>
-                </ModalFooter>
-              </>
-            )}
-          </ModalContent>
-        </Modal>
-      </Draggable>
+                <label>Descripcion:</label>
+                <Textarea
+                  type="text"
+                  name="Description"
+                  value={newContent.Description}
+                  onChange={handleChange}
+                />
+              </ModalBody>
+              <ModalFooter>
+                <Button color="danger" variant="flat" onClick={onClose}>
+                  Cerrar
+                </Button>
+                <Button color="primary" onPress={handleSubmit} disabled={loading}>
+                  {loading ? "Creando..." : "Crear"}
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
     </>
   );
 };
