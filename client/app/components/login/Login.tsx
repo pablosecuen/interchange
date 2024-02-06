@@ -9,6 +9,7 @@ import Link from "next/link";
 import Image from "next/image";
 import eyeicon from "@/public/assets/svg/eyepassword.svg";
 
+
 interface LoginProps {
   onClose: () => void;
   updateUser: (user: User) => void;
@@ -46,7 +47,9 @@ const Login = ({ onClose, updateUser }: LoginProps) => {
     <div className="h-screen w-full relative">
       <Toaster richColors position="top-center" expand={true} closeButton={true} />
       {isRegistering ? (
-        <Register onClose={onClose} toggleRegister={toggleRegister} updateUser={updateUser} />
+
+          <Register onClose={onClose} toggleRegister={toggleRegister} updateUser={updateUser} />
+
       ) : (
         <>
           <div className="fixed top-12 md:top-20 left-0 w-full h-screen backdrop-blur-3xl"></div>

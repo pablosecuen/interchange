@@ -13,6 +13,7 @@ import { RenderCell } from "./render-cell-content";
 import { Toaster } from "sonner";
 import LoadingError from "../loadingerror";
 import { Content } from "../hooks/useFetchContent";
+import Draggable from "react-draggable";
 
 interface tableContentProps {
   content: Content[];
@@ -31,34 +32,36 @@ export const TableWrapperContent = ({ content, isLoading, error }: tableContentP
   return (
     <div className=" w-full flex flex-col gap-4">
       <Toaster richColors position="top-center" expand={true} closeButton={true} />
-      <Table aria-label="Tabla de usuarios">
-        <TableHeader columns={columnsContent}>
-          {(column: any) => (
-            <TableColumn
-              key={column.uid}
-              hideHeader={column.uid === "actions"}
-              align={column.uid === "actions" ? "center" : "start"}
-            >
-              {column.name}
-            </TableColumn>
-          )}
-        </TableHeader>
-        <TableBody items={content}>
-          {(item: any) => (
-            <TableRow key={item.ID}>
-              {(columnKey: any) => (
-                <TableCell>
-                  {RenderCell({
-                    content: item,
-                    columnKey: columnKey,
-                    onOpen: onOpen,
-                  })}
-                </TableCell>
-              )}
-            </TableRow>
-          )}
-        </TableBody>
-      </Table>
+      <Draggable>
+        <Table aria-label="Tabla de usuarios">
+          <TableHeader columns={columnsContent}>
+            {(column: any) => (
+              <TableColumn
+                key={column.uid}
+                hideHeader={column.uid === "actions"}
+                align={column.uid === "actions" ? "center" : "start"}
+              >
+                {column.name}
+              </TableColumn>
+            )}
+          </TableHeader>
+          <TableBody items={content}>
+            {(item: any) => (
+              <TableRow key={item.ID}>
+                {(columnKey: any) => (
+                  <TableCell>
+                    {RenderCell({
+                      content: item,
+                      columnKey: columnKey,
+                      onOpen: onOpen,
+                    })}
+                  </TableCell>
+                )}
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+      </Draggable>
     </div>
   );
 };

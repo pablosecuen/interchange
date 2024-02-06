@@ -12,6 +12,7 @@ import { columnsExams } from "./data";
 import useGetExams from "../hooks/useGetExams";
 import { RenderCellExam } from "./render-cell-exam";
 import LoadingError from "../loadingerror";
+import Draggable from "react-draggable";
 
 interface TableWrapperExamsProps {
   mostrarDetalleExamen: (arg0: any) => void;
@@ -26,33 +27,35 @@ export const TableWrapperExams = ({ mostrarDetalleExamen }: TableWrapperExamsPro
   return (
     <div className=" w-full flex flex-col gap-4">
       <Toaster richColors position="top-center" expand={true} closeButton={true} />
-      <Table aria-label="Tabla de cursos">
-        <TableHeader columns={columnsExams}>
-          {(column) => (
-            <TableColumn
-              key={column.uid}
-              hideHeader={column.uid === "actions"}
-              align={column.uid === "actions" ? "center" : "start"}
-            >
-              {column.name}
-            </TableColumn>
-          )}
-        </TableHeader>
-        <TableBody items={examenes}>
-          {(item) => (
-            <TableRow key={item.ID}>
-              {(columnKey) => (
-                <TableCell>
-                  {RenderCellExam({
-                    examen: item,
-                    columnKey: columnKey,
-                  })}
-                </TableCell>
-              )}
-            </TableRow>
-          )}
-        </TableBody>
-      </Table>
+      <Draggable>
+        <Table aria-label="Tabla de cursos">
+          <TableHeader columns={columnsExams}>
+            {(column) => (
+              <TableColumn
+                key={column.uid}
+                hideHeader={column.uid === "actions"}
+                align={column.uid === "actions" ? "center" : "start"}
+              >
+                {column.name}
+              </TableColumn>
+            )}
+          </TableHeader>
+          <TableBody items={examenes}>
+            {(item) => (
+              <TableRow key={item.ID}>
+                {(columnKey) => (
+                  <TableCell>
+                    {RenderCellExam({
+                      examen: item,
+                      columnKey: columnKey,
+                    })}
+                  </TableCell>
+                )}
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+      </Draggable>
     </div>
   );
 };
