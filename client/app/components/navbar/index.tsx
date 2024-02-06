@@ -154,8 +154,8 @@ const Navbar = () => {
                             Campus Virtual
                           </button>
                         </Link>
-                        <button className="yellow-btn !w-36" onClick={handleLogout}>
-                          Logout
+                        <button className="yellow-btn !w-36 text-center" onClick={handleLogout}>
+                          <span className="text-center w-full"> Logout</span>
                         </button>
                       </li>
                     </ul>
