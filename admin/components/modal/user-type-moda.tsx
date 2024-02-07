@@ -50,7 +50,9 @@ const UserTypeModal: React.FC<UserTypeModalProps> = ({ alumno }) => {
           <ModalContent>
             {(onClose) => (
               <>
-                <ModalHeader className="flex flex-col gap-1">Cambiar Tipo de Usuario</ModalHeader>
+                <ModalHeader className="flex flex-col gap-1 cursor-move">
+                  Cambiar Tipo de Usuario
+                </ModalHeader>
                 <ModalBody>
                   <label>Tipo:</label>
                   <select value={selectedType} onChange={handleTypeChange}>

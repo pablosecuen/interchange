@@ -52,7 +52,7 @@ export default function ModalAlumnos({ alumno }: ModalAlumnos) {
 
   const renderSelect = () => {
     return (
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 hover:cursor-move">
         <div className="flex flex-col">
           {alumno && alumno.Grado && alumno.Grado.length > 0 ? (
             <>

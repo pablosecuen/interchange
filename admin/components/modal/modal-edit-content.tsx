@@ -73,7 +73,7 @@ const EditContentModal: React.FC<EditContentModalProps> = ({ content }) => {
           }}
         >
           <ModalContent>
-            <ModalHeader className="flex flex-col gap-1">Editar Contenido</ModalHeader>
+            <ModalHeader className="flex flex-col gap-1 cursor-move">Editar Contenido</ModalHeader>
             <ModalBody>
               <label>Titulo:</label>
               <Input type="text" name="Title" value={editedContent.Title} onChange={handleChange} />

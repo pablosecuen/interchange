@@ -51,7 +51,9 @@ const ModalTrimestres: React.FC<TrimestreModalProps> = ({ trimestre }) => {
           }}
         >
           <ModalContent>
-            <ModalHeader className="flex flex-col gap-1">Detalles del Objeto</ModalHeader>
+            <ModalHeader className="flex flex-col gap-1 cursor-move">
+              Detalles del Objeto
+            </ModalHeader>
             <ModalBody>
               <Table aria-label="Example static collection table">
                 <TableHeader>

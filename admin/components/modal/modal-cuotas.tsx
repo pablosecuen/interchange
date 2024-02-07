@@ -59,7 +59,7 @@ export default function ModalCuotas({ user }: Props) {
           <ModalContent>
             {(onClose) => (
               <>
-                <ModalHeader className="flex flex-col gap-1">
+                <ModalHeader className="flex flex-col gap-1 cursor-move">
                   Cuotas de {user.Nombre} {user.Apellido}
                   Curso: {user.Grado_Nombre} {user.Grado_Categoria}
                 </ModalHeader>

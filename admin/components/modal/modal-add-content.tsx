@@ -79,7 +79,7 @@ const AddContent = () => {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1">Nuevo Contenido</ModalHeader>
+              <ModalHeader className="flex flex-col gap-1 cursor-move">Nuevo Contenido</ModalHeader>
               <ModalBody>
                 <label>Titulo:</label>
                 <Input type="text" name="Title" value={newContent.Title} onChange={handleChange} />

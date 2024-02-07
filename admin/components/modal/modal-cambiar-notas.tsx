@@ -57,7 +57,7 @@ const CambiarNotasModal = ({ alumno }: ModalNotasProps) => {
           <ModalContent>
             {(onClose) => (
               <>
-                <ModalHeader>
+                <ModalHeader className="cursor-move">
                   Cambiar Notas de {alumno.Nombre} {alumno.Apellido}
                 </ModalHeader>
                 <ModalBody>

@@ -54,7 +54,7 @@ const ModalCurso = ({ curso }: Props) => {
           <ModalContent>
             {(onClose) => (
               <>
-                <ModalHeader className="flex flex-col gap-1">Resumen</ModalHeader>
+                <ModalHeader className="flex flex-col gap-1 cursor-move">Resumen</ModalHeader>
 
                 <ModalBody>
                   <LoadingError isLoading={loading} error={error} />
