@@ -47,7 +47,7 @@ function Contenido() {
 
   return (
     <div className="animate-fade min-h-[90vh] w-full md:p-20 p-4 ">
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
+      <div className="2xl:grid grid-cols-1 md:grid-cols-12 gap-4">
         <div className="col-span-8 p-4 text-3xl uppercase font-bold tracking-widest">
           {cursoTitle}
         </div>
