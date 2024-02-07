@@ -57,11 +57,12 @@ useEffect(() => {
         })
         );
         
-        setUsers(usersWithGradesAndPayments);
+      setUsers(usersWithGradesAndPayments);
+            setLoading(false);
     } catch (error: any) {
       setError(error);
-    } finally {
       setLoading(false);
+      toast.error("error al cargar usuarios")
     }
   };
 
