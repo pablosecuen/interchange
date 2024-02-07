@@ -11,9 +11,8 @@ export const columns = [
 ];
 
 export const columnsCursos = [
-   {name: 'CURSO', uid: 'Grado_Categoria'},
-   {name: 'AÑO', uid: 'Grado_Nombre'},
-   {name: 'ACTIONS', uid: 'actions'},
+   { name: 'CURSO', uid: 'Grado_Categoria' },
+   { name: 'ACTIONS', uid: 'actions' },
 ];
 
 export const columnsExams = [

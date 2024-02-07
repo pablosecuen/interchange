@@ -1,37 +1,27 @@
-import { User, Tooltip } from "@nextui-org/react";
 import React from "react";
-
+import { Curso } from "../(...)/cursos";
 import ModalCurso from "../modal/modal-cursos";
 
+type CursoKey = "Grado_Categoria" | "Grado_Nombre" |  "actions";
+
 interface Props {
-  curso: any;
-  columnKey: string | React.Key;
+  curso: Curso;
+  columnKey: CursoKey;
 }
 
 export const RenderCell = ({ curso, columnKey }: Props) => {
-  // @ts-ignore
-
-  const cellValue = curso[columnKey];
-  switch (columnKey) {
-    case "Nombre":
-      return (
-        <User
-          avatarProps={{
-            src: "https://i.pravatar.cc/150?u=a04258114e29026702d",
-          }}
-          name={cellValue}
-        >
-          {curso.Email}
-        </User>
-      );
-
-    case "actions":
-      return (
-        <div className="flex items-center gap-4 ">
-          <ModalCurso curso={curso} />
-        </div>
-      );
-    default:
-      return cellValue;
+  if (columnKey === "Grado_Categoria" || columnKey === "Grado_Nombre") {
+    return `${curso.Grado_Categoria} - ${curso.Grado_Nombre}`
+  }
+   else if (columnKey === "actions") {
+    return (
+      <div className="flex items-center gap-4 ">
+        <ModalCurso curso={curso} />
+      </div>
+    );
+  } else {
+    // Renderizar otros campos según sea necesario
+    const cellValue = curso[columnKey];
+    return cellValue;
   }
 };

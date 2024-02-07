@@ -31,8 +31,19 @@ export const Cursos = () => {
   });
 
   const sortedCursos = filteredCursos.slice().sort((a, b) => {
-    return a.Grado_Categoria.localeCompare(b.Grado_Categoria);
+    // Ordenar alfabéticamente por el nombre del grado
+    const gradoComparison = a.Grado_Categoria.localeCompare(b.Grado_Categoria);
+    if (gradoComparison !== 0) {
+      return gradoComparison;
+    }
+
+    // Si el nombre del grado es el mismo, extraer y comparar los números de grado
+    const gradoNumberA = parseInt(a.Grado_Nombre);
+    const gradoNumberB = parseInt(b.Grado_Nombre);
+    return gradoNumberA - gradoNumberB;
   });
+
+ 
 
   const exportToExcel = () => {
     const worksheet = XLSX.utils.json_to_sheet(filteredCursos);
