@@ -19,11 +19,8 @@ const useFetchUsuariosByCursos = (isOpen: boolean, curso: Curso | null): FetchUs
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<Error | null>(null);
 
-//a
-
   useEffect(() => {
     const fetchUsuarios = async () => {
-
       try {
         if (!isOpen || !curso) return;
 
@@ -36,29 +33,29 @@ const useFetchUsuariosByCursos = (isOpen: boolean, curso: Curso | null): FetchUs
         }
 
         const data = await response.json();
-        const usersWithGradesAndPayments = await Promise.all(
-          data.map(async (user: User) => {
-            if (user.Grado_ID !== null) {
-              const gradoResponse = await fetch(`${baseUrl}/api/grados?ID=${user.Grado_ID}`);
-              if (!gradoResponse.ok) {
-                throw new Error("Error al cargar el grado del usuario");
-              }
-
-              const gradoData = await gradoResponse.json();
-              const pagoUsuario = gradoData[0].Pagos.find((pago: any) => pago.Usuario_ID === user.ID);
-
-              return {
-                ...user,
-                Grado: gradoData,
-                Pagos: pagoUsuario ? [pagoUsuario] : [],
-              };
+        const usersWithGradesAndPaymentsPromises = data.map(async (user: User) => {
+          if (user.Grado_ID !== null) {
+            const gradoResponse = await fetch(`${baseUrl}/api/grados?ID=${user.Grado_ID}`);
+            if (!gradoResponse.ok) {
+              throw new Error("Error al cargar el grado del usuario");
             }
-            return user;
-          })
-        );
+
+            const gradoData = await gradoResponse.json();
+            const pagoUsuario = gradoData[0].Pagos.find((pago: any) => pago.Usuario_ID === user.ID);
+
+            return {
+              ...user,
+              Grado: gradoData,
+              Pagos: pagoUsuario ? [pagoUsuario] : [],
+            };
+          }
+          return user;
+        });
+
+        const usersWithGradesAndPayments = await Promise.all(usersWithGradesAndPaymentsPromises);
         setUsuarios(usersWithGradesAndPayments);
       } catch (error:any) {
-        toast("No existen usuarios asociados los cursos")
+        toast("No existen usuarios asociados los cursos");
         setError(error);
       } finally {
         setLoading(false);
