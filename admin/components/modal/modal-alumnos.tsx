@@ -30,6 +30,7 @@ export default function ModalAlumnos({ alumno }: ModalAlumnos) {
     alumno,
     cursos
   );
+  console.log(alumno.Email);
   const { enviarAcuerdoInstitucional, loading } = useEnviarAcuerdoInstitucional();
 
   //importante aunque enviarEmailCurso no esta siendo llamado, funciona con los argumentos que se le pasan al custom hook
@@ -122,9 +123,11 @@ export default function ModalAlumnos({ alumno }: ModalAlumnos) {
   const handleEnviarAcuerdo = () => {
     if (alumno && alumno.EmailAdulto) {
       enviarAcuerdoInstitucional(alumno.EmailAdulto);
-    } else {
+    } else if (!alumno.EmailAdulto) {
+      enviarAcuerdoInstitucional(alumno.Email);
       // Manejar el caso en el que no haya un correo electrónico del adulto responsable definido en el alumno
-      console.error("Correo del adulto responsable no encontrado");
+    } else {
+      console.error("Correo del alumno o adulto responsable no encontrado");
     }
   };
 
