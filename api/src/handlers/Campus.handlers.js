@@ -5,6 +5,7 @@ const {
   createCampus,
   updateCampus,
   getAllCampusByGradoID,
+  deleteCampus,
 } = require("../controllers/Campus.controller");
 
 const getAllCampusHandler = async (req, res) => {
