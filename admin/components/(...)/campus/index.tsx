@@ -8,6 +8,7 @@ import * as XLSX from "xlsx";
 import { TableWrapperContent } from "../../table/tableContent";
 import useFetchContent from "../../hooks/useFetchContent";
 import AddContent from "../../modal/modal-add-content";
+import { Toaster } from "sonner";
 
 export const Campus = () => {
   const { contentList, loading, error } = useFetchContent();
@@ -41,6 +42,7 @@ export const Campus = () => {
 
   return (
     <div className="my-14 max-w-[95rem] mx-auto w-full flex flex-col gap-4">
+      <Toaster richColors position="top-center" expand={true} closeButton={true} />
       <ul className="flex">
         <li className="flex gap-2">
           <HouseIcon />
