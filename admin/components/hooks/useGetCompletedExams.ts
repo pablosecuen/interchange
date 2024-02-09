@@ -38,24 +38,45 @@ function useGetCompletedExams() {
         }
 
         const data = await response.json();
-       const examPromises = data.examenes.map(async (completedExam: any) => {
-        const [examenResponse, userDataResponse] = await Promise.all([
-          fetch(`${baseUrl}/api/examen?examenID=${completedExam.examenID}`),
-          fetch(`${baseUrl}/api/users?userID=${completedExam.userID}`),
-        ]);
+const examPromises = data.examenes.map(async (completedExam: any) => {
+  const [examenResponse, userDataResponse] = await Promise.all([
+    fetch(`${baseUrl}/api/examen?examenID=${completedExam.examenID}`),
+    fetch(`${baseUrl}/api/users?userID=${completedExam.userID}`),
+  ]);
 
-        const [examenData, userData] = await Promise.all([
-          examenResponse.json(),
-          userDataResponse.json(),
-        ]);
+  const [examenData, userData] = await Promise.all([
+    examenResponse.json(),
+    userDataResponse.json(),
+  ]);
 
-        return {
-          ...completedExam,
-          examenTitle: examenData.examenes[0].titulo,
-          userName: userData[0]?.Nombre + " " + userData[0]?.Apellido,
-          userEmail: userData[0]?.Email,
-        };
-      });
+  // Obtener el título del examen
+  const examenTitle = examenData.examenes[0].titulo;
+
+  // Buscar el usuario correspondiente al ID de usuario asociado al examen completado
+  const user = userData.find((user: any) => user.ID === completedExam.userID);
+
+  // Verificar si se encontró el usuario
+  if (user) {
+    // Obtener el nombre y el apellido del usuario
+    const { Nombre, Apellido, Email } = user;
+
+    // Combinar el nombre y el apellido para obtener el nombre completo del usuario
+    const userName = `${Nombre} ${Apellido}`;
+
+    // Asignar el título del examen, el nombre completo del usuario y el correo electrónico al objeto completado del examen
+    return {
+      ...completedExam,
+      examenTitle,
+      userName,
+      userEmail: Email,
+    };
+  } else {
+    // Si no se encuentra el usuario, devolver el objeto completado del examen sin modificar
+    return completedExam;
+  }
+});
+
+
 
       const completedExamsWithDetails = await Promise.all(examPromises);
       setCompletedExams(completedExamsWithDetails);

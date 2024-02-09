@@ -23,7 +23,8 @@ export const columnsExams = [
 
 export const columnsExamscomletados = [
    {name: 'TITULO', uid: "examenTitle"},
-   {name: 'USUARIO', uid: "userEmail"},
+   { name: 'USUARIO', uid: "userName" },
+     {name: 'MAIL', uid: "userEmail"},
    {name: 'NOTA', uid: "nota"},
    {name: 'ACTIONS', uid: 'actions'},
 ];

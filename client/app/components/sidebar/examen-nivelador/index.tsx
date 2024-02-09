@@ -1,6 +1,6 @@
 /* eslint-disable */
 import useGetNivelationExam from "@/app/hooks/useNivelationExams";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ExamenPage from "./components/examen-page";
 import { Toaster } from "sonner";
 
@@ -8,9 +8,24 @@ function ExamenNivelador() {
   const { loggedInUser, examsAssociated } = useGetNivelationExam();
   const [isSuccessful, setIsSuccessful] = useState(false);
   const [selectedExamId, setSelectedExamId] = useState(null);
+  const [examCompleted, setExamCompleted] = useState(false);
+
+  useEffect(() => {
+    // Verificar si el examen ya ha sido completado
+    const hasCompletedExam = localStorage.getItem("completedExam");
+
+    if (hasCompletedExam) {
+      setExamCompleted(true);
+    }
+  }, []);
 
   const handleExamClick = (examId: any) => {
     setSelectedExamId(examId);
+  };
+
+  const handleExamCompletion = () => {
+    setExamCompleted(true);
+    localStorage.setItem("completedExam", "true");
   };
 
   const renderExamTable = () => {
@@ -45,7 +60,19 @@ function ExamenNivelador() {
     );
   };
 
-  return <>{selectedExamId ? <ExamenPage examId={selectedExamId} /> : renderExamTable()}</>;
+  return (
+    <>
+      {selectedExamId ? (
+        <ExamenPage
+          examId={selectedExamId}
+          onExamCompletion={handleExamCompletion}
+          examCompleted={examCompleted}
+        />
+      ) : (
+        renderExamTable()
+      )}
+    </>
+  );
 }
 
 export default ExamenNivelador;

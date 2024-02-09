@@ -17,6 +17,8 @@ import { TableWrapperExamsCompleted } from "../../table/tableNiveladorCompletado
 const Nivelador = () => {
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
   const { loadingResult, errorResult, completedExams } = useGetCompletedExams();
+
+
   const {
     isOpen: isOpenResult,
     onOpen: onOpenResult,
@@ -34,16 +36,11 @@ const Nivelador = () => {
   const filteredExams = completedExams.filter((completedExam) => {
     const { userID, respuestas, nota } = completedExam;
     const searchLowerCase = examenesFilter.toLowerCase();
-
-    // Convertir el campo respuestas a una cadena de texto o al formato deseado
     const respuestasString = JSON.stringify(respuestas);
-
-    // Verificar si nota está definido antes de usarlo
     const match =
       userID.toLowerCase().includes(searchLowerCase) ||
       (nota && nota.toString().toLowerCase().includes(searchLowerCase)) ||
       respuestasString.toLowerCase().includes(searchLowerCase);
-
     return match;
   });
 

@@ -9,12 +9,14 @@ import Link from "next/link";
 import LoadingError from "@/app/components/loadingerror";
 import { Toaster } from "sonner";
 
-function ExamenPage({ examId }: any) {
+function ExamenPage({ examId, onExamCompletion, examCompleted }: any) {
   const { loggedInUser, examsAssociated } = useGetNivelationExam();
   const [selectedAnswers, setSelectedAnswers] = useState<{ [key: string]: string }>({});
   const [showModal, setShowModal] = useState(false);
   const [isSuccessful, setIsSuccessful] = useState(false);
   const { saveExamResults, loading } = useSaveExamsResults();
+
+  console.log(loggedInUser);
 
   const handleAnswerSelection = (e: React.ChangeEvent<HTMLInputElement>, questionIndex: number) => {
     const { value } = e.target;
@@ -31,6 +33,9 @@ function ExamenPage({ examId }: any) {
       setTimeout(async () => {
         await saveExamResults(loggedInUser, examsAssociated, selectedAnswers);
         setIsSuccessful(true);
+        if (!examCompleted) {
+          onExamCompletion();
+        }
       }, 4000);
     } catch (error) {
       console.error("Error al enviar el examen:", error);
@@ -98,7 +103,7 @@ function ExamenPage({ examId }: any) {
           </p>
           <Logo size="xl" />
           {isSuccessful ? (
-            <Link href="/campus?section=home">
+            <Link href="/campus">
               <button className="yellow-btn">Ir a la página principal</button>
             </Link>
           ) : (

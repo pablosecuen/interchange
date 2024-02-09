@@ -20,7 +20,6 @@ import useFetchUsers from "../../hooks/useFetchUsers";
 import LoadingError from "../../loadingerror";
 import { User } from "../../../types/user";
 import { baseUrl } from "../../hooks/baseurl";
-import { EyeIcon } from "../../icons/table/eye-icon";
 
 interface Props {
   examen: Exam;
@@ -30,7 +29,8 @@ const ModalEnvioExamen: React.FC<Props> = ({ examen }) => {
   const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
   const { users, isLoading, error } = useFetchUsers();
   const [selectedUser, setSelectedUser] = useState<User | undefined>(undefined);
-  
+
+  console.log(selectedUser);
 
   const handleSendExam = async (selectedUser: any) => {
     try {
