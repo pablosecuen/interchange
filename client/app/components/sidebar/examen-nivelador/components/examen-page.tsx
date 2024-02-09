@@ -16,7 +16,7 @@ function ExamenPage({ examId, onExamCompletion, examCompleted }: any) {
   const [isSuccessful, setIsSuccessful] = useState(false);
   const { saveExamResults, loading } = useSaveExamsResults();
 
-  console.log(loggedInUser);
+
 
   const handleAnswerSelection = (e: React.ChangeEvent<HTMLInputElement>, questionIndex: number) => {
     const { value } = e.target;

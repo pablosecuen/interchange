@@ -1,12 +1,8 @@
 const { ExamenCompletado } = require("../../db");
-
+const { Usuario, Examen } = require("../../db");
 const guardarExamenCompletado = async (req, res) => {
-  const { examenID, userID, username, userlastname, examTitle, preguntas } = req.body;
-  console.log(req.body);
+  const { examenID, userID, preguntas } = req.body;
   try {
-    // Aquí obtienes la información necesaria desde el cuerpo de la solicitud (req.body)
-
-    // Generar un objeto que contenga solo las respuestas del usuario para el examen
     const respuestas = preguntas.map((pregunta) => ({
       enunciado: pregunta.enunciado,
       respuestaUsuario: pregunta.respuestaUsuario,
@@ -27,6 +23,10 @@ const guardarExamenCompletado = async (req, res) => {
       respuestas,
       nota: porcentajeCorrecto,
     });
+
+    const usuario = await Usuario.findByPk(userID);
+    const examen = await Examen.findByPk(examenID);
+    await usuario.removeExamen(examen);
 
     res
       .status(201)
