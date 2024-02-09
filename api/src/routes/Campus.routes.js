@@ -9,5 +9,6 @@ router.get("/", campusHandlers.getAllCampusHandler);
 router.get("/:gradoId", campusHandlers.getAllCampusByGradoIDHandler);
 router.post("/", campusHandlers.createCampusHandler);
 router.patch("/:campusId", campusHandlers.updateCampusHandler);
+router.delete("/:campusId", campusHandlers.deleteCampusHandler);
 
 module.exports = router;

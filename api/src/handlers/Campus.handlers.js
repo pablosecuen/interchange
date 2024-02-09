@@ -23,9 +23,14 @@ const updateCampusHandler = async (req, res) => {
   return await updateCampus(req, res);
 };
 
+const deleteCampusHandler = async (req, res) => {
+  return await deleteCampus(req, res);
+};
+
 module.exports = {
   getAllCampusHandler,
   createCampusHandler,
   updateCampusHandler,
   getAllCampusByGradoIDHandler,
+  deleteCampusHandler,
 };

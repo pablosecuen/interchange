@@ -6,16 +6,26 @@ import { EyeIcon } from "../icons/table/eye-icon";
 import Link from "next/link";
 import EditContentModal from "../modal/modal-edit-content";
 import ModalDetailsContent from "../modal/moda-content-detail";
+import useDeleteCampus from "../hooks/useDeleteCampus";
 
 interface Props {
   content: any;
   columnKey: string | React.Key;
   onOpen?: () => void;
+  deleteCampus: (id: string) => void;
 }
 
 // En el componente RenderCell
 
-export const RenderCell = ({ content, columnKey }: Props) => {
+export const RenderCell = ({ content, columnKey, deleteCampus }: Props) => {
+  const handleDelete = async (id: string) => {
+    try {
+      await deleteCampus(id);
+    } catch (error) {
+      console.error("Error al eliminar el campus:", error);
+    }
+  };
+
   const getCourseInfo = () => {
     if (columnKey === "Grado_Categoria") {
       return content?.Grado_Categoria || "Sin información";
@@ -113,7 +123,7 @@ export const RenderCell = ({ content, columnKey }: Props) => {
           </div>
           <div>
             <Tooltip content="Delete Content" color="danger">
-              <button onClick={() => console.log("Delete user", content.ID)}>
+              <button onClick={() => handleDelete(content.ID)}>
                 <DeleteIcon size={20} fill="#FF0080" />
               </button>
             </Tooltip>
