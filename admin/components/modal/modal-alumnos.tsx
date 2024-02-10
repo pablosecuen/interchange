@@ -39,7 +39,22 @@ export default function ModalAlumnos({ alumno }: ModalAlumnos) {
 
   const [anotaciones, setAnotaciones] = React.useState("");
 
-  const propiedadesMostrar = ["Nombre", "Apellido", "Email", "Tipo"];
+  const propiedadesMostrar = [
+    "Nombre",
+    "Apellido",
+    "Email",
+    "Tipo",
+    "Dni",
+    "frida016",
+    "NombreAdulto",
+    "ApellidoAdulto",
+    "EmailAdulto",
+    "TelefonoAdulto",
+    "NombreAdulto2",
+    "ApellidoAdulto2",
+    "EmailAdulto2",
+    "TelefonoAdulto2",
+  ];
 
   useEffect(() => {
     if (isOpen && alumno && alumno.Anotaciones) {
@@ -50,6 +65,8 @@ export default function ModalAlumnos({ alumno }: ModalAlumnos) {
   const handleGuardarAnotaciones = () => {
     guardarAnotaciones(alumno.ID, anotaciones);
   };
+
+  console.log(alumno);
 
   const renderSelect = () => {
     return (
@@ -155,11 +172,11 @@ export default function ModalAlumnos({ alumno }: ModalAlumnos) {
           <ModalContent>
             {(onClose) => (
               <>
-                <ModalHeader className="flex flex-col gap-1">
+                <ModalHeader className="flex flex-col gap-1 cursor-move">
                   Resumen {alumno.Nombre} {alumno.Apellido}
                 </ModalHeader>
                 <ModalBody>
-                  <div className="grid grid-cols-2 gap-2">
+                  <div className="grid grid-cols-2 gap-2 max-h-40 p-2 border rounded-xl overflow-y-scroll">
                     {propiedadesMostrar.map((propiedad, index) => (
                       <li className="flex flex-col gap-2 mb-4" key={index}>
                         <strong>{propiedad}: </strong>
