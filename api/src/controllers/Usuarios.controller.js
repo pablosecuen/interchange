@@ -184,7 +184,7 @@ const deleteUsuarioController = async (req, res) => {
       return res.status(404).json({ message: "Usuario no encontrado" });
     }
 
-    usuario.Activo = false;
+    usuario.Activo = !usuario.Activo;
     await usuario.save();
 
     res.status(200).json({ message: "Usuario desactivado correctamente" });
