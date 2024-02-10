@@ -385,7 +385,7 @@ const sendEmailAcuerdoinstitucional = async (EmailAdulto) => {
                               <td style="padding: 40px 20px; text-align: center;">
                                   <img src="https://www.interchange.com.ar/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Finterchange.d7cdaeff.png&w=1080&q=75">
                                   <h1 style="color: #333333; font-size: 24px; margin: 0;">¡Hola ${EmailAdulto} !</h1>
-    <h2>Acuerdo institucional Interchange Instutute</h2>
+    <h2>Acuerdo institucional Interchange Institute</h2>
           <p>Les acercamos este link del formulario de acuerdo de confirmidad institucional para ser firmado digitalmente a la brevedad por el alumno o adulto responsable</p>
           <p>Tener a consideración que la persona que firme el documento debe ser mayor de edad obligatoriamente</p>
           <p>https://docs.google.com/forms/d/e/1FAIpQLSerXkA1OJNZANWGy5uI6Vy8oxG7F6uhvS6-h9PzkdY0RwZy9A/viewform</p>
