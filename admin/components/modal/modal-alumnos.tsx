@@ -30,7 +30,6 @@ export default function ModalAlumnos({ alumno }: ModalAlumnos) {
     alumno,
     cursos
   );
-  console.log(alumno.Email);
   const { enviarAcuerdoInstitucional, loading } = useEnviarAcuerdoInstitucional();
 
   //importante aunque enviarEmailCurso no esta siendo llamado, funciona con los argumentos que se le pasan al custom hook
@@ -45,7 +44,6 @@ export default function ModalAlumnos({ alumno }: ModalAlumnos) {
     "Email",
     "Tipo",
     "Dni",
-    "frida016",
     "NombreAdulto",
     "ApellidoAdulto",
     "EmailAdulto",
@@ -65,8 +63,6 @@ export default function ModalAlumnos({ alumno }: ModalAlumnos) {
   const handleGuardarAnotaciones = () => {
     guardarAnotaciones(alumno.ID, anotaciones);
   };
-
-  console.log(alumno);
 
   const renderSelect = () => {
     return (
@@ -159,6 +155,7 @@ export default function ModalAlumnos({ alumno }: ModalAlumnos) {
           isOpen={isOpen}
           onOpenChange={onOpenChange}
           radius="lg"
+          size="lg"
           classNames={{
             body: "py-6 max-h-[90vh] overflow-y-auto",
             backdrop: "bg-[#292f46]/50 backdrop-opacity-40",
@@ -177,17 +174,27 @@ export default function ModalAlumnos({ alumno }: ModalAlumnos) {
                 </ModalHeader>
                 <ModalBody>
                   <div className="grid grid-cols-2 gap-2 max-h-40 p-2 border rounded-xl overflow-y-scroll">
-                    {propiedadesMostrar.map((propiedad, index) => (
-                      <li className="flex flex-col gap-2 mb-4" key={index}>
-                        <strong>{propiedad}: </strong>
-                        {propiedad === "Grado_Nombre" || propiedad === "Grado_Categoria"
-                          ? alumno.Grado.length > 0
-                            ? alumno.Grado[0][propiedad.replace("Grado_", "")]
-                            : "Valor no definido o nulo"
-                          : alumno[propiedad as keyof typeof alumno] || "Valor no definido o nulo"}
-                      </li>
-                    ))}
+                    {propiedadesMostrar.map((propiedad, index) => {
+                      if (
+                        alumno[propiedad] !== null &&
+                        alumno[propiedad] !== undefined &&
+                        alumno[propiedad].length > 0
+                      ) {
+                        return (
+                          <li className="flex flex-col gap-2 mb-4" key={index}>
+                            <strong>{propiedad}: </strong>
+                            {propiedad === "Grado_Nombre" || propiedad === "Grado_Categoria"
+                              ? alumno.Grado.length > 0
+                                ? alumno.Grado[0][propiedad.replace("Grado_", "")]
+                                : "Valor no definido ou nulo"
+                              : alumno[propiedad]}
+                          </li>
+                        );
+                      }
+                      return null;
+                    })}
                   </div>
+
                   <LoadingError isLoading={isLoading} error={error} />
                   <div className="flex flex-col gap-4">
                     <p className="font-bold tracking-wider  underline ">Anotaciones:</p>
