@@ -15,7 +15,7 @@ export const TableWrapper = ({ cursos, isLoading, error }: CursoTableProps) => {
   if (isLoading || error) {
     return <LoadingError isLoading={isLoading} error={error} />;
   }
-  console.log(cursos);
+
 
   return (
     <div className=" w-full flex flex-col gap-4">
