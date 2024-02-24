@@ -99,9 +99,9 @@ const Cursos = () => {
                 {" "}
                 <h3 className="text-red-700 h-1/2">{content.title}</h3>
                 <p className="text-gray-400 text-sm h-1/2">
-                  {content.description.length > 50
+                {/*   {content.description.length > 50
                     ? `${content.description.slice(0, 50)}...`
-                    : content.description}
+                    : content.description} */}
                 </p>
                 {/* Otros elementos a renderizar */}
               </div>
