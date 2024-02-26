@@ -83,11 +83,11 @@ function Footer() {
                 </li>
                 <li>
                   <Link
-                    href="mailto:interchange@gmail.com"
+                    href="mailto:institutointerchange@gmail.com"
                     className="hover:underline flex gap-2 items-center g:text-sm text-xs lg:text-base"
                   >
                     <Image src={mail} alt="" width={20} height={0} />
-                    interchange@gmail.com
+                    institutointerchange@gmail.com
                   </Link>
                 </li>
               </ul>
