@@ -50,6 +50,7 @@ const examPromises = data.examenes.map(async (completedExam: any) => {
   ]);
 
 
+  console.log(examenData);
   
   
   // Obtener el título del examen
