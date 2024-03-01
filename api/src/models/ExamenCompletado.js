@@ -26,7 +26,11 @@ module.exports = (sequelize) => {
         type: DataTypes.FLOAT, // Puntuación obtenida por el usuario
         allowNull: true,
       },
-      // Otros campos relacionados con el examen completado, si los necesitas
+      examTitle: {
+        type: DataTypes.STRING, // Título del examen
+        allowNull: true,
+      },
+
     },
     {
       tableName: "ExamenCompletado",

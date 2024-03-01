@@ -1,6 +1,7 @@
 const { ExamenCompletado } = require("../../db");
 const { Usuario, Examen } = require("../../db");
 const guardarExamenCompletado = async (req, res) => {
+  console.log(req.body);
   const { examenID, userID, preguntas } = req.body;
   try {
     const respuestas = preguntas.map((pregunta) => ({
@@ -16,16 +17,17 @@ const guardarExamenCompletado = async (req, res) => {
 
     const porcentajeCorrecto = (respuestasCorrectas / totalPreguntas) * 100;
 
-    // Guardar el examen completado en la base de datos
+    const usuario = await Usuario.findByPk(userID);
+    const examen = await Examen.findByPk(examenID);
+
     const examenGuardado = await ExamenCompletado.create({
       examenID,
       userID,
       respuestas,
       nota: porcentajeCorrecto,
+      examTitle: examen.examTitle,
     });
 
-    const usuario = await Usuario.findByPk(userID);
-    const examen = await Examen.findByPk(examenID);
     await usuario.removeExamen(examen);
 
     res
