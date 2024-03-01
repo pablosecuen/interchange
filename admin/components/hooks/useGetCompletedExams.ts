@@ -49,9 +49,16 @@ const examPromises = data.examenes.map(async (completedExam: any) => {
     userDataResponse.json(),
   ]);
 
-  console.log("examenDAta",examenData);
+/*   console.log("examenDAta", examenData); */
+  
+     // Buscar el examen correspondiente al examenID
+  const examen = examenData.examenes.find((examen: any) => examen.examenID === completedExam.examenID);
+  
+   if (!examen) {
+          throw new Error(`No se encontró el examen con ID ${completedExam.examenID}`);
+        }
   // Obtener el título del examen
-  const examenTitle = examenData.examenes[0].titulo;
+  const examenTitle = examen.titulo;
 
   // Buscar el usuario correspondiente al ID de usuario asociado al examen completado
   const user = userData.find((user: any) => user.ID === completedExam.userID);
@@ -61,10 +68,10 @@ const examPromises = data.examenes.map(async (completedExam: any) => {
     // Obtener el nombre y el apellido del usuario
     const { Nombre, Apellido, Email } = user;
 
-    // Combinar el nombre y el apellido para obtener el nombre completo del usuario
+    // Combinarmos el nombre y el apellido para obtener el nombre completo del usuario
     const userName = `${Nombre} ${Apellido}`;
 
-    // Asignar el título del examen, el nombre completo del usuario y el correo electrónico al objeto completado del examen
+    // Asignamos el título del examen, el nombre completo del usuario y el correo electrónico al objeto completado del examen
     return {
       ...completedExam,
       examenTitle,
