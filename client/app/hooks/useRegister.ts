@@ -9,11 +9,11 @@ interface FormValues {
   emailAdult: string | number | readonly string[] | undefined;
   lastNameAdult: string | number | readonly string[] | undefined;
   firstNameAdult2: string | number | readonly string[] | undefined;
-    phoneAdult2: string | number | readonly string[] | undefined;
+  phoneAdult2: string | number | readonly string[] | undefined;
   emailAdult2: string | number | readonly string[] | undefined;
   lastNameAdult2: string | number | readonly string[] | undefined;
   firstNameAdult: string | number | readonly string[] | undefined;
-  dni:string ;
+  Dni:string ;
   email: string;
   password: string;
   confirmPassword: string;
@@ -33,7 +33,7 @@ const useRegister = ({ updateUser,onClose }: UseRegisterProps) => {
     confirmPassword: "",
     firstName: "",
     lastName: "",
-    dni:"",
+    Dni:"",
     phone: "",
     firstNameAdult: "",
     lastNameAdult: "",
@@ -46,12 +46,14 @@ const useRegister = ({ updateUser,onClose }: UseRegisterProps) => {
   });
   const router = useRouter();
 
+
   const handleSubmit = async (rememberMe: boolean, e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
     if (formData.password !== formData.confirmPassword) {
       toast.error("Las contraseñas no coinciden");
       return;
     }
+
 
     try {
       const response = await fetch(`${baseUrl}/api/users`, {
@@ -67,7 +69,7 @@ const useRegister = ({ updateUser,onClose }: UseRegisterProps) => {
           ApellidoAdulto: formData.lastNameAdult,
           ApellidoAdulto2: formData.lastNameAdult2,
           Email: formData.email,
-          Dni: formData.dni,
+          Dni: formData.Dni,
           EmailAdulto: formData.emailAdult,
           EmailAdulto2: formData.emailAdult2,
           Telefono: formData.phone,
@@ -78,7 +80,6 @@ const useRegister = ({ updateUser,onClose }: UseRegisterProps) => {
           Activo: true,
         }),
       });
-
       if (response.ok) {
         if (rememberMe) {
           localStorage.setItem("user", JSON.stringify(formData));
@@ -101,6 +102,9 @@ const useRegister = ({ updateUser,onClose }: UseRegisterProps) => {
         onClose()
         router.push("/campus?section=home");
       } else {
+   
+  
+        
         toast.error("Error al validar credenciales");
       }
     } catch (error) {

@@ -9,16 +9,16 @@ import { Toaster } from "sonner";
 import useGetCompletedExams, { ExamResults } from "../../hooks/useGetCompletedExams";
 import { HouseIcon } from "../../icons/breadcrumb/house-icon";
 import { UsersIcon } from "../../icons/breadcrumb/users-icon";
-import { SettingsIcon } from "../../icons/sidebar/settings-icon";
 import * as XLSX from "xlsx";
 import { ExportIcon } from "../../icons/accounts/export-icon";
-import LoadingError from "../../loadingerror";
 import { TableWrapperExams } from "../../table/tableNivelador";
 import { TableWrapperExamsCompleted } from "../../table/tableNiveladorCompletado";
 
 const Nivelador = () => {
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
   const { loadingResult, errorResult, completedExams } = useGetCompletedExams();
+
+
   const {
     isOpen: isOpenResult,
     onOpen: onOpenResult,
@@ -36,16 +36,11 @@ const Nivelador = () => {
   const filteredExams = completedExams.filter((completedExam) => {
     const { userID, respuestas, nota } = completedExam;
     const searchLowerCase = examenesFilter.toLowerCase();
-
-    // Convertir el campo respuestas a una cadena de texto o al formato deseado
     const respuestasString = JSON.stringify(respuestas);
-
-    // Verificar si nota está definido antes de usarlo
     const match =
       userID.toLowerCase().includes(searchLowerCase) ||
       (nota && nota.toString().toLowerCase().includes(searchLowerCase)) ||
       respuestasString.toLowerCase().includes(searchLowerCase);
-
     return match;
   });
 
@@ -125,7 +120,7 @@ const Nivelador = () => {
               input: "w-full",
               mainWrapper: "w-full",
             }}
-            placeholder="Search examen"
+            placeholder="Buscar examen"
             value={examenesFilter}
             onChange={(e: any) => setExamenesFilter(e.target.value)}
           />
@@ -148,7 +143,6 @@ const Nivelador = () => {
             completedExams={completedExams}
           />
         </div>
-        <ExamenModal examen={examenSeleccionado} openchange={onOpenChange} isopen={isOpen} />
         <ExamenModalResultados
           examen={examenSeleccionadoResult}
           openchange={onOpenChangeResult}

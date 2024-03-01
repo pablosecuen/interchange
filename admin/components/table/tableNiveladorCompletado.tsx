@@ -9,7 +9,6 @@ import {
 } from "@nextui-org/react";
 import { Toaster } from "sonner";
 import { columnsExamscomletados } from "./data";
-import useGetCompletedExams from "../hooks/useGetCompletedExams";
 import { RenderCellExamCompleted } from "./render-cell-examCompleted";
 import LoadingError from "../loadingerror";
 
@@ -33,6 +32,7 @@ export const TableWrapperExamsCompleted = ({
   return (
     <div className=" w-full flex flex-col gap-4">
       <Toaster richColors position="top-center" expand={true} closeButton={true} />
+
       <Table aria-label="Tabla de cursos">
         <TableHeader columns={columnsExamscomletados}>
           {(column: any) => (
@@ -51,7 +51,7 @@ export const TableWrapperExamsCompleted = ({
               {(columnKey: any) => (
                 <TableCell>
                   {RenderCellExamCompleted({
-                    curso: item,
+                    examenCompletado: item,
                     columnKey: columnKey,
                     mostrarDetalleExamenResultado: mostrarDetalleExamenResultado,
                   })}

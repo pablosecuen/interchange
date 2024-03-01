@@ -12,27 +12,30 @@ import {
   TableColumn,
   TableCell,
   TableRow,
+  useDisclosure,
 } from "@nextui-org/react";
 import { Exam } from "./crear-examen";
 import { Toaster, toast } from "sonner";
-import useFetchUsers, { User } from "../../hooks/useFetchUsers";
+import useFetchUsers from "../../hooks/useFetchUsers";
 import LoadingError from "../../loadingerror";
+import { User } from "../../../types/user";
+import { baseUrl } from "../../hooks/baseurl";
 
 interface Props {
-  isOpen: boolean;
-  onOpenChange: (value: boolean) => void;
-
   examen: Exam;
 }
 
-const ModalEnvioExamen: React.FC<Props> = ({ isOpen, onOpenChange, examen }) => {
+const ModalEnvioExamen: React.FC<Props> = ({ examen }) => {
+  const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
   const { users, isLoading, error } = useFetchUsers();
   const [selectedUser, setSelectedUser] = useState<User | undefined>(undefined);
+
+ 
 
   const handleSendExam = async (selectedUser: any) => {
     try {
       // Lógica para enviar el examen al usuario seleccionado
-      const response = await fetch(`http://localhost:3001/api/examen/enviar-examen`, {
+      const response = await fetch(`${baseUrl}/api/examen/enviar-examen`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -65,6 +68,38 @@ const ModalEnvioExamen: React.FC<Props> = ({ isOpen, onOpenChange, examen }) => 
 
   if (isLoading || error) {
     return (
+      <>
+        <Button color="warning" variant="light" onPress={onOpen}>
+          enviar examen a usuario
+        </Button>
+        <Modal
+          backdrop="opaque"
+          isOpen={isOpen}
+          onOpenChange={onOpenChange}
+          size="2xl"
+          radius="lg"
+          classNames={{
+            body: "py-6 max-h-[80vh] overflow-y-auto",
+            backdrop: "bg-[#292f46]/50 backdrop-opacity-40",
+            base: "border-[#292f46] bg-[#19172c]  text-[#a8b0d3] ",
+            header: "border-b-[1px] border-[#292f46] ",
+            footer: "border-t-[1px] border-[#292f46] ",
+            closeButton: "hover:bg-white/5 active:bg-white/10 ",
+          }}
+        >
+          <ModalContent>
+            {(onClose) => <LoadingError isLoading={isLoading} error={error} />}
+          </ModalContent>
+        </Modal>
+      </>
+    );
+  }
+
+  return (
+    <>
+      <Button color="warning" variant="light" onPress={onOpenChange}>
+        enviar examen a usuario
+      </Button>
       <Modal
         backdrop="opaque"
         isOpen={isOpen}
@@ -74,79 +109,57 @@ const ModalEnvioExamen: React.FC<Props> = ({ isOpen, onOpenChange, examen }) => 
         classNames={{
           body: "py-6 max-h-[80vh] overflow-y-auto",
           backdrop: "bg-[#292f46]/50 backdrop-opacity-40",
-          base: "border-[#292f46] bg-[#19172c] dark:bg-[#19172c] text-[#a8b0d3] ",
+          base: "border-[#292f46] bg-[#19172c]  text-[#a8b0d3] ",
           header: "border-b-[1px] border-[#292f46] ",
           footer: "border-t-[1px] border-[#292f46] ",
           closeButton: "hover:bg-white/5 active:bg-white/10 ",
         }}
       >
+        <Toaster richColors position="top-center" expand={true} closeButton={true} />
         <ModalContent>
-          <LoadingError isLoading={isLoading} error={error} />
+          {(onClose) => (
+            <>
+              <ModalHeader>Seleccionar Usuario</ModalHeader>
+              <ModalBody>
+                <Table aria-label="Tabla de usuarios">
+                  <TableHeader>
+                    <TableColumn>Nombre</TableColumn>
+                    <TableColumn>Email</TableColumn>
+                    <TableColumn>Acción</TableColumn>
+                  </TableHeader>
+                  <TableBody>
+                    {users.map((user, index) => (
+                      <TableRow key={index}>
+                        <TableCell>
+                          {user.Nombre} {user.Apellido}
+                        </TableCell>
+                        <TableCell>{user.Email}</TableCell>
+                        <TableCell>
+                          <Button
+                            size="sm"
+                            color="success"
+                            variant="light"
+                            onClick={() => handleUserSelection(user)}
+                            className="max-h-[80vh] overflow-y-auto"
+                          >
+                            Enviar
+                          </Button>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </ModalBody>
+              <ModalFooter>
+                <Button color="danger" variant="light" onClick={onClose}>
+                  Cerrar
+                </Button>
+              </ModalFooter>
+            </>
+          )}
         </ModalContent>
       </Modal>
-    );
-  }
-
-  return (
-    <Modal
-      backdrop="opaque"
-      isOpen={isOpen}
-      onOpenChange={onOpenChange}
-      size="2xl"
-      radius="lg"
-      classNames={{
-        body: "py-6 max-h-[80vh] overflow-y-auto",
-        backdrop: "bg-[#292f46]/50 backdrop-opacity-40",
-        base: "border-[#292f46] bg-[#19172c] dark:bg-[#19172c] text-[#a8b0d3] ",
-        header: "border-b-[1px] border-[#292f46] ",
-        footer: "border-t-[1px] border-[#292f46] ",
-        closeButton: "hover:bg-white/5 active:bg-white/10 ",
-      }}
-    >
-      <Toaster richColors position="top-center" expand={true} closeButton={true} />
-      <ModalContent>
-        {(onClose) => (
-          <>
-            <ModalHeader>Seleccionar Usuario</ModalHeader>
-            <ModalBody>
-              <Table aria-label="Tabla de usuarios">
-                <TableHeader>
-                  <TableColumn>Nombre</TableColumn>
-                  <TableColumn>Email</TableColumn>
-                  <TableColumn>Acción</TableColumn>
-                </TableHeader>
-                <TableBody>
-                  {users.map((user, index) => (
-                    <TableRow key={index}>
-                      <TableCell>
-                        {user.Nombre} {user.Apellido}
-                      </TableCell>
-                      <TableCell>{user.Email}</TableCell>
-                      <TableCell>
-                        <Button
-                          size="sm"
-                          color="success"
-                          variant="light"
-                          onClick={() => handleUserSelection(user)}
-                          className="max-h-[80vh] overflow-y-auto"
-                        >
-                          Enviar
-                        </Button>
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </ModalBody>
-            <ModalFooter>
-              <Button color="danger" variant="light" onClick={onClose}>
-                Cerrar
-              </Button>
-            </ModalFooter>
-          </>
-        )}
-      </ModalContent>
-    </Modal>
+    </>
   );
 };
 

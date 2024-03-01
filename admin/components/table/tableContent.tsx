@@ -13,6 +13,8 @@ import { RenderCell } from "./render-cell-content";
 import { Toaster } from "sonner";
 import LoadingError from "../loadingerror";
 import { Content } from "../hooks/useFetchContent";
+import Draggable from "react-draggable";
+import useDeleteCampus from "../hooks/useDeleteCampus";
 
 interface tableContentProps {
   content: Content[];
@@ -23,14 +25,16 @@ interface tableContentProps {
 export const TableWrapperContent = ({ content, isLoading, error }: tableContentProps) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [selectedContent, setSelectedContent] = useState<Content | null>(null);
+  const { loading, deleteCampus } = useDeleteCampus();
 
-  if (isLoading || error) {
-    return <LoadingError isLoading={isLoading} error={error} />;
+  if (isLoading || error || loading) {
+    return <LoadingError isLoading={isLoading || loading} error={error} />;
   }
 
   return (
     <div className=" w-full flex flex-col gap-4">
       <Toaster richColors position="top-center" expand={true} closeButton={true} />
+
       <Table aria-label="Tabla de usuarios">
         <TableHeader columns={columnsContent}>
           {(column: any) => (
@@ -52,6 +56,7 @@ export const TableWrapperContent = ({ content, isLoading, error }: tableContentP
                     content: item,
                     columnKey: columnKey,
                     onOpen: onOpen,
+                    deleteCampus: deleteCampus,
                   })}
                 </TableCell>
               )}

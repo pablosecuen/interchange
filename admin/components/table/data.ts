@@ -11,9 +11,8 @@ export const columns = [
 ];
 
 export const columnsCursos = [
-   {name: 'CURSO', uid: 'Grado_Categoria'},
-   {name: 'AÑO', uid: 'Grado_Nombre'},
-   {name: 'ACTIONS', uid: 'actions'},
+   { name: 'CURSO', uid: 'Grado_Categoria' },
+   { name: 'ACTIONS', uid: 'actions' },
 ];
 
 export const columnsExams = [
@@ -24,7 +23,8 @@ export const columnsExams = [
 
 export const columnsExamscomletados = [
    {name: 'TITULO', uid: "examenTitle"},
-   {name: 'USUARIO', uid: "userEmail"},
+   { name: 'USUARIO', uid: "userName" },
+     {name: 'MAIL', uid: "userEmail"},
    {name: 'NOTA', uid: "nota"},
    {name: 'ACTIONS', uid: 'actions'},
 ];

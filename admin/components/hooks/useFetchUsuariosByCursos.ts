@@ -19,10 +19,11 @@ const useFetchUsuariosByCursos = (isOpen: boolean, curso: Curso | null): FetchUs
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<Error | null>(null);
 
-
+//a
 
   useEffect(() => {
     const fetchUsuarios = async () => {
+
       try {
         if (!isOpen || !curso) return;
 
@@ -56,12 +57,12 @@ const useFetchUsuariosByCursos = (isOpen: boolean, curso: Curso | null): FetchUs
           })
         );
         setUsuarios(usersWithGradesAndPayments);
+             setLoading(false);
       } catch (error:any) {
+        toast("No existen usuarios asociados los cursos")
+             setLoading(false);
         setError(error);
-      } finally {
-        toast.error("Error al cargar usuarios")
-        setLoading(false);
-      }
+      } 
     };
 
     fetchUsuarios();

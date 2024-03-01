@@ -9,12 +9,14 @@ import Link from "next/link";
 import LoadingError from "@/app/components/loadingerror";
 import { Toaster } from "sonner";
 
-function ExamenPage({ examId }: any) {
+function ExamenPage({ examId, onExamCompletion, examCompleted }: any) {
   const { loggedInUser, examsAssociated } = useGetNivelationExam();
   const [selectedAnswers, setSelectedAnswers] = useState<{ [key: string]: string }>({});
   const [showModal, setShowModal] = useState(false);
   const [isSuccessful, setIsSuccessful] = useState(false);
   const { saveExamResults, loading } = useSaveExamsResults();
+
+
 
   const handleAnswerSelection = (e: React.ChangeEvent<HTMLInputElement>, questionIndex: number) => {
     const { value } = e.target;
@@ -31,6 +33,9 @@ function ExamenPage({ examId }: any) {
       setTimeout(async () => {
         await saveExamResults(loggedInUser, examsAssociated, selectedAnswers);
         setIsSuccessful(true);
+        if (!examCompleted) {
+          onExamCompletion();
+        }
       }, 4000);
     } catch (error) {
       console.error("Error al enviar el examen:", error);
@@ -54,7 +59,7 @@ function ExamenPage({ examId }: any) {
         <div className="w-full  grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1  flex-wrap gap-10  justify-center">
           {exam.preguntas.map((question, qIndex) => (
             <div key={qIndex} className="border-4 rounded-3xl p-4 relative">
-              <span className="absolute right-3 top-2 border rounded-full px-2">{qIndex}</span>
+              <span className="absolute right-3 top-2 border rounded-full px-2">{qIndex + 1}</span>
               <p className="font-bold text-center mt-6">{question.enunciado}</p>
               <ul className="grid grid-cols-2 gap-2 mt-4">
                 {question.respuestas.map((answer, aIndex) => (
@@ -98,7 +103,7 @@ function ExamenPage({ examId }: any) {
           </p>
           <Logo size="xl" />
           {isSuccessful ? (
-            <Link href="/campus?section=home">
+            <Link href="/campus">
               <button className="yellow-btn">Ir a la página principal</button>
             </Link>
           ) : (

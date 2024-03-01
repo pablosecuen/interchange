@@ -104,56 +104,27 @@ module.exports = (sequelize) => {
     },
     Activo: {
       type: DataTypes.BOOLEAN,
-      allowNull: false,
       defaultValue: true,
     },
     Grado_ID: {
       type: DataTypes.UUID,
       allowNull: true,
     },
-    // Nuevos campos para adultos responsables
     NombreAdulto: {
       type: DataTypes.STRING,
       allowNull: true,
-      validate: {
-        len: {
-          args: [2, 50],
-          msg: "El nombre del adulto debe tener entre 2 y 50 caracteres",
-        },
-      },
     },
     ApellidoAdulto: {
       type: DataTypes.STRING,
       allowNull: true,
-      validate: {
-        len: {
-          args: [2, 50],
-          msg: "El apellido del adulto debe tener entre 2 y 50 caracteres",
-        },
-      },
     },
     TelefonoAdulto: {
       type: DataTypes.STRING,
       allowNull: true,
-      validate: {
-        len: {
-          args: [7, 15],
-          msg: "El teléfono del adulto debe tener entre 7 y 15 caracteres",
-        },
-      },
     },
     EmailAdulto: {
       type: DataTypes.STRING,
       allowNull: true,
-      validate: {
-        isEmail: {
-          msg: "El email del adulto debe ser válido",
-        },
-        len: {
-          args: [5, 255],
-          msg: "El email del adulto debe tener entre 5 y 255 caracteres",
-        },
-      },
     },
     // Nuevos campos para adultos responsables 2
     NombreAdulto2: {
@@ -169,35 +140,14 @@ module.exports = (sequelize) => {
     ApellidoAdulto2: {
       type: DataTypes.STRING,
       allowNull: true,
-      validate: {
-        len: {
-          args: [2, 50],
-          msg: "El apellido del adulto debe tener entre 2 y 50 caracteres",
-        },
-      },
     },
     TelefonoAdulto2: {
       type: DataTypes.STRING,
       allowNull: true,
-      validate: {
-        len: {
-          args: [7, 15],
-          msg: "El teléfono del adulto debe tener entre 7 y 15 caracteres",
-        },
-      },
     },
     EmailAdulto2: {
       type: DataTypes.STRING,
       allowNull: true,
-      validate: {
-        isEmail: {
-          msg: "El email del adulto debe ser válido",
-        },
-        len: {
-          args: [5, 255],
-          msg: "El email del adulto debe tener entre 5 y 255 caracteres",
-        },
-      },
     },
   });
 

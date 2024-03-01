@@ -4,9 +4,10 @@ import "./perspective.css";
 import Image from "next/image";
 import arrow from "@/public/assets/svg/arrow.svg";
 import scramble from "@/public/assets/svg/scramble.svg";
-import child from "@/public/assets/svg/child.svg";
+import child from "@/public/assets/svg/child.webp";
 import ilustracion from "@/public/assets/svg/ilustracion.svg";
 import ilustracion2 from "@/public/assets/svg/Ilustracion2.svg";
+import Link from "next/link";
 
 const Landing = () => {
   return (
@@ -33,11 +34,11 @@ const Landing = () => {
             del mañana
           </h1>
           <h2 className=" text-gray-400 pb-5 text-md  md:w-2/3 p-6 md:p-0 md:mx-0">
-            Muchas escuelas utilizan el término "excelencia" para resaltar las ambiciones de la
-            escuela de ayudar a todos a lograr lo mejor de sí mismos. a todos a dar lo mejor de sí
-            mismos.
+            Anticiparse es el poder más importante. Los perdedores, reaccionan. Los líderes se
+            anticipan
           </h2>
           <div className="flex gap-6 pb-4 mx-auto md:mx-0">
+            <Link href="/nosotros"></Link>
             <button type="button" className="yellow-btn lg:mt-4">
               Leer mas
             </button>
@@ -53,6 +54,8 @@ const Landing = () => {
       </div>
       <div className="w-full md:w-1/2 md:order-2 h-full md:h-auto relative ">
         <Image
+          priority={true}
+          loading="eager"
           src={child}
           alt="child image"
           width={550}

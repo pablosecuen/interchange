@@ -5,19 +5,19 @@ import { EditIcon } from "../icons/table/edit-icon";
 import { EyeIcon } from "../icons/table/eye-icon";
 
 interface Props {
-  curso: any;
+  examenCompletado: any;
   columnKey: string | React.Key;
   mostrarDetalleExamenResultado: (arg0: any) => void;
 }
 
 export const RenderCellExamCompleted = ({
-  curso,
+  examenCompletado,
   columnKey,
   mostrarDetalleExamenResultado,
 }: Props) => {
   // @ts-ignore
 
-  const cellValue = curso[columnKey];
+  const cellValue = examenCompletado[columnKey];
   switch (columnKey) {
     case "Nombre":
       return (
@@ -27,7 +27,7 @@ export const RenderCellExamCompleted = ({
           }}
           name={cellValue}
         >
-          {curso.Email}
+          {examenCompletado.Email}
         </User>
       );
 
@@ -36,21 +36,21 @@ export const RenderCellExamCompleted = ({
         <div className="flex items-center gap-4 ">
           <div>
             <Tooltip content="Details">
-              <button onClick={() => mostrarDetalleExamenResultado(curso)}>
+              <button onClick={() => mostrarDetalleExamenResultado(examenCompletado)}>
                 <EyeIcon size={20} fill="#979797" />
               </button>
             </Tooltip>
           </div>
           <div>
-            <Tooltip content="Editar curso" color="secondary">
-              <button onClick={() => console.log(curso)}>
+            <Tooltip content="Editar examenCompletado" color="secondary">
+              <button onClick={() => console.log(examenCompletado)}>
                 <EditIcon size={20} fill="#979797" />
               </button>
             </Tooltip>
           </div>
           <div>
-            <Tooltip content="Borrar curso" color="danger">
-              <button onClick={() => console.log("Delete curso", curso.ID)}>
+            <Tooltip content="Borrar examenCompletado" color="danger">
+              <button onClick={() => console.log("Delete examenCompletado", examenCompletado.ID)}>
                 <DeleteIcon size={20} fill="#FF0080" />
               </button>
             </Tooltip>

@@ -43,7 +43,7 @@ function Footer() {
                   </Link>
                 </li>
                 <li className="mb-4 g:text-sm text-xs lg:text-base">
-                  <Link href="/grados" className="hover:underline">
+                  <Link href="/cursos" className="hover:underline">
                     Cursos
                   </Link>
                 </li>
@@ -79,15 +79,15 @@ function Footer() {
               <ul className="text-gray-500 dark:text-gray-400 font-medium">
                 <li className="mb-4 g:text-sm text-xs lg:text-base hover:underline flex gap-2 items-center cursor-pointer">
                   <Image src={telefono} alt="" width={20} height={0} />
-                  <Link href="tel:0341153119792">0341 15-311-9792</Link>
+                  <Link href="https://wa.me/54341153119792">0341 15-311-9792</Link>
                 </li>
                 <li>
                   <Link
-                    href="mailto:interchange@gmail.com"
+                    href="mailto:institutointerchange@gmail.com"
                     className="hover:underline flex gap-2 items-center g:text-sm text-xs lg:text-base"
                   >
                     <Image src={mail} alt="" width={20} height={0} />
-                    interchange@gmail.com
+                    institutointerchange@gmail.com
                   </Link>
                 </li>
               </ul>
@@ -97,8 +97,8 @@ function Footer() {
         <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
         <div className="sm:flex sm:items-center sm:justify-between">
           <span className=" text-xs lg:text-base text-gray-500 sm:text-center dark:text-gray-400">
-            © 2023{" "}
-            <Link href="https://pablo-amico.vercel.app/" className="hover:underline">
+            © {new Date().getFullYear()}
+            <Link href="https://pablosecuen.github.io/portfolio/" className="hover:underline">
               Pablo Amico
             </Link>
             . Todos los derechos reservados.
@@ -125,7 +125,7 @@ function Footer() {
               <span className="sr-only">GitHub account</span>
             </Link>
             <Link
-              href="https://pablo-amico.vercel.app/"
+              href="https://pablosecuen.github.io/portfolio/"
               className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
               title="Portfolio"
             >
@@ -145,7 +145,7 @@ function Footer() {
               <span className="sr-only">Portfolio</span>
             </Link>
             <Link
-              href="https://pablo-amico.vercel.app/"
+              href="https://www.linkedin.com/in/pablo-j-amico/"
               className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
               title="Linkedin"
             >

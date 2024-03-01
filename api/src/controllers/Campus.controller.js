@@ -32,7 +32,7 @@ const getAllCampusByGradoID = async (req, res) => {
 const createCampus = async (req, res) => {
   try {
     const { Title, Description, Link, Tipo, Grado_ID, Grado_Nombre, Grado_Categoria } = req.body;
-    console.log(req.body);
+
     const newCampus = await Campus.create({
       Title,
       Description,
@@ -54,8 +54,7 @@ const updateCampus = async (req, res) => {
   try {
     const { campusId } = req.params;
     const { Title, description, Link, Tipo, Grado_ID } = req.body;
-    console.log(req.body);
-    console.log(req.params);
+
     const updatedCampus = await Campus.update(
       {
         Title,
@@ -77,9 +76,29 @@ const updateCampus = async (req, res) => {
   }
 };
 
+const deleteCampus = async (req, res) => {
+  try {
+    const { campusId } = req.params;
+
+    const deletedCampus = await Campus.destroy({
+      where: { ID: campusId },
+    });
+
+    if (deletedCampus === 0) {
+      return res.status(404).json({ error: "El campus no fue encontrado" });
+    }
+
+    return res.status(204).send(); // No hay contenido para enviar
+  } catch (error) {
+    console.error("Error al eliminar el campus:", error);
+    return res.status(500).json({ error: "Error interno del servidor" });
+  }
+};
+
 module.exports = {
   getAllCampus,
   createCampus,
   updateCampus,
   getAllCampusByGradoID,
+  deleteCampus,
 };

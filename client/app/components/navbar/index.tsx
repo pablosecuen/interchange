@@ -6,7 +6,7 @@ import "./navbar.css";
 import Login from "../login/Login";
 import Image from "next/image";
 import Logo from "../logo";
-import usericon from "@/public/assets/svg/usericon.png";
+import usericon from "../../../public/assets/svg/usericon.png";
 import { Toaster } from "sonner";
 import LoadingError from "../loadingerror";
 import Loading from "../loadingerror/loading";
@@ -64,9 +64,6 @@ const Navbar = () => {
   useEffect(() => {
     const handleResize = () => {
       const screenWidth = window.innerWidth;
-      if (screenWidth < 768) {
-        setIsCollapsed(false);
-      }
     };
     handleResize();
     window.addEventListener("resize", handleResize);
@@ -157,8 +154,8 @@ const Navbar = () => {
                             Campus Virtual
                           </button>
                         </Link>
-                        <button className="yellow-btn !w-36" onClick={handleLogout}>
-                          Logout
+                        <button className="yellow-btn !w-36 text-center" onClick={handleLogout}>
+                          <span className="text-center w-full"> Logout</span>
                         </button>
                       </li>
                     </ul>
@@ -170,7 +167,7 @@ const Navbar = () => {
             // Si no hay usuario, mostramos el botón de inicio de sesión
             <button
               type="button"
-              className="yellow-btn font-bold md:mr-6 lg:mr-10"
+              className="yellow-btn font-bold md:mr-6 lg:mr-10 scale-75 md:scale-100"
               onClick={() => setShowLoginModal(true)}
             >
               Ingreso
@@ -209,7 +206,7 @@ const Navbar = () => {
           onClick={toggleNavbar}
         ></div>
         <div
-          className={`items-start   md:order-1 bg- md:bg-transparent rounded-lg h-[92vh] pb-8  flex-col justify-between  md:hidden z-50 ${
+          className={`items-start w-1/2  md:order-1 bg- md:bg-transparent rounded-lg h-[92vh] pb-8  flex-col justify-between  md:hidden z-50 ${
             isCollapsed
               ? "opacity-100  transform absolute top-14 right-0  translate-x-[100%] md:translate-x-0 !h-0  transition duration-500"
               : "right-0 opacity-100 absolute top-14 bg-white "
@@ -223,76 +220,88 @@ const Navbar = () => {
               {loadingUser ? (
                 <Loading isLoading={loadingUser} />
               ) : user ? (
-                <div className="md:hidden gap-4 flex justify-center items-center ">
-                  <Image
-                    src={usericon}
-                    alt="user icon"
-                    width={50}
-                    height={50}
-                    className="border-4 rounded-full"
-                  />
-                  <div className="text-sm font-medium flex flex-col cursor-pointer">
-                    <span className="font-medium">Bienvenido</span>
-                    <span className="font-bold">
-                      {user.Nombre && user.Apellido
-                        ? `${user.Nombre} ${user.Apellido}`
-                        : `${user.firstName} ${user.lastName}`}
-                    </span>
-                    <span className="font-bold">
-                      {user.Grado_Nombre} {user.Grado_Categoria}
-                    </span>
-                    {/* Dropdown */}
-                    {showMenu && (
-                      <div
-                        className="absolute right-2 top-16 w-96 z-50 hidden md:block mt-1 bg-white border-b border-l border-r border-gray-200 py-2 rounded-md shadow-lg"
-                        onMouseLeave={handleMouseLeave}
-                      >
-                        <ul className="flex flex-col gap-4 p-2 items-center">
-                          <li className="hover:bg-slate-100 w-full">
-                            <span className="text-xl text-gray-700 font-bold font-2xl flex items-center justify-center gap-4">
-                              <Image
-                                src={usericon}
-                                alt="user icon"
-                                width={50}
-                                height={50}
-                                className="border-4 rounded-full"
-                              />
-                              {user.Email ? `${user.Email}` : `${user.email}`}
-                            </span>
-                          </li>
-                          {user && user?.Grado_Nombre && user?.Grado_Categoria && (
-                            <li>
-                              <span className="font-bold">
-                                {user.Grado_Nombre} {user.Grado_Categoria}
+                <div className="flex flex-col">
+                  <div className="md:hidden gap-4 flex justify-center items-center ">
+                    <Image
+                      src={usericon}
+                      alt="user icon"
+                      width={50}
+                      height={50}
+                      className="border-4 rounded-full"
+                    />
+
+                    <div className="text-sm font-medium flex flex-col cursor-pointer">
+                      <span className="font-medium">Bienvenido</span>
+                      <span className="font-bold">
+                        {user.Nombre && user.Apellido
+                          ? `${user.Nombre} ${user.Apellido}`
+                          : `${user.firstName} ${user.lastName}`}
+                      </span>
+                      <span className="font-bold">
+                        {user.Grado_Nombre} {user.Grado_Categoria}
+                      </span>
+                      {/* Dropdown */}
+                      {showMenu && (
+                        <div
+                          className="absolute right-2 top-16 w-96 z-50 hidden md:block mt-1 bg-white border-b border-l border-r border-gray-200 py-2 rounded-md shadow-lg"
+                          onMouseLeave={handleMouseLeave}
+                        >
+                          <ul className="flex flex-col gap-4 p-2 items-center">
+                            <li className="hover:bg-slate-100 w-full">
+                              <span className="text-xl text-gray-700 font-bold font-2xl flex items-center justify-center gap-4">
+                                <Image
+                                  src={usericon}
+                                  alt="user icon"
+                                  width={50}
+                                  height={50}
+                                  className="border-4 rounded-full"
+                                />
+                                {user.Email ? `${user.Email}` : `${user.email}`}
                               </span>
                             </li>
-                          )}
-                          <li className="flex justify-evenly w-full items-center">
-                            <Link href="/campus?section=home">
-                              <button className="yellow-btn" type="button">
-                                Campus Virtual
+                            {user && user?.Grado_Nombre && user?.Grado_Categoria && (
+                              <li>
+                                <span className="font-bold">
+                                  {user.Grado_Nombre} {user.Grado_Categoria}
+                                </span>
+                              </li>
+                            )}
+                            <li className="flex justify-evenly w-full items-center">
+                              <Link href="/campus?section=home">
+                                <button className="yellow-btn" type="button">
+                                  Campus Virtual
+                                </button>
+                              </Link>
+                              <button className="yellow-btn" onClick={handleLogout}>
+                                Logout
                               </button>
-                            </Link>
-                            <button className="yellow-btn !w-36" onClick={handleLogout}>
-                              Logout
-                            </button>
-                          </li>
-                        </ul>
-                      </div>
-                    )}
+                            </li>
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  <div className="flex justify-evenly w-full items-center flex-col gap-2 pt-4">
+                    <Link href="/campus?section=home">
+                      <button className="yellow-btn" type="button">
+                        Campus
+                      </button>
+                    </Link>
+              
                   </div>
                 </div>
               ) : (
                 // Si no hay usuario, mostramos el botón de inicio de sesión
                 <button
                   type="button"
-                  className="yellow-btn font-bold md:mr-6 lg:mr-10"
+                  className="yellow-btn font-bold md:mr-6 lg:mr-10 !hidden"
                   onClick={() => setShowLoginModal(true)}
                 >
                   Ingreso
                 </button>
               )}
             </li>
+
             <li>
               <Link
                 href="/"

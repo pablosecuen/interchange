@@ -16,9 +16,11 @@ export const TableWrapper = ({ cursos, isLoading, error }: CursoTableProps) => {
     return <LoadingError isLoading={isLoading} error={error} />;
   }
 
+
   return (
     <div className=" w-full flex flex-col gap-4">
       <Toaster richColors position="top-center" expand={true} closeButton={true} />
+
       <Table aria-label="Tabla de cursos">
         <TableHeader columns={columnsCursos}>
           {(column: any) => (

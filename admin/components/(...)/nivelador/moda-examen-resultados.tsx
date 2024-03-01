@@ -5,11 +5,10 @@ import {
   ModalBody,
   ModalHeader,
   ModalFooter,
-  useDisclosure,
 } from "@nextui-org/react";
 import { ExamResults } from "../../hooks/useGetCompletedExams";
-
-
+import * as XLSX from "xlsx";
+import Draggable from "react-draggable";
 
 interface ExamenModalProps {
   isopen: boolean;
@@ -19,10 +18,44 @@ interface ExamenModalProps {
 
 const ExamenModalResultados: React.FC<ExamenModalProps> = ({ isopen, examen, openchange }) => {
   if (!examen) return null;
-  console.log(examen);
+
+  const exportToExcel = () => {
+    // Crear un array para contener todas las filas desenrolladas
+    const flattenedData: any[] = [];
+
+    // Iterar sobre los exámenes completados
+
+    const { userID, respuestas, nota, examenTitle, userName, userEmail, titulo } = examen;
+
+    // Iterar sobre las respuestas de cada examen
+    respuestas.forEach((respuesta) => {
+      const { enunciado, respuestaUsuario, respuestaCorrecta } = respuesta;
+
+      // Crear una nueva fila para cada respuesta
+      const rowData = {
+        titulo,
+        userID,
+        enunciado,
+        respuestaUsuario,
+        respuestaCorrecta,
+        nota,
+        examenTitle,
+        userName,
+        userEmail,
+      };
+
+      // Agregar la fila a la lista
+      flattenedData.push(rowData);
+    });
+    // Crear la hoja de cálculo y exportar a Excel
+    const worksheet = XLSX.utils.json_to_sheet(flattenedData);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Examenes");
+    XLSX.writeFile(workbook, "examenes.xlsx");
+  };
 
   return (
-
+    <Draggable>
       <Modal
         backdrop="opaque"
         isOpen={isopen}
@@ -32,7 +65,7 @@ const ExamenModalResultados: React.FC<ExamenModalProps> = ({ isopen, examen, ope
         classNames={{
           body: "py-6 max-h-[70vh] overflow-y-auto",
           backdrop: "bg-[#292f46]/50 backdrop-opacity-40",
-          base: "border-[#292f46] bg-[#19172c] dark:bg-[#19172c] text-[#a8b0d3] ",
+          base: "border-[#292f46] bg-[#19172c]  text-[#a8b0d3] ",
           header: "border-b-[1px] border-[#292f46] ",
           footer: "border-t-[1px] border-[#292f46] ",
           closeButton: "hover:bg-white/5 active:bg-white/10 ",
@@ -75,7 +108,7 @@ const ExamenModalResultados: React.FC<ExamenModalProps> = ({ isopen, examen, ope
                 </div>
               </ModalBody>
               <ModalFooter>
-                <Button color="success" variant="light" onPress={onClose}>
+                <Button color="success" variant="light" onPress={exportToExcel}>
                   exportar a excel
                 </Button>
                 <Button color="danger" variant="light" onPress={onClose}>
@@ -86,7 +119,7 @@ const ExamenModalResultados: React.FC<ExamenModalProps> = ({ isopen, examen, ope
           )}
         </ModalContent>
       </Modal>
-
+    </Draggable>
   );
 };
 

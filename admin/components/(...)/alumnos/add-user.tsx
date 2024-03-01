@@ -9,16 +9,17 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 import React from "react";
+import Draggable from "react-draggable";
 
 export const AddUser = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (
     <div>
-      <>
-        <Button onPress={onOpen} color="primary">
-          Agregar Alumno
-        </Button>
+      <Button onPress={onOpen} color="primary">
+        Agregar Alumno
+      </Button>
+      <Draggable>
         <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="top-center">
           <ModalContent>
             {(onClose) => (
@@ -30,7 +31,12 @@ export const AddUser = () => {
                   <Input label="Last Name" variant="bordered" />
                   <Input label="Phone Number" variant="bordered" />
 
-                  <Input label="Password" type="password" variant="bordered" />
+                  <Input
+                    label="Password"
+                    type="password"
+                    variant="bordered"
+                    autoComplete="current-password"
+                  />
                   <Input label="Confirm Password" type="password" variant="bordered" />
                 </ModalBody>
                 <ModalFooter>
@@ -45,7 +51,7 @@ export const AddUser = () => {
             )}
           </ModalContent>
         </Modal>
-      </>
+      </Draggable>
     </div>
   );
 };

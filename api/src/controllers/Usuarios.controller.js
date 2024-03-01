@@ -4,9 +4,11 @@ const { sendEmailNotificationRegister, sendEmailNotificationCurso } = require(".
 const { createNotas } = require("./Notas.controller"); */
 
 const createUserController = async (req, res) => {
+  const userData = req.body;
+
   try {
-    const userData = req.body;
     const newUser = await Usuario.create(userData);
+
     const newUserEmail = newUser.Email;
     sendEmailNotificationRegister(newUserEmail);
     res.status(201).json(newUser);
@@ -65,65 +67,75 @@ const patchUsuarioController = async (req, res) => {
       user.Grado_Categoria = Grado_Categoria;
 
       await user.save();
-
+      const currentYear = new Date().getFullYear();
       const nuevoPago = await Pago.create({
         EstadoCuota: "Pendiente",
         EstadoInscripcionGrado: "Pendiente",
         EstadoInscripcionExamenes: "Pendiente",
         VencimientoCuota: [
           {
-            mes: "febrero",
-            vencimiento: "2023-03-10",
+            mes: "inscripcion",
+            vencimiento: `${currentYear}-03-10`,
             pagado: false,
           },
           {
             mes: "marzo",
-            vencimiento: "2023-04-10",
+            vencimiento: `${currentYear}-04-10`,
             pagado: false,
           },
           {
             mes: "abril",
-            vencimiento: "2023-05-10",
+            vencimiento: `${currentYear}-05-10`,
             pagado: false,
           },
           {
             mes: "mayo",
-            vencimiento: "2023-06-10",
+            vencimiento: `${currentYear}-06-10`,
             pagado: false,
           },
           {
             mes: "junio",
-            vencimiento: "2023-07-10",
+            vencimiento: `${currentYear}-07-10`,
             pagado: false,
           },
           {
             mes: "julio",
-            vencimiento: "2023-08-10",
+            vencimiento: `${currentYear}-08-10`,
             pagado: false,
           },
           {
             mes: "agosto",
-            vencimiento: "2023-09-10",
+            vencimiento: `${currentYear}-09-10`,
             pagado: false,
           },
           {
             mes: "septiembre",
-            vencimiento: "2023-10-10",
+            vencimiento: `${currentYear}-10-10`,
             pagado: false,
           },
           {
             mes: "octubre",
-            vencimiento: "2023-11-10",
+            vencimiento: `${currentYear}-11-10`,
             pagado: false,
           },
           {
             mes: "noviembre",
-            vencimiento: "2023-12-10",
+            vencimiento: `${currentYear}-12-10`,
+            pagado: false,
+          },
+          {
+            mes: "examenes",
+            vencimiento: `${currentYear}-12-10`,
+            pagado: false,
+          },
+          {
+            mes: `inscripcion ${currentYear + 1}`,
+            vencimiento: `${currentYear + 1}-02-10`,
             pagado: false,
           },
         ],
-        VencimientoExamen: new Date("2023-12-10T00:00:00.000Z"),
-        VencimientoInscripcionGrado: new Date("2023-12-08T00:00:00.000Z"),
+        VencimientoExamen: `${currentYear}-12-10`,
+        VencimientoInscripcionGrado: `${currentYear}-03-10`,
         Grado_ID: user.Grado_ID,
         Usuario_ID: id,
       });
@@ -163,16 +175,16 @@ const patchTiposController = async (req, res) => {
 };
 
 const deleteUsuarioController = async (req, res) => {
-  try {
-    const { id } = req.params;
+  const { id } = req.params;
 
+  try {
     const usuario = await Usuario.findByPk(id);
 
     if (!usuario) {
       return res.status(404).json({ message: "Usuario no encontrado" });
     }
 
-    usuario.Activo = false;
+    usuario.Activo = !usuario.Activo;
     await usuario.save();
 
     res.status(200).json({ message: "Usuario desactivado correctamente" });

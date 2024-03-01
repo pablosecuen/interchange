@@ -16,6 +16,7 @@ import LoadingError from "../loadingerror";
 import useAnotaciones from "../hooks/useAnotaciones";
 import useEnviarAcuerdoInstitucional from "../hooks/useEnviarAcuerdoInstitucional";
 import { EditIcon } from "../icons/table/edit-icon";
+import Draggable from "react-draggable";
 
 interface ModalAlumnos {
   alumno: any;
@@ -37,7 +38,21 @@ export default function ModalAlumnos({ alumno }: ModalAlumnos) {
 
   const [anotaciones, setAnotaciones] = React.useState("");
 
-  const propiedadesMostrar = ["Nombre", "Apellido", "Email", "Tipo"];
+  const propiedadesMostrar = [
+    "Nombre",
+    "Apellido",
+    "Email",
+    "Tipo",
+    "Dni",
+    "NombreAdulto",
+    "ApellidoAdulto",
+    "EmailAdulto",
+    "TelefonoAdulto",
+    "NombreAdulto2",
+    "ApellidoAdulto2",
+    "EmailAdulto2",
+    "TelefonoAdulto2",
+  ];
 
   useEffect(() => {
     if (isOpen && alumno && alumno.Anotaciones) {
@@ -51,7 +66,7 @@ export default function ModalAlumnos({ alumno }: ModalAlumnos) {
 
   const renderSelect = () => {
     return (
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 hover:cursor-move">
         <div className="flex flex-col">
           {alumno && alumno.Grado && alumno.Grado.length > 0 ? (
             <>
@@ -121,9 +136,11 @@ export default function ModalAlumnos({ alumno }: ModalAlumnos) {
   const handleEnviarAcuerdo = () => {
     if (alumno && alumno.EmailAdulto) {
       enviarAcuerdoInstitucional(alumno.EmailAdulto);
-    } else {
+    } else if (!alumno.EmailAdulto) {
+      enviarAcuerdoInstitucional(alumno.Email);
       // Manejar el caso en el que no haya un correo electrónico del adulto responsable definido en el alumno
-      console.error("Correo del adulto responsable no encontrado");
+    } else {
+      console.error("Correo del alumno o adulto responsable no encontrado");
     }
   };
 
@@ -132,68 +149,81 @@ export default function ModalAlumnos({ alumno }: ModalAlumnos) {
       <button color="primary" title="Detalles alumno" onClick={onOpen}>
         <EditIcon size={20} fill="#979797" />
       </button>
-      <Modal
-        backdrop="opaque"
-        isOpen={isOpen}
-        onOpenChange={onOpenChange}
-        radius="lg"
-        classNames={{
-          body: "py-6 max-h-[90vh] overflow-y-auto",
-          backdrop: "bg-[#292f46]/50 backdrop-opacity-40",
-          base: "border-[#292f46] bg-[#19172c] dark:bg-[#19172c] text-[#a8b0d3]",
-          header: "border-b-[1px] border-[#292f46]",
-          footer: "border-t-[1px] border-[#292f46]",
-          closeButton: "hover:bg-white/5 active:bg-white/10",
-        }}
-      >
-        <Toaster richColors position="top-center" expand={true} closeButton={true} />
-        <ModalContent>
-          {(onClose) => (
-            <>
-              <ModalHeader className="flex flex-col gap-1">
-                Resumen {alumno.Nombre} {alumno.Apellido}
-              </ModalHeader>
-              <ModalBody>
-                <div className="grid grid-cols-2 gap-2">
-                  {propiedadesMostrar.map((propiedad, index) => (
-                    <li className="flex flex-col gap-2 mb-4" key={index}>
-                      <strong>{propiedad}: </strong>
-                      {propiedad === "Grado_Nombre" || propiedad === "Grado_Categoria"
-                        ? alumno.Grado.length > 0
-                          ? alumno.Grado[0][propiedad.replace("Grado_", "")]
-                          : "Valor no definido o nulo"
-                        : alumno[propiedad as keyof typeof alumno] || "Valor no definido o nulo"}
-                    </li>
-                  ))}
-                </div>
-                <LoadingError isLoading={isLoading} error={error} />
-                <div className="flex flex-col gap-4">
-                  <p className="font-bold tracking-wider  underline ">Anotaciones:</p>
-                  <textarea
-                    value={anotaciones}
-                    onChange={(e) => setAnotaciones(e.target.value)}
-                    rows={8}
-                    cols={40}
-                    className="p-4 bg-[#19172c] border-2 border-white/40 rounded-2xl"
-                  />
-                  <Button color="primary" variant="light" onPress={handleGuardarAnotaciones}>
-                    Guardar Anotaciones
+      <Draggable>
+        <Modal
+          backdrop="opaque"
+          isOpen={isOpen}
+          onOpenChange={onOpenChange}
+          radius="lg"
+          size="lg"
+          classNames={{
+            body: "py-6 max-h-[90vh] overflow-y-auto",
+            backdrop: "bg-[#292f46]/50 backdrop-opacity-40",
+            base: "border-[#292f46] bg-[#19172c]  text-[#a8b0d3]",
+            header: "border-b-[1px] border-[#292f46]",
+            footer: "border-t-[1px] border-[#292f46]",
+            closeButton: "hover:bg-white/5 active:bg-white/10",
+          }}
+        >
+          <Toaster richColors position="top-center" expand={true} closeButton={true} />
+          <ModalContent>
+            {(onClose) => (
+              <>
+                <ModalHeader className="flex flex-col gap-1 cursor-move">
+                  Resumen {alumno.Nombre} {alumno.Apellido}
+                </ModalHeader>
+                <ModalBody>
+                  <div className="grid grid-cols-2 gap-2 max-h-40 p-2 border rounded-xl overflow-y-scroll">
+                    {propiedadesMostrar.map((propiedad, index) => {
+                      if (
+                        alumno[propiedad] !== null &&
+                        alumno[propiedad] !== undefined &&
+                        alumno[propiedad].length > 0
+                      ) {
+                        return (
+                          <li className="flex flex-col gap-2 mb-4" key={index}>
+                            <strong>{propiedad}: </strong>
+                            {propiedad === "Grado_Nombre" || propiedad === "Grado_Categoria"
+                              ? alumno.Grado.length > 0
+                                ? alumno.Grado[0][propiedad.replace("Grado_", "")]
+                                : "Valor no definido ou nulo"
+                              : alumno[propiedad]}
+                          </li>
+                        );
+                      }
+                      return null;
+                    })}
+                  </div>
+
+                  <LoadingError isLoading={isLoading} error={error} />
+                  <div className="flex flex-col gap-4">
+                    <p className="font-bold tracking-wider  underline ">Anotaciones:</p>
+                    <textarea
+                      value={anotaciones}
+                      onChange={(e) => setAnotaciones(e.target.value)}
+                      rows={8}
+                      cols={40}
+                      className="p-4 bg-[#19172c] border-2 border-white/40 rounded-2xl"
+                    />
+                    <Button color="primary" variant="light" onPress={handleGuardarAnotaciones}>
+                      Guardar Anotaciones
+                    </Button>
+                  </div>
+                  <div>{renderSelect()}</div>
+                </ModalBody>
+                <ModalFooter className="w-full flex justify-between">
+                  <Button color="secondary" variant="light" onPress={handleEnviarAcuerdo}>
+                    Enviar Acuerdo Institucional
                   </Button>
-                </div>
-                <div>{renderSelect()}</div>
-              </ModalBody>
-              <ModalFooter className="w-full flex justify-between">
-                <Button color="secondary" variant="light" onPress={handleEnviarAcuerdo}>
-                  Enviar Acuerdo Institucional
-                </Button>
-                <Button color="danger" variant="light" onPress={onClose}>
-                  Cerrar
-                </Button>
-              </ModalFooter>
-            </>
-          )}
-        </ModalContent>
-      </Modal>
+                  <Button color="danger" variant="light" onPress={onClose}>
+                    Cerrar
+                  </Button>
+                </ModalFooter>
+              </>
+            )}
+          </ModalContent>
+        </Modal>
+      </Draggable>
     </>
   );
 }

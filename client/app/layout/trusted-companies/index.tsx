@@ -2,7 +2,7 @@ import Carousel from "@/app/components/carousel";
 import Image from "next/image";
 import React from "react";
 import sparks from "@/public/assets/svg/spark.svg";
-import girlpic from "@/public/assets/svg/girlpic.svg";
+import girlpic from "@/public/assets/svg/girlpic.webp";
 import Link from "next/link";
 
 const Trusted = () => {
@@ -42,19 +42,16 @@ const Trusted = () => {
               className="absolute md:-right-28 -right-4 md:-top-10 -top-28"
             />
           </h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras leo leo, blandit a
-            sagittis quis, lobortis eget quam. Nullam nec accumsan sapien.{" "}
-          </p>
+          <p>Clases personalizadas &quot;tailor made&quot; a tus medidas y necesidades</p>
           <ul className="grid grid-cols-2 decoration-custom-orange list-disc text-custom-orange pl-4 md:px-4 relative">
-            <li>Clase mundial</li>
-            <li>Fácil aprendizaje</li>
-            <li>Flexible</li>
-            <li>Asequible</li>
+            <li className="text-sm md:text-base">Campus virtual</li>
+            <li className="text-sm md:text-base">Fácil aprendizaje</li>
+            <li className="text-sm md:text-base">Multiples horarios</li>
+            <li className="text-sm md:text-base">Asequible</li>
             <div className="bg-custom-orange w-4 h-4 rounded-full absolute md:top-0 bottom-0 right-0"></div>
           </ul>
           <Link href="/inscripcion">
-            <button className="yellow-btn w-32 mt-4">Empezar</button>
+            <button className="yellow-btn  mt-4 mx-auto ">Empezar</button>
           </Link>
         </div>
       </div>

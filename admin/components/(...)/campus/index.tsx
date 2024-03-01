@@ -8,6 +8,7 @@ import * as XLSX from "xlsx";
 import { TableWrapperContent } from "../../table/tableContent";
 import useFetchContent from "../../hooks/useFetchContent";
 import AddContent from "../../modal/modal-add-content";
+import { Toaster } from "sonner";
 
 export const Campus = () => {
   const { contentList, loading, error } = useFetchContent();
@@ -19,7 +20,7 @@ export const Campus = () => {
 
     const match =
       Title.toLowerCase().includes(searchLowerCase) ||
-      Link.toLowerCase().includes(searchLowerCase) ||
+      Link.some((linkItem: string) => linkItem.toLowerCase().includes(searchLowerCase)) ||
       Description.toLowerCase().includes(searchLowerCase) ||
       Tipo.toLowerCase().includes(searchLowerCase);
     return match;
@@ -32,8 +33,16 @@ export const Campus = () => {
     XLSX.writeFile(workbook, "contenido.xlsx");
   };
 
+  const sortedContent = filteredContent.sort((a, b) => {
+    const dateA: any = new Date(a.createdAt);
+    const dateB: any = new Date(b.createdAt);
+
+    return dateB - dateA;
+  });
+
   return (
     <div className="my-14 max-w-[95rem] mx-auto w-full flex flex-col gap-4">
+      <Toaster richColors position="top-center" expand={true} closeButton={true} />
       <ul className="flex">
         <li className="flex gap-2">
           <HouseIcon />
@@ -74,7 +83,7 @@ export const Campus = () => {
         </div>
       </div>
       <div className="max-w-[95rem] mx-auto w-full">
-        <TableWrapperContent content={filteredContent} isLoading={loading} error={error} />
+        <TableWrapperContent content={sortedContent} isLoading={loading} error={error} />
       </div>
     </div>
   );

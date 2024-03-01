@@ -11,6 +11,8 @@ import * as XLSX from "xlsx";
 
 export const Alumnos = () => {
   const { users, isLoading, error } = useFetchUsers();
+
+
   const [userFilter, setUserFilter] = useState<string>("");
 
   const filteredUsers = users.filter((user) => {

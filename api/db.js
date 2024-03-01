@@ -3,13 +3,10 @@ const { Sequelize } = require("sequelize");
 const dotenv = require("dotenv");
 dotenv.config();
 
-let DATABASE_NAME = process.env.DATABASE_NAME;
-let DATABASE_USERNAME = process.env.DATABASE_USERNAME;
-let DATABASE_PASSWORD = process.env.DATABASE_PASSWORD;
+const DATABASE_URL = process.env.RAILWAY_DATABASE_URL;
 
-if (DATABASE_NAME && DATABASE_USERNAME && DATABASE_PASSWORD) {
-  const sequelize = new Sequelize(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD, {
-    host: "localhost",
+if (DATABASE_URL) {
+  const sequelize = new Sequelize(DATABASE_URL.toString(), {
     dialect: "postgres",
     logging: false,
   });
@@ -65,6 +62,6 @@ if (DATABASE_NAME && DATABASE_USERNAME && DATABASE_PASSWORD) {
   Campus.belongsTo(Grado, { foreignKey: "Grado_ID" });
   Grado.hasMany(Campus, { foreignKey: "Grado_ID" });
 } else {
-  console.error("Las variables de entorno de la base de datos no están completamente definidas.");
+  console.error("error al conectar la db");
   process.exit(1);
 }

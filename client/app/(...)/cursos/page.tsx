@@ -24,6 +24,7 @@ const Cursos = () => {
     setModalOpen(false);
   };
 
+
   useEffect(() => {
     const handleCloseModal = (event: MouseEvent) => {
       if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
@@ -42,7 +43,7 @@ const Cursos = () => {
     };
   }, [modalOpen]);
 
-  const tabs = ["Todos", "Starter", "Beginner", "Prekid", "Kids", "Teens", "F.C.E", "Adults"];
+  const tabs = ["Todos", "Starter", "Beginner", "Prekid", "Kids", "Adols", "F.C.E", "Adults"];
 
   const filteredContent = gradesContent.filter(
     (content) => content.category.toLowerCase() === activeTab.toLowerCase()
@@ -98,9 +99,9 @@ const Cursos = () => {
                 {" "}
                 <h3 className="text-red-700 h-1/2">{content.title}</h3>
                 <p className="text-gray-400 text-sm h-1/2">
-                  {content.description.length > 50
+                {/*   {content.description.length > 50
                     ? `${content.description.slice(0, 50)}...`
-                    : content.description}
+                    : content.description} */}
                 </p>
                 {/* Otros elementos a renderizar */}
               </div>

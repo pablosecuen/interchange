@@ -16,6 +16,7 @@ export interface Curso {
 
 export const Cursos = () => {
   const { cursos, isLoading, error } = useFetchCursos();
+
   const [cursoFilter, setCursoFilter] = useState<string>("");
 
   const filteredCursos = cursos.filter((curso) => {
@@ -29,11 +30,26 @@ export const Cursos = () => {
     return match;
   });
 
+  const sortedCursos = filteredCursos.slice().sort((a, b) => {
+    // Ordenar alfabéticamente por el nombre del grado
+    const gradoComparison = a.Grado_Categoria.localeCompare(b.Grado_Categoria);
+    if (gradoComparison !== 0) {
+      return gradoComparison;
+    }
+
+    // Si el nombre del grado es el mismo, extraer y comparar los números de grado
+    const gradoNumberA = parseInt(a.Grado_Nombre);
+    const gradoNumberB = parseInt(b.Grado_Nombre);
+    return gradoNumberA - gradoNumberB;
+  });
+
+ 
+
   const exportToExcel = () => {
     const worksheet = XLSX.utils.json_to_sheet(filteredCursos);
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, "Grados");
-    XLSX.writeFile(workbook, "grados.xlsx");
+    XLSX.writeFile(workbook, "cursos.xlsx");
   };
 
   return (
@@ -78,7 +94,7 @@ export const Cursos = () => {
         </div>
       </div>
       <div className="max-w-[95rem] mx-auto w-full">
-        <TableWrapper cursos={filteredCursos} isLoading={isLoading} error={error} />
+        <TableWrapper cursos={sortedCursos} isLoading={isLoading} error={error} />
       </div>
     </div>
   );

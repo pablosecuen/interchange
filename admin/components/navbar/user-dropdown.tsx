@@ -28,8 +28,7 @@ export const UserDropdown = () => {
         onAction={(actionKey) => console.log({ actionKey })}
       >
         <DropdownItem key="profile" className="flex flex-col justify-start w-full items-start">
-          <p> Logeado como</p>
-          <p>Administrador</p>
+          <p>Modo oscuro/claro</p>
         </DropdownItem>
         {/*      <DropdownItem key="settings">My Settings</DropdownItem>
         <DropdownItem key="team_settings">Team Settings</DropdownItem>
