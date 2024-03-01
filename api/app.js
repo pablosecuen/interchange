@@ -29,6 +29,7 @@ app.use((req, res, next) => {
     "https://interchange-azure.vercel.app",
     "https://www.interchange.com.ar",
   ];
+  
   const origin = req.headers.origin;
   if (allowedOrigins.includes(origin)) {
     res.setHeader("Access-Control-Allow-Origin", origin);
