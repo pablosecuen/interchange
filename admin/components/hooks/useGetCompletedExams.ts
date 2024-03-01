@@ -49,8 +49,6 @@ const examPromises = data.examenes.map(async (completedExam: any) => {
     userDataResponse.json(),
   ]);
 
-
-  console.log(examenData);
   
   
   // Obtener el título del examen correspondiente al examen completado
