@@ -25,6 +25,9 @@ app.use((req, res, next) => {
     "https://interchange-admin.vercel.app",
     "https://interchange-azure.vercel.app",
     "https://www.interchange.com.ar",
+    "http://localhost:3000",
+    "http://localhost:3002",
+    "http://localhost:3001",
   ];
   const origin = req.headers.origin;
   if (allowedOrigins.includes(origin)) {
