@@ -53,8 +53,8 @@ const examPromises = data.examenes.map(async (completedExam: any) => {
   console.log(examenData);
   
   
-  // Obtener el título del examen
-  const examenTitle = examenData.examenes[0].titulo;
+  // Obtener el título del examen correspondiente al examen completado
+      const examenTitle = examenData.examenes.find((examen: any) => examen.ID === completedExam.examenID)?.titulo || 'Título no encontrado';
 
   // Buscar el usuario correspondiente al ID de usuario asociado al examen completado
   const user = userData.find((user: any) => user.ID === completedExam.userID);
