@@ -49,6 +49,7 @@ const examPromises = data.examenes.map(async (completedExam: any) => {
     userDataResponse.json(),
   ]);
 
+  console.log("examenDAta",examenData);
   // Obtener el título del examen
   const examenTitle = examenData.examenes[0].titulo;
 

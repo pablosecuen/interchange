@@ -16,7 +16,6 @@ export const RenderCellExamCompleted = ({
   mostrarDetalleExamenResultado,
 }: Props) => {
   // @ts-ignore
-  console.log(examenCompletado);
 
   const cellValue = examenCompletado[columnKey];
   switch (columnKey) {

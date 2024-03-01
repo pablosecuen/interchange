@@ -28,8 +28,6 @@ export const TableWrapperExamsCompleted = ({
   if (loadingResult || errorResult) {
     <LoadingError isLoading={loadingResult} error={errorResult} />;
   }
-  
-
 
   return (
     <div className=" w-full flex flex-col gap-4">

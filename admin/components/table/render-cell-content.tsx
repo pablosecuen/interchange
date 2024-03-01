@@ -39,7 +39,7 @@ export const RenderCell = ({ content, columnKey, deleteCampus }: Props) => {
   const cellValue = content[columnKey];
   const columnValue =
     columnKey === "Grado_Categoria" || columnKey === "Grado_Nombre" ? getCourseInfo() : cellValue;
-  console.log(content.Link);
+
 
   switch (columnKey) {
     case "Nombre":
