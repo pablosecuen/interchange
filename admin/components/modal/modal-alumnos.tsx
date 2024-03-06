@@ -173,7 +173,7 @@ export default function ModalAlumnos({ alumno }: ModalAlumnos) {
                   Resumen {alumno.Nombre} {alumno.Apellido}
                 </ModalHeader>
                 <ModalBody>
-                  <div className="grid grid-cols-2 gap-2 max-h-40 p-2 border rounded-xl overflow-y-scroll">
+                  <div className="grid grid-cols-2 gap-2 min-h-40 max-h-40 p-2 border rounded-xl overflow-y-scroll">
                     {propiedadesMostrar.map((propiedad, index) => {
                       if (
                         alumno[propiedad] !== null &&

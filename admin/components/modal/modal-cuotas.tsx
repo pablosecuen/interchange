@@ -98,6 +98,7 @@ export default function ModalCuotas({ user }: Props) {
                                     ? "danger"
                                     : "warning"
                                 }
+                                style={{ whiteSpace: "nowrap" }}
                               >
                                 {cuota.pagado ? "Pago" : "No Pago"}
                               </Chip>
