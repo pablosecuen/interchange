@@ -19,9 +19,14 @@ const createUserController = async (req, res) => {
 };
 
 const getAllUsuariosController = async (req, res) => {
-  try {
-    const { page, pageSize } = req.query;
 
+  try {
+    let { page, pageSize } = req.query;
+
+    if (!page || !pageSize) {
+      page = 1;
+      pageSize = 10;
+    }
 
     const offset = (page - 1) * pageSize;
 
@@ -47,7 +52,6 @@ const getAllUsuariosController = async (req, res) => {
       limit: parseInt(pageSize),
       offset: parseInt(offset),
     });
-
 
     res.status(200).json(usuarios);
   } catch (error) {

@@ -20,23 +20,27 @@ export interface User {
   RegistroNotas: any;
 }
 
-const useFetchUsers = (currentPage: number, pageSize: number) => {
+const useFetchUsers = (currentPage?: number, pageSize?: number) => {
   const [users, setUsers] = useState<User[]>([]);
   const [isLoading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch(
-          `${baseUrl}/api/users?page=${currentPage}&pageSize=${pageSize}`
-        );
+        let url = `${baseUrl}/api/users`;
+
+        if (currentPage !== undefined && pageSize !== undefined) {
+          url += `?page=${currentPage}&pageSize=${pageSize}`;
+        }
+
+        const response = await fetch(url);
+        
         if (!response.ok) {
           throw new Error('Error al cargar los usuarios');
         }
         
         const data = await response.json();
-  
 
         setUsers(data);
         setLoading(false);
@@ -54,7 +58,3 @@ const useFetchUsers = (currentPage: number, pageSize: number) => {
 };
 
 export default useFetchUsers;
-
-
-
-

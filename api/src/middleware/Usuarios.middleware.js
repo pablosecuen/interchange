@@ -33,8 +33,18 @@ const validateUserData = (req, res, next) => {
 };
 
 const handleUsuariosFilters = (req, res, next) => {
-  const { nombre, apellido, telefono, email, tipo, activo, grado_id, grado_nombre, categoria, id } =
-    req.query;
+  const {
+    nombre,
+    apellido,
+    telefono,
+    email,
+    tipo,
+    activo,
+    grado_id,
+    grado_nombre,
+    categoria,
+    userID,
+  } = req.query;
 
   let filtros = {};
 
@@ -74,8 +84,8 @@ const handleUsuariosFilters = (req, res, next) => {
     filtros.Categoria = grado_id;
   }
 
-  if (id) {
-    filtros.ID = id;
+  if (userID) {
+    filtros.ID = userID;
   }
 
   req.usuariosFiltros = filtros; // Guardar los filtros en el objeto de solicitud
