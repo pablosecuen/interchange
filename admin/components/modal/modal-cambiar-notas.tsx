@@ -63,8 +63,7 @@ const CambiarNotasModal = ({ alumno }: ModalNotasProps) => {
                 <ModalBody>
                   {alumno.Grado && (
                     <p>
-                      Año en que cursa: {alumno?.Grado[0].Grado_Categoria}{" "}
-                      {alumno?.Grado[0].Grado_Nombre}
+                      Año en que cursa: {alumno?.Grado.Grado_Categoria} {alumno?.Grado.Grado_Nombre}
                     </p>
                   )}
                   <p>Trimestres y notas existentes:</p>

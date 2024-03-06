@@ -28,6 +28,7 @@ const updatePagadoController = async (req, res) => {
   const { mes, nuevoEstado } = req.body;
   const { pagoId } = req.params;
 
+
   try {
     const pago = await Pago.findByPk(pagoId);
 
@@ -35,6 +36,7 @@ const updatePagadoController = async (req, res) => {
       return res.status(404).json({ message: "Pago no encontrado" });
     }
     let vencimientos = pago.getDataValue("VencimientoCuota");
+
     if (typeof vencimientos === "string") {
       vencimientos = JSON.parse(vencimientos);
     }
@@ -42,7 +44,6 @@ const updatePagadoController = async (req, res) => {
       return res.status(400).json({ message: "Los vencimientos no son un array" });
     }
     const vencimientoAModificar = vencimientos.find((vencimiento) => {
-
       return vencimiento.mes === mes;
     });
     if (!vencimientoAModificar) {

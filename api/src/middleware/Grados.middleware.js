@@ -38,7 +38,14 @@ const handleGradosFilters = async (req, res, next) => {
   let filtros = {};
 
   if (ID) {
-    filtros.ID = ID;
+    // Convertir la cadena de IDs separados por comas en un array de IDs
+    const idArray = ID.split(",");
+    // Si hay más de un ID, usar un operador lógico OR en la consulta
+    if (idArray.length > 1) {
+      filtros.ID = idArray;
+    } else {
+      filtros.ID = ID;
+    }
   }
 
   if (Grado_Nombre) {

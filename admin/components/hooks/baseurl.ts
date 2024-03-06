@@ -1,1 +1,1 @@
-export const baseUrl = `https://interchange-production.up.railway.app`
+export const baseUrl = `http://localhost:3001`

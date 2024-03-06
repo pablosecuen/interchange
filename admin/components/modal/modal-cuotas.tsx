@@ -27,13 +27,13 @@ interface Props {
 export default function ModalCuotas({ user }: Props) {
   const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
   const [vencimientoCuotas, setVencimientoCuotas] = useState(
-    user?.Pagos && user.Pagos.length > 0 && user.Pagos[0].VencimientoCuota
-      ? user.Pagos[0].VencimientoCuota
-      : []
+    user?.Grado ? user?.Grado.Pagos?.filter((pago: any) => pago.Usuario_ID === user.ID) : []
   );
   const { sendEmailVencimiento } = useSendEmail(user.Email);
+
+
   const { showConfirmation, setShowConfirmation, handleConfirmation, setIndexToUpdate } =
-    usePaymentUpdate(vencimientoCuotas, user);
+    usePaymentUpdate(vencimientoCuotas[0]?.VencimientoCuota, user);
 
   return (
     <>
@@ -60,8 +60,14 @@ export default function ModalCuotas({ user }: Props) {
             {(onClose) => (
               <>
                 <ModalHeader className="flex flex-col gap-1 cursor-move">
-                  Cuotas de {user.Nombre} {user.Apellido}
-                  Curso: {user.Grado_Nombre} {user.Grado_Categoria}
+                  <span>
+                    {" "}
+                    Cuotas de {user.Nombre} {user.Apellido}
+                  </span>
+                  <span>
+                    {" "}
+                    Curso: {user.Grado.Grado_Nombre} {user.Grado.Grado_Categoria}
+                  </span>
                 </ModalHeader>
                 <ModalBody>
                   <Table aria-label="Tabla de cuotas">
@@ -72,7 +78,7 @@ export default function ModalCuotas({ user }: Props) {
                       <TableColumn>Acción</TableColumn>
                     </TableHeader>
                     <TableBody>
-                      {vencimientoCuotas.map((cuota: any, index: any) => {
+                      {vencimientoCuotas[0]?.VencimientoCuota.map((cuota: any, index: any) => {
                         const currentDate = new Date();
                         const vencimientoDate = new Date(cuota.vencimiento);
                         let buttonColor = undefined; // Por defecto, no se establece color

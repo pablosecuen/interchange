@@ -17,11 +17,14 @@ const useFetchCursos = () => {
           throw new Error('Error al cargar los cursos');
         } 
 
+
         const data = await response.json();
         const cursoIDs = data.map((curso: Curso) => curso.ID);
 
         // Realizar una sola llamada al API para obtener todos los pagos
         const pagosResponse = await fetch(`${baseUrl}/api/pagos?Grado_ID=${cursoIDs.join(',')}`);
+
+        
         if (!pagosResponse.ok) {
           toast.error('Error al cargar los pagos de los cursos');
           throw new Error('Error al cargar los pagos de los cursos');

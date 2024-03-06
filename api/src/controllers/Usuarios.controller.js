@@ -1,5 +1,6 @@
 const { Usuario, Examen, Grado, Pago, Notas } = require("../../db");
 const { sendEmailNotificationRegister, sendEmailNotificationCurso } = require("../nodemailer");
+const { Sequelize } = require("sequelize");
 /* const estructuraNotas = require("../middleware/Notas.middleware");
 const { createNotas } = require("./Notas.controller"); */
 
@@ -19,33 +20,38 @@ const createUserController = async (req, res) => {
 
 const getAllUsuariosController = async (req, res) => {
   try {
+    const { page, pageSize } = req.query;
+
+
+    const offset = (page - 1) * pageSize;
+
+
     const usuarios = await Usuario.findAll({
       where: req.usuariosFiltros,
       include: [
         {
           model: Grado,
-          as: "Grado", // Alias definido en la asociación Usuario.belongsTo(Grado, { as: "Grado" })
-        },
-        {
-          model: Pago,
+          as: "Grado",
           include: [
             {
-              model: Usuario, // Incluir Usuario a través de la asociación Pago.belongsTo(Usuario)
-            },
-            {
-              model: Grado, // Incluir Grado a través de la asociación Pago.belongsTo(Grado)
+              model: Pago,
             },
           ],
         },
         {
-          model: Notas, // Agregamos la inclusión de la relación Notas
-          as: "RegistroNotas", // El nombre de la asociación definida en Usuario.hasMany(Notas, { foreignKey: "Usuario_ID", as: "RegistroNotas" })
+          model: Notas,
+          as: "RegistroNotas",
         },
       ],
+      order: [[Sequelize.literal(`LEFT("Usuario"."Apellido", 1)`), "ASC"]],
+      limit: parseInt(pageSize),
+      offset: parseInt(offset),
     });
+
 
     res.status(200).json(usuarios);
   } catch (error) {
+    console.error("Error al obtener los usuarios:", error);
     res.status(500).json({ message: "Error al obtener los usuarios", error: error.message });
   }
 };

@@ -1,7 +1,7 @@
 const { ExamenCompletado } = require("../../db");
 const { Usuario, Examen } = require("../../db");
 const guardarExamenCompletado = async (req, res) => {
-  console.log(req.body);
+
   const { examenID, userID, preguntas } = req.body;
   try {
     const respuestas = preguntas.map((pregunta) => ({

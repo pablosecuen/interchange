@@ -1,4 +1,4 @@
-import { Button, Input } from "@nextui-org/react";
+import { Button, Input, Pagination } from "@nextui-org/react";
 import Link from "next/link";
 import React, { useState } from "react";
 import { ExportIcon } from "../../icons/accounts/export-icon";
@@ -10,8 +10,9 @@ import useFetchUsers from "../../hooks/useFetchUsers";
 import * as XLSX from "xlsx";
 
 export const Alumnos = () => {
-  const { users, isLoading, error } = useFetchUsers();
-
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
+  const { users, isLoading, error } = useFetchUsers(currentPage, pageSize);
 
   const [userFilter, setUserFilter] = useState<string>("");
 
@@ -34,6 +35,10 @@ export const Alumnos = () => {
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, "Alumnos");
     XLSX.writeFile(workbook, "alumnos.xlsx");
+  };
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
   };
 
   return (
@@ -77,8 +82,16 @@ export const Alumnos = () => {
           </Button>
         </div>
       </div>
-      <div className="max-w-[95rem] mx-auto w-full">
+      <div className="max-w-[95rem] mx-auto w-full min-h-[75vh] ">
         <TableWrapper users={filteredUsers} isLoading={isLoading} error={error} />
+      </div>
+      <div className="mx-auto w-full flex justify-center py-10">
+        <Pagination
+          total={10}
+          initialPage={currentPage}
+          color="primary"
+          onChange={handlePageChange}
+        />
       </div>
     </div>
   );

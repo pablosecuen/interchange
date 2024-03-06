@@ -1,6 +1,6 @@
 export const columns = [
-   {name: 'NOMBRE', uid: 'Nombre'},
    {name: 'APELLIDO', uid: 'Apellido'},
+   {name: 'NOMBRE', uid: 'Nombre'},
    {name: 'CURSO', uid: 'Grado_Categoria'},
    {name: 'AÑO', uid: 'Grado_Nombre'},
    {name: 'NOTAS', uid: 'Notas'},
@@ -30,8 +30,8 @@ export const columnsExamscomletados = [
 ];
 
 export const columnsModalCursosAlumnos = [
-   {name: 'NOMBRE', uid: 'Nombre'},
    {name: 'APELLIDO', uid: 'Apellido'},
+   {name: 'NOMBRE', uid: 'Nombre'},
    {name: 'CURSO', uid: 'Grado_Categoria'},
    {name: 'AÑO', uid: 'Grado_Nombre'},
    {name: 'NOTAS', uid: 'Notas'},

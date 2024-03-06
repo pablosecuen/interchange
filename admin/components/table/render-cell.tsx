@@ -19,13 +19,15 @@ interface Props {
 
 export const RenderCell = ({ user, columnKey, deleteUser }: Props) => {
   const getCourseInfo = () => {
-    if (columnKey === "Grado_Categoria") {
-      return user?.Grado?.[0]?.Grado_Categoria || "Sin información";
+    if (user.Grado) {
+      if (columnKey === "Grado_Categoria") {
+        return user.Grado?.Grado_Categoria || "Sin información";
+      }
+      if (columnKey === "Grado_Nombre") {
+        return user.Grado?.Grado_Nombre || "Sin información";
+      }
     }
-    if (columnKey === "Grado_Nombre") {
-      return user?.Grado?.[0]?.Grado_Nombre || "Sin información";
-    }
-    return "";
+    return "Sin información";
   };
 
   const cellValue = user[columnKey];
@@ -33,7 +35,7 @@ export const RenderCell = ({ user, columnKey, deleteUser }: Props) => {
     columnKey === "Grado_Categoria" || columnKey === "Grado_Nombre" ? getCourseInfo() : cellValue;
 
   switch (columnKey) {
-    case "Nombre":
+    case "Apellido":
       return (
         <User
           avatarProps={{

@@ -6,7 +6,7 @@ import { Toaster } from "sonner";
 import LoadingError from "../loadingerror";
 import { User } from "../hooks/useFetchUsers";
 import useDeleteUser from "../hooks/useDeleteUsuer";
-import Draggable from "react-draggable";
+
 
 interface tableAlumnosProps {
   users: User[];
