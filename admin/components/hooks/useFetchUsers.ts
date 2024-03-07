@@ -30,10 +30,6 @@ const useFetchUsers = (currentPage?: number, pageSize?: number) => {
       try {
         let url = `${baseUrl}/api/users`;
 
-        if (currentPage !== undefined && pageSize !== undefined) {
-          url += `?page=${currentPage}&pageSize=${pageSize}`;
-        }
-
         const response = await fetch(url);
         
         if (!response.ok) {
@@ -52,9 +48,9 @@ const useFetchUsers = (currentPage?: number, pageSize?: number) => {
     };
 
     fetchUsers();
-  }, [currentPage, pageSize]);
+  }, []);
 
-  return { users, isLoading, error, currentPage };
+  return { users, isLoading, error };
 };
 
 export default useFetchUsers;

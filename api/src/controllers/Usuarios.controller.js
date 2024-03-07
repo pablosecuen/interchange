@@ -19,18 +19,7 @@ const createUserController = async (req, res) => {
 };
 
 const getAllUsuariosController = async (req, res) => {
-
   try {
-    let { page, pageSize } = req.query;
-
-    if (!page || !pageSize) {
-      page = 1;
-      pageSize = 10;
-    }
-
-    const offset = (page - 1) * pageSize;
-
-
     const usuarios = await Usuario.findAll({
       where: req.usuariosFiltros,
       include: [
