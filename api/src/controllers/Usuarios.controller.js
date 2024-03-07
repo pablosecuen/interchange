@@ -38,8 +38,7 @@ const getAllUsuariosController = async (req, res) => {
         },
       ],
       order: [[Sequelize.literal(`LEFT("Usuario"."Apellido", 1)`), "ASC"]],
-      limit: parseInt(pageSize),
-      offset: parseInt(offset),
+
     });
 
     res.status(200).json(usuarios);
