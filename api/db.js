@@ -45,7 +45,7 @@ if (DATABASE_URL) {
   Pago.belongsTo(Grado, { foreignKey: "Grado_ID" });
 
   Grado.hasMany(Pago, { foreignKey: "Grado_ID" });
-  Usuario.hasOne(Pago, { foreignKey: "usuario_id" });
+  Usuario.hasOne(Pago, { foreignKey: "Usuario_ID" });
 
   // Relación Usuario y Examen
   Usuario.belongsToMany(Examen, { through: "UsuarioExamen", foreignKey: "Usuario_ID" });
