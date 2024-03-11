@@ -31,6 +31,7 @@ export default function ModalCuotas({ user }: Props) {
   );
   const { sendEmailVencimiento } = useSendEmail(user.Email);
 
+  console.log(user);
 
   const { showConfirmation, setShowConfirmation, handleConfirmation, setIndexToUpdate } =
     usePaymentUpdate(vencimientoCuotas[0]?.VencimientoCuota, user);
@@ -66,7 +67,10 @@ export default function ModalCuotas({ user }: Props) {
                   </span>
                   <span>
                     {" "}
-                    Curso: {user.Grado.Grado_Nombre} {user.Grado.Grado_Categoria}
+                    Curso:{" "}
+                    {user.Grado
+                      ? `${user.Grado.Grado_Nombre} ${user.Grado.Grado_Categoria}`
+                      : "este alumno no tiene asignado un curso"}
                   </span>
                 </ModalHeader>
                 <ModalBody>
