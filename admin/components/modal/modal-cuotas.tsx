@@ -31,7 +31,7 @@ export default function ModalCuotas({ user }: Props) {
   );
   const { sendEmailVencimiento } = useSendEmail(user.Email);
 
-  console.log(user);
+
 
   const { showConfirmation, setShowConfirmation, handleConfirmation, setIndexToUpdate } =
     usePaymentUpdate(vencimientoCuotas[0]?.VencimientoCuota, user);
