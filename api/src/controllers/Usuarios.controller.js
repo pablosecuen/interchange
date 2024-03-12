@@ -19,6 +19,7 @@ const createUserController = async (req, res) => {
 };
 
 const getAllUsuariosController = async (req, res) => {
+  //TODO: quitar el anidadi de PAGO dentro de GRADO, y ANIDARLO un nivel mas arriba para poder asociar el pago especifico del usuario a su pago atraves de Usuario_ID, y  ID de pago
   try {
     const usuarios = await Usuario.findAll({
       where: req.usuariosFiltros,
@@ -38,7 +39,6 @@ const getAllUsuariosController = async (req, res) => {
         },
       ],
       order: [[Sequelize.literal(`LEFT("Usuario"."Apellido", 1)`), "ASC"]],
-
     });
 
     res.status(200).json(usuarios);

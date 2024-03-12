@@ -7,9 +7,8 @@ import LoadingError from "../loadingerror";
 import { User } from "../hooks/useFetchUsers";
 import useDeleteUser from "../hooks/useDeleteUsuer";
 
-
 interface tableAlumnosProps {
-  users: User[];
+  users?: User[];
   isLoading: boolean;
   error: any;
 }

@@ -5,8 +5,8 @@ import { ExportIcon } from "../../icons/accounts/export-icon";
 import { HouseIcon } from "../../icons/breadcrumb/house-icon";
 import { UsersIcon } from "../../icons/breadcrumb/users-icon";
 import { TableWrapper } from "../../table/tableCursos";
-import useFetchCursos from "../../hooks/useFetchCursos";
 import * as XLSX from "xlsx";
+import { useAppContext } from "../../../Provider/useContextProvider";
 
 export interface Curso {
   ID: number;
@@ -15,7 +15,7 @@ export interface Curso {
 }
 
 export const Cursos = () => {
-  const { cursos, isLoading, error } = useFetchCursos();
+  const { cursos, isLoadingCursos, errorCursos } = useAppContext();
 
   const [cursoFilter, setCursoFilter] = useState<string>("");
 
@@ -42,8 +42,6 @@ export const Cursos = () => {
     const gradoNumberB = parseInt(b.Grado_Nombre);
     return gradoNumberA - gradoNumberB;
   });
-
- 
 
   const exportToExcel = () => {
     const worksheet = XLSX.utils.json_to_sheet(filteredCursos);
@@ -94,7 +92,7 @@ export const Cursos = () => {
         </div>
       </div>
       <div className="max-w-[95rem] mx-auto w-full">
-        <TableWrapper cursos={sortedCursos} isLoading={isLoading} error={error} />
+        <TableWrapper cursos={sortedCursos} isLoading={isLoadingCursos} error={errorCursos} />
       </div>
     </div>
   );

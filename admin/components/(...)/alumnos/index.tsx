@@ -1,4 +1,4 @@
-import { Button, Input, Pagination } from "@nextui-org/react";
+import { Button, Input } from "@nextui-org/react";
 import Link from "next/link";
 import React, { useState } from "react";
 import { ExportIcon } from "../../icons/accounts/export-icon";
@@ -6,17 +6,15 @@ import { HouseIcon } from "../../icons/breadcrumb/house-icon";
 import { UsersIcon } from "../../icons/breadcrumb/users-icon";
 import { TableWrapper } from "../../table/table";
 import { AddUser } from "./add-user";
-import useFetchUsers from "../../hooks/useFetchUsers";
 import * as XLSX from "xlsx";
+import { useAppContext } from "../../../Provider/useContextProvider";
 
 export const Alumnos = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState(10);
-  const { users, isLoading, error } = useFetchUsers(currentPage, pageSize);
+  const { users: fetchedUsers, isLoading, isError } = useAppContext();
 
   const [userFilter, setUserFilter] = useState<string>("");
 
-  const filteredUsers = users.filter((user) => {
+  const filteredUsers = fetchedUsers?.filter((user) => {
     const { Nombre, Apellido, Telefono, Email } = user;
     const searchLowerCase = userFilter.toLowerCase();
 
@@ -29,16 +27,13 @@ export const Alumnos = () => {
 
     return match;
   });
-
   const exportToExcel = () => {
-    const worksheet = XLSX.utils.json_to_sheet(filteredUsers);
-    const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, "Alumnos");
-    XLSX.writeFile(workbook, "alumnos.xlsx");
-  };
-
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
+    if (filteredUsers) {
+      const worksheet = XLSX.utils.json_to_sheet(filteredUsers);
+      const workbook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(workbook, worksheet, "Alumnos");
+      XLSX.writeFile(workbook, "alumnos.xlsx");
+    }
   };
 
   return (
@@ -83,16 +78,9 @@ export const Alumnos = () => {
         </div>
       </div>
       <div className="max-w-[95rem] mx-auto w-full min-h-[75vh] ">
-        <TableWrapper users={filteredUsers} isLoading={isLoading} error={error} />
+        <TableWrapper users={filteredUsers} isLoading={isLoading} error={isError} />
       </div>
-      <div className="mx-auto w-full flex justify-center py-10">
-        <Pagination
-          total={10}
-          initialPage={currentPage}
-          color="primary"
-          onChange={handlePageChange}
-        />
-      </div>
+      <div className="mx-auto w-full flex justify-center py-10"></div>
     </div>
   );
 };

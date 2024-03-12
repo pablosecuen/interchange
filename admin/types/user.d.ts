@@ -12,8 +12,6 @@ export interface User {
   NombreAdulto?: string | null;
   ApellidoAdulto?: string | null;
   TelefonoAdulto?: string | null;
-    EmailAdulto?: string | null;
-    RegistroNotas:any
+  EmailAdulto?: string | null;
+  RegistroNotas: any;
 }
-
-//a
