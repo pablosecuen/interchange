@@ -50,7 +50,7 @@ export default function ModalCuotas({ user }: Props) {
           radius="lg"
           size="2xl"
           classNames={{
-            body: "py-6 ",
+            body: "py-6 max-h-[80vh] overflow-y-auto",
             backdrop: "bg-[#292f46]/50 backdrop-opacity-40",
             base: "border-[#292f46] bg-[#19172c]  text-[#a8b0d3] ",
             header: "border-b-[1px] border-[#292f46] ",
@@ -61,7 +61,7 @@ export default function ModalCuotas({ user }: Props) {
           <ModalContent>
             {(onClose) => (
               <>
-                <ModalHeader className="flex flex-col gap-1 cursor-move">
+                <ModalHeader className="flex flex-col gap-1 cursor-move s">
                   <span>
                     {" "}
                     Cuotas de {user.Nombre} {user.Apellido}
