@@ -161,6 +161,7 @@ export default function ModalAlumnos({ alumno }: ModalAlumnos) {
     "ApellidoAdulto2",
     "EmailAdulto2",
     "TelefonoAdulto2",
+    "Password",
   ];
 
   useEffect(() => {
