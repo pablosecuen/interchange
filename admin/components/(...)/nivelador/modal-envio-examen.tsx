@@ -30,8 +30,6 @@ const ModalEnvioExamen: React.FC<Props> = ({ examen }) => {
   const { users, isLoading, error } = useFetchUsers();
   const [selectedUser, setSelectedUser] = useState<User | undefined>(undefined);
 
- 
-
   const handleSendExam = async (selectedUser: any) => {
     try {
       // Lógica para enviar el examen al usuario seleccionado
@@ -128,25 +126,45 @@ const ModalEnvioExamen: React.FC<Props> = ({ examen }) => {
                     <TableColumn>Acción</TableColumn>
                   </TableHeader>
                   <TableBody>
-                    {users?.map((user, index) => (
-                      <TableRow key={index}>
-                        <TableCell>
-                          {user.Nombre} {user.Apellido}
-                        </TableCell>
-                        <TableCell>{user.Email}</TableCell>
-                        <TableCell>
-                          <Button
-                            size="sm"
-                            color="success"
-                            variant="light"
-                            onClick={() => handleUserSelection(user)}
-                            className="max-h-[80vh] overflow-y-auto"
-                          >
-                            Enviar
-                          </Button>
+                    {isLoading ? (
+                      <TableRow>
+                        <TableCell colSpan={3} align="center">
+                          Cargando usuarios...
                         </TableCell>
                       </TableRow>
-                    ))}
+                    ) : error || !users ? (
+                      <TableRow>
+                        <TableCell colSpan={3} align="center">
+                          Error al cargar usuarios. Intente de nuevo
+                        </TableCell>
+                      </TableRow>
+                    ) : users.length === 0 ? (
+                      <TableRow>
+                        <TableCell colSpan={3} align="center">
+                          No hay usuarios disponibles.
+                        </TableCell>
+                      </TableRow>
+                    ) : (
+                      users.map((user, index) => (
+                        <TableRow key={index}>
+                          <TableCell>
+                            {user.Nombre} {user.Apellido}
+                          </TableCell>
+                          <TableCell>{user.Email}</TableCell>
+                          <TableCell>
+                            <Button
+                              size="sm"
+                              color="success"
+                              variant="light"
+                              onClick={() => handleUserSelection(user)}
+                              className="max-h-[80vh] overflow-y-auto"
+                            >
+                              Enviar
+                            </Button>
+                          </TableCell>
+                        </TableRow>
+                      ))
+                    )}
                   </TableBody>
                 </Table>
               </ModalBody>
