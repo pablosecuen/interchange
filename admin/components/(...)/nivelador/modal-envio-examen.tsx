@@ -128,7 +128,7 @@ const ModalEnvioExamen: React.FC<Props> = ({ examen }) => {
                     <TableColumn>Acción</TableColumn>
                   </TableHeader>
                   <TableBody>
-                    {users.map((user, index) => (
+                    {users?.map((user, index) => (
                       <TableRow key={index}>
                         <TableCell>
                           {user.Nombre} {user.Apellido}
