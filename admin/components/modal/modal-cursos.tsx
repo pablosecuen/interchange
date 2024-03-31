@@ -17,7 +17,6 @@ import { Curso } from "../(...)/cursos";
 import Draggable from "react-draggable";
 import { useAppContext } from "../../Provider/useContextProvider";
 
-
 interface Props {
   curso: Curso;
 }
@@ -34,8 +33,8 @@ const ModalCurso = ({ curso }: Props) => {
 
   useEffect(() => {
     fetchUsuariosByCurso(isOpen, curso);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isOpen]);
 
   if (error) {
     return <p>Ocurrió un error al cargar los usuarios</p>;

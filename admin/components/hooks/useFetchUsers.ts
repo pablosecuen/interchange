@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useQuery } from 'react-query';
 import { toast } from 'sonner';
 import { baseUrl } from './baseurl';
 
@@ -20,37 +20,25 @@ export interface User {
   RegistroNotas: any;
 }
 
-const useFetchUsers = (currentPage?: number, pageSize?: number) => {
-  const [users, setUsers] = useState<User[]>([]);
-  const [isLoading, setLoading] = useState(true);
-  const [error, setError] = useState<Error | null>(null);
+const useFetchUsers = () => {
+  const fetchUsers = async () => {
+    const response = await fetch(`${baseUrl}/api/users`);
 
-  useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        let url = `${baseUrl}/api/users`;
+    if (!response.ok) {
+      throw new Error('Error al cargar los usuarios');
+    }
 
-        const response = await fetch(url);
-        
-        if (!response.ok) {
-          throw new Error('Error al cargar los usuarios');
-        }
-        
-        const data = await response.json();
+  
+    return response.json();
+  };
 
-        setUsers(data);
-        setLoading(false);
-      } catch (error: any) {
-        setError(error);
-        setLoading(false);
-        toast.error('Error al cargar usuarios');
-      }
-    };
+  const { data: users, isLoading, isError, error } = useQuery<User[], Error>('users', fetchUsers);
 
-    fetchUsers();
-  }, []);
+  if (isError) {
+    toast.error('Error al cargar usuarios');
+  }
 
-  return { users, isLoading, error };
+  return { users, isLoading, isError, error };
 };
 
 export default useFetchUsers;
