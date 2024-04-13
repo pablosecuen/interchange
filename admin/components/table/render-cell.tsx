@@ -14,7 +14,7 @@ interface Props {
   columnKey: string | React.Key;
   onOpen?: () => void;
   deleteUser?: (ID: string) => void;
-  handleOpenModal: (user: any) => void;
+  handleOpenModal?: (user: any) => void;
 }
 
 // En el componente RenderCell
@@ -51,9 +51,11 @@ export const RenderCell = ({ user, columnKey, deleteUser, handleOpenModal }: Pro
     case "cuota":
       return (
         <div className="z-50 cursor-pointer">
-          <button onClick={() => handleOpenModal(user)}>
-            <EyeIcon size={20} fill="#979797" />
-          </button>
+          {handleOpenModal && (
+            <button onClick={() => handleOpenModal(user)}>
+              <EyeIcon size={20} fill="#979797" />
+            </button>
+          )}
         </div>
       );
     case "Notas":
