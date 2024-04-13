@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "npm run start:prod",
+    "start": "node app.js",
     "start:prod": "node app.js --omit=dev"
   },
   "dependencies": {
