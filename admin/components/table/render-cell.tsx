@@ -7,17 +7,19 @@ import ModalAlumnos from "../modal/modal-alumnos";
 import CambiarNotasModal from "../modal/modal-cambiar-notas";
 import TableWrapperNotas from "./tableNotas";
 import useDeleteUser from "../hooks/useDeleteUsuer";
+import { EyeIcon } from "../icons/table/eye-icon";
 
 interface Props {
   user: any;
   columnKey: string | React.Key;
   onOpen?: () => void;
   deleteUser?: (ID: string) => void;
+  handleOpenModal: (user: any) => void;
 }
 
 // En el componente RenderCell
 
-export const RenderCell = ({ user, columnKey, deleteUser }: Props) => {
+export const RenderCell = ({ user, columnKey, deleteUser, handleOpenModal }: Props) => {
   const getCourseInfo = () => {
     if (user.Grado) {
       if (columnKey === "Grado_Categoria") {
@@ -49,7 +51,9 @@ export const RenderCell = ({ user, columnKey, deleteUser }: Props) => {
     case "cuota":
       return (
         <div className="z-50 cursor-pointer">
-          <ModalCuotas user={user} />
+          <button onClick={() => handleOpenModal(user)}>
+            <EyeIcon size={20} fill="#979797" />
+          </button>
         </div>
       );
     case "Notas":

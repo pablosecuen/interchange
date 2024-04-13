@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import {
   Modal,
   ModalContent,
@@ -21,22 +21,42 @@ import { EyeIcon } from "../icons/table/eye-icon";
 import Draggable from "react-draggable";
 
 interface Props {
+  isOpen: boolean;
+  onOpenChange: (value: boolean) => void;
   user: any;
 }
 
-export default function ModalCuotas({ user }: Props) {
-  const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
-  const [vencimientoCuotas, setVencimientoCuotas] = useState(
-    user?.Grado ? user?.Grado.Pagos?.filter((pago: any) => pago.Usuario_ID === user.ID) : []
-  );
+export default function ModalCuotas({ onOpenChange, isOpen, user }: Props) {
+  const { onOpen, onClose } = useDisclosure();
+  const [vencimientoCuotas, setVencimientoCuotas] = useState<any>([]);
+
+  // Memoize the filter function
+  // Memoize the filter function
+  const filterPayments = useMemo(() => {
+    return (pago: any) => pago.Usuario_ID.includes(user.ID.toString());
+  }, [user.ID]);
+
+  useEffect(() => {
+    if (isOpen) {
+      const filteredPayments =
+        user && user.Grado && user.Grado.Pagos
+          ? user.Grado.Pagos.filter(filterPayments).map((pago: any) => ({
+              ...pago,
+              userID: user.ID,
+              pagoUserID: pago.Usuario_ID,
+            }))
+          : [];
+
+      setVencimientoCuotas(filteredPayments);
+    }
+  }, [isOpen, user, filterPayments]);
+
   const { sendEmailVencimiento } = useSendEmail(user.Email);
 
   const { showConfirmation, setShowConfirmation, handleConfirmation, setIndexToUpdate } =
-    usePaymentUpdate(
-      vencimientoCuotas?.length > 0 ? vencimientoCuotas[0]?.VencimientoCuota : null,
-      user
-    );
+    usePaymentUpdate(vencimientoCuotas, user);
 
+  /* 79e9106b-ffb4-4b83-b24e-9846b05f5239 */
   return (
     <>
       <button color="primary" title="Ver detalles" onClick={onOpen}>
