@@ -67,7 +67,6 @@ const AddContent = () => {
   const handleSubmit = async () => {
     await createContent();
     router.refresh();
-    onClose();
   };
 
   return (

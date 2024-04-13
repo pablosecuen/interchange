@@ -50,7 +50,6 @@ const EditContentModal: React.FC<EditContentModalProps> = ({ content }) => {
 
   const handleEditSubmit = async () => {
     await editContent();
-    onClose();
   };
 
   return (
