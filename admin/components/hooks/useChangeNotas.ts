@@ -72,7 +72,6 @@ const useChangeNotas = (alumno: any) => {
       } else {
         toast.success("Notas actualizadas correctamente");
                setTimeout(() => {
-          router.reload(); 
         }, 1000);
       }
     } catch (error: any) {

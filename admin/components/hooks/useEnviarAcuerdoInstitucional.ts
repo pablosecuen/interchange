@@ -20,7 +20,6 @@ const useEnviarAcuerdoInstitucional = () => {
       }
       toast.success("correo enviado exitosamente!")
            setTimeout(() => {
-          router.reload(); 
         }, 1000);
       setLoading(false);
     } catch (error:any) {

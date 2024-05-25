@@ -18,7 +18,6 @@ const getNotasByUserIdController = async (req, res) => {
 };
 
 const createNotas = async (userId, notasData) => {
-
   try {
     if (!userId || notasData === undefined) {
       throw new Error("Se requiere el ID del usuario y datos válidos de notas.");
@@ -87,7 +86,7 @@ const updateNotasByUserIdController = async (req, res) => {
     const { userId } = req.params;
     const newNotas = req.body.Notas;
 
-    // ...validaciones de entrada...
+    // Validaciones de entrada...
 
     let user = await Usuario.findOne({ where: { ID: userId } });
 
@@ -104,12 +103,22 @@ const updateNotasByUserIdController = async (req, res) => {
 
       if (existingNota) {
         // Si ya existen notas para ese grado, actualizarlas
-        await existingNota.update({ examenFinal, "notas.trimestres": trimestres });
-        if (existingNota.notas.examenFinal) {
-          await existingNota.update({ "notas.examenFinal": examenFinal });
-        } else {
-          await existingNota.update({ "notas.examenFinal": examenFinal });
-        }
+        let updatedTrimestres = existingNota.notas.trimestres.map((existingTrimestre) => {
+          const newTrimestre = trimestres.find((t) => t.trimestre === existingTrimestre.trimestre);
+          return newTrimestre ? { ...existingTrimestre, ...newTrimestre } : existingTrimestre;
+        });
+
+        // Añadir los nuevos trimestres que no están en los existentes
+        trimestres.forEach((newTrimestre) => {
+          if (!updatedTrimestres.some((t) => t.trimestre === newTrimestre.trimestre)) {
+            updatedTrimestres.push(newTrimestre);
+          }
+        });
+
+        await existingNota.update({
+          examenFinal,
+          "notas.trimestres": updatedTrimestres,
+        });
       } else {
         // Si no existen notas para ese grado, crearlas
         await Notas.create({

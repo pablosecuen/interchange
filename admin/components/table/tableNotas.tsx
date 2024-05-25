@@ -11,13 +11,10 @@ import {
   TableBody,
   TableRow,
   TableCell,
-  useDisclosure,
 } from "@nextui-org/react";
 import React from "react";
 import { Nota } from "../hooks/useChangeNotas";
-import NotasTable from "../notas/notas-table";
 import ModalTrimestres from "../modal/moda-trimestres";
-import { EyeIcon } from "../icons/table/eye-icon";
 import Draggable from "react-draggable";
 
 interface TableWrapperNotasProps {
@@ -27,16 +24,14 @@ interface TableWrapperNotasProps {
     RegistroNotas: Nota[];
     ID: string;
   };
+  onOpenChange: (value: boolean) => void;
+  isOpen: boolean;
 }
 
-const TableWrapperNotas = ({ alumno }: TableWrapperNotasProps) => {
-  const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
-
+const TableWrapperNotas = ({ alumno, onOpenChange, isOpen }: TableWrapperNotasProps) => {
+  console.log(alumno);
   return (
     <>
-      <button onClick={onOpen} title="Ver notas">
-        <EyeIcon size={20} fill="#979797" />
-      </button>
       <Draggable>
         <Modal
           backdrop="opaque"
@@ -44,7 +39,7 @@ const TableWrapperNotas = ({ alumno }: TableWrapperNotasProps) => {
           onOpenChange={onOpenChange}
           scrollBehavior="inside"
           radius="lg"
-          size="xl"
+          size="2xl"
           classNames={{
             wrapper: "",
             body: "py-6 ",
@@ -66,14 +61,13 @@ const TableWrapperNotas = ({ alumno }: TableWrapperNotasProps) => {
                     <TableHeader>
                       <TableColumn>Grado</TableColumn>
                       <TableColumn>Trimestre</TableColumn>
-
                       <TableColumn>Examen Final</TableColumn>
                     </TableHeader>
                     <TableBody>
                       {alumno.RegistroNotas.map((registro, index) => (
                         <TableRow key={index}>
                           <TableCell>{registro.notas.grado}</TableCell>
-                          <TableCell className="flex flex-wrap">
+                          <TableCell className="flex">
                             {registro.notas.trimestres.map((trimestre: any, idx: number) => (
                               <div key={idx}>
                                 <ModalTrimestres trimestre={trimestre} />

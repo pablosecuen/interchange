@@ -49,7 +49,6 @@ const useCreateContent = () => {
          createdAt: '',
       });
         setTimeout(() => {
-          router.reload(); 
         }, 1000);
     } catch (error:any) {
       setError(error);

@@ -36,7 +36,6 @@ const useEditContent = (initialState: Content) => {
             }
 
      setTimeout(() => {
-          router.reload(); 
         }, 1000);
         } catch (error) {
             setError(error);

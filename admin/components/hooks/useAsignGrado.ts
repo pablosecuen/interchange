@@ -53,7 +53,6 @@ const router = useRouter()
           setAssignmentResult({ success: false, message: "No se encontró el curso con el ID seleccionado" });
         }
         setTimeout(() => {
-          router.reload(); 
         }, 1000);
     } catch (error) {
       toast.error("Error al asignar el grado al alumno");

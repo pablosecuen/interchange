@@ -15,6 +15,7 @@ import LoadingError from "../loadingerror";
 import { User } from "../hooks/useFetchUsers";
 import useDeleteUser from "../hooks/useDeleteUsuer";
 import ModalCuotas from "../modal/modal-cuotas";
+import TableWrapperNotas from "./tableNotas";
 
 interface tableAlumnosProps {
   users?: User[];
@@ -23,8 +24,10 @@ interface tableAlumnosProps {
 }
 export const TableWrapper = ({ users, isLoading, error }: tableAlumnosProps) => {
   const { deleteUser } = useDeleteUser();
-  const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
+  const { isOpen, onOpenChange } = useDisclosure();
+  const { isOpen: isOpenNotas, onOpenChange: onOpenChangeNotas } = useDisclosure();
   const [selectedUser, setSelectedUser] = useState<any>(null);
+  const [stateModalNotas, setStateModalNotas] = useState<any>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   if (isLoading || error) {
     return <LoadingError isLoading={isLoading} error={error} />;
@@ -33,6 +36,11 @@ export const TableWrapper = ({ users, isLoading, error }: tableAlumnosProps) => 
   const handleOpenModal = (user: User) => {
     setSelectedUser(user);
     onOpenChange();
+  };
+
+  const handleOpenNotasModal = (user: User) => {
+    setSelectedUser(user);
+    onOpenChangeNotas();
   };
 
   return (
@@ -61,6 +69,7 @@ export const TableWrapper = ({ users, isLoading, error }: tableAlumnosProps) => 
                     columnKey: columnKey,
                     deleteUser: deleteUser,
                     handleOpenModal: handleOpenModal,
+                    handleOpenNotasModal: handleOpenNotasModal,
                   })}
                 </TableCell>
               )}
@@ -70,6 +79,13 @@ export const TableWrapper = ({ users, isLoading, error }: tableAlumnosProps) => 
       </Table>
       {selectedUser && (
         <ModalCuotas user={selectedUser} onOpenChange={onOpenChange} isOpen={isOpen} />
+      )}
+      {selectedUser && (
+        <TableWrapperNotas
+          alumno={selectedUser}
+          onOpenChange={onOpenChangeNotas}
+          isOpen={isOpenNotas}
+        />
       )}
     </div>
   );

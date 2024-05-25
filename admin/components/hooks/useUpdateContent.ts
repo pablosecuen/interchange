@@ -36,7 +36,6 @@ const useUpdateContent = () => {
         throw new Error('Error al actualizar el campus');
       }
      setTimeout(() => {
-          router.reload(); 
         }, 1000);
       setUpdateContent(null);
     } catch (error:any) {

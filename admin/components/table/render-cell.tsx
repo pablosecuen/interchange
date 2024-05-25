@@ -15,11 +15,18 @@ interface Props {
   onOpen?: () => void;
   deleteUser?: (ID: string) => void;
   handleOpenModal?: (user: any) => void;
+  handleOpenNotasModal?: (user: any) => void;
 }
 
 // En el componente RenderCell
 
-export const RenderCell = ({ user, columnKey, deleteUser, handleOpenModal }: Props) => {
+export const RenderCell = ({
+  user,
+  columnKey,
+  deleteUser,
+  handleOpenModal,
+  handleOpenNotasModal,
+}: Props) => {
   const getCourseInfo = () => {
     if (user.Grado) {
       if (columnKey === "Grado_Categoria") {
@@ -52,7 +59,7 @@ export const RenderCell = ({ user, columnKey, deleteUser, handleOpenModal }: Pro
       return (
         <div className="z-50 cursor-pointer">
           {handleOpenModal && (
-            <button onClick={() => handleOpenModal(user)}>
+            <button onClick={() => handleOpenModal(user)} title="Ver cuotas">
               <EyeIcon size={20} fill="#979797" />
             </button>
           )}
@@ -62,8 +69,11 @@ export const RenderCell = ({ user, columnKey, deleteUser, handleOpenModal }: Pro
       return (
         <div className="z-50 cursor-pointer flex items-center gap-8">
           <CambiarNotasModal alumno={user} />
-
-          <TableWrapperNotas alumno={user} />
+          {handleOpenNotasModal && (
+            <button onClick={() => handleOpenNotasModal(user)} title="Ver notas">
+              <EyeIcon size={20} fill="#979797" />
+            </button>
+          )}
         </div>
       );
     case "Activo":
