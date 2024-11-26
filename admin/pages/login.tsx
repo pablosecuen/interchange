@@ -9,7 +9,7 @@ import Logo from "../components/logo";
 import useAuth from "../components/hooks/useAuth";
 import { Button } from "@nextui-org/react";
 import router from "next/router";
-
+ 
 export interface User {
   tipo: string;
   ID: string;
